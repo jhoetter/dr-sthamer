@@ -43,7 +43,7 @@ Oder, wenn der Ordner noch nicht da ist:
 > Klone https://github.com/jhoetter/dr-sthamer in den Ordner dr-sthamer in meinem Benutzerordner, richte alles nach der README ein und starte die Kommandozentrale. Ich bin in Drill 1.
 
 Claude richtet alles ein und öffnet die Kommandozentrale im Browser
-(<http://127.0.0.1:3005>). Wenn gefragt wird, ob das Werkzeug **sthamer-sys**
+(<http://127.0.0.1:3005>). Beim ersten Öffnen fragt die App, ob du dem **Ordner** vertraust: **Ja**. Wenn gefragt wird, ob das Werkzeug **sthamer-sys**
 verwendet werden darf: **Ja**.
 
 **Wenn du nicht weiterweißt, frag Claude.** Es ist hier dein Tutor und gibt dir

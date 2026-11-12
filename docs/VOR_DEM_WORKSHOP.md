@@ -59,3 +59,10 @@ endet und du dein Handy für einen eventuellen Anmeldecode zur Hand hast.
   [INSTALL_WINDOWS.md](INSTALL_WINDOWS.md) bzw. [INSTALL_MAC.md](INSTALL_MAC.md).
 - **Am Tag selbst:** Hand heben. Zur Not arbeitest du zu zweit an einem Gerät
   („Buddy-Modus“), das ist im Workshop völlig in Ordnung.
+
+## Beim ersten Öffnen in der Claude-App
+
+Die App stellt zwei Rückfragen: **„Vertraust du diesem Ordner?“** und **„Darf das Werkzeug sthamer-sys
+verwendet werden?“** Beide Male **Ja**. Ohne diese Zustimmung kann Claude die Werkzeuge nicht benutzen. Beim
+allerersten Start fehlen sie ohnehin noch: Claude bittet dich dann, eine **neue Sitzung im selben Ordner** zu öffnen
+und „weiter mit Drill 1“ zu schreiben.

@@ -128,7 +128,7 @@ Jede Zeile ist **OK**, **ACHTUNG** oder **FEHLER**.
 
 > Richte alles nach der README ein und starte die Kommandozentrale. Ich bin in Drill 1.
 
-Wenn gefragt wird, ob das Werkzeug **„sthamer-sys“** verwendet werden darf: **Ja**.
+Beim ersten Öffnen fragt die App, ob du dem **Ordner** vertraust: **Ja**. Wenn gefragt wird, ob das Werkzeug **„sthamer-sys“** verwendet werden darf: **Ja**.
 
 *Kurzer Weg, wenn du Schritt 3 noch nicht gemacht hast* (Git und Python sind
 installiert): Starte die Sitzung in deinem Benutzerordner und schreibe:

@@ -63,11 +63,12 @@ Führe still aus:
    Person dort durch. Zeitgrenze für das Klonen: bis 10 Minuten.
 2. Eigener Zweig: `git switch -c workshop/mein-tag` (nur wenn es ein
    Git-Ordner ist).
-3. **Python finden.** Probiere nacheinander `python`, `python3`, `py -3`
-   mit `--version`. Unter Windows kann `python3` der Platzhalter des
-   Microsoft Store sein (öffnet den Store oder meldet „nicht gefunden“):
-   dann `python` oder `py -3` nehmen. Gibt es keines, verweise auf die
-   Installationsanleitung und bleibe dabei.
+3. **Python finden.** Probiere nacheinander drei **einzelne** Aufrufe, keine
+   Schleife: `python --version`, dann `python3 --version`, dann `py -3 --version`.
+   Unter Windows kann `python3` der Platzhalter des Microsoft Store sein
+   (öffnet den Store oder meldet „nicht gefunden“): dann `python` oder
+   `py -3` nehmen. Gibt es keines, verweise auf die Installationsanleitung
+   und bleibe dabei.
 4. `<python> check.py` (Systemcheck). Lies die Ausgabe selbst. Gibt es
    rote Zeilen, löse sie anhand der Hinweise in der Ausgabe und in
    `docs/INSTALL_*.md`; nenne der Person nur, was sie tun muss, in
@@ -78,16 +79,21 @@ Führe still aus:
 6. **Im Hintergrund** starten: `<python> sthamer.py serve --open`. Danach
    `<python> sthamer.py status` zum Prüfen. Verlass dich nie darauf, dass „schon
    eine läuft“; der Befehl erkennt das selbst.
-7. Sag in einfachen Worten: Die Kommandozentrale ist offen; das ist ein
-   Gerüst, das wir heute ausbauen. Wurde diese Sitzung **außerhalb** des
-   Ordners gestartet, bitte genau einen Schritt: „Öffne in der Claude-App
-   eine neue Code-Sitzung mit dem Ordner `dr-sthamer` und schreibe dort
-   ‚weiter mit Drill 1‘. Falls gefragt wird, ob der Sthamer-Server verwendet
-   werden darf: Ja.“
-8. Ist die Verbindung zu den Werkzeugen nicht da: einmal `setup` erneut
-   ausführen, dann um eine neue Sitzung im Ordner bitten. Arbeitsweg ohne
-   Werkzeuge: dieselben Auskünfte über `python sthamer.py status` und das
-   Cockpit; sag das nur, wenn nötig.
+7. Sag in einfachen Worten: Die Kommandozentrale ist im Browser offen; das ist
+   ein Gerüst, das wir heute ausbauen. Nenne die Adresse nur, wenn sich der
+   Browser nicht geöffnet hat. **Beim ersten Mal fehlen dir in dieser Sitzung
+   noch die Werkzeuge**, weil die Verbindung erst jetzt eingerichtet wurde.
+   Bitte deshalb genau einen Schritt, ohne Fachwörter und ohne Pfade: „Öffne
+   bitte in der Claude-App eine neue Code-Sitzung im selben Ordner und
+   schreibe dort ‚weiter mit Drill 1‘. Wenn die App fragt, ob du diesem Ordner
+   und den Werkzeugen von Sthamer vertraust: Ja, beide Male.“
+8. Fehlen dir die Werkzeuge in einer Sitzung im Ordner (Werkzeuge werden
+   abgelehnt oder gibt es nicht), sag **genau** das und nichts anderes: „Mir
+   fehlt noch die Verbindung zu den Werkzeugen. Bitte bestätige in der App die
+   Rückfragen zum Vertrauen mit Ja und öffne eine neue Sitzung im Ordner.
+   Klappt das nicht, ruf kurz den Dozenten oder deine Sitznachbarin.“ Dann
+   versuchst du nichts weiter: keine Dateien als Ersatz lesen, keine
+   Ursache behaupten, die du nicht kennst.
 
 **„weiter mit Drill N“ heißt: Drill N beginnen.** Zeige die Orientierung
 (Abschnitt 2) und starte die erste Etappe.

@@ -186,7 +186,7 @@ Zeigt `python` einen Fehler, probiere `py check.py`.
 > Richte alles nach der README ein und starte die Kommandozentrale. Ich bin in Drill 1.
 
 Claude richtet alles ein und öffnet die Kommandozentrale im Browser
-(`http://127.0.0.1:3005`). Wenn gefragt wird, ob das Werkzeug **„sthamer-sys“**
+(`http://127.0.0.1:3005`). Beim ersten Öffnen fragt die App, ob du dem **Ordner** vertraust: **Ja**. Wenn gefragt wird, ob das Werkzeug **„sthamer-sys“**
 verwendet werden darf: **Ja**.
 
 *Kurzer Weg, wenn du Schritt 4 noch nicht gemacht hast* (Python und Git sind
