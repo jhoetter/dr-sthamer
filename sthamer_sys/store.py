@@ -26,7 +26,13 @@ CREATE TABLE IF NOT EXISTS aufgaben (
 CREATE TABLE IF NOT EXISTS entwuerfe (
   id INTEGER PRIMARY KEY AUTOINCREMENT, fall_id INTEGER NOT NULL, an TEXT NOT NULL,
   betreff TEXT NOT NULL, text TEXT NOT NULL, belege TEXT NOT NULL DEFAULT '[]',
-  status TEXT NOT NULL DEFAULT 'entwurf', von TEXT NOT NULL, erstellt TEXT NOT NULL, geaendert TEXT NOT NULL
+  status TEXT NOT NULL DEFAULT 'entwurf', von TEXT NOT NULL, erstellt TEXT NOT NULL, geaendert TEXT NOT NULL,
+  stufe TEXT, stufe_gruende TEXT NOT NULL DEFAULT '[]', rechtsaussage INTEGER NOT NULL DEFAULT 0,
+  sende_am TEXT, freigabe_von TEXT, freigabe_zeit TEXT, ablehnung TEXT
+);
+CREATE TABLE IF NOT EXISTS einschaetzungen (
+  kunde_id TEXT PRIMARY KEY, ergebnis TEXT NOT NULL, begruendung TEXT NOT NULL, belege TEXT NOT NULL DEFAULT '[]',
+  stichtag TEXT, von TEXT NOT NULL, zeit TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS postausgang (
   id INTEGER PRIMARY KEY AUTOINCREMENT, entwurf_id INTEGER NOT NULL UNIQUE, an TEXT NOT NULL,
@@ -39,15 +45,36 @@ CREATE TABLE IF NOT EXISTS ereignisse (
 """
 
 
+_NEUE_SPALTEN = {
+    "entwuerfe": [("stufe", "TEXT"), ("stufe_gruende", "TEXT NOT NULL DEFAULT '[]'"),
+                  ("rechtsaussage", "INTEGER NOT NULL DEFAULT 0"), ("sende_am", "TEXT"), ("freigabe_von", "TEXT"),
+                  ("freigabe_zeit", "TEXT"), ("ablehnung", "TEXT")],
+}
+_bereit: set = set()
+
+
+def _vorbereiten(conn: sqlite3.Connection) -> None:
+    """Tabellen anlegen und Spalten ergänzen, falls der lokale Stand älter ist."""
+    conn.executescript(SCHEMA)
+    for tabelle, spalten in _NEUE_SPALTEN.items():
+        vorhanden = {r["name"] for r in conn.execute("PRAGMA table_info(%s)" % tabelle).fetchall()}
+        for name, typ in spalten:
+            if name not in vorhanden:
+                conn.execute("ALTER TABLE %s ADD COLUMN %s %s" % (tabelle, name, typ))
+
+
 @contextmanager
 def verbindung() -> Iterator[sqlite3.Connection]:
     state_dir().mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(str(db_path()), timeout=15, isolation_level=None)
+    pfad = str(db_path())
+    conn = sqlite3.connect(pfad, timeout=15, isolation_level=None)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA busy_timeout = 15000")
     conn.execute("PRAGMA foreign_keys = ON")
     try:
-        conn.executescript(SCHEMA)
+        if pfad not in _bereit:
+            _vorbereiten(conn)
+            _bereit.add(pfad)
         yield conn
     finally:
         conn.close()
@@ -80,7 +107,7 @@ def ereignis(conn: sqlite3.Connection, akteur: str, art: str, fall_id: Optional[
     """Protokolleintrag. akteur: mensch | claude | system."""
     conn.execute(
         "INSERT INTO ereignisse (zeit, akteur, art, fall_id, details) VALUES (?, ?, ?, ?, ?)",
-        (jetzt(), akteur, art, fall_id, dumps(details or {})),
+        (jetzt(conn), akteur, art, fall_id, dumps(details or {})),
     )
 
 

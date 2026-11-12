@@ -109,6 +109,36 @@ def t_note(a: Dict[str, Any]) -> Any:
     return domain.notiz(a["fall_id"], a["text"], akteur="claude")
 
 
+def t_assess(a: Dict[str, Any]) -> Any:
+    return domain.einschaetzung_festhalten(a["kunde_id"], a["ergebnis"], a["begruendung"], a.get("belege"),
+                                           a.get("stichtag"), akteur="claude")
+
+
+def t_assessments(a: Dict[str, Any]) -> Any:
+    return domain.einschaetzungen()
+
+
+def t_submit(a: Dict[str, Any]) -> Any:
+    r = domain.einreichen(a["entwurf_id"], a["rechtsaussage"], akteur="claude")
+    r["hinweis"] = ("Die Kontrolle bestimmt die Regel, nicht du. Freigeben macht der Mensch im Cockpit; "
+                    "eingeplante Mails gehen nach dem Fenster automatisch raus, du kannst sie nur bremsen.")
+    return r
+
+
+def t_queue(a: Dict[str, Any]) -> Any:
+    return [e for e in domain.entwuerfe() if e["status"] in ("zur_freigabe", "freigegeben", "geplant")]
+
+
+def t_stop(a: Dict[str, Any]) -> Any:
+    return domain.stoppen(a["entwurf_id"], akteur="claude")
+
+
+def t_report(a: Dict[str, Any]) -> Any:
+    if not domain.faehigkeiten()["bericht"]:
+        raise domain.FachFehler("Die Berichtsdaten gibt es erst ab Drill 5.")
+    return domain.bericht()
+
+
 def _tool(name: str, beschreibung: str, props: Dict[str, Any], required: List[str],
           fn: Callable[[Dict[str, Any]], Any], liest: bool) -> Dict[str, Any]:
     return {"name": name, "description": beschreibung, "fn": fn, "liest": liest,
@@ -150,6 +180,27 @@ TOOLS: List[Dict[str, Any]] = [
     _tool("list_drafts", "Entwürfe, optional nur zu einem Fall.", {"fall_id": _i("Fallnummer, optional")}, [], t_drafts, True),
     _tool("add_note", "Interne Notiz zu einem Fall ins Protokoll schreiben.",
           {"fall_id": _i("Fallnummer"), "text": _s("Notiz")}, ["fall_id", "text"], t_note, False),
+    _tool("record_assessment",
+          "Einschätzung festhalten, ob ein Kunde von der Verordnung betroffen ist (betroffen, nicht_betroffen, mittelbar, unklar), "
+          "mit Begründung und Belegen (Artikel, Produkt, Lieferung). Der Mensch prüft sie im Cockpit unter Kunden.",
+          {"kunde_id": _s("z. B. K-1010"), "ergebnis": _s("betroffen | nicht_betroffen | mittelbar | unklar"),
+           "begruendung": _s("Kurze Begründung"), "belege": _belege_schema(),
+           "stichtag": _s("Frühester relevanter Stichtag, JJJJ-MM-TT, optional")},
+          ["kunde_id", "ergebnis", "begruendung"], t_assess, False),
+    _tool("list_assessments", "Alle festgehaltenen Einschätzungen.", {}, [], t_assessments, True),
+    _tool("submit_draft",
+          "Entwurf einreichen (ab Drill 3). Du meldest nur, ob der Text über eine Standardinformation hinausgeht. "
+          "Standardinformation = nur die festen Fristen aus der Verordnung für die Produkte und Anwendungen des Kunden oder 'nicht betroffen'. "
+          "Alles andere (Rechtsauskunft auf eine konkrete Frage, Auslegung, Zusage, Produkt als unklar) ist rechtsaussage=true. "
+          "Die Regel bestimmt die Kontrolle: Pflichtfreigabe oder Eingriffsfenster. Du kannst weder freigeben noch senden.",
+          {"entwurf_id": _i("Entwurfsnummer"),
+           "rechtsaussage": {"type": "boolean", "description": "true, wenn der Text mehr ist als eine Standardinformation"}},
+          ["entwurf_id", "rechtsaussage"], t_submit, False),
+    _tool("list_queue", "Entwürfe, die auf Freigabe warten, freigegeben oder eingeplant sind (ab Drill 3).", {}, [], t_queue, True),
+    _tool("stop_scheduled_send", "Eine eingeplante Mail aus der Warteschlange nehmen (bremsen darfst du, beschleunigen nie).",
+          {"entwurf_id": _i("Entwurfsnummer")}, ["entwurf_id"], t_stop, False),
+    _tool("get_report_data", "Zahlen für den Bericht an die Geschäftsführung, aus Protokoll und Entwürfen (ab Drill 5).",
+          {}, [], t_report, True),
 ]
 _BY_NAME = {t["name"]: t for t in TOOLS}
 

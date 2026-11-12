@@ -9,7 +9,8 @@ from tests.helpers import WeltTest
 from sthamer_sys import domain, mcp_server
 
 ROOT = Path(__file__).resolve().parent.parent
-VERBOTEN = ("send", "sende", "approve", "freigeb", "release", "stop", "clock", "sql", "exec", "shell", "delete")
+VERBOTEN_ANFANG = ("send", "approve", "release", "reject", "advance", "set_clock", "freigeb", "ablehn")  # beschleunigen darf Claude nie
+VERBOTEN_TEIL = ("sql", "exec", "shell", "delete", "clock")  # Bremsen (stop_scheduled_send) ist erlaubt
 
 
 def rpc(methode, params=None, mid=1):
@@ -28,8 +29,9 @@ class McpTest(WeltTest):
         namen = [t["name"] for t in rpc("tools/list")["result"]["tools"]]
         self.assertIn("create_draft", namen)
         for n in namen:
-            for v in VERBOTEN:
-                self.assertNotIn(v, n.lower(), "Werkzeug %s sieht nach einer Kontrolle aus, die Claude nicht haben darf" % n)
+            self.assertFalse(n.lower().startswith(VERBOTEN_ANFANG), "Werkzeug %s sieht nach einer Kontrolle aus, die Claude nicht haben darf" % n)
+            for v in VERBOTEN_TEIL:
+                self.assertNotIn(v, n.lower(), "Werkzeug %s darf es nicht geben" % n)
 
     def test_unbekannte_methode_und_notification(self):
         self.assertEqual(rpc("gibt/es/nicht")["error"]["code"], -32601)

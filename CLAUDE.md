@@ -109,49 +109,40 @@ was bauen wir, was entscheidest du, woran erkennst du, dass es klappt.
 Werkzeuge, Kontrollen, Oberfläche, Protokoll. Ein Werkzeug, das fehlt, ist
 eine Kontrolle: Claude hat kein Werkzeug zum Senden und Freigeben.
 
-### Drill 1 · Die Verordnung kommt
+### Die Drills
 
-Ziel: Verordnung verstehen, eine belegte Kundeninformation vorbereiten, der
-Mensch sendet. Bauauftrag: **Die Aufgabe erledigt sich beim Senden.**
+**Lies zu Beginn jedes Drills die passende Karte in `docs/DRILL_CARDS.md`** (Mission, vier Etappen mit
+Entscheidungsfragen, Bauauftrag mit Stelle im Programm, Szenarien, Nachweis, Reflexion) und halte dich daran.
+Die Gesamtübersicht steht in `docs/WORKSHOP_AGENDA.md`. Welche Runde im Postfach liegt, zeigt
+`get_workshop_status`; die Person sagt „weiter mit Drill N“ und ruft die nächste Runde mit dem Code des
+Dozenten selbst ab (Cockpit, „Postfach abrufen“).
 
-1. *Claude bereitet vor.* Lies die Aufgabenmail im Posteingang (Werkzeuge
-   `list_inbox`, `get_message`), lege den Fall an (`create_case`), lies die
-   Verordnung (`get_regulation`). Fasse sie in fünf kurzen Punkten zusammen:
-   Was gilt (Grenzwert), für welche Anwendungen, **ab wann je Anwendung**, für
-   wen. Nenne die Artikel. Bitte die Person, **eine Frist im Regelwerk**
-   gegenzulesen. Das ist der Moment, in dem sie dir misstraut.
-2. *Mensch entscheidet.* Frage, an welchen Kunden die erste Information geht
-   (die Aufgabenmail nennt ihn). Hole Kunde und Lieferungen
-   (`get_customer`) und die betroffenen Produkte (`get_product`).
-   Beachte Einheiten (mg/l und µg/l) und fehlende Messwerte: nenne sie offen,
-   wenn sie vorkommen, und rate nie. Lege den Entwurf an (`create_draft`) **mit
-   Belegen** (Artikel, Produkte, Lieferungen). Sag der Person: „Lies den
-   Entwurf im Cockpit unter Fälle, ändere, was nicht stimmt, und sende ihn
-   selbst.“ Du sendest nicht, du hast kein Werkzeug dafür.
-3. *Selbst bauen.* Frage die Person, **in ihren Worten**, wann sich die
-   Aufgabe erledigen soll und wann **nie**. Bestehe auf mindestens einem
-   „nie“-Szenario (zum Beispiel: eine Aufgabe eines anderen Falls bleibt
-   offen; sie erledigt sich nicht, wenn das Senden fehlschlägt). Schreibe
-   zuerst die Prüfszenarien, dann die Änderung, dann lass sie laufen
-   (`python -m unittest`). Die Stelle: die Funktion `senden` in
-   `sthamer_sys/domain.py` (Kommentar „DRILL 1“). Zeige der Person, was sich
-   geändert hat, in Alltagssprache.
-4. *Belegen.* Die Person sendet einen zweiten Entwurf im Cockpit; die Aufgabe
-   steht dort auf „erledigt“. Frage nach Zustimmung zum Speichern des Stands
-   (`git add` nur der geänderten Dateien, nie `.env`, `.data/`, `postausgang/`),
-   dann `git commit`.
+| Drill | Runde | Bauauftrag (Stelle) |
+| --- | --- | --- |
+| 1 Die Verordnung kommt | 1 | Aufgabe erledigt sich beim Senden (`_ablegen`, „DRILL 1“) |
+| 2 Wer ist betroffen? Mit Beleg | 1 | Belegprüfung (`belegpruefung.py`, „DRILL 2“) |
+| 3 Pflichtfreigabe | 2 | Änderung entwertet die Freigabe (`entwurf_aendern`, „DRILL 3“) |
+| 4 Eingriffsfenster | 3, dann 4 | Änderung bricht den Termin ab, nie doppelt senden (`entwurf_aendern`, „DRILL 4“) |
+| 5 Bericht | 4 | Eigene Kennzahl (`bericht`, „DRILL 5“) |
 
-### Drills 2–5
+Nachweis eines Bauauftrags: Prüfszenarien der Person laufen (`<python> -m unittest discover -s tests`) **und**
+`<python> scripts/akzeptanz.py <n>` meldet alles bestanden; dazu der Beweis im Cockpit. Gehe nie zum nächsten Drill
+über, bevor die Person ihren Nachweis gesehen hat.
 
-Folgen im Ausbau (siehe `docs/PLAN.md`, Abschnitt 5). Gibt es keine
-Drill-Karte in `docs/`, sag der Person, dass der Dozent diesen Drill
-gemeinsam freischaltet, und biete die empfohlene Erweiterung des aktuellen
-Drills an. Greife nie auf spätere Drills vor.
+**Kontrollen, die du kennen musst (ab Runde 2):** Jeder Entwurf wird mit `submit_draft` eingereicht. Du meldest nur,
+ob der Text über eine **Standardinformation** hinausgeht (`rechtsaussage`): Standardinformation heißt nur die festen
+Fristen aus der Verordnung für die Produkte und Anwendungen des Kunden oder „nicht betroffen“. Rechtsauskunft auf
+eine konkrete Frage, Auslegung, Zusage oder ein Produkt als „unklar“ ist `rechtsaussage=true`. Die Regel bestimmt
+die Kontrolle (Pflichtfreigabe oder Eingriffsfenster), nicht du. Mit `list_queue` siehst du, was wartet oder
+eingeplant ist; eingeplante Mails darfst du **bremsen** (`stop_scheduled_send`), nie beschleunigen.
+
+**Kontrollen ändern ist Bauauftrag der Person.** Du schreibst nur dann in `kontrollen.py`, `domain.py` und
+`belegpruefung.py`, wenn es der aktuelle Bauauftrag verlangt und die Person die Regel in ihren Worten festgelegt hat.
 
 ## 3. Was nur der Mensch tut
 
-- **Senden**, **Freigeben**, **Stoppen**, **Nachrichten abrufen** (Code vom
-  Dozenten) und die **Uhr** bedienen: nur im Cockpit. Du hast dafür kein
+- **Senden**, **Freigeben**, **Ablehnen**, **Nachrichten abrufen** (Code vom
+  Dozenten) und die **Übungsuhr** bedienen: nur im Cockpit. (Bremsen, also eine eingeplante Mail stoppen, darfst du.) Du hast dafür kein
   Werkzeug, und du suchst keinen Umweg: kein direktes Ansprechen der
   Cockpit-Adressen, kein Schreiben in die Datenbank, kein Anlegen von Dateien
   im Postausgang, keine Änderung der Kontrollen ohne ausdrückliche Bitte der

@@ -130,6 +130,14 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(domain.kunden_liste())
         if k == "kunde" and arg:
             return self._json(domain.kunde_detail(arg))
+        if k == "einschaetzungen":
+            return self._json(domain.einschaetzungen())
+        if k == "bericht":
+            if not domain.faehigkeiten()["bericht"]:
+                raise domain.FachFehler("Der Bericht ist erst ab Drill 5 freigeschaltet.")
+            datei = ROOT / "bericht.md"
+            text = datei.read_text(encoding="utf-8") if datei.is_file() else None
+            return self._json({"zahlen": domain.bericht(), "text": text})
         if k == "postausgang":
             return self._json(domain.postausgang())
         if k == "protokoll":
@@ -162,7 +170,7 @@ class Handler(BaseHTTPRequestHandler):
             self._fehler(500, "Interner Fehler (siehe Konsole).")
 
     def _post_api(self, pfad: str, body: Dict[str, Any]) -> Any:
-        m = re.fullmatch(r"/api/(welle|fall|notiz|entwurf|senden)(?:/(\d+))?", pfad)
+        m = re.fullmatch(r"/api/(welle|fall|notiz|entwurf|senden|freigeben|ablehnen|stoppen|uhr)(?:/(\d+))?", pfad)
         if not m:
             raise domain.FachFehler("Unbekannte Aktion.")
         art, nr = m.group(1), m.group(2)
@@ -176,6 +184,14 @@ class Handler(BaseHTTPRequestHandler):
             return domain.entwurf_aendern(int(nr), body, akteur="mensch")
         if art == "senden" and nr:
             return domain.senden(int(nr), akteur="mensch")
+        if art == "freigeben" and nr:
+            return domain.freigeben(int(nr), akteur="mensch")
+        if art == "ablehnen" and nr:
+            return domain.ablehnen(int(nr), body.get("grund"), akteur="mensch")
+        if art == "stoppen" and nr:
+            return domain.stoppen(int(nr), akteur="mensch")
+        if art == "uhr":
+            return domain.uhr_vorspulen(body.get("stunden"), akteur="mensch")
         raise domain.FachFehler("Unbekannte Aktion.")
 
 
@@ -195,6 +211,17 @@ def _gleiche_kopie(root: str) -> bool:
         return bool(root) and os.path.exists(root) and os.path.samefile(root, str(ROOT))
     except OSError:
         return False
+
+
+def _worker() -> None:
+    """Prüft alle 5 Sekunden, ob eine eingeplante Mail nach Übungsuhr fällig ist (nur dieser Prozess sendet)."""
+    import time
+    while True:
+        try:
+            domain.faellige_senden()
+        except Exception as e:  # nie abbrechen
+            sys.stderr.write("Worker-Fehler: %r\n" % (e,))
+        time.sleep(5)
 
 
 def starten(port: int = DEFAULT_PORT, oeffnen: bool = False) -> int:
@@ -218,6 +245,7 @@ def starten(port: int = DEFAULT_PORT, oeffnen: bool = False) -> int:
         return 1
     url = "http://127.0.0.1:%d" % server.port
     state_dir().mkdir(parents=True, exist_ok=True)
+    threading.Thread(target=_worker, daemon=True).start()
     with open(str(state_dir() / "server.json"), "w", encoding="utf-8") as f:
         json.dump({"port": server.port, "pid": os.getpid(), "url": url}, f)
     print("Kommandozentrale läuft: %s  (beenden mit Strg+C)" % url, flush=True)

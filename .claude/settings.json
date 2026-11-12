@@ -23,7 +23,10 @@
       "Bash(py -m unittest:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(python scripts/akzeptanz.py:*)",
+      "Bash(python3 scripts/akzeptanz.py:*)",
+      "Bash(py scripts/akzeptanz.py:*)"
     ],
     "deny": [
       "Read(./dozent/**)",
@@ -35,7 +38,15 @@
       "Bash(py sthamer.py reset:*)",
       "Read(./data/eingang/**)",
       "Read(./data/regulation/berichtigung*)",
-      "Read(./data/wellen.json)"
+      "Read(./data/wellen.json)",
+      "Bash(python scripts/sim_mensch.py:*)",
+      "Bash(python3 scripts/sim_mensch.py:*)",
+      "Bash(py scripts/sim_mensch.py:*)",
+      "Read(./scripts/sim_mensch.py)",
+      "Read(./scripts/referenz_anwenden.py)",
+      "Bash(python scripts/referenz_anwenden.py:*)",
+      "Bash(python3 scripts/referenz_anwenden.py:*)",
+      "Bash(py scripts/referenz_anwenden.py:*)"
     ]
   }
 }

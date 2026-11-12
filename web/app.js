@@ -23,6 +23,11 @@ const ICONS = {
   user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/>',
   check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
   building: '<rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/>',
+  shield: '<path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/>',
+  chart: '<path d="M5 19V9M12 19V5M19 19v-7"/>',
+  stop: '<rect x="6" y="6" width="12" height="12" rx="2"/>',
+  chevron: '<path d="m6 9 6 6 6-6"/>',
 };
 
 function icon(name, size) {
@@ -81,13 +86,47 @@ const ANWENDUNGEN = {
 const EREIGNISSE = {
   postfach_abgerufen: "Postfach abgerufen", fall_angelegt: "Fall angelegt", entwurf_angelegt: "Entwurf angelegt",
   entwurf_geaendert: "Entwurf geändert", gesendet: "Gesendet", notiz: "Notiz",
+  zur_freigabe: "Zur Freigabe eingereicht", geplant: "Eingeplant", freigegeben: "Freigegeben", abgelehnt: "Abgelehnt",
+  versand_gestoppt: "Versand gestoppt", uhr_vorgespult: "Übungsuhr vorgespult", einschaetzung: "Einschätzung festgehalten",
 };
+const STUFEN = { pflichtfreigabe: "Pflichtfreigabe", eingriffsfenster: "Eingriffsfenster" };
+const ES_LABEL = {
+  betroffen: ["betroffen", "solid-orange"], nicht_betroffen: ["nicht betroffen", "solid-green"],
+  mittelbar: ["mittelbar", "solid-blue"], unklar: ["unklar", "solid-grey"],
+};
+const esChip = es => { const [t, c] = ES_LABEL[es.ergebnis] || [es.ergebnis, "solid-grey"]; return chip(t, c); };
 const AKTEURE = { mensch: ["Du", "mensch"], claude: ["Claude", "claude"], system: ["System", "system"] };
 
 const chip = (text, cls) => h("span", { class: "chip " + (cls || "") }, text);
 const typChip = t => { const [txt, cls] = TYPEN[t] || [t, "dot-grey"]; return chip(txt, cls); };
 const statusIcon = st => h("span", { class: "status-icon " + ((FALL_STATUS[st] || [])[1] || "") });
 const anwendung = id => ANWENDUNGEN[id] || id;
+const faehig = name => !!(S && S.faehigkeiten && S.faehigkeiten[name]);
+
+/* Übungsuhr: Zeiten der Übungswelt, nicht der Systemuhr */
+const uhrText = () => (S && S.jetzt ? fmtDateShort(S.jetzt) + " · " + hhmm(S.jetzt) : "");
+function restzeit(sendeAm) {
+  if (!sendeAm || !S || !S.jetzt) return "";
+  const min = Math.round((parseIso(sendeAm) - parseIso(S.jetzt)) / 60000);
+  if (min <= 0) return "fällig";
+  const std = Math.floor(min / 60);
+  const rest = min % 60;
+  return "in " + (std ? std + " Std." + (rest ? " " : "") : "") + (rest || !std ? rest + " Min." : "");
+}
+
+/* Protokolltext eines Ereignisses (für Fall und Protokoll) */
+function eventText(e) {
+  const d = e.details || {};
+  let t = e.art === "gesendet" && d.automatisch ? "Automatisch gesendet" : (EREIGNISSE[e.art] || e.art);
+  if (d.text) t += ": " + d.text;
+  else if (d.grund) t += ": " + d.grund;
+  else if (d.kunde_id) t += " · " + d.kunde_id + (d.ergebnis ? " · " + (ES_LABEL[d.ergebnis] || [d.ergebnis])[0] : "");
+  else if (d.stunden) t += " um " + d.stunden + " Std." + (d.jetzt ? " (jetzt " + fmtTime(d.jetzt) + ")" : "");
+  else if (d.an) t += " an " + d.an;
+  if (d.stufe && STUFEN[d.stufe]) t += " · " + STUFEN[d.stufe];
+  if (e.art === "geplant" && d.sende_am) t += " · Versand " + fmtTime(d.sende_am);
+  return t;
+}
 
 async function api(pfad, body) {
   const opt = body === undefined ? {} : {
@@ -146,8 +185,25 @@ function topbar(crumbs, ...actions) {
     h("div", { class: "crumbs" }, crumbs.map((c, i) => [i ? h("span", { class: "sep" }, "›") : null, i === crumbs.length - 1 ? h("strong", {}, c) : h("span", {}, c)])),
     h("div", { class: "spacer" }),
     actions,
+    uhrMenu(),
     h("button", { class: "btn ghost", title: "Suchen und springen", onclick: openPalette }, icon("search"), "Suchen", h("span", { class: "kbd" }, "⌘K")),
     h("button", { class: "btn", onclick: openPostfach }, icon("sync"), "Postfach abrufen"));
+}
+
+function uhrMenu() {
+  if (!faehig("fenster")) return null;
+  const menu = h("div", { class: "menu", hidden: true }, h("div", { class: "menu-head" }, "Übungsuhr vorspulen"),
+    [[1, "+1 Stunde"], [6, "+6 Stunden"], [24, "+1 Tag"]].map(([std, text]) => h("button", { onclick: async () => {
+      menu.hidden = true;
+      try {
+        const res = await api("uhr", { stunden: std });
+        toast(res.automatisch_gesendet > 0 ? plural(res.automatisch_gesendet, "Mail", "Mails") + " automatisch gesendet." : "Übungsuhr vorgespult.");
+        await render(true);
+      } catch (e) { toast(e.message, true); }
+    } }, text)));
+  const btn = h("button", { class: "btn ghost", title: "Übungsuhr", onclick: ev => { ev.stopPropagation(); menu.hidden = !menu.hidden; } },
+    icon("clock"), h("span", { class: "uhr-text" }, uhrText()), icon("chevron", 12));
+  return h("div", { class: "uhr" }, btn, menu);
 }
 
 function emptyState(iconName, text, ...buttons) {
@@ -226,9 +282,12 @@ function markdown(text) {
 
 /* ---------- Gerüst ---------- */
 const NAV = [
-  ["Arbeitskorb", [["eingang", "Eingang", "inbox", s => s.ungelesen, true], ["faelle", "Fälle", "cases", s => s.faelle_offen], ["postausgang", "Postausgang", "send", s => s.gesendet]]],
+  ["Arbeitskorb", [
+    ["eingang", "Eingang", "inbox", s => s.ungelesen, true], ["faelle", "Fälle", "cases", s => s.faelle_offen],
+    ["freigaben", "Freigaben", "shield", s => s.zur_freigabe, true, "freigabe"], ["geplant", "Geplant", "clock", s => s.geplant, false, "fenster"],
+    ["postausgang", "Postausgang", "send", s => s.gesendet]]],
   ["Wissen", [["regelwerk", "Regelwerk", "book"], ["produkte", "Produkte", "flask", s => s.produkte], ["kunden", "Kunden", "users", s => s.kunden]]],
-  ["Nachweis", [["protokoll", "Protokoll", "list"]]],
+  ["Nachweis", [["protokoll", "Protokoll", "list"], ["bericht", "Bericht", "chart", null, false, "bericht"]]],
 ];
 let S = null;
 let mainEl = null;
@@ -238,10 +297,10 @@ function buildShell() {
   const nav = h("nav", {});
   NAV.forEach(([label, items]) => {
     nav.append(h("div", { class: "nav-label" }, label));
-    items.forEach(([key, text, ic, count, hot]) => {
+    items.forEach(([key, text, ic, count, hot, cap]) => {
       const c = h("span", { class: "count" });
-      const a = h("a", { class: "nav-item", href: "#/" + key }, icon(ic), text, c);
-      navEls[key] = { a, c, count, hot };
+      const a = h("a", { class: "nav-item", href: "#/" + key, hidden: !!cap }, icon(ic), text, c);
+      navEls[key] = { a, c, count, hot, cap };
       nav.append(a);
     });
   });
@@ -259,12 +318,14 @@ function buildShell() {
 async function refreshStatus() {
   try { S = await api("status"); } catch (e) { S = S || {}; }
   Object.values(navEls).forEach(n => {
+    if (n.cap) n.a.hidden = !faehig(n.cap);
     const v = n.count && S ? n.count(S) : null;
     n.c.textContent = v ? String(v) : "";
     n.c.classList.toggle("hot", !!(n.hot && v));
   });
   const f = document.getElementById("foot-stand");
   if (f && S && S.heute) f.textContent = "Runde " + S.welle + " · Übungstag " + fmtDateShort(S.heute);
+  document.querySelectorAll(".uhr-text").forEach(n => { n.textContent = uhrText(); });
 }
 
 /* ---------- Ansichten ---------- */
@@ -332,6 +393,7 @@ function fallDetail(f, prods, kunden) {
   const prodName = id => (prods.find(p => p.id === id) || {}).name;
   const kundeName = id => (kunden.find(k => k.id === id) || {}).name;
   const st = FALL_STATUS[f.status] || [f.status, ""];
+  const auto = new Set(f.protokoll.filter(e => e.art === "gesendet" && e.details && e.details.automatisch).map(e => e.details.entwurf_id));
   return h("div", { class: "detail" }, h("div", { class: "detail-grid" },
     h("div", { class: "thread" },
       h("h1", {}, f.titel),
@@ -340,7 +402,7 @@ function fallDetail(f, prods, kunden) {
       h("div", { class: "section" }, h("div", { class: "section-head" }, "Aufgaben", h("span", { class: "meta" }, offen ? plural(offen, "offen", "offen") : "alle erledigt")),
         f.aufgaben.map(a => h("div", { class: "task" + (a.status === "erledigt" ? " done" : "") }, h("span", { class: "check" + (a.status === "erledigt" ? " on" : "") }), h("span", { class: "task-title" }, a.titel)))),
       h("div", { class: "section" }, h("div", { class: "section-head" }, "Entwürfe", h("span", { class: "meta" }, "Claude bereitet vor, du entscheidest")),
-        f.entwuerfe.length ? f.entwuerfe.map(e => draftBlock(e, prodName, kundeName)) : h("p", { class: "muted" }, "Noch kein Entwurf. Bitte Claude in der Claude-App, einen vorzubereiten.")),
+        f.entwuerfe.length ? f.entwuerfe.map(e => draftBlock(e, prodName, kundeName, { auto: auto.has(e.id) })) : h("p", { class: "muted" }, "Noch kein Entwurf. Bitte Claude in der Claude-App, einen vorzubereiten.")),
       h("div", { class: "section" }, h("div", { class: "section-head" }, "Protokoll", h("span", { class: "meta" }, plural(f.protokoll.length, "Eintrag", "Einträge"))),
         f.protokoll.slice().reverse().map(eventRow))),
     h("aside", { class: "props" },
@@ -355,24 +417,12 @@ function fallDetail(f, prods, kunden) {
 
 function eventRow(e) {
   const [who, cls] = AKTEURE[e.akteur] || [e.akteur, "system"];
-  const extra = e.details && e.details.text ? ": " + e.details.text : (e.details && e.details.an ? " an " + e.details.an : "");
-  return h("div", { class: "event" }, h("span", { class: "pt " + cls }), h("span", {}, h("strong", {}, who), " · ", (EREIGNISSE[e.art] || e.art) + extra), h("span", { class: "when" }, fmtTime(e.zeit)));
+  return h("div", { class: "event" }, h("span", { class: "pt " + cls }), h("span", {}, h("strong", {}, who), " · ", eventText(e)), h("span", { class: "when" }, fmtTime(e.zeit)));
 }
 
-function draftBlock(e, prodName, kundeName) {
-  const sent = e.status !== "entwurf";
-  const an = h("input", { value: e.an, disabled: sent, "aria-label": "An" });
-  const betreff = h("input", { value: e.betreff, disabled: sent, "aria-label": "Betreff" });
-  const text = h("textarea", { disabled: sent, "aria-label": "Text" });
-  text.value = e.text;
-  const fit = () => { text.style.height = "auto"; text.style.height = Math.max(text.scrollHeight + 2, 200) + "px"; };
-  text.addEventListener("input", fit);
-  requestAnimationFrame(fit);
-  const notice = sent
-    ? h("div", { class: "draft-notice sent" }, icon("check"), "Gesendet. Die Mail liegt im Postausgang; es ging nichts ins Netz.")
-    : h("div", { class: "draft-notice" }, icon(e.von === "claude" ? "bot" : "user"), e.von === "claude" ? "Entwurf von Claude. Du prüfst, änderst und sendest. Claude kann nicht senden." : "Dein Entwurf.");
-
-  const ev = (e.belege || []).map(b => {
+/* Belege als anklickbare Marken (Artikel, Produkt, Kunde, Nachricht) */
+function belegChips(belege, prodName, kundeName) {
+  return (belege || []).map(b => {
     const label = b.typ === "produkt" ? b.ref + (prodName(b.ref) ? " · " + prodName(b.ref) : "")
       : b.typ === "kunde" ? b.ref + (kundeName(b.ref) ? " · " + kundeName(b.ref) : "") : b.ref;
     const ic = b.typ === "artikel" || b.typ === "datenblatt" ? "book" : b.typ === "produkt" ? "flask" : b.typ === "kunde" ? "building" : "clip";
@@ -383,18 +433,51 @@ function draftBlock(e, prodName, kundeName) {
     if (b.typ === "nachricht") return h("a", { href: href("eingang", b.ref) }, content);
     return h("span", { class: "ev" }, content);
   });
+}
+
+/* Entwurf mit Kontrollband. Die Oberfläche zeigt nur den Status aus der API; sie entwertet keine Freigabe und
+   bricht keinen Termin von sich aus ab (das bauen die Teilnehmenden im Programm). */
+function draftBlock(e, prodName, kundeName, opts) {
+  opts = opts || {};
+  const sent = e.status === "gesendet";
+  const an = h("input", { value: e.an, disabled: sent, "aria-label": "An" });
+  const betreff = h("input", { value: e.betreff, disabled: sent, "aria-label": "Betreff" });
+  const text = h("textarea", { disabled: sent, "aria-label": "Text" });
+  text.value = e.text;
+  const fit = () => { text.style.height = "auto"; text.style.height = Math.max(text.scrollHeight + 2, 200) + "px"; };
+  text.addEventListener("input", fit);
+  requestAnimationFrame(fit);
+  const dirty = () => an.value !== e.an || betreff.value !== e.betreff || text.value !== e.text;
+  const saveIfDirty = async () => { if (dirty()) await api("entwurf/" + e.id, { an: an.value, betreff: betreff.value, text: text.value }); };
+  const act = async (fn, msg) => {
+    try { await fn(); if (msg) toast(msg); await render(true); } catch (x) { toast(x.message, true); }
+  };
+
+  const stufeChip = e.stufe ? chip(STUFEN[e.stufe] || e.stufe) : null;
+  const band = (cls, ic, textNodes, ...right) => h("div", { class: "draft-notice " + cls }, icon(ic), h("span", {}, textNodes), h("span", { class: "right" }, right));
+  let notice;
+  if (sent) notice = band("sent", "check", opts.auto ? "Automatisch gesendet, nachdem das Eingriffsfenster abgelaufen war. Die Mail liegt im Postausgang; es ging nichts ins Netz." : "Gesendet. Die Mail liegt im Postausgang; es ging nichts ins Netz.", stufeChip);
+  else if (e.status === "geplant") notice = band("plan", "clock", "Eingeplant: geht automatisch am " + fmtTime(e.sende_am) + " raus (" + restzeit(e.sende_am) + "). Bis dahin kannst du stoppen.", stufeChip);
+  else if (e.status === "freigegeben") notice = band("sent", "check", "Freigegeben" + (e.freigabe_zeit ? " am " + fmtTime(e.freigabe_zeit) : "") + (e.freigabe_von ? " von " + (e.freigabe_von === "mensch" ? "dir" : e.freigabe_von) : "") + ". Jetzt kannst du senden.", stufeChip);
+  else if (e.status === "zur_freigabe") notice = band("warn", "shield", "Wartet auf deine Freigabe.", stufeChip);
+  else if (faehig("freigabe")) notice = band("", "bot", "Entwurf von Claude. Claude reicht ihn ein, dann entscheidet die Kontrolle.");
+  else notice = band("", e.von === "claude" ? "bot" : "user", e.von === "claude" ? "Entwurf von Claude. Du prüfst, änderst und sendest. Claude kann nicht senden." : "Dein Entwurf.");
+
+  const reasons = (e.stufe_gruende || []).length && !sent && e.status !== "entwurf"
+    ? h("div", { class: "draft-reasons" }, h("div", { class: "evidence-title" }, "Warum diese Kontrolle"), h("ul", {}, e.stufe_gruende.map(g => h("li", {}, g)))) : null;
+  const abgelehnt = e.status === "entwurf" && e.ablehnung ? h("div", { class: "draft-note" }, "Abgelehnt: " + e.ablehnung) : null;
+
+  const ev = belegChips(e.belege, prodName, kundeName);
   const evidence = h("div", { class: "evidence" }, h("div", { class: "evidence-title" }, "Belege"),
     ev.length ? ev : h("span", { class: "muted small" }, "Keine Belege angegeben. Aussagen ohne Beleg solltest du nicht senden."));
 
-  const save = h("button", { class: "btn", disabled: sent, onclick: async () => {
-    try { await api("entwurf/" + e.id, { an: an.value, betreff: betreff.value, text: text.value }); toast("Gespeichert."); await render(true); }
-    catch (x) { toast(x.message, true); }
-  } }, "Speichern");
+  /* Knöpfe */
+  const save = h("button", { class: "btn", onclick: () => act(async () => { await api("entwurf/" + e.id, { an: an.value, betreff: betreff.value, text: text.value }); }, "Gespeichert.") }, "Speichern");
 
   let armed = false;
   let timer = null;
   const cancel = h("button", { class: "btn ghost", style: "display:none" }, "Abbrechen");
-  const send = h("button", { class: "btn primary", disabled: sent }, icon("send"), "Senden");
+  const send = h("button", { class: "btn primary" }, icon("send"), "Senden");
   const disarm = () => {
     armed = false; clearTimeout(timer);
     send.replaceChildren(icon("send"), "Senden"); send.classList.remove("danger"); send.classList.add("primary"); cancel.style.display = "none";
@@ -407,18 +490,84 @@ function draftBlock(e, prodName, kundeName) {
       return;
     }
     try {
-      await api("entwurf/" + e.id, { an: an.value, betreff: betreff.value, text: text.value }); // gesendet wird, was du siehst
+      await saveIfDirty(); // gesendet wird, was du siehst
       await api("senden/" + e.id, {});
       toast("Im Postausgang abgelegt.");
       await render(true);
     } catch (x) { disarm(); toast(x.message, true); }
   });
 
-  return h("div", { class: "draft" }, notice,
+  const grund = h("input", { placeholder: "Begründung", "aria-label": "Begründung" });
+  const rejectMsg = h("span", { class: "small muted" });
+  const rejectGo = h("button", { class: "btn" }, "Ablehnen");
+  const rejectBox = h("div", { class: "reject-row", hidden: true }, grund, rejectGo, rejectMsg);
+  rejectGo.addEventListener("click", () => {
+    if (!grund.value.trim()) { rejectMsg.textContent = "Bitte kurz begründen."; grund.focus(); return; }
+    act(() => api("ablehnen/" + e.id, { grund: grund.value }), "Zurück an Claude.");
+  });
+  const rejectToggle = label => h("button", { class: "btn ghost", onclick: () => { rejectBox.hidden = !rejectBox.hidden; if (!rejectBox.hidden) grund.focus(); } }, label);
+  const approve = h("button", { class: "btn primary", onclick: () => act(async () => { await saveIfDirty(); await api("freigeben/" + e.id, {}); }, "Freigegeben.") }, icon("check"), "Freigeben");
+  const stop = h("button", { class: "btn", onclick: () => act(() => api("stoppen/" + e.id, {}), "Versand gestoppt. Der Entwurf liegt wieder bei dir.") }, icon("stop", 14), "Stoppen");
+
+  let foot = null;
+  if (!sent) {
+    if (e.status === "zur_freigabe") foot = [h("span", { class: "hint" }, "Du gibst diesen Text frei."), rejectToggle("Ablehnen"), save, approve];
+    else if (e.status === "freigegeben") foot = [h("span", { class: "hint" }, "Geht nur in den Ordner „postausgang“."), rejectToggle("Zurückziehen"), cancel, save, send];
+    else if (e.status === "geplant") foot = [h("span", { class: "hint" }, "Die Übungsuhr kannst du oben vorspulen."), save, stop];
+    else if (faehig("freigabe")) foot = [h("span", { class: "hint" }, "Ändern kannst du hier. Eingereicht wird über Claude."), save];
+    else foot = [h("span", { class: "hint" }, "Gesendet wird nur in den Ordner „postausgang“."), cancel, save, send];
+  }
+
+  return h("div", { class: "draft" }, notice, abgelehnt, reasons,
     h("div", { class: "field" }, h("label", {}, "An"), an),
     h("div", { class: "field" }, h("label", {}, "Betreff"), betreff),
     text, evidence,
-    sent ? null : h("div", { class: "draft-foot" }, h("span", { class: "hint" }, "Gesendet wird nur in den Ordner „postausgang“."), cancel, save, send));
+    foot ? h("div", { class: "draft-foot" }, foot) : null,
+    foot && (e.status === "zur_freigabe" || e.status === "freigegeben") ? rejectBox : null);
+}
+
+/* Freigaben und Geplant: Liste der Entwürfe mit ihrer Kontrolle */
+function queueDetail(e, prods, kunden) {
+  const prodName = id => (prods.find(p => p.id === id) || {}).name;
+  const kundeName = id => (kunden.find(k => k.id === id) || {}).name;
+  return h("div", { class: "detail" }, h("div", { class: "detail-grid" },
+    h("div", { class: "thread" },
+      h("h1", {}, e.betreff),
+      h("p", { class: "lead" }, fallNr(e.fall_id) + " · ", h("a", { href: href("faelle", e.fall_id) }, e.fall_titel)),
+      draftBlock(e, prodName, kundeName)),
+    h("aside", { class: "props" },
+      h("div", { class: "prop-group", style: "margin-top: 0" }, "Eigenschaften"),
+      prop("Status", e.status === "zur_freigabe" ? "Wartet auf Freigabe" : e.status === "freigegeben" ? "Freigegeben" : "Eingeplant"),
+      prop("Kontrolle", STUFEN[e.stufe] || "–"),
+      prop("Rechtsaussage", e.rechtsaussage ? "ja" : "nein"),
+      prop("Kunde", kundeLink(e.kunde_id, e.kunde_name)),
+      prop("Fall", h("a", { href: href("faelle", e.fall_id) }, fallNr(e.fall_id))),
+      e.status === "geplant" ? [prop("Versand", fmtTime(e.sende_am)), prop("Restzeit", restzeit(e.sende_am))] : null,
+      e.freigabe_zeit && e.status === "freigegeben" ? prop("Freigabe", fmtTime(e.freigabe_zeit)) : null)));
+}
+
+async function viewQueue(r, kind) {
+  const [es, prods, kunden] = await Promise.all([api("entwuerfe"), api("produkte"), api("kunden")]);
+  const frei = kind === "freigaben";
+  const items = es.filter(e => (frei ? e.status === "zur_freigabe" || e.status === "freigegeben" : e.status === "geplant"));
+  if (!frei) items.sort((a, b) => String(a.sende_am).localeCompare(String(b.sende_am)));
+  const row = e => h("a", { class: "row" + (String(e.id) === r.id ? " active" : ""), href: href(kind, e.id) },
+    h("span", { class: "status-icon " + (e.status === "zur_freigabe" ? "review" : e.status === "freigegeben" ? "done" : "scheduled") }),
+    h("span", { class: "row-id" }, fallNr(e.fall_id)),
+    h("span", { class: "row-main" }, h("span", { class: "row-title" }, e.betreff), h("span", { class: "row-sub" }, "an " + (e.kunde_name || e.an) + (e.stufe ? " · " + STUFEN[e.stufe] : ""))),
+    frei ? null : h("span", { class: "countdown" }, restzeit(e.sende_am)));
+  const rows = [];
+  if (frei) {
+    [["zur_freigabe", "Wartet auf Freigabe"], ["freigegeben", "Freigegeben, noch nicht gesendet"]].forEach(([st, label]) => {
+      const g = items.filter(e => e.status === st);
+      if (g.length) { rows.push(h("div", { class: "group" }, label)); g.forEach(e => rows.push(row(e))); }
+    });
+  } else if (items.length) { rows.push(h("div", { class: "group" }, "Eingeplant")); items.forEach(e => rows.push(row(e))); }
+  const sel = items.find(e => String(e.id) === r.id);
+  const label = frei ? "Freigaben" : "Geplant";
+  const list = items.length ? rows : [emptyState(frei ? "shield" : "clock", frei ? "Nichts wartet auf deine Freigabe." : "Nichts eingeplant. Mails im Eingriffsfenster erscheinen hier.")];
+  return col(topbar(sel ? ["Arbeitskorb", label, fallNr(sel.fall_id)] : ["Arbeitskorb", label]),
+    splitView(list, sel ? queueDetail(sel, prods, kunden) : null, frei ? "shield" : "clock", frei ? "Wähle links einen Entwurf zur Freigabe." : "Wähle links eine eingeplante Mail."));
 }
 
 async function viewPostausgang(r) {
@@ -507,13 +656,16 @@ async function viewProdukte() {
 }
 
 async function viewKunden() {
-  const ks = await api("kunden");
+  const [ks, es] = await Promise.all([api("kunden"), api("einschaetzungen")]);
+  const eMap = {};
+  es.forEach(x => { eMap[x.kunde_id] = x; });
   const rows = k => h("tr", { class: "click", onclick: () => { location.hash = panelHref("k", k.id); } },
     h("td", { class: "faint mono" }, k.id), h("td", {}, k.name), h("td", {}, k.segment), h("td", {}, k.land),
-    h("td", {}, h("span", { class: "chips" }, k.seveso ? chip("Seveso") : null, k.key_account ? chip("Key Account", "solid-blue") : null, k.ist_haendler ? chip("Händler") : null, k.status !== "aktiv" ? chip(k.status, "solid-orange") : null)));
+    h("td", {}, h("span", { class: "chips" }, k.seveso ? chip("Seveso") : null, k.key_account ? chip("Key Account", "solid-blue") : null, k.ist_haendler ? chip("Händler") : null, k.status !== "aktiv" ? chip(k.status, "solid-orange") : null)),
+    h("td", {}, eMap[k.id] ? esChip(eMap[k.id]) : h("span", { class: "faint" }, "–")));
   return col(topbar(["Wissen", "Kunden"]), h("div", { class: "page" }, h("div", { class: "page-inner" },
     h("h1", {}, "Kunden"), h("p", { class: "lead" }, plural(ks.length, "Kunde", "Kunden") + " aus dem Kundenstamm, mit allen Lieferungen und Anlagen."),
-    tableWithSearch("Kunde suchen …", ks, k => k.segment, rows, ["ID", "Kunde", "Segment", "Land", "Merkmale"]))));
+    tableWithSearch("Kunde suchen …", ks, k => k.segment, rows, ["ID", "Kunde", "Segment", "Land", "Merkmale", "Einschätzung"]))));
 }
 
 async function viewProtokoll() {
@@ -522,10 +674,9 @@ async function viewProtokoll() {
     ? h("table", {}, h("thead", {}, h("tr", {}, ["Zeit", "Wer", "Was", "Fall"].map(t => h("th", {}, t)))),
       h("tbody", {}, es.map(e => {
         const [who, cls] = AKTEURE[e.akteur] || [e.akteur, "system"];
-        const extra = e.details && e.details.text ? ": " + e.details.text : (e.details && e.details.an ? " an " + e.details.an : "");
         return h("tr", {}, h("td", { class: "muted mono", style: "white-space:nowrap" }, fmtTime(e.zeit)),
           h("td", {}, h("span", { class: "event", style: "padding:0" }, h("span", { class: "pt " + cls }), h("strong", {}, who))),
-          h("td", {}, EREIGNISSE[e.art] || e.art, extra ? h("span", { class: "muted" }, extra) : null),
+          h("td", {}, eventText(e)),
           h("td", {}, e.fall_id ? h("a", { href: href("faelle", e.fall_id) }, fallNr(e.fall_id)) : h("span", { class: "faint" }, "–")));
       })))
     : emptyState("list", "Noch nichts protokolliert. Jeder Schritt von dir und von Claude erscheint hier.");
@@ -533,7 +684,46 @@ async function viewProtokoll() {
     h("h1", {}, "Protokoll"), h("p", { class: "lead" }, "Was Claude vorbereitet hat und was du entschieden hast, mit Zeit und Urheber."), body)));
 }
 
-const VIEWS = { eingang: viewEingang, faelle: viewFaelle, postausgang: viewPostausgang, regelwerk: viewRegelwerk, produkte: viewProdukte, kunden: viewKunden, protokoll: viewProtokoll };
+/* Bericht: zeigt ALLE Zahlen aus bericht() (auch eigene Kennzahlen der Teilnehmenden), nichts wird hier neu gerechnet. */
+const BERICHT_LABELS = {
+  einschaetzungen: ["Kunden und Betroffenheit", { betroffen: "Betroffen", nicht_betroffen: "Nicht betroffen", mittelbar: "Mittelbar", unklar: "Unklar", ohne_einschaetzung: "Ohne Einschätzung", aktive_kunden: "Aktive Kunden" }],
+  entwuerfe: ["Entwürfe", { gesamt: "Gesamt", von_claude: "Von Claude", offen: "Noch offen" }],
+  versand: ["Versand", { gesendet: "Gesendet", mit_pflichtfreigabe: "Mit Pflichtfreigabe", automatisch_nach_fenster: "Automatisch nach Fenster", direkt_vom_menschen: "Direkt vom Menschen" }],
+  kontrolle: ["Kontrolle", { freigegeben: "Freigegeben", abgelehnt: "Abgelehnt", gestoppt: "Gestoppt", wartet_auf_freigabe: "Wartet auf Freigabe", eingeplant: "Eingeplant" }],
+  frist: ["Frist", { informationspflicht_bis: "Kunden informieren bis", tage_bis: "Tage bis zur Frist" }],
+};
+const humanize = k => { const t = String(k).replace(/_/g, " "); return t.charAt(0).toUpperCase() + t.slice(1); };
+function berichtWert(v, key) {
+  if (v === null || v === undefined) return "–";
+  if (typeof v === "object") return JSON.stringify(v);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(String(v)) && /bis|am|ab/.test(key)) return fmtDateShort(String(v));
+  return String(v).replace(/^(\d+)\.(\d+)$/, "$1,$2");
+}
+async function viewBericht() {
+  const d = await api("bericht");
+  const z = d.zahlen || {};
+  const sections = Object.keys(z).filter(k => k !== "stand" && k !== "grenze").map(k => {
+    const [titel, labels] = BERICHT_LABELS[k] || [humanize(k), {}];
+    const v = z[k];
+    const entries = v !== null && typeof v === "object" ? Object.entries(v) : [[k, v]];
+    return h("div", { class: "section" }, h("div", { class: "section-head" }, titel),
+      h("div", { class: "facts compact" }, entries.map(([ek, ev]) => fact(labels[ek] || humanize(ek), berichtWert(ev, ek)))));
+  });
+  return col(topbar(["Nachweis", "Bericht"]), h("div", { class: "page" }, h("div", { class: "page-inner" },
+    h("h1", {}, "Bericht an die Geschäftsführung"),
+    h("p", { class: "lead" }, "Zahlen aus Protokoll und Entwürfen" + (z.stand ? ", Stand " + fmtTime(z.stand) : "") + ". Darunter steht dein Bericht."),
+    sections,
+    h("div", { class: "section" }, h("div", { class: "section-head" }, "Dein Bericht"),
+      d.text ? markdown(d.text) : emptyState("chart", "Noch kein Bericht. Bitte Claude, einen Entwurf als bericht.md zu schreiben.")),
+    z.grenze ? h("p", { class: "muted small", style: "margin-top: 32px" }, z.grenze) : null)));
+}
+
+const VIEWS = {
+  eingang: viewEingang, faelle: viewFaelle, freigaben: r => viewQueue(r, "freigaben"), geplant: r => viewQueue(r, "geplant"), postausgang: viewPostausgang,
+  regelwerk: viewRegelwerk, produkte: viewProdukte, kunden: viewKunden, protokoll: viewProtokoll, bericht: viewBericht,
+};
+/* Was erst mit einer späteren Runde freigeschaltet wird */
+const GATE = { freigaben: ["freigabe", 2, "Arbeitskorb", "Freigaben", "shield"], geplant: ["fenster", 3, "Arbeitskorb", "Geplant", "clock"], bericht: ["bericht", 4, "Nachweis", "Bericht", "chart"] };
 
 /* ---------- Seitenpanel (Produkt, Kunde) ---------- */
 async function renderPanel(r) {
@@ -577,7 +767,10 @@ async function productPanel(id) {
 }
 
 async function customerPanel(id) {
-  const [k, kunden] = await Promise.all([api("kunde/" + encodeURIComponent(id)), api("kunden")]);
+  const [k, kunden, ess, prods] = await Promise.all([api("kunde/" + encodeURIComponent(id)), api("kunden"), api("einschaetzungen"), api("produkte")]);
+  const es = ess.find(x => x.kunde_id === k.id);
+  const prodName = pid => (prods.find(p => p.id === pid) || {}).name;
+  const kundeName = kid => (kunden.find(x => x.id === kid) || {}).name;
   const ap = k.ansprechpartner || {};
   const end = (k.beliefert_endkunden || []).map(kid => h("a", { href: panelHref("k", kid) }, ((kunden.find(x => x.id === kid) || {}).name) || kid));
   return panelShell(k.id,
@@ -589,6 +782,10 @@ async function customerPanel(id) {
       end.length ? ["Beliefert", h("span", {}, end.map((a, i) => [i ? ", " : "", a]))] : null,
       k.bemerkung ? ["Bemerkung", k.bemerkung] : null,
     ]),
+    es ? h("div", { class: "section" }, h("div", { class: "section-head" }, "Einschätzung von " + (es.von === "claude" ? "Claude" : es.von === "mensch" ? "dir" : es.von), h("span", { class: "meta" }, fmtTime(es.zeit))),
+      h("div", { class: "chips" }, esChip(es), es.stichtag ? chip("Stichtag " + fmtDateShort(es.stichtag)) : null),
+      h("p", { style: "margin: 10px 0 8px" }, es.begruendung),
+      h("div", { class: "evidence", style: "padding: 0; border: 0" }, belegChips(es.belege, prodName, kundeName))) : null,
     h("div", { class: "section" }, h("div", { class: "section-head" }, "Lieferungen und Anlagen", h("span", { class: "meta" }, plural(k.lieferungen.length, "Lieferung", "Lieferungen"))),
       k.lieferungen.length ? h("table", {}, h("thead", {}, h("tr", {}, ["Produkt", "Anwendung", "Menge", "Zuletzt"].map(t => h("th", {}, t)))),
         h("tbody", {}, k.lieferungen.map(l => h("tr", {},
@@ -627,10 +824,13 @@ async function openPalette() {
   closePalette();
   const [fs, ps, ks] = await Promise.all([api("faelle"), api("produkte"), api("kunden")]);
   const items = [
-    ["Eingang", "Ansicht", () => go("eingang")], ["Fälle", "Ansicht", () => go("faelle")], ["Postausgang", "Ansicht", () => go("postausgang")],
+    ["Eingang", "Ansicht", () => go("eingang")], ["Fälle", "Ansicht", () => go("faelle")],
+    faehig("freigabe") ? ["Freigaben", "Ansicht", () => go("freigaben")] : null, faehig("fenster") ? ["Geplant", "Ansicht", () => go("geplant")] : null,
+    ["Postausgang", "Ansicht", () => go("postausgang")],
     ["Regelwerk", "Ansicht", () => go("regelwerk")], ["Produkte", "Ansicht", () => go("produkte")], ["Kunden", "Ansicht", () => go("kunden")], ["Protokoll", "Ansicht", () => go("protokoll")],
+    faehig("bericht") ? ["Bericht", "Ansicht", () => go("bericht")] : null,
     ["Postfach abrufen", "Aktion", openPostfach],
-  ].concat(fs.map(f => [fallNr(f.id) + " · " + f.titel, "Fall", () => go("faelle", f.id)]))
+  ].filter(Boolean).concat(fs.map(f => [fallNr(f.id) + " · " + f.titel, "Fall", () => go("faelle", f.id)]))
     .concat(ps.map(p => [p.id + " · " + p.name, "Produkt", () => go("produkte", null, { p: p.id })]))
     .concat(ks.map(k => [k.id + " · " + k.name, "Kunde", () => go("kunden", null, { k: k.id })]));
   const input = h("input", { placeholder: "Springen zu …", "aria-label": "Suchen" });
@@ -669,9 +869,15 @@ async function doRender(force) {
     const listTop = sameView && mainEl.querySelector(".list") ? mainEl.querySelector(".list").scrollTop : 0;
     const threadTop = lastKey === key && mainEl.querySelector(".thread") ? mainEl.querySelector(".thread").scrollTop : 0;
     Object.entries(navEls).forEach(([k, n]) => n.a.classList.toggle("active", k === r.view));
+    await refreshStatus();
     let node;
-    try { node = await (VIEWS[r.view] || viewEingang)(r); }
-    catch (e) { node = col(topbar(["Fehler"]), emptyState("list", e.message)); }
+    const gate = GATE[r.view];
+    if (gate && !faehig(gate[0])) {
+      node = col(topbar([gate[2], gate[3]]), emptyState(gate[4], "Das schaltet der Dozent mit Runde " + gate[1] + " frei."));
+    } else {
+      try { node = await (VIEWS[r.view] || viewEingang)(r); }
+      catch (e) { node = col(topbar(["Fehler"]), emptyState("list", e.message)); }
+    }
     mainEl.replaceChildren(node);
     const l2 = mainEl.querySelector(".list");
     if (l2 && listTop) l2.scrollTop = listTop;
@@ -684,6 +890,13 @@ async function doRender(force) {
 }
 
 window.addEventListener("hashchange", () => render(false));
+document.addEventListener("click", () => document.querySelectorAll(".uhr .menu").forEach(m => { m.hidden = true; }));
+/* Übungsuhr und Restzeiten regelmäßig auffrischen, ohne Eingaben zu stören */
+setInterval(async () => {
+  await refreshStatus();
+  const typing = document.activeElement && /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+  if (parseRoute().view === "geplant" && !typing && !document.querySelector(".panel, .dialog, .palette")) render(true);
+}, 30000);
 window.addEventListener("keydown", ev => {
   if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "k") { ev.preventDefault(); openPalette(); }
   else if (ev.key === "Escape") {

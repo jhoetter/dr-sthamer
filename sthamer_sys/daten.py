@@ -65,6 +65,15 @@ def kunde(kunde_id: str) -> Optional[Dict[str, Any]]:
     return None
 
 
+def kunde_zu_email(email: str) -> Optional[Dict[str, Any]]:
+    """Der Kunde, zu dem diese Ansprechperson gehört (oder None, etwa bei internen Adressen)."""
+    e = (email or "").lower()
+    for k in kunden():
+        if ((k.get("ansprechpartner") or {}).get("email") or "").lower() == e:
+            return k
+    return None
+
+
 def verordnung_text(name: str = "vo-fiktiv-2026-9001.md") -> str:
     """Nur Dateien aus data/regulation/ (kein beliebiger Pfad)."""
     if "/" in name or "\\" in name or ".." in name:

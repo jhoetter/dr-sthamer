@@ -1,0 +1,109 @@
+# Workshop-Agenda: Agentische Systeme bei Dr. Sthamer
+
+> **Status:** Entwurf zur Abstimmung zwischen Johannes, Falk und Marc. Gespielt
+> wurde der Tag am 12.11.2026 mit simulierten Teilnehmenden (siehe
+> `docs/PROBELAUF_2026-11-12.md`). Zeiten sind Vorschläge für **einen Tag**.
+
+Alle Übungen nutzen die erfundene Übungswelt von `sthamer-sys`: Kunden,
+Produkte, Lieferungen, Mails und die Verordnung „EU 2026/9001 (fiktiv)“. Echte
+Kunden- oder Produktdaten kommen nicht vor. Es ist kein Rechtsrat.
+
+## Lernbogen
+
+| Teil | Leitfrage | Ergebnis |
+| --- | --- | --- |
+| Vormittag | Wie wird aus einer Verordnung ein prüfbarer Prozess, in dem Claude vorbereitet und wir entscheiden? | Alle haben eine eigene Kommandozentrale, einen belegten Entwurf, eine Einschätzung mit Belegen und eine gebaute Kontrolle (Drill 1 und 2). |
+| Nachmittag | Wann darf eine Mail das Haus nur mit Freigabe verlassen, wann automatisch nach Verzögerung? | Pflichtfreigabe und Eingriffsfenster am eigenen System erlebt und gebaut; ein Bericht an die Geschäftsführung (Drill 3 bis 5). |
+| Abschluss | Wo darf der Agent bei **uns** handeln? | Ein Automation Contract für einen eigenen Fall; Übergabe an Falks „Bring Your Own Case“. |
+
+Die sechs Bausteine jedes agentischen Systems: **Eingänge, Wissen,
+Werkzeuge, Kontrollen, Oberfläche, Protokoll**. Jeder Drill rückt einige in den
+Fokus. Ein Werkzeug, das fehlt, ist eine Kontrolle: Claude hat kein Werkzeug
+zum Senden oder Freigeben.
+
+## Tagesablauf
+
+| Zeit | Block | Wer | Inhalt |
+| --- | --- | --- | --- |
+| 08:30 | Ankommen, Technikcheck | Marc, IT von Sthamer | Geräte an, Gäste-WLAN, `python check.py`, Claude-Anmeldung. Vorab erledigt (siehe `VOR_DEM_WORKSHOP.md`), hier nur Nacharbeit. Zweiergruppen („Buddys“) bilden. |
+| 09:00 | Begrüßung | Falk, Sthamer | Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. |
+| 09:15 | Input: Vom Assistenten zum Agenten | Johannes | Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Dann der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
+| 10:05 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
+| 11:05 | Pause | | |
+| 11:20 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
+| 12:20 | Mittag | | **Runde 2** vorbereiten (Code bereithalten). |
+| 13:10 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes, Falk | Fünf Anfragen, Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
+| 14:10 | Pause | | |
+| 14:25 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes, Marc | Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein.** Bau: Änderung bricht den Termin ab, nie doppelt senden. |
+| 15:30 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Falk | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
+| 16:15 | Pause | | |
+| 16:30 | Whiteboard: Wo darf der Agent bei uns handeln? | Falk, Johannes | Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf eigene Fälle übertragen, Automation Contract. |
+| 17:15 | Ausblick und Abschluss | Falk | Brücke zu „Bring Your Own Case“, Rückmeldungen. |
+
+## Drills im Überblick
+
+| Drill | Runde (Code) | Baustein im Fokus | Fall für alle | Bauauftrag | Nachweis |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 1 (kein Code) | Eingänge, Werkzeuge, Oberfläche | Mail der Regulatory Affairs, Anfrage Bergheim-Land | Aufgabe erledigt sich beim Senden | Zweiter Entwurf gesendet, Aufgabe steht auf „erledigt“ |
+| 2 | 1 | Wissen, Kontrollen | Fünf Kunden mit Stolperstellen (Händler, Flughafen, Drittland, ruhend, einfach) | Belegprüfung beim Speichern | Ein Entwurf mit falschem Beleg wird abgewiesen; Einschätzungen stehen im Cockpit |
+| 3 | 2 (Code vom Dozenten) | Kontrollen, Oberfläche | Fünf Kundenanfragen mit Rechtsauskunft | Freigabe erlischt bei Änderung | Freigegebenen Entwurf ändern: Freigabe weg, Senden gesperrt |
+| 4 | 3 und 4 | Kontrollen, Protokoll | Vier Standardinfos, dann die Berichtigung | Änderung bricht den Termin ab; nie doppelt senden | Eingeplante Mail ändern: Termin weg; Uhr vorspulen: genau eine Datei |
+| 5 | 4 | Protokoll | Zahlen des Tages | Eigene Kennzahl im Bericht | `bericht.md` mit eigener Kennzahl, Zahlen stimmen mit dem Cockpit überein |
+
+Jeder Drill hat vier **aufeinanderfolgende Etappen**: Claude bereitet vor →
+der Mensch prüft und entscheidet → selbst bauen → Ergebnis belegen. Details,
+Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
+
+## Dozenten-Choreografie
+
+- **Runden-Codes** stehen in `dozent/WELLEN.md` (nur lokal bei den Lehrenden).
+  Runde 2 um 13:10 ansagen, Runde 3 um 14:25, Runde 4 etwa 45 Minuten später
+  („Die Berichtigung ist da“) mitten im Drill 4. Die Codes werden laut gesagt
+  oder an die Tafel geschrieben; Teilnehmende tragen sie im Cockpit unter
+  „Postfach abrufen“ ein.
+- **Uhr vorspulen** machen die Teilnehmenden selbst im Cockpit (Drill 4). Der
+  Dozent erklärt vorher: Die Übungsuhr läuft sonst in Echtzeit; 24 Stunden
+  Wartezeit simulieren wir durch Vorspulen.
+- **Lösungsschlüssel** liegt in `dozent/LOESUNG.md` (nur lokal): je Produkt,
+  Kunde und Mail die erwartete Einschätzung, Kontrollstufe und Stolperstelle.
+- **Zeitpuffer:** Jeder Drill hat 60 Minuten (Drill 5: 45). Wer früh fertig ist,
+  erweitert die **eigene** Kommandozentrale (Steckbrief in `MEINE_ERWEITERUNGEN.md`)
+  und nimmt nie den nächsten Drill vorweg.
+- **Wer hängt:** Buddy-Modus (zu zweit an einem Gerät), Dozenten-Rechner mit
+  Referenzstand, im Notfall Drill überspringen und zum nächsten Eingang
+  wechseln. Niemand muss einen Bauauftrag fertigstellen, um mitzugehen.
+
+## Wenn die Zeit knapp wird
+
+1. Drill 2: Bauauftrag (Belegprüfung) kürzen: Regel und Szenarien festlegen,
+   Claude baut ohne Zwischenschritte.
+2. Drill 3 und 4: gemeinsame Ansicht der Warteschlange statt eigener Läufe
+   für alle Fälle; jede Person bearbeitet zwei von fünf Fällen.
+3. Drill 5: statt eines Berichts nur die Zahlen im Cockpit vorlesen und die
+   Empfehlung mündlich formulieren.
+
+## Reserve-Runden (optional, je 10 bis 15 Minuten)
+
+- **Angriffs-Mail:** Eine Kundenmail enthält eine versteckte Anweisung an den
+  Agenten (liegt als `MSG-3-06` in Runde 3). Wer erkennt sie, wer ignoriert sie?
+- **Laptop-Tausch:** Jede Person bekommt das Cockpit der Nachbarin. Was sagt
+  das Protokoll über die Entscheidungen?
+- **Vier-Augen-Rollenspiel:** Eine Person prüft, eine gibt frei; was ändert
+  sich, wenn es dieselbe Person ist?
+- **Echte Verordnung (nur Bonus):** Den Text von EU 2025/1988 aus EUR-Lex in
+  Claude geben und den Steckbrief mit der fiktiven Fassung vergleichen. Kein
+  Rechtsrat; das Ergebnis ist Diskussionsstoff.
+
+## Abschluss: Automation Contract (Vorlage)
+
+Für den eigenen Fall in einem Satz je Zeile festhalten:
+
+| Zeile | Frage |
+| --- | --- |
+| Auslöser | Was setzt den Agenten in Gang (Mail, Verordnung, Frist)? |
+| Wissen | Worauf darf er zugreifen, worauf nicht? |
+| Aktion | Was darf er vorbereiten? Was darf er nie selbst tun? |
+| Kontrolle | Pflichtfreigabe oder Eingriffsfenster, und warum? |
+| Protokoll | Was wird festgehalten, wer kann es lesen? |
+| Grenze | Wann hört der Agent auf und fragt? |
+| Verantwortlich | Wer entscheidet im Zweifel? |

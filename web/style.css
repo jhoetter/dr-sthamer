@@ -107,7 +107,7 @@ a:hover { text-decoration: underline; }
 .thread h1 { margin: 0 0 6px; font-size: 22px; line-height: 1.25; font-weight: 650; letter-spacing: -.012em; }
 .thread .lead { margin: 0 0 22px; color: var(--muted); }
 .props { padding: 22px 18px; border-left: 1px solid var(--line); overflow-y: auto; background: var(--soft); }
-.prop { display: grid; grid-template-columns: 78px 1fr; gap: 8px; align-items: start; min-height: 30px; padding: 4px 0; font-size: 13px; }
+.prop { display: grid; grid-template-columns: 92px 1fr; gap: 8px; align-items: start; min-height: 30px; padding: 4px 0; font-size: 13px; }
 .prop > span:first-child { color: var(--muted); padding-top: 1px; }
 .prop-group { margin: 20px 0 6px; color: var(--faint); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
 .section { margin-top: 30px; }
@@ -157,7 +157,8 @@ a:hover { text-decoration: underline; }
 .draft textarea { display: block; width: 100%; min-height: 230px; padding: 14px; border: 0; outline: 0; resize: vertical; background: none; line-height: 1.6; }
 .draft input:disabled, .draft textarea:disabled { color: var(--ink); opacity: 1; -webkit-text-fill-color: var(--ink); }
 .draft-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px 12px 10px 14px; border-top: 1px solid var(--line); }
-.draft-foot .hint { flex: 1; min-width: 160px; color: var(--muted); font-size: 12px; }
+.draft-foot .hint { flex: 1 1 90px; min-width: 90px; color: var(--muted); font-size: 12px; }
+.draft-foot .btn { flex: none; }
 .evidence { padding: 10px 14px 12px; border-top: 1px solid var(--line); }
 .evidence-title { margin-bottom: 6px; color: var(--faint); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
 .evidence a, .evidence .ev { display: inline-flex; align-items: center; gap: 6px; margin: 0 6px 6px 0; padding: 3px 9px; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); font-size: 12px; text-decoration: none; }
@@ -260,3 +261,35 @@ tr.click:hover td { background: var(--soft); }
   .split.has-detail > .list { display: none; }
   .split:not(.has-detail) > .detail { display: none; }
 }
+
+/* ---------- Phase 2: Freigabe, Eingriffsfenster, Übungsuhr, Bericht ---------- */
+[hidden] { display: none !important; }
+.status-icon.review { border-color: var(--orange); border-style: dashed; }
+.status-icon.scheduled { border-color: var(--accent); background: radial-gradient(var(--accent) 0 3px, transparent 3.5px); }
+.chip.solid-grey { border-color: transparent; background: var(--hover); color: var(--muted); }
+.chip.solid-red { border-color: transparent; background: #fbe6e4; color: var(--red); }
+.draft-notice.warn { background: var(--orange-soft); color: var(--orange); }
+.draft-notice.plan { background: var(--accent-soft); color: var(--accent-ink); }
+.draft-notice .right { margin-left: auto; display: inline-flex; gap: 6px; flex: none; }
+.draft-notice .right .chip { background: var(--bg); }
+.draft-reasons { padding: 10px 14px 8px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.draft-reasons ul { margin: 2px 0 2px; padding-left: 18px; }
+.draft-reasons li { margin: 2px 0; }
+.draft-note { padding: 8px 14px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.reject-row { display: flex; align-items: center; gap: 8px; padding: 10px 12px 12px 14px; border-top: 1px solid var(--line); }
+.reject-row input { flex: 1; min-width: 0; height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.reject-row input:focus { outline: 0; border-color: var(--accent); }
+.countdown { flex: none; color: var(--accent-ink); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.uhr { position: relative; }
+.uhr .btn { font-variant-numeric: tabular-nums; }
+.menu { position: absolute; right: 0; top: 34px; z-index: 25; min-width: 200px; padding: 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); box-shadow: var(--shadow); }
+.menu-head { padding: 6px 10px 4px; color: var(--faint); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.menu button { display: block; width: 100%; padding: 7px 10px; border: 0; border-radius: 6px; background: none; text-align: left; }
+.menu button:hover { background: var(--hover); }
+.section .facts { margin-top: 0; }
+@media (prefers-color-scheme: dark) { .chip.solid-red { background: #3a1916; } }
+.facts.compact { display: flex; flex-wrap: wrap; gap: 0 44px; }
+.facts.compact .fact { padding: 12px 0; }
+.facts.compact .fact + .fact { padding-left: 0; border-left: 0; }
+.prop > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.prop .chips { flex-wrap: nowrap; gap: 8px; align-items: center; white-space: nowrap; }

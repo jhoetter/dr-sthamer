@@ -3,23 +3,15 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
-from datetime import datetime
 
 
-def jetzt() -> str:
-    """„Jetzt“ in der Übungswelt: Datum aus data/welt.json (Übungstag), Uhrzeit der echten Uhr.
+def jetzt(conn=None) -> str:
+    """„Jetzt“ in der Übungswelt: Übungstag aus data/welt.json, Uhrzeit der echten Uhr plus Vorspulen.
 
-    Phase 2 ersetzt das durch die vorspulbare Workshop-Uhr.
+    Die Übungsuhr kann nur im Cockpit vorgespult werden (Drill 4). `conn` vermeidet eine zweite Verbindung.
     """
-    real = datetime.now().replace(microsecond=0)
-    try:
-        from . import daten
-        tag = daten.welt().get("heute")
-        if tag:
-            return "%sT%s" % (tag, real.strftime("%H:%M:%S"))
-    except Exception:
-        pass
-    return real.isoformat(timespec="seconds")
+    from . import uhr
+    return uhr.jetzt(conn)
 
 
 def dumps(obj) -> str:
