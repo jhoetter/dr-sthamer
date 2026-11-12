@@ -1,0 +1,8 @@
+# Immer LF im Repo (Windows-Zeilenenden brechen Skripte und Tests)
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary

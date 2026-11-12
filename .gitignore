@@ -1,0 +1,13 @@
+# lokal, nie committen
+.data/
+.env
+.mcp.json
+dozent/
+.instructor/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+postausgang/
+*.log
