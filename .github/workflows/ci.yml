@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       fail-fast: false
-      # Windows ist der Hauptfall (3 Versionen). macOS läuft nur mit 3.9 (Systempython) und 3.12,
+      # Windows ist der Hauptfall (3 Versionen). macOS läuft nur mit 3.9 (Systempython) und 3.12 (Python 3.9 gibt es auf dem neuen Ubuntu-Image nicht mehr),
       # weil macOS-Minuten in privaten Repos zehnfach zählen.
       matrix:
         include:
@@ -34,7 +34,6 @@ jobs:
           - {os: windows-latest, python: "3.13"}
           - {os: macos-latest, python: "3.9"}
           - {os: macos-latest, python: "3.12"}
-          - {os: ubuntu-latest, python: "3.9"}
           - {os: ubuntu-latest, python: "3.13"}
     steps:
       - uses: actions/checkout@v7
