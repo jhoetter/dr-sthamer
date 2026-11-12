@@ -1,0 +1,621 @@
+[
+  {
+    "id": "K-1001",
+    "name": "Werkfeuerwehr Hafenchemie Nord GmbH",
+    "segment": "Industrie",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Mira Tannenberg",
+      "rolle": "Leiterin Werkfeuerwehr",
+      "email": "m.tannenberg@werkfeuerwehr-hafenchemie.example.com"
+    },
+    "seveso": true,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": "Nicht verwechseln mit K-1030 (Hafenchemie Nord Logistik GmbH), eigene Gesellschaft."
+  },
+  {
+    "id": "K-1002",
+    "name": "Chemiepark Süd Betriebsfeuerwehr AG",
+    "segment": "Industrie",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Dr. Karsten Obermaier",
+      "rolle": "Leiter Anlagensicherheit",
+      "email": "k.obermaier@chemiepark-sued.example.com"
+    },
+    "seveso": true,
+    "key_account": true,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [
+      "AUSN-UMSTELLUNGSPLAN"
+    ],
+    "status": "aktiv",
+    "bemerkung": "Umstellungsplan ist von der Behörde genehmigt. Rahmenvertrag mit Notfallservice 24/7."
+  },
+  {
+    "id": "K-1003",
+    "name": "Raffinerie Küstenmark GmbH",
+    "segment": "Industrie",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Jens Albrechtsen",
+      "rolle": "Leiter Brandschutz",
+      "email": "j.albrechtsen@raffinerie-kuestenmark.example.com"
+    },
+    "seveso": true,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1004",
+    "name": "Stahlwerk Ruhrtal AG",
+    "segment": "Montanindustrie",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Sabine Wiegand",
+      "rolle": "Brandschutzbeauftragte",
+      "email": "s.wiegand@stahlwerk-ruhrtal.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1005",
+    "name": "Kopalnia Śląsk Bergbau Sp. z o.o.",
+    "segment": "Montanindustrie",
+    "land": "PL",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Tomasz Kowalczyk",
+      "rolle": "Leiter Grubenwehr",
+      "email": "t.kowalczyk@kopalnia-slask.example.com"
+    },
+    "seveso": false,
+    "key_account": true,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1006",
+    "name": "Entsorgungsbetriebe Elbmarsch GmbH",
+    "segment": "Abfallwirtschaft",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Frank Reimers",
+      "rolle": "Betriebsleiter",
+      "email": "f.reimers@entsorgung-elbmarsch.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1007",
+    "name": "Recycling-Park Mitte GmbH",
+    "segment": "Abfallwirtschaft",
+    "land": "AT",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Ing. Barbara Hollerer",
+      "rolle": "Sicherheitsfachkraft",
+      "email": "b.hollerer@recycling-park-mitte.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1008",
+    "name": "Feuerwehr Neustadt (Holstein)",
+    "segment": "Feuerwehr kommunal",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Holger Petersen",
+      "rolle": "Gerätewart",
+      "email": "h.petersen@feuerwehr-neustadt-holstein.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": "Nicht verwechseln mit K-1009 (Neustadt am Rübenberge)."
+  },
+  {
+    "id": "K-1009",
+    "name": "Feuerwehr Neustadt am Rübenberge",
+    "segment": "Feuerwehr kommunal",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Dirk Meinecke",
+      "rolle": "Stadtbrandmeister",
+      "email": "d.meinecke@feuerwehr-neustadt-ruebenberge.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": "Nicht verwechseln mit K-1008 (Neustadt Holstein). Wird von K-1023 beliefert."
+  },
+  {
+    "id": "K-1010",
+    "name": "Freiwillige Feuerwehr Bergheim-Land",
+    "segment": "Feuerwehr kommunal",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Anja Lindemann",
+      "rolle": "Gemeindebrandmeisterin",
+      "email": "a.lindemann@ff-bergheim-land.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1011",
+    "name": "Berufsfeuerwehr Alstertal",
+    "segment": "Feuerwehr kommunal",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Ralf Sommerfeld",
+      "rolle": "Leiter Technik und Logistik",
+      "email": "r.sommerfeld@bf-alstertal.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1012",
+    "name": "Brandweer Veluwezoom",
+    "segment": "Feuerwehr kommunal",
+    "land": "NL",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Joost van der Berg",
+      "rolle": "Equipment Manager",
+      "email": "j.vanderberg@brandweer-veluwezoom.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1013",
+    "name": "Feuerwehrverband Salzkammergut",
+    "segment": "Feuerwehr kommunal",
+    "land": "AT",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Gerhard Moosbrugger",
+      "rolle": "Verbandsgerätewart",
+      "email": "g.moosbrugger@fw-salzkammergut.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1014",
+    "name": "Port of Gdynia Fire Service Sp. z o.o.",
+    "segment": "Schifffahrt und Werft",
+    "land": "PL",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Piotr Zielinski",
+      "rolle": "Head of Fire Safety",
+      "email": "p.zielinski@port-gdynia-fire.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1015",
+    "name": "Flughafen Hanse-Airport GmbH",
+    "segment": "Flughafen",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Claudia Brandstetter",
+      "rolle": "Leiterin Flughafenfeuerwehr",
+      "email": "c.brandstetter@hanse-airport.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [
+      "AUSN-FLUGHAFEN"
+    ],
+    "status": "aktiv",
+    "bemerkung": "Ausnahmebescheid nach Art. 8 Abs. 2 liegt vor."
+  },
+  {
+    "id": "K-1016",
+    "name": "Flughafen Alpenrhein AG",
+    "segment": "Flughafen",
+    "land": "AT",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Markus Eberle",
+      "rolle": "Leiter Flughafenfeuerwehr",
+      "email": "m.eberle@flughafen-alpenrhein.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": "Kein Ausnahmeantrag bekannt."
+  },
+  {
+    "id": "K-1017",
+    "name": "Werft Nordmeer Schiffbau GmbH",
+    "segment": "Schifffahrt und Werft",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Ines Carstensen",
+      "rolle": "Leiterin Arbeitssicherheit",
+      "email": "i.carstensen@werft-nordmeer.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1018",
+    "name": "Reederei Ostsee Linien AG",
+    "segment": "Schifffahrt und Werft",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Lars Hinrichsen",
+      "rolle": "Technischer Inspektor",
+      "email": "l.hinrichsen@reederei-ostsee-linien.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1019",
+    "name": "Nordic Offshore Services AS",
+    "segment": "Schifffahrt und Werft",
+    "land": "NO",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Henrik Solberg",
+      "rolle": "Fire Safety Manager",
+      "email": "h.solberg@nordic-offshore.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1020",
+    "name": "Löschgeräte Norddeutschland GmbH",
+    "segment": "Löschgerätehersteller",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Wolfgang Prahl",
+      "rolle": "Leiter Produktion",
+      "email": "w.prahl@loeschgeraete-nord.example.com"
+    },
+    "seveso": false,
+    "key_account": true,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1021",
+    "name": "Fireprotect Components Ltd",
+    "segment": "Löschgerätehersteller",
+    "land": "GB",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Oliver Whitcombe",
+      "rolle": "Purchasing Manager",
+      "email": "o.whitcombe@fireprotect-components.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1022",
+    "name": "Alpenlösch Gerätebau AG",
+    "segment": "Löschgerätehersteller",
+    "land": "CH",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Beat Zimmermann",
+      "rolle": "Einkaufsleiter",
+      "email": "b.zimmermann@alpenloesch.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1023",
+    "name": "Brandschutzhandel Weser GmbH",
+    "segment": "Händler",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Susanne Kohlmeyer",
+      "rolle": "Geschäftsführerin",
+      "email": "s.kohlmeyer@brandschutzhandel-weser.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": true,
+    "beliefert_endkunden": [
+      "K-1009",
+      "K-1010",
+      "K-1006"
+    ],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1024",
+    "name": "Fire & Rescue Supply Benelux B.V.",
+    "segment": "Händler",
+    "land": "NL",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Marieke de Vries",
+      "rolle": "Sales Director",
+      "email": "m.devries@frs-benelux.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": true,
+    "beliefert_endkunden": [
+      "K-1012",
+      "K-1007"
+    ],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1025",
+    "name": "Forstamt Lüneburger Heide",
+    "segment": "Forst und Waldbrand",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Hartmut Brandes",
+      "rolle": "Leiter Waldbrandschutz",
+      "email": "h.brandes@forstamt-lueneburger-heide.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1026",
+    "name": "Waldbrandverband Brandenburg-Süd",
+    "segment": "Forst und Waldbrand",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Katrin Lehmann",
+      "rolle": "Verbandsgeschäftsführerin",
+      "email": "k.lehmann@waldbrandverband-bb-sued.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1027",
+    "name": "Brandschutzzentrum Münsterland",
+    "segment": "Übungsanlage",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Thomas Averbeck",
+      "rolle": "Leiter Übungsbetrieb",
+      "email": "t.averbeck@bsz-muensterland.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1028",
+    "name": "Landesfeuerwehrschule Ostmark",
+    "segment": "Übungsanlage",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Dr. Silke Rönnfeldt",
+      "rolle": "Leiterin Lehrgangswesen",
+      "email": "s.roennfeldt@lfs-ostmark.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1029",
+    "name": "Altstoff-Verwertung Rheintal GmbH",
+    "segment": "Abfallwirtschaft",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Uwe Brandl",
+      "rolle": "Betriebsleiter",
+      "email": "u.brandl@altstoff-rheintal.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "ruhend",
+    "bemerkung": "Betrieb ruht seit September 2025, Wiederaufnahme offen."
+  },
+  {
+    "id": "K-1030",
+    "name": "Hafenchemie Nord Logistik GmbH",
+    "segment": "Industrie",
+    "land": "DE",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Nadine Hoffmeister",
+      "rolle": "Leiterin Lager und Logistik",
+      "email": "n.hoffmeister@hafenchemie-nord-logistik.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": "Gleiche Straße wie K-1001, aber eigene Gesellschaft."
+  },
+  {
+    "id": "K-1031",
+    "name": "Tankterminal Rotterdam-Mond B.V.",
+    "segment": "Industrie",
+    "land": "NL",
+    "sprache": "en",
+    "ansprechpartner": {
+      "name": "Sander Willemsen",
+      "rolle": "HSE Manager",
+      "email": "s.willemsen@tankterminal-rotterdam-mond.example.com"
+    },
+    "seveso": true,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  },
+  {
+    "id": "K-1032",
+    "name": "Zementwerk Alpenvorland GmbH",
+    "segment": "Industrie",
+    "land": "AT",
+    "sprache": "de",
+    "ansprechpartner": {
+      "name": "Peter Kaltenegger",
+      "rolle": "Leiter Werkschutz",
+      "email": "p.kaltenegger@zementwerk-alpenvorland.example.com"
+    },
+    "seveso": false,
+    "key_account": false,
+    "ist_haendler": false,
+    "beliefert_endkunden": [],
+    "ausnahme_ids": [],
+    "status": "aktiv",
+    "bemerkung": null
+  }
+]

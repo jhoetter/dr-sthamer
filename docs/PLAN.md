@@ -202,14 +202,28 @@ Offline-Paket.
 
 | Phase | Inhalt | Status |
 | --- | --- | --- |
-| 0 | Repo, Plan, Datenmodell | **in Arbeit** |
-| 1 | Teilnehmer-Anleitungen (Windows, Mac), IT-Vorab, `check.py`, CI | in Arbeit |
-| 1 | Synthetischer Datensatz und fiktive Verordnung mit Berichtigung | in Arbeit |
-| 1 | Kern: Speicher, CLI, Cockpit (Eingang, Fälle, Entwurf, Postausgang), MCP stdio | in Arbeit |
-| 2 | Pflichtfreigabe, Eingriffsfenster, Workshop-Uhr, Protokoll-Ansicht | offen |
-| 2 | Wellen mit Freigabecode, Checkpoints/Referenzlösungen, Drill-Karten | offen |
-| 3 | Bericht (Drill 5), Folien, Dozenten-Runbook, Offline-Paket | offen |
-| 3 | Generalprobe mit Sthamer-Gastgerät, Korrekturen | offen |
+| 0 | Repo, Plan, Datenmodell | **fertig** |
+| 1 | Anleitungen Windows/Mac, IT-Vorab, Vorab-Checkliste, Offline-Paket (Checkliste), `check.py`, CI | **fertig**, auf Windows noch nicht real getestet |
+| 1 | Datensatz: 27 Produkte, 32 Kunden, 149 Lieferungen, fiktive Verordnung + Berichtigung, 15 Mails in 4 Runden, Lösungsschlüssel | **fertig** |
+| 1 | Kern: Speicher, CLI, Cockpit (Eingang, Fälle, Entwurf, Postausgang, Regelwerk, Produkte, Kunden, Protokoll), MCP stdio mit 15 Werkzeugen, Runden mit Code | **fertig**, Drill 1 spielbar |
+| 2 | Pflichtfreigabe, Eingriffsfenster, Workshop-Uhr, Kontrollstufe pro Entwurf | offen |
+| 2 | Drill-Karten 1–5, Checkpoints/Referenzlösungen (`reference`-Branch), `get_drill_guide` | offen |
+| 3 | Bericht (Drill 5), Folien, Dozenten-Runbook, Offline-Paket bauen | offen |
+| 3 | **Generalprobe** mit Sthamer-Gastgerät, Korrekturen | offen |
+
+## 8a. Was noch nicht verifiziert ist
+
+Auf einem echten Gastgerät prüfen (`python check.py --netz`, ganzer Ablauf nach Anleitung):
+
+- Sperren AppLocker/WDAC Python oder Git aus `%LocalAppData%`? (Gegenmaßnahme: die IT installiert vorab.)
+- Wird das Gastprofil beim Abmelden oder Neustart gelöscht?
+- Reicht die Domainliste im Gäste-WLAN? (Liste in `docs/IT_VORAB.md` ist teils vermutet.)
+- Lässt sich die **Claude-App ohne Administrator** installieren, braucht sie auf Windows Git, und klappt die Mail-Anmeldung auf dem Gastgerät?
+- Verbindet die Claude-App mit der `.mcp.json` (absoluter Python-Pfad) sauber?
+- Dürfen wir den Claude-Installer ins Offline-Paket legen? (Python und Git ja, Open Source.)
+- Windows-Installer-Beschriftungen von Python/Git stimmen mit der Anleitung überein?
+
+Nicht getestet: Windows (nur CI), Claude-App-Anbindung mit echtem Client (der MCP-Server ist per Protokolltest geprüft).
 
 ## 9. Spielregeln für Inhalte
 

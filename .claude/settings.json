@@ -1,0 +1,41 @@
+{
+  "model": "sonnet",
+  "effortLevel": "medium",
+  "promptSuggestionEnabled": false,
+  "env": {
+    "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION": "false",
+    "PYTHONUTF8": "1"
+  },
+  "enabledMcpjsonServers": [
+    "sthamer"
+  ],
+  "permissions": {
+    "allow": [
+      "mcp__sthamer",
+      "Bash(python sthamer.py:*)",
+      "Bash(python3 sthamer.py:*)",
+      "Bash(py sthamer.py:*)",
+      "Bash(python check.py:*)",
+      "Bash(python3 check.py:*)",
+      "Bash(py check.py:*)",
+      "Bash(python -m unittest:*)",
+      "Bash(python3 -m unittest:*)",
+      "Bash(py -m unittest:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Read(./dozent/**)",
+      "Read(./.data/**)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(python sthamer.py reset:*)",
+      "Bash(python3 sthamer.py reset:*)",
+      "Bash(py sthamer.py reset:*)",
+      "Read(./data/eingang/**)",
+      "Read(./data/regulation/berichtigung*)",
+      "Read(./data/wellen.json)"
+    ]
+  }
+}

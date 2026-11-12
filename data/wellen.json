@@ -1,0 +1,18 @@
+{
+  "1": {
+    "titel": "Start: Verordnung und erste Aufgabe (Drill 1 und 2)",
+    "code_sha256": null
+  },
+  "2": {
+    "titel": "Kundenanfragen mit Rechtsaussage (Drill 3)",
+    "code_sha256": "c1dfc4691b2888dea4b682604aa6d1e952a1377b2f899932394216e2e8bffbda"
+  },
+  "3": {
+    "titel": "Standardfälle und eine versteckte Anweisung (Drill 4)",
+    "code_sha256": "30e4c4ac156e7e9b7188ca617cf4ff8923aa10ca503c9f1a35c95dc40bb4a72a"
+  },
+  "4": {
+    "titel": "Die Berichtigung trifft ein (Drill 4, später)",
+    "code_sha256": "e5202d7ce67dbad5e1721b69c546b27949fcfbf12bb700fd90e3589896d1f28f"
+  }
+}

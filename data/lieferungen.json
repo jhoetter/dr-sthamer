@@ -1,0 +1,1343 @@
+[
+  {
+    "id": "L-00001",
+    "kunde_id": "K-1001",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tanklager Halle 3, Schaumanlage SA-3",
+    "menge_l": 4000,
+    "letzte_lieferung": "2027-02-28"
+  },
+  {
+    "id": "L-00002",
+    "kunde_id": "K-1001",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tanklager Halle 5, Schaumanlage SA-5",
+    "menge_l": 3200,
+    "letzte_lieferung": "2025-08-31"
+  },
+  {
+    "id": "L-00003",
+    "kunde_id": "K-1001",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tanklager Halle 7, Schaumanlage SA-7",
+    "menge_l": 2800,
+    "letzte_lieferung": "2025-12-11"
+  },
+  {
+    "id": "L-00004",
+    "kunde_id": "K-1001",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr TLF 4000 (2 Fahrzeuge)",
+    "menge_l": 1600,
+    "letzte_lieferung": "2026-11-29"
+  },
+  {
+    "id": "L-00005",
+    "kunde_id": "K-1001",
+    "produkt_id": "P-101",
+    "anwendung": "lager_bestand",
+    "anlage": "Schaumlager Gebäude 12",
+    "menge_l": 2400,
+    "letzte_lieferung": "2026-01-31"
+  },
+  {
+    "id": "L-00006",
+    "kunde_id": "K-1001",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsplatz Werk Nord",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-07-23"
+  },
+  {
+    "id": "L-00007",
+    "kunde_id": "K-1002",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Reaktorhalle A, Schaumanlage RA-1",
+    "menge_l": 6000,
+    "letzte_lieferung": "2026-05-17"
+  },
+  {
+    "id": "L-00008",
+    "kunde_id": "K-1002",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Lagerhalle Ost, Schaumanlage LO-2",
+    "menge_l": 5000,
+    "letzte_lieferung": "2025-12-23"
+  },
+  {
+    "id": "L-00009",
+    "kunde_id": "K-1002",
+    "produkt_id": "P-121",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Altanlage Pumpenhaus, Schaumanlage PH-1",
+    "menge_l": 800,
+    "letzte_lieferung": "2026-02-03"
+  },
+  {
+    "id": "L-00010",
+    "kunde_id": "K-1002",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr HLF und TLF",
+    "menge_l": 2000,
+    "letzte_lieferung": "2026-02-26"
+  },
+  {
+    "id": "L-00011",
+    "kunde_id": "K-1002",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Zentrallager Schaum",
+    "menge_l": 3600,
+    "letzte_lieferung": "2025-05-30"
+  },
+  {
+    "id": "L-00012",
+    "kunde_id": "K-1002",
+    "produkt_id": "P-201",
+    "anwendung": "lager_bestand",
+    "anlage": "Pilotlager fluorfrei (Test)",
+    "menge_l": 400,
+    "letzte_lieferung": "2026-12-22"
+  },
+  {
+    "id": "L-00013",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tankfeld 1, Schaumleitungen",
+    "menge_l": 8000,
+    "letzte_lieferung": "2025-07-18"
+  },
+  {
+    "id": "L-00014",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Verladestation, Schaumanlage",
+    "menge_l": 4500,
+    "letzte_lieferung": "2026-07-17"
+  },
+  {
+    "id": "L-00015",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-119",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Pumpenstation (Testanlage)",
+    "menge_l": 600,
+    "letzte_lieferung": "2025-07-25"
+  },
+  {
+    "id": "L-00016",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr Großlöschfahrzeug",
+    "menge_l": 3000,
+    "letzte_lieferung": "2026-10-29"
+  },
+  {
+    "id": "L-00017",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr TLF Reserve",
+    "menge_l": 1500,
+    "letzte_lieferung": "2026-12-15"
+  },
+  {
+    "id": "L-00018",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-103",
+    "anwendung": "lager_bestand",
+    "anlage": "Tanklager",
+    "menge_l": 5000,
+    "letzte_lieferung": "2026-03-23"
+  },
+  {
+    "id": "L-00019",
+    "kunde_id": "K-1003",
+    "produkt_id": "P-203",
+    "anwendung": "lager_bestand",
+    "anlage": "Erprobungsmenge fluorfrei",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-04-12"
+  },
+  {
+    "id": "L-00020",
+    "kunde_id": "K-1004",
+    "produkt_id": "P-108",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Kokerei, Mittelschaum-Anlage MS-1",
+    "menge_l": 2500,
+    "letzte_lieferung": "2026-04-23"
+  },
+  {
+    "id": "L-00021",
+    "kunde_id": "K-1004",
+    "produkt_id": "P-108",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Walzwerk, Mittelschaum-Anlage MS-2",
+    "menge_l": 1800,
+    "letzte_lieferung": "2027-01-26"
+  },
+  {
+    "id": "L-00022",
+    "kunde_id": "K-1004",
+    "produkt_id": "P-108",
+    "anwendung": "lager_bestand",
+    "anlage": "Lager Brandschutz",
+    "menge_l": 1000,
+    "letzte_lieferung": "2026-01-19"
+  },
+  {
+    "id": "L-00023",
+    "kunde_id": "K-1004",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr TLF",
+    "menge_l": 1200,
+    "letzte_lieferung": "2026-07-14"
+  },
+  {
+    "id": "L-00024",
+    "kunde_id": "K-1004",
+    "produkt_id": "P-114",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Hubrettungsfahrzeug, Schaumtank",
+    "menge_l": 400,
+    "letzte_lieferung": "2025-08-16"
+  },
+  {
+    "id": "L-00025",
+    "kunde_id": "K-1004",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsgelände Werkfeuerwehr",
+    "menge_l": 300,
+    "letzte_lieferung": "2025-07-08"
+  },
+  {
+    "id": "L-00026",
+    "kunde_id": "K-1005",
+    "produkt_id": "P-108",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Untertageanlage Schacht 4",
+    "menge_l": 3500,
+    "letzte_lieferung": "2025-12-30"
+  },
+  {
+    "id": "L-00027",
+    "kunde_id": "K-1005",
+    "produkt_id": "P-108",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Übertageanlage Aufbereitung",
+    "menge_l": 2800,
+    "letzte_lieferung": "2025-12-23"
+  },
+  {
+    "id": "L-00028",
+    "kunde_id": "K-1005",
+    "produkt_id": "P-207",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Pilotanlage fluorfrei Schacht 7",
+    "menge_l": 1200,
+    "letzte_lieferung": "2025-10-08"
+  },
+  {
+    "id": "L-00029",
+    "kunde_id": "K-1005",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Grubenwehr-Löschfahrzeug",
+    "menge_l": 900,
+    "letzte_lieferung": "2026-03-15"
+  },
+  {
+    "id": "L-00030",
+    "kunde_id": "K-1005",
+    "produkt_id": "P-108",
+    "anwendung": "lager_bestand",
+    "anlage": "Grubenlager",
+    "menge_l": 2000,
+    "letzte_lieferung": "2025-09-15"
+  },
+  {
+    "id": "L-00031",
+    "kunde_id": "K-1005",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Grubenlager Nebenlager",
+    "menge_l": 800,
+    "letzte_lieferung": "2026-08-31"
+  },
+  {
+    "id": "L-00032",
+    "kunde_id": "K-1006",
+    "produkt_id": "P-121",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Bunkerhalle Müllverbrennung, Schaumanlage",
+    "menge_l": 1500,
+    "letzte_lieferung": "2027-01-19"
+  },
+  {
+    "id": "L-00033",
+    "kunde_id": "K-1006",
+    "produkt_id": "P-108",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Sortierhalle, Mittelschaum-Anlage",
+    "menge_l": 1800,
+    "letzte_lieferung": "2025-05-02"
+  },
+  {
+    "id": "L-00034",
+    "kunde_id": "K-1006",
+    "produkt_id": "P-108",
+    "anwendung": "lager_bestand",
+    "anlage": "Betriebslager",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-04-18"
+  },
+  {
+    "id": "L-00035",
+    "kunde_id": "K-1006",
+    "produkt_id": "P-115",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr-Fahrzeug",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-06-11"
+  },
+  {
+    "id": "L-00036",
+    "kunde_id": "K-1007",
+    "produkt_id": "P-108",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Schredderhalle, Mittelschaum-Anlage",
+    "menge_l": 2200,
+    "letzte_lieferung": "2025-10-23"
+  },
+  {
+    "id": "L-00037",
+    "kunde_id": "K-1007",
+    "produkt_id": "P-108",
+    "anwendung": "lager_bestand",
+    "anlage": "Betriebslager",
+    "menge_l": 500,
+    "letzte_lieferung": "2026-03-03"
+  },
+  {
+    "id": "L-00038",
+    "kunde_id": "K-1007",
+    "produkt_id": "P-116",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Hilfsfahrzeug",
+    "menge_l": 250,
+    "letzte_lieferung": "2026-04-21"
+  },
+  {
+    "id": "L-00039",
+    "kunde_id": "K-1008",
+    "produkt_id": "P-115",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "TLF 3000",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-06-10"
+  },
+  {
+    "id": "L-00040",
+    "kunde_id": "K-1008",
+    "produkt_id": "P-115",
+    "anwendung": "lager_bestand",
+    "anlage": "Gerätehaus",
+    "menge_l": 120,
+    "letzte_lieferung": "2026-03-07"
+  },
+  {
+    "id": "L-00041",
+    "kunde_id": "K-1008",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsdienst",
+    "menge_l": 80,
+    "letzte_lieferung": "2027-01-12"
+  },
+  {
+    "id": "L-00042",
+    "kunde_id": "K-1009",
+    "produkt_id": "P-120",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "HLF 20",
+    "menge_l": 400,
+    "letzte_lieferung": "2025-05-05"
+  },
+  {
+    "id": "L-00043",
+    "kunde_id": "K-1009",
+    "produkt_id": "P-120",
+    "anwendung": "lager_bestand",
+    "anlage": "Gerätehaus",
+    "menge_l": 200,
+    "letzte_lieferung": "2027-02-12"
+  },
+  {
+    "id": "L-00044",
+    "kunde_id": "K-1009",
+    "produkt_id": "P-111",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Waldbrand-Kleinlöschfahrzeug",
+    "menge_l": 150,
+    "letzte_lieferung": "2026-01-27"
+  },
+  {
+    "id": "L-00045",
+    "kunde_id": "K-1010",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "TLF 3000",
+    "menge_l": 400,
+    "letzte_lieferung": "2025-04-24"
+  },
+  {
+    "id": "L-00046",
+    "kunde_id": "K-1010",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Gerätehaus, 20-l-Kanister",
+    "menge_l": 200,
+    "letzte_lieferung": "2025-12-30"
+  },
+  {
+    "id": "L-00047",
+    "kunde_id": "K-1010",
+    "produkt_id": "P-111",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Waldbrand-Kleinlöschfahrzeug",
+    "menge_l": 150,
+    "letzte_lieferung": "2026-05-05"
+  },
+  {
+    "id": "L-00048",
+    "kunde_id": "K-1010",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsdienst Gerätehaus",
+    "menge_l": 60,
+    "letzte_lieferung": "2027-02-02"
+  },
+  {
+    "id": "L-00049",
+    "kunde_id": "K-1011",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Hilfeleistungslöschfahrzeug HLF 1",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-05-09"
+  },
+  {
+    "id": "L-00050",
+    "kunde_id": "K-1011",
+    "produkt_id": "P-101",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Tanklöschfahrzeug TLF 2",
+    "menge_l": 800,
+    "letzte_lieferung": "2025-08-30"
+  },
+  {
+    "id": "L-00051",
+    "kunde_id": "K-1011",
+    "produkt_id": "P-101",
+    "anwendung": "lager_bestand",
+    "anlage": "Zentrallager Wache 1",
+    "menge_l": 1200,
+    "letzte_lieferung": "2025-04-17"
+  },
+  {
+    "id": "L-00052",
+    "kunde_id": "K-1011",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Löschboot Alster",
+    "menge_l": 400,
+    "letzte_lieferung": "2026-09-12"
+  },
+  {
+    "id": "L-00053",
+    "kunde_id": "K-1011",
+    "produkt_id": "P-201",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Pilotfahrzeug fluorfrei",
+    "menge_l": 300,
+    "letzte_lieferung": "2025-07-11"
+  },
+  {
+    "id": "L-00054",
+    "kunde_id": "K-1011",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungshalle",
+    "menge_l": 200,
+    "letzte_lieferung": "2025-08-03"
+  },
+  {
+    "id": "L-00055",
+    "kunde_id": "K-1012",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Tankfahrzeug Zwolle",
+    "menge_l": 500,
+    "letzte_lieferung": "2026-04-19"
+  },
+  {
+    "id": "L-00056",
+    "kunde_id": "K-1012",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Magazijn",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-04-06"
+  },
+  {
+    "id": "L-00057",
+    "kunde_id": "K-1012",
+    "produkt_id": "P-107",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Vegetationsbrand-Einheit (Netzwasser)",
+    "menge_l": 100,
+    "letzte_lieferung": "2026-06-19"
+  },
+  {
+    "id": "L-00058",
+    "kunde_id": "K-1012",
+    "produkt_id": "P-111",
+    "anwendung": "lager_bestand",
+    "anlage": "Magazijn",
+    "menge_l": 150,
+    "letzte_lieferung": "2026-08-14"
+  },
+  {
+    "id": "L-00059",
+    "kunde_id": "K-1013",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Tanklöschfahrzeuge (4 Wehren)",
+    "menge_l": 700,
+    "letzte_lieferung": "2026-12-30"
+  },
+  {
+    "id": "L-00060",
+    "kunde_id": "K-1013",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "TLF Bad Ischl",
+    "menge_l": 350,
+    "letzte_lieferung": "2025-08-13"
+  },
+  {
+    "id": "L-00061",
+    "kunde_id": "K-1013",
+    "produkt_id": "P-111",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Waldbrandfahrzeug",
+    "menge_l": 200,
+    "letzte_lieferung": "2026-10-25"
+  },
+  {
+    "id": "L-00062",
+    "kunde_id": "K-1013",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Verbandslager",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-11-14"
+  },
+  {
+    "id": "L-00063",
+    "kunde_id": "K-1014",
+    "produkt_id": "P-104",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Terminal 3, Schaumanlage",
+    "menge_l": 5000,
+    "letzte_lieferung": "2027-01-23"
+  },
+  {
+    "id": "L-00064",
+    "kunde_id": "K-1014",
+    "produkt_id": "P-104",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Hafenfeuerwehr-Fahrzeug",
+    "menge_l": 1500,
+    "letzte_lieferung": "2026-04-29"
+  },
+  {
+    "id": "L-00065",
+    "kunde_id": "K-1014",
+    "produkt_id": "P-117",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Kai 7, Sprühschaumanlage",
+    "menge_l": 2500,
+    "letzte_lieferung": "2026-08-01"
+  },
+  {
+    "id": "L-00066",
+    "kunde_id": "K-1014",
+    "produkt_id": "P-104",
+    "anwendung": "lager_bestand",
+    "anlage": "Terminal-Lager",
+    "menge_l": 1500,
+    "letzte_lieferung": "2027-01-06"
+  },
+  {
+    "id": "L-00067",
+    "kunde_id": "K-1014",
+    "produkt_id": "P-204",
+    "anwendung": "lager_bestand",
+    "anlage": "Erprobung fluorfrei",
+    "menge_l": 200,
+    "letzte_lieferung": "2025-05-28"
+  },
+  {
+    "id": "L-00068",
+    "kunde_id": "K-1014",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsbetrieb Terminal",
+    "menge_l": 200,
+    "letzte_lieferung": "2027-02-03"
+  },
+  {
+    "id": "L-00069",
+    "kunde_id": "K-1015",
+    "produkt_id": "P-105",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Flugfeldlöschfahrzeuge (3 Stück)",
+    "menge_l": 9000,
+    "letzte_lieferung": "2026-03-06"
+  },
+  {
+    "id": "L-00070",
+    "kunde_id": "K-1015",
+    "produkt_id": "P-105",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Hangar 2, Schaumanlage",
+    "menge_l": 6000,
+    "letzte_lieferung": "2025-09-26"
+  },
+  {
+    "id": "L-00071",
+    "kunde_id": "K-1015",
+    "produkt_id": "P-105",
+    "anwendung": "lager_bestand",
+    "anlage": "Zentrallager",
+    "menge_l": 3000,
+    "letzte_lieferung": "2026-08-31"
+  },
+  {
+    "id": "L-00072",
+    "kunde_id": "K-1015",
+    "produkt_id": "P-105",
+    "anwendung": "lager_bestand",
+    "anlage": "Außenlager",
+    "menge_l": 1000,
+    "letzte_lieferung": "2026-05-16"
+  },
+  {
+    "id": "L-00073",
+    "kunde_id": "K-1015",
+    "produkt_id": "P-205",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Testfahrzeug fluorfrei",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-02-06"
+  },
+  {
+    "id": "L-00074",
+    "kunde_id": "K-1015",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsbetrieb",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-06-18"
+  },
+  {
+    "id": "L-00075",
+    "kunde_id": "K-1016",
+    "produkt_id": "P-105",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Flugfeldlöschfahrzeuge (2 Stück)",
+    "menge_l": 6000,
+    "letzte_lieferung": "2026-05-26"
+  },
+  {
+    "id": "L-00076",
+    "kunde_id": "K-1016",
+    "produkt_id": "P-105",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Hangar, Schaumanlage",
+    "menge_l": 3000,
+    "letzte_lieferung": "2027-02-28"
+  },
+  {
+    "id": "L-00077",
+    "kunde_id": "K-1016",
+    "produkt_id": "P-105",
+    "anwendung": "lager_bestand",
+    "anlage": "Zentrallager",
+    "menge_l": 2000,
+    "letzte_lieferung": "2025-06-19"
+  },
+  {
+    "id": "L-00078",
+    "kunde_id": "K-1017",
+    "produkt_id": "P-117",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Dockhalle 2, Sprühschaumanlage",
+    "menge_l": 5000,
+    "letzte_lieferung": "2026-08-08"
+  },
+  {
+    "id": "L-00079",
+    "kunde_id": "K-1017",
+    "produkt_id": "P-117",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Trockendock 1, Schaumanlage",
+    "menge_l": 3500,
+    "letzte_lieferung": "2026-11-18"
+  },
+  {
+    "id": "L-00080",
+    "kunde_id": "K-1017",
+    "produkt_id": "P-104",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Montagehalle, Schaumanlage",
+    "menge_l": 2000,
+    "letzte_lieferung": "2025-10-18"
+  },
+  {
+    "id": "L-00081",
+    "kunde_id": "K-1017",
+    "produkt_id": "P-117",
+    "anwendung": "lager_bestand",
+    "anlage": "Werftlager",
+    "menge_l": 1500,
+    "letzte_lieferung": "2027-01-30"
+  },
+  {
+    "id": "L-00082",
+    "kunde_id": "K-1017",
+    "produkt_id": "P-104",
+    "anwendung": "lager_bestand",
+    "anlage": "Werftlager",
+    "menge_l": 500,
+    "letzte_lieferung": "2025-04-29"
+  },
+  {
+    "id": "L-00083",
+    "kunde_id": "K-1017",
+    "produkt_id": "P-204",
+    "anwendung": "lager_bestand",
+    "anlage": "Erprobung fluorfrei",
+    "menge_l": 300,
+    "letzte_lieferung": "2027-01-13"
+  },
+  {
+    "id": "L-00084",
+    "kunde_id": "K-1018",
+    "produkt_id": "P-104",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Fähre Baltic Star, Maschinenraum",
+    "menge_l": 800,
+    "letzte_lieferung": "2025-05-25"
+  },
+  {
+    "id": "L-00085",
+    "kunde_id": "K-1018",
+    "produkt_id": "P-104",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Fähre Baltic Wind, Maschinenraum",
+    "menge_l": 800,
+    "letzte_lieferung": "2025-09-09"
+  },
+  {
+    "id": "L-00086",
+    "kunde_id": "K-1018",
+    "produkt_id": "P-117",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Fähre Baltic Star, Ro-Ro-Deck",
+    "menge_l": 1200,
+    "letzte_lieferung": "2026-02-16"
+  },
+  {
+    "id": "L-00087",
+    "kunde_id": "K-1018",
+    "produkt_id": "P-104",
+    "anwendung": "lager_bestand",
+    "anlage": "Bordlager",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-05-09"
+  },
+  {
+    "id": "L-00088",
+    "kunde_id": "K-1018",
+    "produkt_id": "P-117",
+    "anwendung": "lager_bestand",
+    "anlage": "Bordlager",
+    "menge_l": 400,
+    "letzte_lieferung": "2027-01-29"
+  },
+  {
+    "id": "L-00089",
+    "kunde_id": "K-1019",
+    "produkt_id": "P-117",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Plattform Nord-3",
+    "menge_l": 4000,
+    "letzte_lieferung": "2027-02-08"
+  },
+  {
+    "id": "L-00090",
+    "kunde_id": "K-1019",
+    "produkt_id": "P-117",
+    "anwendung": "lager_bestand",
+    "anlage": "Plattformlager",
+    "menge_l": 1500,
+    "letzte_lieferung": "2025-07-31"
+  },
+  {
+    "id": "L-00091",
+    "kunde_id": "K-1019",
+    "produkt_id": "P-204",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Pilotanlage",
+    "menge_l": 800,
+    "letzte_lieferung": "2027-01-10"
+  },
+  {
+    "id": "L-00092",
+    "kunde_id": "K-1020",
+    "produkt_id": "P-106",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Befüllung Serie LG-6 (6-l-Schaumlöscher)",
+    "menge_l": 12000,
+    "letzte_lieferung": "2025-05-11"
+  },
+  {
+    "id": "L-00093",
+    "kunde_id": "K-1020",
+    "produkt_id": "P-106",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Befüllung Serie LG-9",
+    "menge_l": 9000,
+    "letzte_lieferung": "2025-11-08"
+  },
+  {
+    "id": "L-00094",
+    "kunde_id": "K-1020",
+    "produkt_id": "P-106",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Befüllung Serie LG-2 (2-l-Schaumlöscher)",
+    "menge_l": 4000,
+    "letzte_lieferung": "2025-10-04"
+  },
+  {
+    "id": "L-00095",
+    "kunde_id": "K-1020",
+    "produkt_id": "P-106",
+    "anwendung": "fahrbarer_feuerloescher",
+    "anlage": "Befüllung fahrbare Löscher FL-50",
+    "menge_l": 6000,
+    "letzte_lieferung": "2026-05-15"
+  },
+  {
+    "id": "L-00096",
+    "kunde_id": "K-1020",
+    "produkt_id": "P-202",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Muster fluorfrei",
+    "menge_l": 500,
+    "letzte_lieferung": "2026-06-19"
+  },
+  {
+    "id": "L-00097",
+    "kunde_id": "K-1020",
+    "produkt_id": "P-106",
+    "anwendung": "lager_bestand",
+    "anlage": "Fabriklager",
+    "menge_l": 4000,
+    "letzte_lieferung": "2025-09-23"
+  },
+  {
+    "id": "L-00098",
+    "kunde_id": "K-1021",
+    "produkt_id": "P-106",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Serie FP-9, Export DE und NL",
+    "menge_l": 8000,
+    "letzte_lieferung": "2025-09-19"
+  },
+  {
+    "id": "L-00099",
+    "kunde_id": "K-1021",
+    "produkt_id": "P-106",
+    "anwendung": "fahrbarer_feuerloescher",
+    "anlage": "Serie FP-50, Export DE und NL",
+    "menge_l": 3000,
+    "letzte_lieferung": "2025-06-10"
+  },
+  {
+    "id": "L-00100",
+    "kunde_id": "K-1021",
+    "produkt_id": "P-202",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Muster fluorfrei",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-02-06"
+  },
+  {
+    "id": "L-00101",
+    "kunde_id": "K-1022",
+    "produkt_id": "P-106",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Serie AL-6",
+    "menge_l": 5000,
+    "letzte_lieferung": "2027-01-06"
+  },
+  {
+    "id": "L-00102",
+    "kunde_id": "K-1022",
+    "produkt_id": "P-106",
+    "anwendung": "lager_bestand",
+    "anlage": "Fabriklager",
+    "menge_l": 2000,
+    "letzte_lieferung": "2026-11-05"
+  },
+  {
+    "id": "L-00103",
+    "kunde_id": "K-1022",
+    "produkt_id": "P-202",
+    "anwendung": "tragbarer_feuerloescher",
+    "anlage": "Muster fluorfrei",
+    "menge_l": 300,
+    "letzte_lieferung": "2026-05-17"
+  },
+  {
+    "id": "L-00104",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Handelslager Bremen",
+    "menge_l": 6000,
+    "letzte_lieferung": "2027-01-02"
+  },
+  {
+    "id": "L-00105",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Außenlager Hannover",
+    "menge_l": 2500,
+    "letzte_lieferung": "2026-06-10"
+  },
+  {
+    "id": "L-00106",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-101",
+    "anwendung": "lager_bestand",
+    "anlage": "Handelslager Bremen",
+    "menge_l": 3000,
+    "letzte_lieferung": "2026-10-09"
+  },
+  {
+    "id": "L-00107",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-106",
+    "anwendung": "lager_bestand",
+    "anlage": "Handelslager Bremen",
+    "menge_l": 2000,
+    "letzte_lieferung": "2026-06-01"
+  },
+  {
+    "id": "L-00108",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-115",
+    "anwendung": "lager_bestand",
+    "anlage": "Handelslager Bremen",
+    "menge_l": 1500,
+    "letzte_lieferung": "2026-09-07"
+  },
+  {
+    "id": "L-00109",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-120",
+    "anwendung": "lager_bestand",
+    "anlage": "Handelslager Bremen",
+    "menge_l": 1000,
+    "letzte_lieferung": "2026-11-20"
+  },
+  {
+    "id": "L-00110",
+    "kunde_id": "K-1023",
+    "produkt_id": "P-111",
+    "anwendung": "lager_bestand",
+    "anlage": "Handelslager Bremen",
+    "menge_l": 800,
+    "letzte_lieferung": "2025-05-01"
+  },
+  {
+    "id": "L-00111",
+    "kunde_id": "K-1024",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Warehouse Venlo",
+    "menge_l": 5000,
+    "letzte_lieferung": "2026-08-18"
+  },
+  {
+    "id": "L-00112",
+    "kunde_id": "K-1024",
+    "produkt_id": "P-102",
+    "anwendung": "lager_bestand",
+    "anlage": "Warehouse Rotterdam",
+    "menge_l": 2000,
+    "letzte_lieferung": "2026-02-28"
+  },
+  {
+    "id": "L-00113",
+    "kunde_id": "K-1024",
+    "produkt_id": "P-107",
+    "anwendung": "lager_bestand",
+    "anlage": "Warehouse Venlo",
+    "menge_l": 1200,
+    "letzte_lieferung": "2026-04-29"
+  },
+  {
+    "id": "L-00114",
+    "kunde_id": "K-1024",
+    "produkt_id": "P-111",
+    "anwendung": "lager_bestand",
+    "anlage": "Warehouse Venlo",
+    "menge_l": 900,
+    "letzte_lieferung": "2026-10-01"
+  },
+  {
+    "id": "L-00115",
+    "kunde_id": "K-1024",
+    "produkt_id": "P-201",
+    "anwendung": "lager_bestand",
+    "anlage": "Warehouse Venlo",
+    "menge_l": 1000,
+    "letzte_lieferung": "2026-06-15"
+  },
+  {
+    "id": "L-00116",
+    "kunde_id": "K-1024",
+    "produkt_id": "P-106",
+    "anwendung": "lager_bestand",
+    "anlage": "Warehouse Rotterdam",
+    "menge_l": 1800,
+    "letzte_lieferung": "2027-02-27"
+  },
+  {
+    "id": "L-00117",
+    "kunde_id": "K-1025",
+    "produkt_id": "P-107",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Waldbrand-Fahrzeuge (Netzwasser)",
+    "menge_l": 900,
+    "letzte_lieferung": "2027-01-21"
+  },
+  {
+    "id": "L-00118",
+    "kunde_id": "K-1025",
+    "produkt_id": "P-107",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Waldbrand-Tanklöschfahrzeug Süd",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-09-10"
+  },
+  {
+    "id": "L-00119",
+    "kunde_id": "K-1025",
+    "produkt_id": "P-107",
+    "anwendung": "lager_bestand",
+    "anlage": "Forstdepot",
+    "menge_l": 400,
+    "letzte_lieferung": "2026-03-16"
+  },
+  {
+    "id": "L-00120",
+    "kunde_id": "K-1025",
+    "produkt_id": "P-110",
+    "anwendung": "lager_bestand",
+    "anlage": "Retardant-Depot",
+    "menge_l": 1500,
+    "letzte_lieferung": "2026-03-11"
+  },
+  {
+    "id": "L-00121",
+    "kunde_id": "K-1025",
+    "produkt_id": "P-111",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Waldbrand-TLF",
+    "menge_l": 500,
+    "letzte_lieferung": "2025-11-28"
+  },
+  {
+    "id": "L-00122",
+    "kunde_id": "K-1026",
+    "produkt_id": "P-110",
+    "anwendung": "lager_bestand",
+    "anlage": "Depot Cottbus",
+    "menge_l": 2500,
+    "letzte_lieferung": "2025-08-25"
+  },
+  {
+    "id": "L-00123",
+    "kunde_id": "K-1026",
+    "produkt_id": "P-111",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Verbandsfahrzeuge",
+    "menge_l": 700,
+    "letzte_lieferung": "2026-05-07"
+  },
+  {
+    "id": "L-00124",
+    "kunde_id": "K-1026",
+    "produkt_id": "P-110",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Retardant-Tankfahrzeug",
+    "menge_l": 1800,
+    "letzte_lieferung": "2026-11-19"
+  },
+  {
+    "id": "L-00125",
+    "kunde_id": "K-1026",
+    "produkt_id": "P-111",
+    "anwendung": "lager_bestand",
+    "anlage": "Depot Cottbus",
+    "menge_l": 400,
+    "letzte_lieferung": "2026-05-28"
+  },
+  {
+    "id": "L-00126",
+    "kunde_id": "K-1027",
+    "produkt_id": "P-113",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsplatz Hochbau (Brandcontainer)",
+    "menge_l": 800,
+    "letzte_lieferung": "2026-02-28"
+  },
+  {
+    "id": "L-00127",
+    "kunde_id": "K-1027",
+    "produkt_id": "P-113",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsplatz Tank",
+    "menge_l": 600,
+    "letzte_lieferung": "2025-12-22"
+  },
+  {
+    "id": "L-00128",
+    "kunde_id": "K-1027",
+    "produkt_id": "P-113",
+    "anwendung": "uebung_training",
+    "anlage": "Übungsplatz Gas",
+    "menge_l": 500,
+    "letzte_lieferung": "2026-09-06"
+  },
+  {
+    "id": "L-00129",
+    "kunde_id": "K-1027",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Atemschutzstrecke",
+    "menge_l": 300,
+    "letzte_lieferung": "2027-01-02"
+  },
+  {
+    "id": "L-00130",
+    "kunde_id": "K-1027",
+    "produkt_id": "P-113",
+    "anwendung": "lager_bestand",
+    "anlage": "Übungsdepot",
+    "menge_l": 1000,
+    "letzte_lieferung": "2025-10-09"
+  },
+  {
+    "id": "L-00131",
+    "kunde_id": "K-1028",
+    "produkt_id": "P-113",
+    "anwendung": "uebung_training",
+    "anlage": "Übungshalle 1",
+    "menge_l": 900,
+    "letzte_lieferung": "2025-08-05"
+  },
+  {
+    "id": "L-00132",
+    "kunde_id": "K-1028",
+    "produkt_id": "P-112",
+    "anwendung": "uebung_training",
+    "anlage": "Übungshalle 2",
+    "menge_l": 700,
+    "letzte_lieferung": "2026-10-20"
+  },
+  {
+    "id": "L-00133",
+    "kunde_id": "K-1028",
+    "produkt_id": "P-102",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Lehrfahrzeuge",
+    "menge_l": 300,
+    "letzte_lieferung": "2025-05-24"
+  },
+  {
+    "id": "L-00134",
+    "kunde_id": "K-1028",
+    "produkt_id": "P-113",
+    "anwendung": "lager_bestand",
+    "anlage": "Übungsdepot",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-01-09"
+  },
+  {
+    "id": "L-00135",
+    "kunde_id": "K-1029",
+    "produkt_id": "P-101",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Bunker 2, Schaumanlage (außer Betrieb)",
+    "menge_l": 1200,
+    "letzte_lieferung": "2025-07-31"
+  },
+  {
+    "id": "L-00136",
+    "kunde_id": "K-1029",
+    "produkt_id": "P-101",
+    "anwendung": "lager_bestand",
+    "anlage": "Betriebslager",
+    "menge_l": 400,
+    "letzte_lieferung": "2025-06-29"
+  },
+  {
+    "id": "L-00137",
+    "kunde_id": "K-1030",
+    "produkt_id": "P-118",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Hochregallager, Schaumanlage HRL-1",
+    "menge_l": 3000,
+    "letzte_lieferung": "2025-04-20"
+  },
+  {
+    "id": "L-00138",
+    "kunde_id": "K-1030",
+    "produkt_id": "P-114",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Gefahrstofflager, Schaumanlage GL-2",
+    "menge_l": 1800,
+    "letzte_lieferung": "2025-07-05"
+  },
+  {
+    "id": "L-00139",
+    "kunde_id": "K-1030",
+    "produkt_id": "P-114",
+    "anwendung": "lager_bestand",
+    "anlage": "Gefahrstofflager",
+    "menge_l": 600,
+    "letzte_lieferung": "2026-10-06"
+  },
+  {
+    "id": "L-00140",
+    "kunde_id": "K-1030",
+    "produkt_id": "P-118",
+    "anwendung": "lager_bestand",
+    "anlage": "Hochregallager",
+    "menge_l": 400,
+    "letzte_lieferung": "2027-01-10"
+  },
+  {
+    "id": "L-00141",
+    "kunde_id": "K-1031",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tankpark A",
+    "menge_l": 7000,
+    "letzte_lieferung": "2026-11-08"
+  },
+  {
+    "id": "L-00142",
+    "kunde_id": "K-1031",
+    "produkt_id": "P-103",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tankpark B",
+    "menge_l": 7000,
+    "letzte_lieferung": "2025-08-26"
+  },
+  {
+    "id": "L-00143",
+    "kunde_id": "K-1031",
+    "produkt_id": "P-119",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Tankpark C (Testbereich)",
+    "menge_l": 1500,
+    "letzte_lieferung": "2025-08-20"
+  },
+  {
+    "id": "L-00144",
+    "kunde_id": "K-1031",
+    "produkt_id": "P-103",
+    "anwendung": "lager_bestand",
+    "anlage": "Terminallager",
+    "menge_l": 3000,
+    "letzte_lieferung": "2026-12-27"
+  },
+  {
+    "id": "L-00145",
+    "kunde_id": "K-1031",
+    "produkt_id": "P-203",
+    "anwendung": "lager_bestand",
+    "anlage": "Erprobung fluorfrei",
+    "menge_l": 500,
+    "letzte_lieferung": "2025-06-29"
+  },
+  {
+    "id": "L-00146",
+    "kunde_id": "K-1032",
+    "produkt_id": "P-118",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Kohlebunker, Schaumanlage",
+    "menge_l": 1200,
+    "letzte_lieferung": "2025-09-04"
+  },
+  {
+    "id": "L-00147",
+    "kunde_id": "K-1032",
+    "produkt_id": "P-119",
+    "anwendung": "stationaere_anlage",
+    "anlage": "Brennstofflager, Schaumanlage",
+    "menge_l": 900,
+    "letzte_lieferung": "2026-01-18"
+  },
+  {
+    "id": "L-00148",
+    "kunde_id": "K-1032",
+    "produkt_id": "P-116",
+    "anwendung": "feuerwehrfahrzeug",
+    "anlage": "Werkfeuerwehr",
+    "menge_l": 200,
+    "letzte_lieferung": "2025-06-18"
+  },
+  {
+    "id": "L-00149",
+    "kunde_id": "K-1032",
+    "produkt_id": "P-118",
+    "anwendung": "lager_bestand",
+    "anlage": "Betriebslager",
+    "menge_l": 300,
+    "letzte_lieferung": "2025-06-05"
+  }
+]

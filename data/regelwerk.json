@@ -1,0 +1,122 @@
+{
+  "id": "VO-FIKTIV-2026-9001",
+  "titel": "Verordnung (EU) 2026/9001 (FIKTIV) zur Beschränkung von PFAS in Schaumlöschmitteln",
+  "grenzwert_mg_l": 1.0,
+  "grenzwert_regel": "mehr_als",
+  "geltungsbereich_laender": [
+    "DE",
+    "AT",
+    "NL",
+    "PL"
+  ],
+  "anwendungen": [
+    {
+      "id": "tragbarer_feuerloescher",
+      "name": "Tragbare Feuerlöscher",
+      "artikel": "Art. 4 Abs. 1",
+      "inverkehrbringen_verbot_ab": "2027-09-01",
+      "verwendung_verbot_ab": null,
+      "bestandsmeldung_bis": "2027-12-31",
+      "kennzeichnung_ab": "2027-06-01"
+    },
+    {
+      "id": "fahrbarer_feuerloescher",
+      "name": "Fahrbare Feuerlöscher",
+      "artikel": "Art. 4 Abs. 2",
+      "inverkehrbringen_verbot_ab": "2028-03-01",
+      "verwendung_verbot_ab": null,
+      "bestandsmeldung_bis": "2028-06-30",
+      "kennzeichnung_ab": "2027-06-01"
+    },
+    {
+      "id": "stationaere_anlage",
+      "name": "Stationäre Löschanlagen",
+      "artikel": "Art. 4 Abs. 3",
+      "inverkehrbringen_verbot_ab": "2029-03-01",
+      "verwendung_verbot_ab": "2033-03-01",
+      "bestandsmeldung_bis": "2028-03-31",
+      "kennzeichnung_ab": "2027-09-01"
+    },
+    {
+      "id": "feuerwehrfahrzeug",
+      "name": "Feuerwehrfahrzeuge",
+      "artikel": "Art. 4 Abs. 4",
+      "inverkehrbringen_verbot_ab": "2028-09-01",
+      "verwendung_verbot_ab": "2031-09-01",
+      "bestandsmeldung_bis": "2028-03-31",
+      "kennzeichnung_ab": "2027-09-01"
+    },
+    {
+      "id": "uebung_training",
+      "name": "Übungs- und Trainingsschaum",
+      "artikel": "Art. 4 Abs. 5",
+      "inverkehrbringen_verbot_ab": "2027-07-01",
+      "verwendung_verbot_ab": "2027-10-01",
+      "bestandsmeldung_bis": "2027-09-30",
+      "kennzeichnung_ab": "2027-06-01"
+    },
+    {
+      "id": "lager_bestand",
+      "name": "Lagerbestände",
+      "artikel": "Art. 6 Abs. 1",
+      "inverkehrbringen_verbot_ab": "2028-03-01",
+      "verwendung_verbot_ab": null,
+      "bestandsmeldung_bis": "2027-12-31",
+      "kennzeichnung_ab": "2027-06-01"
+    }
+  ],
+  "ausnahmen": [
+    {
+      "id": "AUSN-FLUGHAFEN",
+      "artikel": "Art. 8 Abs. 2",
+      "beschreibung": "Feuerwehrfahrzeuge von Flughäfen, die zur Flugfeldsicherung erforderlich sind: Inverkehrbringen und Verwendung dürfen mit Bescheid bis zum Stichtag fortgeführt werden.",
+      "gilt_fuer_segmente": [
+        "Flughafen"
+      ],
+      "gilt_fuer_anwendungen": [
+        "feuerwehrfahrzeug"
+      ],
+      "befristet_bis": "2032-12-31",
+      "bedingung": "Nur mit Bescheid der zuständigen Behörde (Antrag nötig) und solange keine gleichwertige fluorfreie Alternative zugelassen ist."
+    },
+    {
+      "id": "AUSN-UMSTELLUNGSPLAN",
+      "artikel": "Art. 8 Abs. 3",
+      "beschreibung": "Betreiber stationärer Löschanlagen mit genehmigtem Umstellungsplan dürfen die Anlagen bis zum Stichtag weiter verwenden. Das Verbot des Inverkehrbringens bleibt unberührt.",
+      "gilt_fuer_segmente": [
+        "Industrie",
+        "Montanindustrie",
+        "Schifffahrt und Werft"
+      ],
+      "gilt_fuer_anwendungen": [
+        "stationaere_anlage"
+      ],
+      "befristet_bis": "2035-12-31",
+      "bedingung": "Nur mit von der zuständigen Behörde genehmigtem Umstellungsplan."
+    }
+  ],
+  "berichtigung": {
+    "id": "VO-FIKTIV-2026-9001-B1",
+    "aenderungen": [
+      {
+        "anwendung": "stationaere_anlage",
+        "feld": "inverkehrbringen_verbot_ab",
+        "alt": "2029-03-01",
+        "neu": "2030-03-01",
+        "artikel": "Art. 4 Abs. 3"
+      }
+    ],
+    "klarstellungen": [
+      {
+        "artikel": "Art. 2 Nr. 6",
+        "text": "Als Händler gilt auch, wer Schaumlöschmittel lediglich lagert und an gewerbliche Abnehmer weiterliefert."
+      }
+    ],
+    "veroeffentlicht": "2027-03-15"
+  },
+  "veroeffentlicht": "2027-03-10",
+  "inkrafttreten": "2027-04-01",
+  "informationspflicht_bis": "2027-06-30",
+  "informationspflicht_artikel": "Art. 7 Abs. 3",
+  "geltungsbereich_hinweis": "Die Verordnung gilt EU-weit. Die Liste enthält die EU-Länder, die im Übungsdatensatz vorkommen. CH, GB und NO liegen außerhalb."
+}

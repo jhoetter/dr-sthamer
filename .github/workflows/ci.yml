@@ -1,0 +1,96 @@
+name: CI
+
+# Läuft auf Windows, macOS und Linux mit mehreren Python-Versionen.
+# Nur Python-Standardbibliothek: es wird absichtlich nichts installiert.
+# Die Python-Konsole wird NICHT auf UTF-8 gestellt, damit wir dasselbe sehen
+# wie Teilnehmende auf einem Windows-Gerät.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      # Windows ist der Hauptfall (3 Versionen). macOS läuft nur mit 3.9 (Systempython) und 3.12,
+      # weil macOS-Minuten in privaten Repos zehnfach zählen.
+      matrix:
+        include:
+          - {os: windows-latest, python: "3.9"}
+          - {os: windows-latest, python: "3.12"}
+          - {os: windows-latest, python: "3.13"}
+          - {os: macos-latest, python: "3.9"}
+          - {os: macos-latest, python: "3.12"}
+          - {os: ubuntu-latest, python: "3.9"}
+          - {os: ubuntu-latest, python: "3.13"}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Python-Version anzeigen
+        run: python --version
+
+      - name: Setup (sobald sthamer.py vorhanden ist)
+        if: ${{ hashFiles('sthamer.py') != '' }}
+        run: python sthamer.py setup
+
+      - name: Prüfszenarien (unittest)
+        run: python -m unittest discover -s tests
+
+      - name: Systemcheck (lesbar)
+        run: python check.py --offline
+
+      - name: Systemcheck (JSON)
+        run: python check.py --offline --json
+
+  zip-und-sonderpfad:
+    # Simuliert Teilnehmende ohne Git: ZIP entpacken in einen Ordner mit
+    # Leerzeichen und Umlauten, dann Check und Setup ausführen.
+    name: ZIP-Betrieb / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: ZIP bauen und in Ordner mit Umlaut und Leerzeichen entpacken
+        run: |
+          git archive --format=zip --prefix=dr-sthamer/ -o "$RUNNER_TEMP/dr-sthamer.zip" HEAD
+          mkdir -p "$RUNNER_TEMP/Übung mit Leerzeichen"
+          python -m zipfile -e "$RUNNER_TEMP/dr-sthamer.zip" "$RUNNER_TEMP/Übung mit Leerzeichen"
+
+      - name: Systemcheck im entpackten Ordner
+        working-directory: ${{ runner.temp }}/Übung mit Leerzeichen/dr-sthamer
+        run: python check.py --offline
+
+      - name: Setup und Prüfszenarien im entpackten Ordner (sobald vorhanden)
+        working-directory: ${{ runner.temp }}/Übung mit Leerzeichen/dr-sthamer
+        run: |
+          if [ -f sthamer.py ]; then python sthamer.py setup; fi
+          python -m unittest discover -s tests
