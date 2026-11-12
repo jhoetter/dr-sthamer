@@ -7,8 +7,19 @@ from datetime import datetime
 
 
 def jetzt() -> str:
-    """Aktuelle Zeit als ISO-Text. Phase 2 ersetzt das durch die Workshop-Uhr."""
-    return datetime.now().replace(microsecond=0).isoformat(timespec="seconds")
+    """„Jetzt“ in der Übungswelt: Datum aus data/welt.json (Übungstag), Uhrzeit der echten Uhr.
+
+    Phase 2 ersetzt das durch die vorspulbare Workshop-Uhr.
+    """
+    real = datetime.now().replace(microsecond=0)
+    try:
+        from . import daten
+        tag = daten.welt().get("heute")
+        if tag:
+            return "%sT%s" % (tag, real.strftime("%H:%M:%S"))
+    except Exception:
+        pass
+    return real.isoformat(timespec="seconds")
 
 
 def dumps(obj) -> str:

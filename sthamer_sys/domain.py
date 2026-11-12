@@ -397,6 +397,10 @@ def status() -> Dict[str, Any]:
             "offene_aufgaben": conn.execute("SELECT COUNT(*) FROM aufgaben WHERE status='offen'").fetchone()[0],
             "entwuerfe": conn.execute("SELECT COUNT(*) FROM entwuerfe WHERE status='entwurf'").fetchone()[0],
             "gesendet": conn.execute("SELECT COUNT(*) FROM postausgang").fetchone()[0],
+            "ungelesen": conn.execute("SELECT COUNT(*) FROM nachrichten WHERE gelesen = 0").fetchone()[0],
+            "faelle_offen": conn.execute("SELECT COUNT(*) FROM faelle WHERE status != 'gesendet'").fetchone()[0],
+            "produkte": len(daten.produkte()),
+            "kunden": len(daten.kunden()),
         }
     return dict(zahlen, welle=aktuelle_welle(), naechste_welle=naechste_welle_code_hinweis(),
                 firma=daten.welt().get("firma"), heute=daten.welt().get("heute"))

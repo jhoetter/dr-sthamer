@@ -3,26 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0080c8">
   <meta name="sthamer-token" content="{{TOKEN}}">
-  <title>sthamer-sys · Regulatorik-Werkstatt</title>
-  <link rel="icon" href="favicon.svg">
+  <title>Dr. Sthamer · Regulatorik-Werkstatt</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="marke">
-      <img id="logo-itmp" src="logo-itmp.svg" alt="" onerror="this.remove()">
-      <strong>sthamer-sys</strong><span class="leise">Regulatorik-Werkstatt</span>
-    </div>
-    <div class="kopf-rechts">
-      <span id="stand" class="leise"></span>
-      <input id="code" placeholder="Code vom Dozenten" size="16" autocomplete="off" style="width:auto">
-      <button id="abrufen" class="knopf">Postfach abrufen</button>
-    </div>
-  </header>
-  <div class="hinweis">Übungsdaten: alle Kunden, Produkte, Mails und die Verordnung sind erfunden. Gesendet wird nur in den Ordner „postausgang“.</div>
-  <nav id="nav"></nav>
-  <main id="inhalt"></main>
+  <div id="app" aria-live="polite"><div class="boot">Kommandozentrale wird geladen …</div></div>
   <script src="app.js"></script>
 </body>
 </html>
