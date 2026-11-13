@@ -175,8 +175,9 @@ frei und lehnt einen ab. Claude hat kein Werkzeug zum Freigeben.
 (3) Ablehnen mit Begründung schickt den Entwurf zurück an Claude.
 
 **Hinweis zur Regel:** Ab Runde 2 muss jeder Entwurf mit `submit_draft` eingereicht werden.
-Das Eingriffsfenster gibt es noch nicht, deshalb landet alles in Pflichtfreigabe. Claude meldet
-nur `rechtsaussage` (true = mehr als eine Standardinformation); die Regel bestimmt den Rest.
+Das Eingriffsfenster gibt es noch nicht, deshalb landet alles in Pflichtfreigabe. Alle fünf Anfragen sind
+Rechtsauskünfte: Claude reicht mit `rechtsaussage=true` ein, ohne vorher zu fragen. (Ab Drill 4 legt die
+Person die Kontrolle jeder Mail fest.)
 
 **Etappe 1 · Claude bereitet vor.** `list_inbox` (neue Runde), je Anfrage `create_case`, `get_message`,
 Kunde und Produkte holen, Entwurf mit Belegen, `submit_draft`. Zu jedem Entwurf ein Satz:
