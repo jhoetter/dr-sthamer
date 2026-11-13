@@ -61,6 +61,7 @@ def cmd_status(args: argparse.Namespace) -> int:
 
 
 def cmd_welle(args: argparse.Namespace) -> int:
+    # Läuft nur mit STHAMER_MENSCH=1 (Lehrende, Tests). Teilnehmende rufen Runden im Cockpit ab.
     try:
         r = domain.welle_freischalten(args.welle, args.code, akteur="mensch")
     except domain.FachFehler as e:

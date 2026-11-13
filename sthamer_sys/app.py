@@ -19,7 +19,7 @@ from typing import Any, Callable, Dict, Optional, Tuple
 from urllib.error import URLError
 from urllib.request import urlopen
 
-from . import DEFAULT_PORT, SERVICE, daten, domain, nachladen
+from . import DEFAULT_PORT, SERVICE, daten, domain, nachladen, schutz
 from .paths import ROOT, state_dir, web_dir
 
 MAX_BODY = 1_000_000
@@ -249,6 +249,7 @@ def starten(port: int = DEFAULT_PORT, oeffnen: bool = False) -> int:
         return 1
     url = "http://127.0.0.1:%d" % server.port
     state_dir().mkdir(parents=True, exist_ok=True)
+    schutz.freischalten()  # nur dieser Prozess darf senden, freigeben, ablehnen, die Uhr vorspulen
     threading.Thread(target=_worker, daemon=True).start()
     with open(str(state_dir() / "server.json"), "w", encoding="utf-8") as f:
         json.dump({"port": server.port, "pid": os.getpid(), "url": url}, f)

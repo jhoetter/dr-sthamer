@@ -12,6 +12,7 @@ from pathlib import Path
 import os
 
 os.environ.setdefault("STHAMER_NACHLADEN", "0")  # Tests laden den Code nie mitten im Lauf nach
+os.environ.setdefault("STHAMER_MENSCH", "1")  # Tests handeln als „Mensch“ (das Cockpit schaltet sich selbst frei)
 
 MSG = """---
 id: {id}

@@ -9,7 +9,7 @@ import hashlib
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from . import belegpruefung, daten, kontrollen, uhr
+from . import belegpruefung, daten, kontrollen, schutz, uhr
 from .paths import outbox_dir
 from .store import (ereignis, entpacken, transaktion, verbindung, zeile, zeilen,
                     zustand_lesen, zustand_setzen)
@@ -42,6 +42,8 @@ def aktuelle_welle() -> int:
 
 def welle_freischalten(welle: int, code: Optional[str] = None, akteur: str = "mensch") -> Dict[str, Any]:
     """Postfach abrufen: gibt alle Nachrichten bis einschließlich `welle` frei."""
+    if welle > 1:
+        schutz.pruefen("Weitere Runden abrufen")  # Runde 1 ruft das Einrichten ab
     verfuegbar = sorted({m["welle"] for m in daten.nachrichten_alle()})
     if welle not in verfuegbar:
         raise FachFehler("Diese Runde gibt es nicht.")
@@ -412,6 +414,7 @@ def einreichen(entwurf_id: int, rechtsaussage: bool, akteur: str = "claude") -> 
 
 def freigeben(entwurf_id: int, akteur: str = "mensch") -> Dict[str, Any]:
     """NUR Cockpit. Der Mensch gibt den Entwurf frei, so wie er jetzt dasteht."""
+    schutz.pruefen("Freigeben")
     with transaktion() as conn:
         e = zeile(conn, "SELECT * FROM entwuerfe WHERE id = ?", (entwurf_id,))
         if not e:
@@ -426,6 +429,7 @@ def freigeben(entwurf_id: int, akteur: str = "mensch") -> Dict[str, Any]:
 
 def ablehnen(entwurf_id: int, grund: Any, akteur: str = "mensch") -> Dict[str, Any]:
     """NUR Cockpit. Der Entwurf geht mit Begründung zurück; Claude kann ihn überarbeiten."""
+    schutz.pruefen("Ablehnen")
     grund = _text_pruefen(grund, "Begründung", 1000)
     with transaktion() as conn:
         e = zeile(conn, "SELECT * FROM entwuerfe WHERE id = ?", (entwurf_id,))
@@ -481,6 +485,7 @@ def _ablegen(conn, e: Dict[str, Any], akteur: str, automatisch: bool) -> Dict[st
 
 def senden(entwurf_id: int, akteur: str = "mensch") -> Dict[str, Any]:
     """NUR Cockpit. Bis Runde 1 sendet der Mensch direkt; ab Runde 2 nur freigegebene Entwürfe."""
+    schutz.pruefen("Senden")
     with transaktion() as conn:
         e = zeile(conn, "SELECT * FROM entwuerfe WHERE id = ?", (entwurf_id,))
         if not e:
@@ -498,7 +503,8 @@ def senden(entwurf_id: int, akteur: str = "mensch") -> Dict[str, Any]:
 
 
 def faellige_senden() -> int:
-    """Eingeplante Mails, deren Frist nach Übungsuhr verstrichen ist, gehen raus (genau einmal)."""
+    """Eingeplante Mails, deren Frist nach Übungsuhr verstrichen ist, gehen raus (genau einmal). Nur im Cockpit."""
+    schutz.pruefen("Automatisches Senden")
     with verbindung() as conn:
         jetzt = uhr.jetzt(conn)
         ids = [r["id"] for r in conn.execute(
@@ -516,6 +522,7 @@ def faellige_senden() -> int:
 
 def uhr_vorspulen(stunden: Any, akteur: str = "mensch") -> Dict[str, Any]:
     """NUR Cockpit. Die Übungsuhr läuft sonst in Echtzeit; hier springt sie vor, und fällige Mails gehen raus."""
+    schutz.pruefen("Die Uhr vorspulen")
     try:
         stunden = float(stunden)
     except (TypeError, ValueError):

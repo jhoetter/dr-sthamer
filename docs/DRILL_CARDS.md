@@ -26,7 +26,8 @@ Regel und Szenarien fest, Claude baut ohne Zwischenschritte, drei Sätze Erklär
   Denkrichtungen mit Folgen anbieten.
 - Du sendest, gibst frei und spulst die Uhr nie selbst. Dafür gibt es keine
   Werkzeuge, und du suchst keinen Umweg.
-- **Eingereichte Entwürfe ändert Claude nicht.** Das Werkzeug lehnt es ab: Wer prüft, soll
+- **Eingereichte Entwürfe ändert Claude nicht.** Das Werkzeug lehnt es ab (Wortlaut: „Dieser Entwurf ist schon eingereicht … Der Mensch lehnt ihn im Cockpit
+  ab (oder du stoppst die geplante Mail), dann kannst du ihn überarbeiten und neu einreichen“): Wer prüft, soll
   sehen, was eingereicht wurde. Der Mensch lehnt den Entwurf im Cockpit ab (oder du stoppst die
   geplante Mail), dann überarbeitest du ihn und reichst ihn neu ein. (Dass sich das Cockpit
   bei Änderungen **durch den Menschen** richtig verhält, ist der Bauauftrag in Drill 3 und 4.)
@@ -255,6 +256,7 @@ Entwurf seinen Termin, auch wenn der Text danach geändert wird; die geänderte 
 *Szenarien (Beispiele):* (a) Eingeplant + geändert → Termin weg, nichts geht automatisch raus. (b) Neu eingereicht
 → neuer Termin. (c) Uhr zweimal vorspulen → genau **eine** Datei im Postausgang. (d) Gestoppte Mail geht nie raus.
 (e) Nie: dieselbe Mail zweimal im Postausgang.
+Fordere **mindestens drei Szenarien** ein, davon ein „nie“ von der Person.
 *Prüfung:* Unit-Szenarien plus `python scripts/akzeptanz.py 4`.
 
 **Etappe 4 · Belegen.** Eingeplante Mail ändern: Termin weg, Protokoll sagt warum. Uhr vorspulen: genau eine
@@ -293,6 +295,8 @@ gehören. Claude schreibt `bericht.md`; die Zahlen stehen im Cockpit unter **Ber
 *Fragen:* Welche Kennzahl fehlt dir? Woher im Protokoll kommt sie? *Szenarien (Beispiele):* (a) Die Kennzahl
 stimmt auf einem Beispieltag nachgerechnet. (b) Ohne Daten kein Absturz, sondern 0. (c) Nie: eine Zahl, die das
 Protokoll nicht hergibt.
+Auch unter Zeitdruck fragst du nach Regel und „nie“-Szenario, und die Kennzahl muss etwas zeigen, was `get_report_data`
+noch nicht hat (nicht nur eine vorhandene Zahl umbenennen). Speichern erst **nach** dem Nachweis im Cockpit und mit Ja der Person.
 *Prüfung:* Unit-Szenarien plus `python scripts/akzeptanz.py 5`.
 
 **Etappe 4 · Belegen.** Bericht öffnen unter Bericht im Cockpit: Zahlen und Text passen zusammen, die eigene

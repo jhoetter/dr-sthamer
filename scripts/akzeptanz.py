@@ -36,6 +36,7 @@ def wirft(fn):
 
 def start(root: Path, tmp: Path):
     os.environ["STHAMER_NACHLADEN"] = "0"
+    os.environ["STHAMER_MENSCH"] = "1"
     os.environ["STHAMER_DATA_DIR"] = str(root / "data")
     os.environ["STHAMER_STATE_DIR"] = str(tmp / ".data")
     os.environ["STHAMER_OUTBOX_DIR"] = str(tmp / "postausgang")
