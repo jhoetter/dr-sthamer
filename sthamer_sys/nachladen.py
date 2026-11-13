@@ -17,8 +17,9 @@ from typing import Dict, Optional, Tuple
 
 from .paths import PKG_DIR
 
-# Diese Module bleiben beim Nachladen stehen (sie enthalten die Schleifen, die gerade laufen).
-BEHALTEN = ("sthamer_sys.nachladen", "sthamer_sys.app", "sthamer_sys.mcp_server", "sthamer_sys.cli", "sthamer_sys.paths")
+# Diese Module bleiben beim Nachladen stehen: sie enthalten die laufenden Schleifen (app, mcp_server) oder Zustand, der nicht
+# verloren gehen darf (schutz: die Freischaltung der Menschen-Aktionen im Cockpit).
+BEHALTEN = ("sthamer_sys.nachladen", "sthamer_sys.schutz", "sthamer_sys.app", "sthamer_sys.mcp_server", "sthamer_sys.cli", "sthamer_sys.paths")
 
 _sperre = threading.Lock()
 

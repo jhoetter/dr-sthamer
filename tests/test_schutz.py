@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-from tests.test_nachladen import kopie
+from tests.test_nachladen import anfassen, kopie
 
 SKRIPT = '''
 import json
@@ -53,7 +53,8 @@ class SchutzTest(unittest.TestCase):
         self.assertFalse((self.wurzel / "postausgang").exists() and any((self.wurzel / "postausgang").iterdir()), "nichts gesendet")
 
     def test_das_cockpit_schaltet_sich_selbst_frei(self):
-        proc = subprocess.Popen([sys.executable, str(self.wurzel / "sthamer.py"), "serve", "--port", "3098"], env=self.env,
+        env = dict(self.env, STHAMER_NACHLADEN="1")  # hier wird gerade das Zusammenspiel mit dem Nachladen geprüft
+        proc = subprocess.Popen([sys.executable, str(self.wurzel / "sthamer.py"), "serve", "--port", "3098"], env=env,
                                 cwd=str(self.wurzel), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
             for _ in range(60):
@@ -70,6 +71,14 @@ class SchutzTest(unittest.TestCase):
                           method="POST", headers={"Content-Type": "application/json", "X-Sthamer-Token": token})
             with urlopen(req, timeout=10) as r:
                 self.assertEqual(r.status, 200)
+            # Nach dem Nachladen von geändertem Code muss das Cockpit weiter Menschen-Aktionen erlauben (Regressionstest)
+            anfassen(self.wurzel / "sthamer_sys" / "uhr.py", "\n# geändert\n")
+            req = Request("http://127.0.0.1:3098/api/welle", data=json.dumps({"welle": 3, "code": "schlauch"}).encode("utf-8"),
+                          method="POST", headers={"Content-Type": "application/json", "X-Sthamer-Token": token})
+            with urlopen(req, timeout=10) as r:
+                self.assertEqual(r.status, 200)
+            with urlopen("http://127.0.0.1:3098/api/health", timeout=5) as r:
+                self.assertIsNone(json.loads(r.read().decode("utf-8"))["code_fehler"])
         finally:
             proc.terminate()
             proc.wait(timeout=20)
