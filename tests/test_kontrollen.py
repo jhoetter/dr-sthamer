@@ -100,7 +100,7 @@ class FlussTest(WeltTest):
 
     def test_key_account_bleibt_auch_im_fenster_bei_pflichtfreigabe(self):
         domain.welle_freischalten(1)
-        domain.welle_freischalten(2, "hydrant")
+        domain.welle_freischalten(2, "testcode")
         fid = domain.fall_anlegen("MSG-2-01", akteur="claude")["fall_id"]
         eid = domain.entwurf_anlegen(fid, "j.test@nordhafen.example.com", "Answer", "Hello", [], "claude")["entwurf_id"]
         setze_welle(3)

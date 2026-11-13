@@ -661,7 +661,9 @@ def bericht() -> Dict[str, Any]:
                     "automatisch_nach_fenster": auto,
                     "direkt_vom_menschen": sum(1 for e in gesendet if not e["stufe"])},
         "kontrolle": {"freigegeben": arten.get("freigegeben", 0), "abgelehnt": arten.get("abgelehnt", 0),
-                      "gestoppt": arten.get("versand_gestoppt", 0), "wartet_auf_freigabe": sum(1 for e in ents if e["status"] == "zur_freigabe"),
+                      "gestoppt": arten.get("versand_gestoppt", 0),
+                      "gestoppt_vom_menschen": sum(1 for e in ev if e["art"] == "versand_gestoppt" and e["akteur"] == "mensch"),
+                      "gestoppt_von_claude": sum(1 for e in ev if e["art"] == "versand_gestoppt" and e["akteur"] == "claude"), "wartet_auf_freigabe": sum(1 for e in ents if e["status"] == "zur_freigabe"),
                       "eingeplant": sum(1 for e in ents if e["status"] == "geplant")},
         "frist": {"informationspflicht_bis": frist, "tage_bis": tage},
         "grenze": "Alle Zahlen stammen aus der Übungswelt (erfundene Daten) und zeigen, was das System festgehalten hat, "

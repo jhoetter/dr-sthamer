@@ -70,9 +70,10 @@ def mini_welt(basis: Path) -> Path:
         {"id": "L-2", "kunde_id": "K-2", "produkt_id": "P-2", "anwendung": "feuerwehrfahrzeug", "anlage": None,
          "menge_l": 900, "letzte_lieferung": "2026-09-01"}])
     _json(d / "wellen.json", {"1": {"titel": "Start", "code_sha256": None},
-                              "2": {"titel": "Anfragen", "code_sha256": hashlib.sha256(b"hydrant").hexdigest()}})
+                              "2": {"titel": "Anfragen", "code_sha256": hashlib.sha256(b"testcode").hexdigest()}})
     (d / "regulation").mkdir(parents=True, exist_ok=True)
-    _schreiben(d / "regulation" / "vo-test.md", "# Testverordnung\n\nArt. 1 Gegenstand\n")
+    _schreiben(d / "regulation" / "vo-test.md", "# Testverordnung\n\n## Artikel 1 – Gegenstand\n\n1. Text.\n\n## Artikel 3 – Grenzwert\n\n1. Text.\n\n"
+               "## Artikel 4 – Beschränkungen\n\n1. Text.\n\n2. Text.\n\n3. Stationäre Anlagen.\n\n4. Text.\n")
     _schreiben(d / "regulation" / "berichtigung-test.md", "# Berichtigung\n\nFrist neu: 2030-03-01\n")
     e = d / "eingang"
     e.mkdir(parents=True, exist_ok=True)

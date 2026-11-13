@@ -3,8 +3,8 @@
 Nur für Probeläufe und Tests der Lehrenden. Teilnehmende und Claude nutzen es nie: Senden, Freigeben,
 Ablehnen, Uhr vorspulen und Postfach abrufen sind absichtlich nur im Cockpit möglich.
 
-  python scripts/sim_mensch.py [--port 3005] welle 2 hydrant
-  python scripts/sim_mensch.py senden 3 | freigeben 3 | ablehnen 3 "Frist falsch" | stoppen 3 | uhr 24
+  python lehrer/sim_mensch.py [--port 3005] welle 2 <Code>
+  python lehrer/sim_mensch.py senden 3 | freigeben 3 | ablehnen 3 "Frist falsch" | stoppen 3 | uhr 24
   python scripts/sim_mensch.py speichern 3 --text "Neuer Text"   (ändert Text, Betreff, Empfänger wie im Cockpit)
   python scripts/sim_mensch.py fall MSG-1-02 | status | entwuerfe | postausgang | protokoll | bericht
 """

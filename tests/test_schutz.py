@@ -20,7 +20,7 @@ eid = domain.entwurf_anlegen(fid, "a.lindemann@ff-bergheim-land.example.com", "A
 ergebnis = {}
 for name, fn in [("senden", lambda: domain.senden(eid)), ("freigeben", lambda: domain.freigeben(eid)),
                  ("ablehnen", lambda: domain.ablehnen(eid, "x")), ("uhr", lambda: domain.uhr_vorspulen(1)),
-                 ("runde2", lambda: domain.welle_freischalten(2, "hydrant")), ("faellige", lambda: domain.faellige_senden())]:
+                 ("runde2", lambda: domain.welle_freischalten(2, "testcode")), ("faellige", lambda: domain.faellige_senden())]:
     try:
         fn(); ergebnis[name] = "ERLAUBT"
     except domain.FachFehler as e:
@@ -37,6 +37,11 @@ class SchutzTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix="Sthamer Schutz ")
         self.wurzel = kopie(Path(self.tmp.name) / "kopie")
+        # eigene Test-Codes statt der echten (Runden 2 und 3)
+        h = lambda c: __import__("hashlib").sha256(c.encode("utf-8")).hexdigest()
+        with open(str(self.wurzel / "data" / "wellen.json"), "w", encoding="utf-8", newline="\n") as f:
+            json.dump({"1": {"titel": "t", "code_sha256": None}, "2": {"titel": "t", "code_sha256": h("testcode")},
+                       "3": {"titel": "t", "code_sha256": h("testcode3")}, "4": {"titel": "t", "code_sha256": h("testcode4")}}, f)
         self.env = {k: v for k, v in os.environ.items() if k not in ("STHAMER_MENSCH", "STHAMER_DATA_DIR")}
         self.env.update(STHAMER_NACHLADEN="0", STHAMER_STATE_DIR=str(self.wurzel / ".data"), STHAMER_OUTBOX_DIR=str(self.wurzel / "postausgang"))
 
@@ -67,13 +72,13 @@ class SchutzTest(unittest.TestCase):
             else:
                 self.fail("Cockpit startet nicht")
             token = html.split('name="sthamer-token" content="')[1].split('"')[0]
-            req = Request("http://127.0.0.1:3098/api/welle", data=json.dumps({"welle": 2, "code": "hydrant"}).encode("utf-8"),
+            req = Request("http://127.0.0.1:3098/api/welle", data=json.dumps({"welle": 2, "code": "testcode"}).encode("utf-8"),
                           method="POST", headers={"Content-Type": "application/json", "X-Sthamer-Token": token})
             with urlopen(req, timeout=10) as r:
                 self.assertEqual(r.status, 200)
             # Nach dem Nachladen von geändertem Code muss das Cockpit weiter Menschen-Aktionen erlauben (Regressionstest)
             anfassen(self.wurzel / "sthamer_sys" / "uhr.py", "\n# geändert\n")
-            req = Request("http://127.0.0.1:3098/api/welle", data=json.dumps({"welle": 3, "code": "schlauch"}).encode("utf-8"),
+            req = Request("http://127.0.0.1:3098/api/welle", data=json.dumps({"welle": 3, "code": "testcode3"}).encode("utf-8"),
                           method="POST", headers={"Content-Type": "application/json", "X-Sthamer-Token": token})
             with urlopen(req, timeout=10) as r:
                 self.assertEqual(r.status, 200)

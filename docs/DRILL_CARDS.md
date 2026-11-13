@@ -141,8 +141,8 @@ Stichtag). Die Person prüft im Kundenpanel eine Einschätzung gegen die Lieferu
 **Etappe 3 · Selbst bauen: Belegprüfung beim Speichern.**
 *Stelle:* `sthamer_sys/belegpruefung.py` (beide Funktionen sind absichtlich leer).
 *Fragen an die Person:* Was muss ein Beleg erfüllen, damit du ihm traust? Was soll
-passieren, wenn nicht? *Szenarien (Beispiele):* (a) zitierter Artikel existiert im
-Regelwerk (Art. 4 Abs. 4 ja, Art. 99 nein). (b) zitiertes Produkt oder Kunde existiert.
+passieren, wenn nicht? *Szenarien (Beispiele):* (a) zitierter Artikel und Absatz stehen im
+**Volltext der Verordnung**, nicht nur in der Fristen-Tabelle (Art. 4 Abs. 4 und Art. 3 Abs. 1 ja, Art. 99 nein). (b) zitiertes Produkt oder Kunde existiert.
 (c) „betroffen“ braucht Artikel **und** Produkt als Beleg. (d) Jedes Datum im Text ist
 eine Frist des Regelwerks (nach Berichtigung gilt die neue); Daten gibt es in drei Schreibweisen
 (2028-09-01, 01.09.2028, 1. September 2028). (e) Nie: ein Entwurf mit erfundenem Datum wird gespeichert.
@@ -248,6 +248,8 @@ von 2029-03-01 auf 2030-03-01. Claude prüft mit `list_queue`, welche geplanten 
 Recycling-Park MSG-3-03 gehört dazu), stoppt sie, die Person lehnt freigegebene im Cockpit ab, Claude korrigiert und reicht neu
 ein; schon gesendete Mails meldet Claude nur. **Erst danach** spult die Person die **Übungsuhr** um einen Tag vor: Was ist
 rausgegangen (die korrigierten, neu eingereichten Mails nach ihrem neuen Fenster, nicht die gestoppten)?
+**Die Uhr wird vor dem Bau vorgespult**, nicht danach: So erlebt die Person die Lücke selbst (die vorher geänderte Mail geht
+trotzdem raus). Claude stoppt nach der Berichtigung nichts, bevor die Person die Entscheidungsfrage beantwortet hat.
 *Entscheidungsfrage:* „Ihr seht eine Mail mit falscher Frist im Fenster. Stoppen, ändern oder laufen
 lassen und später korrigieren?“
 

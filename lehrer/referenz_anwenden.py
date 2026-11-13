@@ -41,11 +41,25 @@ from typing import Any, Dict, List
 from . import daten
 
 
+def _artikel_im_text() -> dict:
+    """{Artikelnummer: Anzahl Absätze/Nummern} aus dem Volltext der Verordnung (nicht nur aus der Fristen-Tabelle)."""
+    text = daten.verordnung_text(next(n for n in daten.verordnungen() if "berichtigung" not in n.lower()))
+    out = {}
+    teile = re.split(r"^## Artikel (\\d+)\\b", text, flags=re.M)
+    for nr, inhalt in zip(teile[1::2], teile[2::2]):
+        out[int(nr)] = len(re.findall(r"^\\d+\\. ", inhalt, flags=re.M))
+    return out
+
+
 def _artikel_gibt_es(ref: str) -> bool:
-    rw = daten.regelwerk()
-    erlaubt = {a["artikel"] for a in rw["anwendungen"]} | {a["artikel"] for a in rw.get("ausnahmen", [])}
-    erlaubt |= {"Art. 7 Abs. 3", "Art. 1 Abs. 3", "Art. 2 Nr. 6", rw.get("informationspflicht_artikel", "")}
-    return ref in erlaubt
+    m = re.fullmatch(r"Art\\.?\\s*(\\d+)(?:\\s+(?:Abs|Nr)\\.?\\s*(\\d+))?", ref.strip())
+    if not m:
+        return False
+    artikel = _artikel_im_text()
+    nr = int(m.group(1))
+    if nr not in artikel:
+        return False
+    return m.group(2) is None or int(m.group(2)) <= artikel[nr]
 
 
 def _belege(belege: List[Dict[str, str]]) -> List[str]:

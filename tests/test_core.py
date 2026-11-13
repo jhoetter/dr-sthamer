@@ -11,7 +11,7 @@ class KernTest(WeltTest):
         with self.assertRaises(domain.FachFehler):
             domain.welle_freischalten(2, "falsch")
         self.assertEqual(len(domain.eingang()), 2)
-        domain.welle_freischalten(2, "  Hydrant ")
+        domain.welle_freischalten(2, "  Testcode ")
         self.assertEqual(len(domain.eingang()), 4)
         self.assertEqual(domain.aktuelle_welle(), 2)
 
@@ -75,12 +75,12 @@ class KernTest(WeltTest):
         self.assertNotIn("berichtigung", rw["regelwerk"])
         with self.assertRaises(domain.FachFehler):
             domain.verordnungstext("berichtigung-test.md")
-        domain.welle_freischalten(2, "hydrant")
+        domain.welle_freischalten(2, "testcode")
         rw = domain.regelwerk_sichtbar()
         self.assertIn("berichtigung-test.md", rw["verfuegbar"])
         self.assertEqual(rw["haupttext"], "vo-test.md")
         self.assertIn("berichtigung", rw["regelwerk"])
-        self.assertIn("Art. 1", domain.verordnungstext()["text"])
+        self.assertIn("Artikel 1", domain.verordnungstext()["text"])
 
     def test_protokoll_haelt_akteur_fest(self):
         domain.welle_freischalten(1)

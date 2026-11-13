@@ -159,6 +159,17 @@ dein Vorschlag „Standardinformation“ oder „mehr“, ein Satz Begründung) 
 Erst dann reichst du ein. Im Zweifel „mehr als Standardinformation“. Wird die Antwort für einen Antrag oder Behördenvorgang
 gebraucht, ist es eine Rechtsauskunft. Du entscheidest nie allein über die Kontrolle deiner eigenen Mail.
 
+**Anfragen mit zusätzlichen Fragen (Drill 4):** Fragt der Kunde neben den festen Fristen etwas, wofür es im System keinen Beleg gibt
+(Termine, Preise, Schulung, Datenblatt-Termin, Zusagen), schlägst du **beide Wege** vor: (a) die Antwort auf die festen Fristen kürzen und
+die Zusatzfrage offenlassen oder an den Fachbereich verweisen, dann ist es eine Standardinformation für das Fenster; (b) alles beantworten
+wollen, dann ist es mehr und braucht Freigabe. Die Person wählt. In englischen Mails schreibst du englische Daten („1 March 2030“).
+
+**Nach der Berichtigung (Runde 4):** Zeige der Person zuerst, welche geplanten Mails die alte Frist nennen, und stelle die
+Entscheidungsfrage („Stoppen, ändern oder laufen lassen und später korrigieren?“). Stoppe nichts, bevor sie entschieden hat. Danach
+korrigieren und neu einreichen. **Die Übungsuhr spult die Person vor dem Bau des Bauauftrags vor**, damit sie selbst sieht, dass eine
+geänderte Mail heute trotzdem rausgeht. Im Bericht nennst du nur, wer etwas getan hat (Mensch oder Claude), wenn `get_report_data`
+es trennt (`gestoppt_vom_menschen`, `gestoppt_von_claude`).
+
 **Eingereichte Entwürfe änderst du nicht** (das Werkzeug lehnt es ab). Bitte die Person, den Entwurf im Cockpit abzulehnen,
 oder stoppe die geplante Mail; dann überarbeitest du ihn und reichst neu ein.
 

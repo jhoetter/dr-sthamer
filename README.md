@@ -66,7 +66,9 @@ jemandem dazu („Buddy-Modus“).
 | `web/` | die Oberfläche der Kommandozentrale |
 | `data/` | erfundene Stammdaten: Produkte, Kunden, Lieferungen, Verordnung, Nachrichten |
 | `tests/` | Prüfszenarien (`python -m unittest discover -s tests`) |
-| `docs/` | Anleitungen, Plan und Datenmodell: [PLAN](docs/PLAN.md), [DATENMODELL](docs/DATENMODELL.md), [IT-Vorbereitung](docs/IT_VORAB.md), [Offline-Paket](docs/OFFLINE_PAKET.md) |
+| `scripts/` | `akzeptanz.py` prüft die Bauaufträge der Drills, `make_data.py` erzeugt die Übungsdaten |
+| `lehrer/` | nur für Lehrende: Referenzlösungen und Absicherungstest (für Claude gesperrt) |
+| `docs/` | Anleitungen, Plan und Datenmodell: [PLAN](docs/PLAN.md), [Agenda](docs/WORKSHOP_AGENDA.md), [Drill-Karten](docs/DRILL_CARDS.md), [Runbook](docs/WORKSHOP_RUNBOOK.md), [Probelauf](docs/PROBELAUF_2026-11-12.md), [DATENMODELL](docs/DATENMODELL.md), [IT-Vorbereitung](docs/IT_VORAB.md), [Offline-Paket](docs/OFFLINE_PAKET.md) |
 | `CLAUDE.md` | Leitfaden für Claude als Tutor |
 
 Es wird **nichts installiert**: keine Pakete, kein `pip`, kein Node. Die

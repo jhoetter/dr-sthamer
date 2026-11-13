@@ -184,7 +184,7 @@ def drill4(domain, daten, store):
 
 BASIS_SCHLUESSEL = {"stand", "einschaetzungen", "entwuerfe", "versand", "kontrolle", "frist", "grenze",
                     "ohne_einschaetzung", "aktive_kunden", "betroffen", "nicht_betroffen", "mittelbar", "unklar", "gesamt",
-                    "von_claude", "offen", "gesendet", "mit_pflichtfreigabe", "automatisch_nach_fenster", "direkt_vom_menschen",
+                    "von_claude", "gestoppt_vom_menschen", "gestoppt_von_claude", "offen", "gesendet", "mit_pflichtfreigabe", "automatisch_nach_fenster", "direkt_vom_menschen",
                     "freigegeben", "abgelehnt", "gestoppt", "wartet_auf_freigabe", "eingeplant", "informationspflicht_bis", "tage_bis"}
 
 

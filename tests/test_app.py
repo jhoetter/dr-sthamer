@@ -74,7 +74,7 @@ class AppTest(WeltTest):
 
     def test_runde_2_mit_code_ueber_die_oberflaeche(self):
         self.assertEqual(self.post("/api/welle", {"welle": 2, "code": "falsch"})[0], 400)
-        self.assertEqual(self.post("/api/welle", {"welle": 2, "code": "hydrant"})[0], 200)
+        self.assertEqual(self.post("/api/welle", {"welle": 2, "code": "testcode"})[0], 200)
         s, d = self.anfrage("GET", "/api/nachrichten")
         self.assertEqual(len(json.loads(d)), 4)
 

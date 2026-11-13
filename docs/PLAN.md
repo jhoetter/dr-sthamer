@@ -203,13 +203,14 @@ Offline-Paket.
 | Phase | Inhalt | Status |
 | --- | --- | --- |
 | 0 | Repo, Plan, Datenmodell | **fertig** |
-| 1 | Anleitungen Windows/Mac, IT-Vorab, Vorab-Checkliste, Offline-Paket (Checkliste), `check.py`, CI | **fertig**, auf Windows noch nicht real getestet |
-| 1 | Datensatz: 27 Produkte, 32 Kunden, 149 Lieferungen, fiktive Verordnung + Berichtigung, 15 Mails in 4 Runden, Lösungsschlüssel | **fertig** |
-| 1 | Kern: Speicher, CLI, Cockpit (Eingang, Fälle, Entwurf, Postausgang, Regelwerk, Produkte, Kunden, Protokoll), MCP stdio mit 15 Werkzeugen, Runden mit Code | **fertig**, Drill 1 spielbar |
-| 2 | Pflichtfreigabe, Eingriffsfenster, Workshop-Uhr, Kontrollstufe pro Entwurf | offen |
-| 2 | Drill-Karten 1–5, Checkpoints/Referenzlösungen (`reference`-Branch), `get_drill_guide` | offen |
-| 3 | Bericht (Drill 5), Folien, Dozenten-Runbook, Offline-Paket bauen | offen |
-| 3 | **Generalprobe** mit Sthamer-Gastgerät, Korrekturen | offen |
+| 1 | Anleitungen Windows/Mac, IT-Vorab, Vorab-Checkliste, Offline-Paket (Checkliste), `check.py`, CI (Windows, macOS, Linux) | **fertig**, auf Windows noch nicht real getestet |
+| 1 | Datensatz: 27 Produkte, 32 Kunden, 149 Lieferungen, fiktive Verordnung mit Berichtigung, 15 Mails in 4 Runden, Lösungsschlüssel | **fertig** |
+| 1 | Kern: Speicher, Cockpit im Sthamer-Branding, MCP über stdio, Runden mit Code, Code lädt sich selbst nach | **fertig** |
+| 2 | Pflichtfreigabe, Eingriffsfenster, Übungsuhr, Einschätzungen, Bericht, Protokoll; Schutz der Menschen-Aktionen | **fertig** |
+| 2 | Agenda, Drill-Karten, Akzeptanzprüfung je Bauauftrag, Referenzlösungen und Rettungsweg (`lehrer/`), Runbook | **fertig** |
+| 2 | **Probelauf** mit simulierten Teilnehmenden, ganzer Tag ([PROBELAUF_2026-11-12.md](PROBELAUF_2026-11-12.md)) | **fertig** |
+| 3 | **Generalprobe mit Sthamer-Gastgerät** (Windows und Mac), Korrekturen | offen |
+| 3 | Folien für den Input, ITMP-Logo, Offline-Paket bauen (Skript), Repo-Verteilung klären | offen |
 
 ## 8a. Was noch nicht verifiziert ist
 
