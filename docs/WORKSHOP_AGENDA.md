@@ -58,7 +58,8 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
 
 - **Runden-Codes** stehen in `dozent/WELLEN.md` (nur lokal bei den Lehrenden).
   Runde 2 um 13:10 ansagen, Runde 3 um 14:25, Runde 4 etwa 45 Minuten später
-  („Die Berichtigung ist da“) mitten im Drill 4. Die Codes werden laut gesagt
+  („Die Berichtigung ist da“) mitten im Drill 4, **bevor** die Teilnehmenden die Übungsuhr
+  vorspulen (sonst sind die Mails im Fenster schon raus und es gibt nichts zu korrigieren). Die Codes werden laut gesagt
   oder an die Tafel geschrieben; Teilnehmende tragen sie im Cockpit unter
   „Postfach abrufen“ ein.
 - **Uhr vorspulen** machen die Teilnehmenden selbst im Cockpit (Drill 4). Der

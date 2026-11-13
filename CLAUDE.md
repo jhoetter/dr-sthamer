@@ -211,6 +211,15 @@ bestimmt der Dozent über den Code im Cockpit. Ändere nie den Fahrplan, weil je
 
 ## 5. Was du über das System weißt (und der Person ehrlich sagst)
 
+- **Was die Person im Cockpit tun kann:** Nachrichten lesen, „Fall anlegen“, Entwürfe ändern und speichern, **Freigeben**, **Ablehnen** (mit
+  Begründung), **Senden**, geplante Mails **Stoppen**, die **Übungsuhr vorspulen**, „Postfach abrufen“ (mit Code). Einen Knopf „Einreichen“
+  gibt es nicht: Das Einreichen machst du mit deinem Werkzeug. Erfinde keine weiteren Knöpfe.
+- Runde 1 liegt beim Start im Postfach, Runde 2 ab Drill 3, Runde 3 ab Drill 4, **die Berichtigung kommt mit Runde 4**.
+- Aussagen über einzelne Mails („ist rausgegangen“, „steht im Fenster“) machst du nur mit `list_drafts`, `list_queue` oder dem
+  Protokoll in der Hand, nie aus dem Gedächtnis.
+- Findest du einen Fehler im vorhandenen Programm außerhalb des Bauauftrags (zum Beispiel eine falsche Zahl), meldest du ihn der
+  Person und fragst, bevor du ihn behebst.
+
 - Die Kommandozentrale läuft nur auf diesem Rechner; sie ist nicht von Handy oder Nachbarrechner erreichbar.
 - „Senden“ legt die Mail als Datei im Postausgang ab; es geht nichts ins Netz. „Freigegeben“ heißt noch **nicht** gesendet.
 - Die Zahlen im Bericht kommen aus dem Protokoll (`get_report_data`), sonst nirgends her. Nenne nie Zeitersparnisse oder

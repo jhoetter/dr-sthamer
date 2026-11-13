@@ -320,7 +320,28 @@ def _belegpruefung(an: str, betreff: str, text: str, belege: List[Dict[str, str]
         raise FachFehler("Belegprüfung: " + " ".join(probleme))
 
 
+def _abgewiesen(fall_id: Optional[int], akteur: str, meldung: str, entwurf_id: Optional[int] = None) -> None:
+    """Hält fest, dass die Belegprüfung etwas abgewiesen hat (sichtbar im Protokoll, sonst bliebe es unbemerkt)."""
+    try:
+        with transaktion() as conn:
+            if fall_id is None and entwurf_id is not None:
+                r = zeile(conn, "SELECT fall_id FROM entwuerfe WHERE id = ?", (entwurf_id,))
+                fall_id = r["fall_id"] if r else None
+            ereignis(conn, akteur, "belegpruefung_abgewiesen", fall_id, {"text": meldung.replace("Belegprüfung: ", "")})
+    except Exception:
+        pass
+
+
 def entwurf_anlegen(fall_id: int, an: str, betreff: str, text: str, belege: Any, akteur: str) -> Dict[str, Any]:
+    try:
+        return _entwurf_anlegen(fall_id, an, betreff, text, belege, akteur)
+    except FachFehler as e:
+        if str(e).startswith("Belegprüfung:"):
+            _abgewiesen(fall_id, akteur, str(e))
+        raise
+
+
+def _entwurf_anlegen(fall_id: int, an: str, betreff: str, text: str, belege: Any, akteur: str) -> Dict[str, Any]:
     an = _empfaenger_pruefen(an)
     betreff = _text_pruefen(betreff, "Betreff", MAX_BETREFF)
     text = _text_pruefen(text, "Text", MAX_TEXT)
@@ -343,6 +364,15 @@ def entwurf_anlegen(fall_id: int, an: str, betreff: str, text: str, belege: Any,
 
 
 def entwurf_aendern(entwurf_id: int, felder: Dict[str, Any], akteur: str) -> Dict[str, Any]:
+    try:
+        return _entwurf_aendern(entwurf_id, felder, akteur)
+    except FachFehler as e:
+        if str(e).startswith("Belegprüfung:"):
+            _abgewiesen(None, akteur, str(e), entwurf_id)
+        raise
+
+
+def _entwurf_aendern(entwurf_id: int, felder: Dict[str, Any], akteur: str) -> Dict[str, Any]:
     erlaubt = {"an", "betreff", "text", "belege"}
     if not felder or set(felder) - erlaubt:
         raise FachFehler("Änderbar sind: an, betreff, text, belege.")
@@ -359,6 +389,8 @@ def entwurf_aendern(entwurf_id: int, felder: Dict[str, Any], akteur: str) -> Dic
             "belege": _belege_pruefen(felder["belege"]) if "belege" in felder else loads(e["belege"], []),
         }
         _belegpruefung(neu["an"], neu["betreff"], neu["text"], neu["belege"])
+        if (neu["an"], neu["betreff"], neu["text"], neu["belege"]) == (e["an"], e["betreff"], e["text"], loads(e["belege"], [])):
+            return {"ok": True, "unveraendert": True}  # nichts geändert: kein Protokolleintrag, nichts verfällt
         jetzt = uhr.jetzt(conn)
         conn.execute("UPDATE entwuerfe SET an=?, betreff=?, text=?, belege=?, geaendert=? WHERE id=?",
                      (neu["an"], neu["betreff"], neu["text"], dumps(neu["belege"]), jetzt, entwurf_id))
@@ -386,6 +418,15 @@ def entwuerfe(fall_id: Optional[int] = None) -> List[Dict[str, Any]]:
 
 
 def einreichen(entwurf_id: int, rechtsaussage: bool, akteur: str = "claude") -> Dict[str, Any]:
+    try:
+        return _einreichen(entwurf_id, rechtsaussage, akteur)
+    except FachFehler as e:
+        if str(e).startswith("Belegprüfung:"):
+            _abgewiesen(None, akteur, str(e), entwurf_id)
+        raise
+
+
+def _einreichen(entwurf_id: int, rechtsaussage: bool, akteur: str = "claude") -> Dict[str, Any]:
     """Ab Runde 2: Der Entwurf wird einer Kontrolle zugeordnet (Pflichtfreigabe oder Eingriffsfenster)."""
     with transaktion() as conn:
         if not _faehig(conn, "freigabe"):
@@ -595,6 +636,7 @@ def bericht() -> Dict[str, Any]:
         ents = zeilen(conn, "SELECT * FROM entwuerfe")
         ev = zeilen(conn, "SELECT * FROM ereignisse")
         eins = zeilen(conn, "SELECT ergebnis, COUNT(*) AS n FROM einschaetzungen GROUP BY ergebnis")
+        eins_ids = {r["kunde_id"] for r in zeilen(conn, "SELECT kunde_id FROM einschaetzungen")}
         jetzt = uhr.jetzt(conn)
     zaehl = {k: 0 for k in ERGEBNISSE}
     zaehl.update({r["ergebnis"]: r["n"] for r in eins})
@@ -611,7 +653,7 @@ def bericht() -> Dict[str, Any]:
         tage = (datetime.strptime(frist, "%Y-%m-%d") - datetime.strptime(jetzt[:10], "%Y-%m-%d")).days
     return {
         "stand": jetzt,
-        "einschaetzungen": dict(zaehl, ohne_einschaetzung=max(len(aktive) - sum(zaehl.values()), 0), aktive_kunden=len(aktive)),
+        "einschaetzungen": dict(zaehl, ohne_einschaetzung=sum(1 for k in aktive if k["id"] not in eins_ids), aktive_kunden=len(aktive)),
         "entwuerfe": {"gesamt": len(ents), "von_claude": sum(1 for e in ents if e["von"] == "claude"),
                       "offen": sum(1 for e in ents if e["status"] in OFFEN)},
         "versand": {"gesendet": len(gesendet),

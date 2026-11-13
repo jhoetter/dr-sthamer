@@ -62,7 +62,13 @@ def _belege(belege: List[Dict[str, str]]) -> List[str]:
 
 
 MONATE = {"januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4, "mai": 5, "juni": 6, "juli": 7, "august": 8,
-          "september": 9, "oktober": 10, "november": 11, "dezember": 12}
+          "september": 9, "oktober": 10, "november": 11, "dezember": 12,
+          "january": 1, "february": 2, "march": 3, "may": 5, "june": 6, "july": 7, "october": 10, "december": 12}
+for _i, _n in enumerate(("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"), 1):
+    MONATE.setdefault(_n, _i)
+    MONATE.setdefault(_n + ".", _i)
+MONATE.setdefault("sept", 9)
+MONATE.setdefault("mär", 3)
 
 
 def _daten_im_text(text: str) -> set:
@@ -72,7 +78,10 @@ def _daten_im_text(text: str) -> set:
         out.add("%s-%s-%s" % (y, m, d))
     for d, m, y in re.findall(r"(\\d{1,2})\\.\\s?(\\d{1,2})\\.\\s?(\\d{4})", text):
         out.add("%s-%02d-%02d" % (y, int(m), int(d)))
-    for d, mon, y in re.findall(r"(\\d{1,2})\\.\\s?([A-Za-zäöüÄÖÜ]+)\\s+(\\d{4})", text):
+    for d, mon, y in re.findall(r"(\\d{1,2})(?:st|nd|rd|th)?\\.?\\s?(?:of\\s+)?([A-Za-zäöüÄÖÜ]+\\.?)\\s+(\\d{4})", text):
+        if mon.lower() in MONATE:
+            out.add("%s-%02d-%02d" % (y, MONATE[mon.lower()], int(d)))
+    for mon, d, y in re.findall(r"([A-Za-z]+\\.?)\\s+(\\d{1,2})(?:st|nd|rd|th)?,?\\s+(\\d{4})", text):
         if mon.lower() in MONATE:
             out.add("%s-%02d-%02d" % (y, MONATE[mon.lower()], int(d)))
     return out

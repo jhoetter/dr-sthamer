@@ -158,6 +158,38 @@ class FlussTest(WeltTest):
         finally:
             belegpruefung.pruefe_entwurf = alt
 
+    def test_abgewiesene_belegpruefung_steht_im_protokoll(self):
+        from sthamer_sys import belegpruefung
+        alt = belegpruefung.pruefe_entwurf
+        belegpruefung.pruefe_entwurf = lambda an, b, t, belege: ["Das Datum ist keine Frist."] if "2031" in t else []
+        try:
+            domain.welle_freischalten(1)
+            fid = domain.fall_anlegen("MSG-1-02")["fall_id"]
+            with self.assertRaises(domain.FachFehler):
+                domain.entwurf_anlegen(fid, "e.muster@mueller.example.com", "B", "Ab 2031 gilt es.", [], "claude")
+            ok = domain.entwurf_anlegen(fid, "e.muster@mueller.example.com", "B", "Guten Tag", [], "claude")["entwurf_id"]
+            with self.assertRaises(domain.FachFehler):
+                domain.entwurf_aendern(ok, {"text": "Ab 2031 gilt es."}, "mensch")
+        finally:
+            belegpruefung.pruefe_entwurf = alt
+        abg = [e for e in domain.protokoll() if e["art"] == "belegpruefung_abgewiesen"]
+        self.assertEqual([(e["akteur"], e["fall_id"]) for e in abg], [("mensch", fid), ("claude", fid)])
+        self.assertEqual(abg[0]["details"]["text"], "Das Datum ist keine Frist.")
+
+    def test_speichern_ohne_aenderung_schreibt_nichts_ins_protokoll(self):
+        fid, eid = FlussTest.fall_und_entwurf(self)
+        vorher = len(domain.protokoll())
+        r = domain.entwurf_aendern(eid, {"text": domain.entwuerfe(fid)[0]["text"]}, "mensch")
+        self.assertTrue(r.get("unveraendert"))
+        self.assertEqual(len(domain.protokoll()), vorher)
+
+    def test_bericht_zaehlt_ruhende_kunden_nicht_als_fehlend(self):
+        domain.welle_freischalten(1)
+        for kid in ("K-1", "K-2"):
+            domain.einschaetzung_festhalten(kid, "unklar", "Test", [], None, "claude")
+        e = domain.bericht()["einschaetzungen"]
+        self.assertEqual((e["aktive_kunden"], e["ohne_einschaetzung"]), (2, 0))
+
     def test_alter_lokaler_stand_wird_migriert(self):
         import sqlite3
         from sthamer_sys import store

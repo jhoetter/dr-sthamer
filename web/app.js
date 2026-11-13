@@ -84,7 +84,7 @@ const ANWENDUNGEN = {
   uebung_training: "Übung und Training", lager_bestand: "Lagerbestand",
 };
 const EREIGNISSE = {
-  postfach_abgerufen: "Postfach abgerufen", fall_angelegt: "Fall angelegt", entwurf_angelegt: "Entwurf angelegt",
+  postfach_abgerufen: "Postfach abgerufen", belegpruefung_abgewiesen: "Belegprüfung abgewiesen", fall_angelegt: "Fall angelegt", entwurf_angelegt: "Entwurf angelegt",
   entwurf_geaendert: "Entwurf geändert", gesendet: "Gesendet", notiz: "Notiz",
   zur_freigabe: "Zur Freigabe eingereicht", geplant: "Eingeplant", freigegeben: "Freigegeben", abgelehnt: "Abgelehnt",
   versand_gestoppt: "Versand gestoppt", uhr_vorgespult: "Übungsuhr vorgespult", einschaetzung: "Einschätzung festgehalten",
@@ -324,7 +324,7 @@ async function refreshStatus() {
     n.c.classList.toggle("hot", !!(n.hot && v));
   });
   const f = document.getElementById("foot-stand");
-  if (f && S && S.heute) f.textContent = "Runde " + S.welle + " · Übungstag " + fmtDateShort(S.heute);
+  if (f && S && S.heute) f.textContent = "Runde " + S.welle + " · Übungstag " + fmtDateShort((S.jetzt || S.heute).slice(0, 10));
   document.querySelectorAll(".uhr-text").forEach(n => { n.textContent = uhrText(); });
 }
 

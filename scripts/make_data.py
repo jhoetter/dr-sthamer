@@ -748,11 +748,14 @@ _MAIL_LOESUNG = {
         "kontrollstufe": "eingriffsfenster (Standardinformation, unkritischer Kunde)",
     },
     "MSG-3-03": {
-        "behandlung": "P-108 hat SDB Version 5.1 vom 2024-09-17 (aktuellste im System). P-108 hat 38 mg/l: betroffen. Eine Aktualisierung "
-                      "des SDB ist im System nicht terminiert; keine Zusage geben.",
-        "stolperstelle": "Kunde fragt nach einem Termin für die Datenblatt-Anpassung: dafür gibt es keinen Beleg, keine Zusage erfinden. "
-                         "Kennzeichnungspflicht ab 2027-09-01 (stationäre Anlage) nennen ist belegt.",
-        "kontrollstufe": "eingriffsfenster (Datenblatt-Anfrage, unkritischer Kunde), sofern keine Terminzusage enthalten ist",
+        "behandlung": "P-108 hat SDB Version 5.1 vom 2024-09-17 (aktuellste im System). P-108 hat 38 mg/l: betroffen. Stationäre Anlage "
+                      "(Art. 4 Abs. 3): Inverkehrbringen ab 2029-03-01 verboten (nach der Berichtigung 2030-03-01), Verwendung ab "
+                      "2033-03-01 verboten, Kennzeichnung ab 2027-09-01, Bestandsmeldung bis 2028-03-31. Eine Aktualisierung des SDB "
+                      "ist im System nicht terminiert; keine Zusage geben.",
+        "stolperstelle": "DRILL-4-FALL: Diese Standardinformation nennt in Runde 3 die ALTE Frist 2029-03-01 und liegt im Eingriffsfenster. "
+                         "Nach der Berichtigung (Runde 4) ist sie falsch: stoppen, korrigieren auf 2030-03-01, neu einreichen. Kunde fragt "
+                         "auch nach einem Termin für die Datenblatt-Anpassung: dafür gibt es keinen Beleg, keine Zusage erfinden.",
+        "kontrollstufe": "eingriffsfenster (nur feste Fristen aus der Verordnung und die aktuelle Datenblatt-Version), sofern keine Terminzusage enthalten ist",
     },
     "MSG-3-04": {
         "behandlung": "K-1014 (PL, in Geltungsbereich) nutzt P-104 (210 mg/l) und P-117 (1,4 mg/l): beide betroffen. Mail in Englisch. "
@@ -1017,7 +1020,7 @@ def build_loesung(produkte: list, kunden: list, lieferungen: list, regelwerk: di
             "geaenderte_frist": "stationaere_anlage: inverkehrbringen_verbot_ab 2029-03-01 -> 2030-03-01 (Art. 4 Abs. 3)",
             "klarstellung": "Art. 2 Nr. 6: Händler ist auch, wer nur lagert und weiterliefert.",
             "falsche_mails_kunden": falsche,
-            "falsche_mails_eingang": ["MSG-2-01", "MSG-2-03"],
+            "falsche_mails_eingang": ["MSG-2-01", "MSG-2-03", "MSG-3-03"],
             "hinweis": "Falsch werden Antworten, die für stationäre Anlagen das Inverkehrbringen-Datum 2029-03-01 nennen (MSG-2-01) "
                        "oder die Händler-Definition eng auslegen (MSG-2-03). Auch Standardinformationen an Kunden mit betroffenen "
                        "stationären Anlagen, falls sie das Datum nennen.",

@@ -110,7 +110,14 @@
       "Bash(lsof *)",
       "Bash(python sthamer.py welle:*)",
       "Bash(python3 sthamer.py welle:*)",
-      "Bash(py sthamer.py welle:*)"
+      "Bash(py sthamer.py welle:*)",
+      "Bash(cat *>*)",
+      "Bash(tee *)",
+      "Bash(sed -i*)",
+      "Bash(perl *)",
+      "Bash(echo *>*)",
+      "Bash(printf *>*)",
+      "Bash(awk *>*)"
     ]
   }
 }

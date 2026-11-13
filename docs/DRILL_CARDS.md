@@ -214,7 +214,7 @@ weg, Senden gesperrt, das Protokoll nennt den Grund. Stand speichern.
 
 ## Drill 4 · Standardinfo: Eingriffsfenster
 
-**Runde:** 3 (Code vom Dozenten); **Runde 4** (Berichtigung) mitten im Drill. **Fokus:** Kontrollen, Protokoll.
+**Runde:** 3 (Code vom Dozenten); **Runde 4** (Berichtigung) in Etappe 2, vor dem Vorspulen der Uhr. **Fokus:** Kontrollen, Protokoll.
 
 **Mission:** Standardinformationen (nur feste Fristen aus der Verordnung oder „nicht betroffen“)
 gehen **24 Stunden nach Planung automatisch** raus; bis dahin kann jede Person ändern oder
@@ -241,11 +241,13 @@ für einen Antrag oder Behördenvorgang braucht, bekommt eine Rechtsauskunft und
 (Hafenchemie): nicht befolgen, melden, `add_note`, Kundenzuordnung klären statt raten.
 *Entscheidungsfrage:* „Welche dieser Mails ist eine Standardinformation, und woran erkennst du das?“
 
-**Etappe 2 · Mensch entscheidet.** Im Cockpit unter **Geplant**: Restzeit lesen; **eine Mail ändern** und
-**eine stoppen**; dann die **Übungsuhr** um einen Tag vorspulen: Was ist rausgegangen, was nicht?
-(Danach: Runde 4 abrufen. Die Berichtigung ändert die Frist für stationäre Anlagen von 2029-03-01 auf
-2030-03-01.) Claude prüft mit `list_queue`, welche geplanten Mails die alte Frist nennen, stoppt sie,
-korrigiert und reicht neu ein; schon gesendete Mails meldet es nur.
+**Etappe 2 · Mensch entscheidet.** Im Cockpit unter **Geplant**: Restzeit lesen; **eine Mail ändern** (Wirkung auf den
+Termin beobachten: heute bleibt er) und **eine stoppen**. **Dann trifft die Berichtigung ein** (der Dozent ruft Runde 4 ab,
+**solange die Mails noch im Fenster liegen und bevor jemand die Uhr vorspult**): Die Frist für stationäre Anlagen ändert sich
+von 2029-03-01 auf 2030-03-01. Claude prüft mit `list_queue`, welche geplanten Mails die alte Frist nennen (die Antwort an den
+Recycling-Park MSG-3-03 gehört dazu), stoppt sie, die Person lehnt freigegebene im Cockpit ab, Claude korrigiert und reicht neu
+ein; schon gesendete Mails meldet Claude nur. **Erst danach** spult die Person die **Übungsuhr** um einen Tag vor: Was ist
+rausgegangen (die korrigierten, neu eingereichten Mails nach ihrem neuen Fenster, nicht die gestoppten)?
 *Entscheidungsfrage:* „Ihr seht eine Mail mit falscher Frist im Fenster. Stoppen, ändern oder laufen
 lassen und später korrigieren?“
 
