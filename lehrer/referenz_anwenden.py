@@ -12,11 +12,17 @@ import sys
 from pathlib import Path
 
 
+def schreibe(pfad: Path, text: str) -> None:
+    """UTF-8 mit LF (Path.write_text kennt `newline` erst ab Python 3.10)."""
+    with open(str(pfad), "w", encoding="utf-8", newline="\n") as f:
+        f.write(text)
+
+
 def ersetze(pfad: Path, alt: str, neu: str) -> None:
     text = pfad.read_text(encoding="utf-8")
     if alt not in text:
         raise SystemExit("Referenz passt nicht mehr auf %s: %r" % (pfad.name, alt[:60]))
-    pfad.write_text(text.replace(alt, neu, 1), encoding="utf-8", newline="\n")
+    schreibe(pfad, text.replace(alt, neu, 1))
 
 
 def drill1(root: Path) -> None:
@@ -26,7 +32,7 @@ def drill1(root: Path) -> None:
 
 
 def drill2(root: Path) -> None:
-    (root / "sthamer_sys" / "belegpruefung.py").write_text('''"""Belegprüfung (Referenzlösung)."""
+    schreibe(root / "sthamer_sys" / "belegpruefung.py", '''"""Belegprüfung (Referenzlösung)."""
 from __future__ import annotations
 
 import re
@@ -100,7 +106,7 @@ def pruefe_einschaetzung(kunde_id: str, ergebnis: str, begruendung: str, belege:
         if "artikel" not in typen or "produkt" not in typen:
             probleme.append("Eine Einschätzung „betroffen“ braucht Artikel und Produkt als Beleg.")
     return probleme
-''', encoding="utf-8", newline="\n")
+''')
 
 
 def drill3(root: Path) -> None:
@@ -127,12 +133,11 @@ def drill5(root: Path) -> None:
             "        \"grenze\": \"Alle Zahlen stammen",
             "        \"eigene_kennzahl\": {\"anteil_ohne_eingriff_prozent\": (round(100.0 * (auto + sum(1 for e in gesendet if e[\"stufe\"] == kontrollen.PFLICHTFREIGABE)) / len(gesendet)) if gesendet else 0)},\n"
             "        \"grenze\": \"Alle Zahlen stammen")
-    (root / "bericht.md").write_text(
+    schreibe(root / "bericht.md",
         "# Bericht an die Geschäftsführung (Probelauf)\n\n## Lage\nDie Informationspflicht gegenüber gewerblichen Abnehmern läuft bis zum 30.06.2027.\n\n"
         "## Zahlen\nAlle Zahlen stammen aus dem Protokoll des Systems.\n\n## Empfehlung\nStandardinformationen im Fenster laufen lassen, "
         "alles mit Rechtsauskunft nur mit Freigabe.\n\n## Grenze der Aussage\nErfundene Übungsdaten, kein Rechtsrat; die Zahlen zeigen, was das System festgehalten hat.\n"
-        + "Dieser Absatz füllt den Bericht auf eine sinnvolle Länge auf, damit die Prüfung ihn als echten Bericht erkennt. " * 2,
-        encoding="utf-8", newline="\n")
+        + "Dieser Absatz füllt den Bericht auf eine sinnvolle Länge auf, damit die Prüfung ihn als echten Bericht erkennt. " * 2)
 
 
 def main() -> int:
