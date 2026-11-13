@@ -1,6 +1,6 @@
 """Referenzlösungen der fünf Bauaufträge (nur Lehrende, Rettungsnetz und Test der Akzeptanzprüfung).
 
-  python scripts/referenz_anwenden.py ORDNER [--bis N]
+  python lehrer/referenz_anwenden.py ORDNER [--bis N | --nur N[,N...]]
 
 Verändert den Code in ORDNER (eine Kopie des Repos, nie das Original der Teilnehmenden ohne Rückfrage!).
 Teilnehmende und Claude lesen und nutzen diese Datei nicht.
@@ -55,6 +55,23 @@ def _belege(belege: List[Dict[str, str]]) -> List[str]:
     return probleme
 
 
+MONATE = {"januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4, "mai": 5, "juni": 6, "juli": 7, "august": 8,
+          "september": 9, "oktober": 10, "november": 11, "dezember": 12}
+
+
+def _daten_im_text(text: str) -> set:
+    """Alle Daten im Text als ISO: 2028-09-01, 01.09.2028 und 1. September 2028."""
+    out = set()
+    for y, m, d in re.findall(r"(\\d{4})-(\\d{2})-(\\d{2})", text):
+        out.add("%s-%s-%s" % (y, m, d))
+    for d, m, y in re.findall(r"(\\d{1,2})\\.\\s?(\\d{1,2})\\.\\s?(\\d{4})", text):
+        out.add("%s-%02d-%02d" % (y, int(m), int(d)))
+    for d, mon, y in re.findall(r"(\\d{1,2})\\.\\s?([A-Za-zäöüÄÖÜ]+)\\s+(\\d{4})", text):
+        if mon.lower() in MONATE:
+            out.add("%s-%02d-%02d" % (y, MONATE[mon.lower()], int(d)))
+    return out
+
+
 def _fristen() -> set:
     rw = daten.regelwerk()
     fr = set()
@@ -70,7 +87,7 @@ def _fristen() -> set:
 
 def pruefe_entwurf(an: str, betreff: str, text: str, belege: List[Dict[str, str]]) -> List[str]:
     probleme = _belege(belege)
-    for d in re.findall(r"\\d{4}-\\d{2}-\\d{2}", text):
+    for d in sorted(_daten_im_text(text)):
         if d not in _fristen():
             probleme.append("Das Datum %s ist keine Frist aus dem Regelwerk." % d)
     return probleme
@@ -122,12 +139,14 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("ordner")
     p.add_argument("--bis", type=int, default=5)
+    p.add_argument("--nur", help="nur diese Drills, z. B. 2 oder 1,3 (Rettungsweg für eine Person, die festhängt)")
     a = p.parse_args()
     root = Path(a.ordner).resolve()
+    auswahl = {int(x) for x in a.nur.split(",")} if a.nur else set(range(1, a.bis + 1))
     for n, f in enumerate((drill1, drill2, drill3, drill4, drill5), 1):
-        if n <= a.bis:
+        if n in auswahl:
             f(root)
-    print("Referenz bis Drill %d angewendet in %s" % (a.bis, root))
+    print("Referenz für Drill %s angewendet in %s" % (",".join(str(x) for x in sorted(auswahl)), root))
     return 0
 
 

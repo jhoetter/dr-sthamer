@@ -10,7 +10,7 @@ import json
 import sys
 from typing import Any, Callable, Dict, List, Optional
 
-from . import SERVICE, __version__, daten, domain
+from . import SERVICE, __version__, daten, domain, nachladen
 
 LATEST = "2025-06-18"
 BEKANNT = ("2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05")
@@ -39,7 +39,10 @@ def _belege_schema() -> Dict[str, Any]:
 # ------------------------------------------------------------ Werkzeug-Funktionen
 
 def t_status(a: Dict[str, Any]) -> Any:
-    return domain.status()
+    r = domain.status()
+    if nachladen.fehler():
+        r["code_fehler"] = ("Der geänderte Programmcode hat einen Fehler, der alte Stand bleibt aktiv: %s" % nachladen.fehler())
+    return r
 
 
 def t_inbox(a: Dict[str, Any]) -> Any:
@@ -97,6 +100,12 @@ def t_create_draft(a: Dict[str, Any]) -> Any:
 
 
 def t_update_draft(a: Dict[str, Any]) -> Any:
+    e = next((x for x in domain.entwuerfe() if x["id"] == a["entwurf_id"]), None)
+    if e and e["status"] != "entwurf":
+        raise domain.FachFehler(
+            "Dieser Entwurf ist schon eingereicht (%s). Eingereichte Entwürfe ändert Claude nicht, denn wer prüft, "
+            "soll sehen, was eingereicht wurde. Der Mensch lehnt ihn im Cockpit ab (oder du stoppst die geplante "
+            "Mail), dann kannst du ihn überarbeiten und neu einreichen." % e["status"])
     felder = {k: v for k, v in a.items() if k != "entwurf_id"}
     return domain.entwurf_aendern(a["entwurf_id"], felder, akteur="claude")
 
@@ -181,8 +190,11 @@ TOOLS: List[Dict[str, Any]] = [
     _tool("add_note", "Interne Notiz zu einem Fall ins Protokoll schreiben.",
           {"fall_id": _i("Fallnummer"), "text": _s("Notiz")}, ["fall_id", "text"], t_note, False),
     _tool("record_assessment",
-          "Einschätzung festhalten, ob ein Kunde von der Verordnung betroffen ist (betroffen, nicht_betroffen, mittelbar, unklar), "
-          "mit Begründung und Belegen (Artikel, Produkt, Lieferung). Der Mensch prüft sie im Cockpit unter Kunden.",
+          "Einschätzung festhalten, ob ein Kunde von der Verordnung betroffen ist, mit Begründung und Belegen (Artikel, Produkt, Lieferung). "
+          "Ergebnis: betroffen (Messwert über dem Grenzwert, im Geltungsbereich), nicht_betroffen, "
+          "mittelbar (Kunde außerhalb des Geltungsbereichs, aber Inverkehrbringen in der EU möglich, Art. 1 Abs. 3), "
+          "unklar (Messwert fehlt oder Messwert widerspricht der Deklaration 'fluorfrei'). "
+          "Der Mensch prüft sie im Cockpit unter Kunden.",
           {"kunde_id": _s("z. B. K-1010"), "ergebnis": _s("betroffen | nicht_betroffen | mittelbar | unklar"),
            "begruendung": _s("Kurze Begründung"), "belege": _belege_schema(),
            "stichtag": _s("Frühester relevanter Stichtag, JJJJ-MM-TT, optional")},
@@ -191,7 +203,8 @@ TOOLS: List[Dict[str, Any]] = [
     _tool("submit_draft",
           "Entwurf einreichen (ab Drill 3). Du meldest nur, ob der Text über eine Standardinformation hinausgeht. "
           "Standardinformation = nur die festen Fristen aus der Verordnung für die Produkte und Anwendungen des Kunden oder 'nicht betroffen'. "
-          "Alles andere (Rechtsauskunft auf eine konkrete Frage, Auslegung, Zusage, Produkt als unklar) ist rechtsaussage=true. "
+          "Alles andere (Rechtsauskunft auf eine konkrete Frage, Auslegung, Zusage, Produkt als unklar, Kunde nutzt die Antwort "
+          "für einen Antrag oder Behördenvorgang) ist rechtsaussage=true. Im Zweifel true. Frage vorher die Person, sie entscheidet. "
           "Die Regel bestimmt die Kontrolle: Pflichtfreigabe oder Eingriffsfenster. Du kannst weder freigeben noch senden.",
           {"entwurf_id": _i("Entwurfsnummer"),
            "rechtsaussage": {"type": "boolean", "description": "true, wenn der Text mehr ist als eine Standardinformation"}},
@@ -236,6 +249,7 @@ def pruefe_argumente(tool: Dict[str, Any], args: Any) -> Optional[str]:
 
 def aufrufen(name: str, args: Any) -> Dict[str, Any]:
     """Gibt das MCP-`result` für tools/call zurück (Fehler als isError, nie als Absturz)."""
+    nachladen.pruefen(globals())  # Änderungen am Programm gelten sofort, ohne Neustart
     tool = _BY_NAME.get(name)
     if not tool:
         return _fehler("Unbekanntes Werkzeug: %s" % name)

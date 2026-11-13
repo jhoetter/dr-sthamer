@@ -122,7 +122,7 @@ class FlussTest(WeltTest):
 
     def test_einschaetzungen_und_bericht(self):
         domain.welle_freischalten(1)
-        domain.einschaetzung_festhalten("K-1", "betroffen", "Produkt über Grenzwert", [{"typ": "produkt", "ref": "P-1"}], "2029-03-01", "claude")
+        domain.einschaetzung_festhalten("K-1", "betroffen", "Produkt über Grenzwert", [{"typ": "artikel", "ref": "Art. 4 Abs. 3"}, {"typ": "produkt", "ref": "P-1"}], "2029-03-01", "claude")
         domain.einschaetzung_festhalten("K-1", "unklar", "Doch ein Messwert fehlt", [], None, "claude")  # überschreibt
         domain.einschaetzung_festhalten("K-2", "mittelbar", "Außerhalb, aber Lieferung in die EU", [], None, "claude")
         for args in (("K-9", "betroffen", "x"), ("K-1", "vielleicht", "x"), ("K-1", "betroffen", " ")):
@@ -199,7 +199,24 @@ class McpPhase2Test(WeltTest):
         setze_welle(4)
         r, rep = self.call("get_report_data", {})
         self.assertIn("versand", rep)
-        r, _ = self.call("record_assessment", {"kunde_id": "K-1", "ergebnis": "betroffen", "begruendung": "Test"})
+        r, _ = self.call("record_assessment", {"kunde_id": "K-1", "ergebnis": "betroffen", "begruendung": "Test",
+                                                "belege": [{"typ": "artikel", "ref": "Art. 4 Abs. 3"}, {"typ": "produkt", "ref": "P-1"}]})
+        self.assertFalse(r.get("isError"))
+
+    def test_claude_aendert_keine_eingereichten_entwuerfe(self):
+        domain.welle_freischalten(1)
+        fid = domain.fall_anlegen("MSG-1-02")["fall_id"]
+        eid = domain.entwurf_anlegen(fid, "e.muster@mueller.example.com", "A", "T", [], "claude")["entwurf_id"]
+        r, _ = self.call("update_draft", {"entwurf_id": eid, "text": "Neu"})
+        self.assertFalse(r.get("isError"))  # noch Entwurf: ändern erlaubt
+        setze_welle(2)
+        self.call("submit_draft", {"entwurf_id": eid, "rechtsaussage": True})
+        r, text = self.call("update_draft", {"entwurf_id": eid, "text": "Heimlich geändert"})
+        self.assertTrue(r["isError"])
+        self.assertIn("schon eingereicht", text)
+        self.assertEqual(domain.entwuerfe(fid)[0]["text"], "Neu")
+        domain.ablehnen(eid, "Bitte überarbeiten")  # der Mensch holt ihn zurück
+        r, _ = self.call("update_draft", {"entwurf_id": eid, "text": "Überarbeitet"})
         self.assertFalse(r.get("isError"))
 
 

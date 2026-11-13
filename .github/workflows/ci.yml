@@ -52,6 +52,9 @@ jobs:
       - name: Prüfszenarien (unittest)
         run: python -m unittest discover -s tests
 
+      - name: Lehrer-Absicherung (Referenzlösungen und Akzeptanzprüfung)
+        run: python -m unittest discover -s lehrer
+
       - name: Systemcheck (lesbar)
         run: python check.py --offline
 

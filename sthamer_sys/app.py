@@ -19,7 +19,7 @@ from typing import Any, Callable, Dict, Optional, Tuple
 from urllib.error import URLError
 from urllib.request import urlopen
 
-from . import DEFAULT_PORT, SERVICE, daten, domain
+from . import DEFAULT_PORT, SERVICE, daten, domain, nachladen
 from .paths import ROOT, state_dir, web_dir
 
 MAX_BODY = 1_000_000
@@ -75,6 +75,7 @@ class Handler(BaseHTTPRequestHandler):
 
     # ------------------------------------------------------------ GET
     def do_GET(self) -> None:  # noqa: N802
+        nachladen.pruefen(globals())
         if not self._host_ok():
             return self._fehler(403, "Host nicht erlaubt.")
         pfad = self.path.split("?", 1)[0]
@@ -105,7 +106,8 @@ class Handler(BaseHTTPRequestHandler):
         k = teile[0]
         arg = teile[1] if len(teile) > 1 else None
         if k == "health":
-            return self._json({"ok": True, "service": SERVICE, "root": str(ROOT), "pid": os.getpid()})
+            return self._json({"ok": True, "service": SERVICE, "root": str(ROOT), "pid": os.getpid(),
+                               "code_geladen": nachladen.geladen(), "code_fehler": nachladen.fehler()})
         if k == "status":
             return self._json(domain.status())
         if k == "nachrichten":
@@ -146,6 +148,7 @@ class Handler(BaseHTTPRequestHandler):
 
     # ------------------------------------------------------------ POST (Aktionen des Menschen)
     def do_POST(self) -> None:  # noqa: N802
+        nachladen.pruefen(globals())
         if not self._host_ok() or not self._origin_ok():
             return self._fehler(403, "Nicht erlaubt.")
         if not secrets.compare_digest(self.headers.get("X-Sthamer-Token") or "", self.server.token):  # type: ignore[attr-defined]
@@ -218,6 +221,7 @@ def _worker() -> None:
     import time
     while True:
         try:
+            nachladen.pruefen(globals())
             domain.faellige_senden()
         except Exception as e:  # nie abbrechen
             sys.stderr.write("Worker-Fehler: %r\n" % (e,))

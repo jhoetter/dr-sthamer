@@ -48,14 +48,12 @@
       "Read(./data/eingang/**)",
       "Read(./data/regulation/berichtigung*)",
       "Read(./data/wellen.json)",
-      "Bash(python scripts/sim_mensch.py:*)",
-      "Bash(python3 scripts/sim_mensch.py:*)",
-      "Bash(py scripts/sim_mensch.py:*)",
-      "Read(./scripts/sim_mensch.py)",
-      "Read(./scripts/referenz_anwenden.py)",
-      "Bash(python scripts/referenz_anwenden.py:*)",
-      "Bash(python3 scripts/referenz_anwenden.py:*)",
-      "Bash(py scripts/referenz_anwenden.py:*)"
+      "Read(./lehrer/**)",
+      "Read(./data/regelwerk.json)",
+      "Read(./data/regulation/**)",
+      "Bash(python lehrer/:*)",
+      "Bash(python3 lehrer/:*)",
+      "Bash(py lehrer/:*)"
     ]
   }
 }

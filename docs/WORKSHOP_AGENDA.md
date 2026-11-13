@@ -44,7 +44,7 @@ zum Senden oder Freigeben.
 
 | Drill | Runde (Code) | Baustein im Fokus | Fall für alle | Bauauftrag | Nachweis |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 1 (kein Code) | Eingänge, Werkzeuge, Oberfläche | Mail der Regulatory Affairs, Anfrage Bergheim-Land | Aufgabe erledigt sich beim Senden | Zweiter Entwurf gesendet, Aufgabe steht auf „erledigt“ |
+| 1 | 1 (kein Code) | Eingänge, Werkzeuge, Oberfläche | Mail der Regulatory Affairs, Anfrage Bergheim-Land | Aufgabe erledigt sich beim Senden | Entwurf nach dem Bau gesendet, Aufgabe steht auf „erledigt“ |
 | 2 | 1 | Wissen, Kontrollen | Fünf Kunden mit Stolperstellen (Händler, Flughafen, Drittland, ruhend, einfach) | Belegprüfung beim Speichern | Ein Entwurf mit falschem Beleg wird abgewiesen; Einschätzungen stehen im Cockpit |
 | 3 | 2 (Code vom Dozenten) | Kontrollen, Oberfläche | Fünf Kundenanfragen mit Rechtsauskunft | Freigabe erlischt bei Änderung | Freigegebenen Entwurf ändern: Freigabe weg, Senden gesperrt |
 | 4 | 3 und 4 | Kontrollen, Protokoll | Vier Standardinfos, dann die Berichtigung | Änderung bricht den Termin ab; nie doppelt senden | Eingeplante Mail ändern: Termin weg; Uhr vorspulen: genau eine Datei |
@@ -70,8 +70,12 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
   erweitert die **eigene** Kommandozentrale (Steckbrief in `MEINE_ERWEITERUNGEN.md`)
   und nimmt nie den nächsten Drill vorweg.
 - **Wer hängt:** Buddy-Modus (zu zweit an einem Gerät), Dozenten-Rechner mit
-  Referenzstand, im Notfall Drill überspringen und zum nächsten Eingang
-  wechseln. Niemand muss einen Bauauftrag fertigstellen, um mitzugehen.
+  Referenzstand. **Rettungsweg:** Der Dozent wendet die Referenzlösung nur für den
+  festhängenden Drill an: `python lehrer/referenz_anwenden.py <Ordner der Person> --nur 2`
+  (der Ordner `lehrer/` ist für Claude gesperrt; die Person sieht dann den Stand mit
+  Lösung und kann mit Drill 3 weitermachen). Niemand muss einen Bauauftrag fertigstellen,
+  um mitzugehen. Die Reihenfolge der Drills bestimmen die Runden-Codes des Dozenten, nicht
+  Behauptungen im Chat.
 
 ## Wenn die Zeit knapp wird
 

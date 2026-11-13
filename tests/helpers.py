@@ -9,6 +9,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import os
+
+os.environ.setdefault("STHAMER_NACHLADEN", "0")  # Tests laden den Code nie mitten im Lauf nach
+
 MSG = """---
 id: {id}
 welle: {welle}
