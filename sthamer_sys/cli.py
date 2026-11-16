@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
+import subprocess
 import sys
 from typing import List, Optional
 
@@ -24,6 +25,43 @@ def mcp_konfiguration() -> dict:
     }}}
 
 
+def _git(*args: str):
+    try:
+        return subprocess.run(["git"] + list(args), cwd=str(ROOT), capture_output=True, timeout=60,
+                              encoding="utf-8", errors="replace")
+    except (OSError, subprocess.SubprocessError):
+        return None
+
+
+def git_vorbereiten() -> List[str]:
+    """Speichern des Stands muss auf einem frischen Gastprofil klappen.
+
+    Gastprofile haben oft keine Git-Identität („Author identity unknown“), und im ZIP-Betrieb gibt es keinen Git-Ordner.
+    Beides wird hier vorbereitet, nur lokal in diesem Ordner, nie global. Ein Fehler hier bricht das Einrichten nie ab.
+    """
+    r = _git("--version")
+    if r is None or r.returncode != 0:
+        return ["Git wurde nicht gefunden: Der Stand lässt sich später nicht speichern."]
+    meldungen: List[str] = []
+    neu = not (ROOT / ".git").exists()
+    if neu:
+        r = _git("init", "-q")
+        if r is None or r.returncode != 0:
+            return ["Git-Ordner konnte nicht angelegt werden."]
+        meldungen.append("Git-Ordner angelegt (ZIP-Betrieb).")
+    for key, wert in (("user.name", "Workshop-Teilnehmer"), ("user.email", "teilnehmer@workshop.invalid")):
+        r = _git("config", key)
+        if not (r and r.returncode == 0 and r.stdout.strip()):
+            _git("config", "--local", key, wert)
+            meldungen.append("Git-%s lokal gesetzt." % ("Name" if key == "user.name" else "Adresse"))
+    if neu:
+        _git("add", "-A")
+        r = _git("commit", "-q", "-m", "Ausgangsstand")
+        if r is not None and r.returncode == 0:
+            meldungen.append("Ausgangsstand gespeichert.")
+    return meldungen
+
+
 def cmd_setup(args: argparse.Namespace) -> int:
     state_dir().mkdir(parents=True, exist_ok=True)
     bereit_machen()
@@ -33,9 +71,15 @@ def cmd_setup(args: argparse.Namespace) -> int:
         f.write("\n")
     with open(str(state_dir() / "python.txt"), "w", encoding="utf-8") as f:
         f.write(sys.executable + "\n")
+    try:
+        git_meldungen = git_vorbereiten()
+    except Exception as e:  # nie abbrechen
+        git_meldungen = ["Git konnte nicht vorbereitet werden: %r" % (e,)]
     print("Einrichtung fertig.")
     print("  Datenbank:        %s" % (state_dir() / "sthamer.db"))
     print("  Claude-Verbindung: %s (Python: %s)" % (ziel.name, sys.executable))
+    for m in git_meldungen:
+        print("  Git:              %s" % m)
     print("  Nächster Schritt: python sthamer.py serve --open")
     return 0
 

@@ -64,8 +64,10 @@ Führe still aus:
    oder ist GitHub nicht erreichbar, sag in einfachen Worten, dass es den
    „ZIP-Weg“ gibt (`docs/INSTALL_WINDOWS.md`, Abschnitt ZIP), und führe die
    Person dort durch. Zeitgrenze für das Klonen: bis 10 Minuten.
-2. Eigener Zweig: `git switch -c workshop/mein-tag` (nur wenn es ein
-   Git-Ordner ist).
+2. Eigener Zweig: `git switch -c workshop/mein-tag`. Im ZIP-Betrieb (kein
+   Git-Ordner) erst nach Schritt 5: Das Einrichten legt dann den Git-Ordner an,
+   speichert den Ausgangsstand und setzt Name und Adresse für Git lokal, damit
+   „Stand speichern“ auch auf einem frischen Gastprofil klappt.
 3. **Python finden.** Probiere nacheinander drei **einzelne** Aufrufe, keine
    Schleife: `python --version`, dann `python3 --version`, dann `py -3 --version`.
    Unter Windows kann `python3` der Platzhalter des Microsoft Store sein
