@@ -689,7 +689,7 @@ const BERICHT_LABELS = {
   einschaetzungen: ["Kunden und Betroffenheit", { betroffen: "Betroffen", nicht_betroffen: "Nicht betroffen", mittelbar: "Mittelbar", unklar: "Unklar", ohne_einschaetzung: "Ohne Einschätzung", aktive_kunden: "Aktive Kunden" }],
   entwuerfe: ["Entwürfe", { gesamt: "Gesamt", von_claude: "Von Claude", offen: "Noch offen" }],
   versand: ["Versand", { gesendet: "Gesendet", mit_pflichtfreigabe: "Mit Pflichtfreigabe", automatisch_nach_fenster: "Automatisch nach Fenster", direkt_vom_menschen: "Direkt vom Menschen" }],
-  kontrolle: ["Kontrolle", { freigegeben: "Freigegeben", abgelehnt: "Abgelehnt", gestoppt: "Gestoppt", wartet_auf_freigabe: "Wartet auf Freigabe", eingeplant: "Eingeplant" }],
+  kontrolle: ["Kontrolle", { freigegeben: "Freigegeben", abgelehnt: "Abgelehnt", gestoppt: "Gestoppt", gestoppt_vom_menschen: "Gestoppt vom Menschen", gestoppt_von_claude: "Gestoppt von Claude", wartet_auf_freigabe: "Wartet auf Freigabe", eingeplant: "Eingeplant" }],
   frist: ["Frist", { informationspflicht_bis: "Kunden informieren bis", tage_bis: "Tage bis zur Frist" }],
 };
 const humanize = k => { const t = String(k).replace(/_/g, " "); return t.charAt(0).toUpperCase() + t.slice(1); };

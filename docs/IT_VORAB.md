@@ -45,6 +45,7 @@ Bitte **vollständig mit Unterdomains** freigeben (Wildcard), wo angegeben.
 | `codeload.github.com` | ZIP-Download des Repos | wahrscheinlich |
 | `raw.githubusercontent.com` | einzelne Dateien | wahrscheinlich, evtl. nicht nötig |
 | `objects.githubusercontent.com`, `release-assets.githubusercontent.com` | Release-Dateien (Git for Windows, Offline-Paket) | wahrscheinlich: GitHub hat die Hosts für Release-Downloads geändert |
+| `api.agentmail.to` | **Nur bei Live-E-Mail (AgentMail):** Übungsmails zwischen unseren Testpostfächern abrufen und senden (HTTPS, einfache Abfragen, keine Dauerverbindung) | sicher (aus der Schnittstellenbeschreibung des Anbieters); ob wir den EU-Endpunkt `api.agentmail.eu` nutzen, klären wir vorab |
 
 **Nur nötig, wenn die Teilnehmenden selbst installieren:**
 
@@ -62,7 +63,7 @@ Blockierungen im Proxy- oder Firewall-Protokoll ansehen und dort nachfreigeben.
 Eine pauschale Freigabe von `*.anthropic.com` und `*.claude.ai` ist die
 einfachste Lösung, falls eure Richtlinie das zulässt.
 
-**Nicht nötig:** `pypi.org`, `files.pythonhosted.org`, `npmjs.org`.
+**Nicht nötig:** `pypi.org`, `files.pythonhosted.org`, `npmjs.org`, eine eigene Mail-Domain, Zugriff auf Sthamers Mailserver, WebSocket-Verbindungen.
 
 ## 3. Proxy, TLS-Inspektion, Anmeldeseite
 

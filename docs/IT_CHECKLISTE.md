@@ -25,7 +25,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 | Software | Hinweis |
 | --- | --- |
 | **Claude-App** (Desktop, Bereich „Code“) | Download über `claude.ai/download`. Für alle Benutzer installieren. |
-| **Git** | Windows: „Git for Windows“ (`git-scm.com`). Mac: Befehlszeilentools oder Git von git-scm.com. |
+| **Git** | Windows: „Git for Windows“ (`git-scm.com`). Mac: Befehlszeilentools oder Git von git-scm.com, **bitte vorab** (die Apple-Befehlszeilentools brauchen in der Regel Administratorrechte). |
 | **Python 3** | Version 3.12 (mindestens 3.9). Windows: „Add python.exe to PATH“ aktivieren, **nicht** nur den Platzhalter aus dem Microsoft Store. Am Mac reicht das Python der Apple-Befehlszeilentools (3.9). |
 | Ein aktueller **Browser** (Chrome oder Edge) | Die Übungs-Software öffnet sich im Browser auf dem eigenen Gerät. |
 
@@ -40,6 +40,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 **4. Netzwerk (Gäste-WLAN)**
 - Freigabe von **`claude.ai`**, **`api.anthropic.com`** (am einfachsten `*.claude.ai` und `*.anthropic.com`) und **`github.com`**
   (dazu `codeload.github.com` und `*.githubusercontent.com`) auf Port 443.
+- **Optional, wenn wir E-Mail live mitbringen (AgentMail): `api.agentmail.to`** auf Port 443. Es laufen nur Mails zwischen unseren eigenen Testpostfächern; eine Dauerverbindung brauchen wir nicht.
 - **Repo, das wir nutzen: `https://github.com/jhoetter/dr-sthamer`.** Die Teilnehmenden laden es per HTTPS (Port 443) herunter; SSH (Port 22) ist nicht nötig.
 - **TLS-Inspektion** für diese Domains ausnehmen oder das Prüfzertifikat auf den Geräten verteilen.
 - Sitzungsdauer des WLAN-Portals **mindestens 10 Stunden**. Das WLAN muss **bis zu 16 Geräte gleichzeitig** tragen (Downloads, laufende Claude-Sitzungen).
@@ -70,6 +71,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 
 - Was Teilnehmende in Claude schreiben, geht an **Anthropic** (über `claude.ai` und `api.anthropic.com`). Es sind **erfundene Daten**; echte
   Kunden-, Preis- oder Rezepturdaten bitte nicht eingeben (wir weisen im Workshop ausdrücklich darauf hin).
+- Bei Live-E-Mail laufen die Übungsmails über den Dienst **AgentMail** (`agentmail.to`). Die Postfächer gehören uns, der Inhalt ist erfunden, und es gibt keine Anbindung an Sthamers Mailserver.
 - Die Übungs-Software kommt von **GitHub** (`https://github.com/jhoetter/dr-sthamer`) und läuft **nur lokal** auf dem Gerät. „Senden“ legt Mails nur als Datei im
   Ordner `postausgang` ab, es verlässt nichts das Gerät.
 
@@ -86,7 +88,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 - [ ] Claude-App, Git und Python 3 auf allen Geräten installiert (oder Benutzer-Installation erlaubt)
 - [ ] Browser vorhanden, Benutzerordner nicht in OneDrive
 - [ ] Claude-Pro-Konten angelegt, Anmeldung eine Woche vorher getestet, E-Mail-Code auf dem Handy erreichbar
-- [ ] Domains freigegeben (`claude.ai`, `api.anthropic.com`, `github.com`), TLS-Inspektion ausgenommen
+- [ ] Domains freigegeben (`claude.ai`, `api.anthropic.com`, `github.com`; bei Live-E-Mail zusätzlich `api.agentmail.to`), TLS-Inspektion ausgenommen
 - [ ] WLAN: Sitzung mindestens 10 Stunden, Kapazität für 16 Geräte
 - [ ] Python-Skripte und lokaler Webserver (127.0.0.1) erlaubt, Sicherheitssoftware geprüft
 - [ ] Probelauf am Vortag mit Windows- und Mac-Gastkonto durchgeführt, Blockierungen freigegeben

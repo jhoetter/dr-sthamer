@@ -39,8 +39,10 @@ Das System heißt **`sthamer-sys`**, das Repo `dr-sthamer`.
   **Claude Pro**. Kein Node, kein `uv`, kein `pip install`.
 - **Kein Mailserver:** Eingänge kommen als Dateien (Welle für Welle vom
   Dozenten freigegeben), „Senden“ legt eine Datei im Postausgang ab. Echte
-  Mails gehen nie raus. Eine Dozenten-Inbox ist später als optionaler Kanal
-  möglich, aber nicht Teil der Pflicht.
+  Mails gehen standardmäßig nie raus. **Optionaler Live-Modus mit AgentMail**
+  (noch nicht gebaut): ein Postfach und ein eigener Schlüssel je Person, Import nur von
+  der Absenderadresse der Lehrenden, Senden nur an eine feste Empfängerliste; die
+  Dateien bleiben als Rückfall. Dafür braucht das WLAN `api.agentmail.to`.
 - **Sprache:** Deutsch (UI, Claude als Tutor, Anleitungen).
 - **Format (Annahme, bitte bestätigen):** ein Workshop-Tag mit fünf Drills
   (Abschnitt 5), baukastenartig kürzbar auf einen halben Tag.
