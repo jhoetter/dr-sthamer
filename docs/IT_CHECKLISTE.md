@@ -24,7 +24,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 
 | Software | Hinweis |
 | --- | --- |
-| **Claude-App** (Desktop, Bereich „Code“) | Download über `claude.ai/download`. Für alle Benutzer installieren. |
+| **Claude-App** (Desktop, Bereich „Code“) | Download über `claude.ai/download`. Sie muss im **Gastprofil nutzbar** sein: für alle Benutzer installieren, falls die App das kann (siehe „Offen“). |
 | **Git** | Windows: „Git for Windows“ (`git-scm.com`). Mac: Befehlszeilentools oder Git von git-scm.com, **bitte vorab** (die Apple-Befehlszeilentools brauchen in der Regel Administratorrechte). |
 | **Python 3** | **Version 3.12** (3.13 prüft Zertifikate strenger und macht hinter einer TLS-Inspektion eher Probleme). Windows: „Add python.exe to PATH“ aktivieren, **nicht** nur den Platzhalter aus dem Microsoft Store. Am Mac reicht das Python der Apple-Befehlszeilentools (3.9, kommt mit Git zusammen, also ebenfalls vorab). |
 | Ein aktueller **Browser** (Chrome oder Edge) | Die Übungs-Software öffnet sich im Browser auf dem eigenen Gerät. |
@@ -78,7 +78,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 
 ## Offen, das wir beim Probelauf klären
 
-- Ob sich die **Claude-App ohne Administratorrechte** installieren lässt und welche Download-Hosts sie nutzt.
+- Ob sich die **Claude-App ohne Administratorrechte** installieren lässt, welche Download-Hosts sie nutzt und ob sie sich **für alle Benutzer** installieren lässt oder nur pro Benutzer (dann muss sie im Gastprofil installiert werden).
 - Ob „Claude Code“ in der App auf Windows **zwingend Git** voraussetzt (nach unserem Kenntnisstand ja, deshalb Git vorab).
 - Ob weitere Anthropic-Hosts für Anmeldung und Aktualisierung freigegeben werden müssen.
 - Wie sich die Gastprofile bei Neustart und Abmeldung verhalten.
