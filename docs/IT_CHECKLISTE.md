@@ -26,7 +26,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 | --- | --- |
 | **Claude-App** (Desktop, Bereich „Code“) | Download über `claude.ai/download`. Für alle Benutzer installieren. |
 | **Git** | Windows: „Git for Windows“ (`git-scm.com`). Mac: Befehlszeilentools oder Git von git-scm.com, **bitte vorab** (die Apple-Befehlszeilentools brauchen in der Regel Administratorrechte). |
-| **Python 3** | Version 3.12 (mindestens 3.9). Windows: „Add python.exe to PATH“ aktivieren, **nicht** nur den Platzhalter aus dem Microsoft Store. Am Mac reicht das Python der Apple-Befehlszeilentools (3.9). |
+| **Python 3** | **Version 3.12** (3.13 prüft Zertifikate strenger und macht hinter einer TLS-Inspektion eher Probleme). Windows: „Add python.exe to PATH“ aktivieren, **nicht** nur den Platzhalter aus dem Microsoft Store. Am Mac reicht das Python der Apple-Befehlszeilentools (3.9, kommt mit Git zusammen, also ebenfalls vorab). |
 | Ein aktueller **Browser** (Chrome oder Edge) | Die Übungs-Software öffnet sich im Browser auf dem eigenen Gerät. |
 
 Sind die Programme vorinstalliert, entfällt der Installationsteil für die Teilnehmenden. Ist das nicht möglich, müssen
@@ -36,13 +36,14 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 - Jede teilnehmende Person hat ein **Claude-Pro-Konto**. Die Anmeldung läuft per E-Mail-Code oder Link. Auf dem Gastgerät gibt es
   **keinen Zugriff auf das Firmenpostfach**: Der Code muss auf dem **Handy** oder in einem Webmail-Zugang ankommen.
 - Mit der Einladung bitte **eine Woche vorher** anmelden lassen (siehe `VOR_DEM_WORKSHOP.md`).
+- Nach dem Installieren die **Claude-App beenden und neu öffnen**, sonst kennt sie die neuen Programme nicht.
 
 **4. Netzwerk (Gäste-WLAN)**
 - Freigabe von **`claude.ai`**, **`api.anthropic.com`** (am einfachsten `*.claude.ai` und `*.anthropic.com`) und **`github.com`**
   (dazu `codeload.github.com` und `*.githubusercontent.com`) auf Port 443.
 - **Optional, wenn wir E-Mail live mitbringen (AgentMail): `api.agentmail.to`** auf Port 443. Es laufen nur Mails zwischen unseren eigenen Testpostfächern; eine Dauerverbindung brauchen wir nicht.
 - **Repo, das wir nutzen: `https://github.com/jhoetter/dr-sthamer`.** Die Teilnehmenden laden es per HTTPS (Port 443) herunter; SSH (Port 22) ist nicht nötig.
-- **TLS-Inspektion** für diese Domains ausnehmen oder das Prüfzertifikat auf den Geräten verteilen.
+- **TLS-Inspektion** für diese Domains ausnehmen oder das Prüfzertifikat im Windows-Zertifikatspeicher verteilen. Bei Git for Windows dann „Windows Secure Channel“ als HTTPS-Backend wählen; am Mac liest das Apple-Python das Zertifikat nicht aus dem Schlüsselbund, deshalb dort besser ausnehmen.
 - Sitzungsdauer des WLAN-Portals **mindestens 10 Stunden**. Das WLAN muss **bis zu 16 Geräte gleichzeitig** tragen (Downloads, laufende Claude-Sitzungen).
 - Falls ein **Proxy** Pflicht ist: Adresse und Anmeldeart vorab nennen.
 
@@ -58,7 +59,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 **7. Am Workshop-Tag**
 - Die IT-Ansprechperson ist **erreichbar** (Name, Telefon oben eintragen).
 - Zwei Reservegeräte stehen bereit (zu zweit an einem Gerät arbeiten ist unser Notfallweg).
-- Wir bringen einen **USB-Stick** mit Installern und Übungs-Software mit, falls Downloads oder GitHub nicht klappen.
+- Wir bringen einen **USB-Stick** mit Installern und Übungs-Software mit, falls Downloads oder GitHub nicht klappen. Bitte prüfen, ob USB-Speicher auf den Geräten per Richtlinie erlaubt ist.
 
 **8. Nach dem Workshop**
 - Gastprofile löschen oder zurücksetzen. In der Claude-App abmelden. Der Ordner `dr-sthamer` enthält nur erfundene Daten und kann gelöscht werden.

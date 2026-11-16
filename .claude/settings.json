@@ -4,7 +4,8 @@
   "promptSuggestionEnabled": false,
   "env": {
     "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION": "false",
-    "PYTHONUTF8": "1"
+    "PYTHONUTF8": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
   },
   "enabledMcpjsonServers": [
     "sthamer"
@@ -51,7 +52,13 @@
       "Edit(./bericht.md)",
       "Write(./bericht.md)",
       "Edit(./MEINE_ERWEITERUNGEN.md)",
-      "Write(./MEINE_ERWEITERUNGEN.md)"
+      "Write(./MEINE_ERWEITERUNGEN.md)",
+      "Bash(py -3 check.py:*)",
+      "Bash(py -3 sthamer.py status)",
+      "Bash(py -3 sthamer.py setup)",
+      "Bash(py -3 sthamer.py serve:*)",
+      "Bash(py -3 -m unittest:*)",
+      "Bash(py -3 scripts/akzeptanz.py:*)"
     ],
     "deny": [
       "Read(./dozent/**)",
@@ -117,7 +124,48 @@
       "Bash(perl *)",
       "Bash(echo *>*)",
       "Bash(printf *>*)",
-      "Bash(awk *>*)"
+      "Bash(awk *>*)",
+      "Bash(python <<*)",
+      "Bash(python3 <<*)",
+      "Bash(py <<*)",
+      "Bash(py -3 sthamer.py welle:*)",
+      "Bash(py -3 sthamer.py reset:*)",
+      "Bash(py -3 lehrer/:*)",
+      "Bash(py -3 <<*)",
+      "Bash(python.exe sthamer.py welle:*)",
+      "Bash(python.exe sthamer.py reset:*)",
+      "Bash(python.exe lehrer/:*)",
+      "Bash(python.exe - *)",
+      "Bash(python.exe -c *)",
+      "Bash(python.exe -I *)",
+      "Bash(python.exe <<*)",
+      "Bash(python3.exe sthamer.py welle:*)",
+      "Bash(python3.exe sthamer.py reset:*)",
+      "Bash(python3.exe lehrer/:*)",
+      "Bash(python3.exe - *)",
+      "Bash(python3.exe -c *)",
+      "Bash(python3.exe -I *)",
+      "Bash(python3.exe <<*)",
+      "Bash(py.exe sthamer.py welle:*)",
+      "Bash(py.exe sthamer.py reset:*)",
+      "Bash(py.exe lehrer/:*)",
+      "Bash(py.exe - *)",
+      "Bash(py.exe -c *)",
+      "Bash(py.exe -I *)",
+      "Bash(py.exe <<*)",
+      "Bash(py -3.12 sthamer.py welle:*)",
+      "Bash(py -3.12 sthamer.py reset:*)",
+      "Bash(py -3.12 lehrer/:*)",
+      "Bash(py -3.12 - *)",
+      "Bash(py -3.12 -c *)",
+      "Bash(py -3.12 -I *)",
+      "Bash(py -3.12 <<*)",
+      "Bash(curl.exe *)",
+      "Bash(wget.exe *)",
+      "Bash(powershell*)",
+      "Bash(pwsh*)",
+      "Bash(cmd *)",
+      "Bash(cmd.exe *)"
     ]
   }
 }

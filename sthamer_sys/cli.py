@@ -119,10 +119,22 @@ def cmd_reset(args: argparse.Namespace) -> int:
     if not args.yes:
         print("Das löscht deinen lokalen Stand (Fälle, Entwürfe, Postausgang). Mit --yes bestätigen.")
         return 1
-    for ziel in (state_dir(), outbox_dir()):
-        # nur die beiden bekannten Ordner, nie etwas anderes
-        if ziel.exists() and ziel.name in (".data", "postausgang"):
-            shutil.rmtree(str(ziel))
+    # Tabellen leeren statt die Datei zu löschen: so geht es auch bei laufender Kommandozentrale (Windows sperrt offene Dateien)
+    from .store import transaktion
+    with transaktion() as conn:
+        for tabelle in ("ereignisse", "postausgang", "entwuerfe", "einschaetzungen", "aufgaben", "faelle", "nachrichten", "zustand"):
+            conn.execute("DELETE FROM %s" % tabelle)
+        try:
+            conn.execute("DELETE FROM sqlite_sequence")
+        except Exception:
+            pass
+    ordner = outbox_dir()
+    if ordner.is_dir() and ordner.name == "postausgang":  # nur der bekannte Ordner, nur Mail-Dateien
+        for datei in ordner.glob("*.md"):
+            try:
+                datei.unlink()
+            except OSError:
+                pass
     bereit_machen()
     print("Zurückgesetzt. Runde 1 ist wieder abgerufen.")
     return 0

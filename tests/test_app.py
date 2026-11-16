@@ -1,4 +1,5 @@
 import json
+import os
 import threading
 import unittest
 from http.client import HTTPConnection
@@ -36,6 +37,20 @@ class AppTest(WeltTest):
             h["X-Sthamer-Token"] = self.srv.token
         h.update(header)
         return self.anfrage("POST", pfad, body, h)
+
+    def test_laeuft_schon_wird_trotz_proxy_einstellung_erkannt(self):
+        from unittest import mock
+        with mock.patch.dict(os.environ, {"HTTP_PROXY": "http://127.0.0.1:9", "http_proxy": "http://127.0.0.1:9"}):
+            info = app.laeuft_schon(self.srv.port)
+        self.assertIsNotNone(info)
+        self.assertEqual(info["service"], "sthamer-sys")
+
+    def test_token_bleibt_nach_neustart_gleich(self):
+        zweiter = app.Server(("127.0.0.1", 0))
+        try:
+            self.assertEqual(zweiter.token, self.srv.token)
+        finally:
+            zweiter.server_close()
 
     def test_health_und_index_mit_token(self):
         s, d = self.anfrage("GET", "/api/health")

@@ -44,6 +44,26 @@ Tempo der Simulation unkritisch; echte Personen sind langsamer und schreiben meh
 | Tutor-Antworten zu lang, geschlossene Schlussfragen, erfundene Zusagen („wir melden uns“), erfundener Cockpit-Knopf | niedrig | Regeln in `CLAUDE.md` (etwa 120 Wörter, offene Frage, keine Zusagen, Liste der Cockpit-Aktionen). |
 | Python 3.9 fehlte in den Referenzskripten (`write_text(newline=…)`) | niedrig | Von der CI gefunden und behoben. |
 
+## Zusatz-Audit zu Windows und Mac (16.11.2026)
+
+Ein unabhängiger Agent hat die Software und die Anleitungen nur lesend auf Betriebssystem-Risiken durchsucht, mit kleinen Experimenten auf dem Mac.
+Windows wurde nicht ausgeführt, nur aus Quelltext, Dokumentation und Erfahrung bewertet. Behoben ist, was sich ohne Windows-Gerät sicher beheben ließ:
+
+| Befund | Behebung |
+| --- | --- |
+| Berechtigungsmuster kannten `py -3` nicht (der Weg, wenn `python` der Microsoft-Store-Platzhalter ist) und nur wenige Schreibweisen (`python.exe`, `python <<EOF`, `curl.exe`, `cmd`) | Muster ergänzt; die echte Grenze bleibt `schutz.py`, die Sperren sind eine Abkürzer-Sperre |
+| Der Start erkannte einen laufenden Server hinter einem Proxy nicht und fragte bis zu 20 Ports ab (auf Windows langsam) | Lokale Adresse ohne Proxy, nur zwei Ports, dann Binden; zweiter Start dauert 0,1 s |
+| Ein offener Browser-Tab bekam nach einem Neustart „403“ | Token bleibt über Neustarts gleich; die Seite lädt sich bei 403 neu |
+| `reset` schlug auf Windows fehl, wenn die Datenbank gerade offen war | Tabellen leeren statt Datei löschen |
+| `.pyc`-Dateien konnten bei gleicher Größe und Sekunde einen alten Stand laden | Keine `.pyc` schreiben (Programm und Probeläufe der Teilnehmenden) |
+| Git Bash fehlte im Systemcheck; Netzlaufwerk-Pfade; Handshake 10 s zu knapp; Python 3.13 hinter TLS-Inspektion | Systemcheck ergänzt, Python 3.12 empfohlen |
+| Anleitungen: Claude-App nach Installation neu starten, Mac ohne Administrator, `Install Certificates.command` braucht PyPI, Git „Secure Channel“ | Anleitungen und IT-Dokumente angepasst |
+| Leitfaden erlaubte Python-3.9-widrigen Code | Regel in `CLAUDE.md` |
+
+**Bleibt für die Generalprobe auf einem echten Gerät** (nicht ohne Windows klärbar): Wird Git Bash gefunden und das PowerShell-Werkzeug dabei abgeschaltet gelassen?
+Welches Python steht in `.mcp.json` und löst `py -3` Rückfragen aus? Dauert `serve` auf Windows lange, liegen Ports in einem ausgeschlossenen Bereich (`netsh int ipv4 show excludedportrange protocol=tcp`)?
+Greift ein Firmenzertifikat für Python und Git? Auf dem Mac: Sind Git und Python im Gastkonto da? Zeigt `~` in Git Bash auf `C:\Users\…`? Dazu je ein Durchlauf von Drill 1 in der Claude-App mit Schließen und Neuöffnen der Sitzung.
+
 ## Was dieser Probelauf **nicht** zeigt
 
 - **Windows und Gastgeräte:** Alles lief auf einem Mac. Windows ist nur über die CI (Tests, Systemcheck) abgedeckt. Siehe [PLAN.md](PLAN.md), 8a.

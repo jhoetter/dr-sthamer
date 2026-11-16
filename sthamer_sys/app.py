@@ -17,7 +17,7 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any, Callable, Dict, Optional, Tuple
 from urllib.error import URLError
-from urllib.request import urlopen
+from urllib.request import ProxyHandler, build_opener, urlopen
 
 from . import DEFAULT_PORT, SERVICE, daten, domain, nachladen, schutz
 from .paths import ROOT, state_dir, web_dir
@@ -27,13 +27,32 @@ TYPEN = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=u
          ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png"}
 
 
+def _token_laden() -> str:
+    """Das Token bleibt über Neustarts gleich, damit ein schon offener Browser-Tab weiter funktioniert."""
+    pfad = state_dir() / "token.txt"
+    try:
+        alt = pfad.read_text(encoding="utf-8").strip()
+        if len(alt) >= 16:
+            return alt
+    except OSError:
+        pass
+    neu = secrets.token_urlsafe(16)
+    try:
+        state_dir().mkdir(parents=True, exist_ok=True)
+        with open(str(pfad), "w", encoding="utf-8", newline="\n") as f:
+            f.write(neu + "\n")
+    except OSError:
+        pass
+    return neu
+
+
 class Server(ThreadingHTTPServer):
     daemon_threads = True
     allow_reuse_address = os.name != "nt"  # unter Windows würde das doppeltes Binden erlauben
 
     def __init__(self, adresse: Tuple[str, int]):
         super().__init__(adresse, Handler)
-        self.token = secrets.token_urlsafe(16)
+        self.token = _token_laden()
         self.port = adresse[1]
 
 
@@ -200,9 +219,12 @@ class Handler(BaseHTTPRequestHandler):
 
 # ---------------------------------------------------------------- Start
 
+_OHNE_PROXY = build_opener(ProxyHandler({}))  # lokale Adresse nie über einen Proxy (Proxy-Einstellungen von Firmen-Geräten)
+
+
 def laeuft_schon(port: int) -> Optional[Dict[str, Any]]:
     try:
-        with urlopen("http://127.0.0.1:%d/api/health" % port, timeout=1.5) as r:
+        with _OHNE_PROXY.open("http://127.0.0.1:%d/api/health" % port, timeout=0.7) as r:
             info = json.loads(r.read().decode("utf-8"))
         return info if info.get("service") == SERVICE else None
     except (URLError, OSError, ValueError):
@@ -224,13 +246,25 @@ def _worker() -> None:
             nachladen.pruefen(globals())
             domain.faellige_senden()
         except Exception as e:  # nie abbrechen
-            sys.stderr.write("Worker-Fehler: %r\n" % (e,))
+            try:
+                sys.stderr.write("Worker-Fehler: %r\n" % (e,))
+            except Exception:
+                pass  # auch eine geschlossene Ausgabe beendet den Worker nicht
         time.sleep(5)
 
 
 def starten(port: int = DEFAULT_PORT, oeffnen: bool = False) -> int:
     """Cockpit starten. Läuft diese Kopie schon, wird sie nur geöffnet."""
-    for p in range(port, port + 20):
+    # Nur die zwei wahrscheinlichen Ports fragen (der gemerkte und der Standard), nicht 20: auf Windows dauert jede Absage
+    kandidaten = []
+    try:
+        with open(str(state_dir() / "server.json"), "r", encoding="utf-8") as f:
+            kandidaten.append(int(json.load(f).get("port")))
+    except (OSError, ValueError, TypeError):
+        pass
+    if port not in kandidaten:
+        kandidaten.append(port)
+    for p in kandidaten:
         info = laeuft_schon(p)
         if info and _gleiche_kopie(info.get("root", "")):
             print("Die Kommandozentrale läuft schon: http://127.0.0.1:%d" % p)
@@ -238,14 +272,16 @@ def starten(port: int = DEFAULT_PORT, oeffnen: bool = False) -> int:
                 webbrowser.open("http://127.0.0.1:%d" % p)
             return 0
     server = None
-    for p in range(port, port + 20):
+    # Binden scheitert sofort und kostet nichts; gesperrte Bereiche (Hyper-V, WSL) sind oft breit, dann nimmt das System einen freien Port
+    for p in list(range(port, port + 20)) + [0]:
         try:
             server = Server(("127.0.0.1", p))
+            server.port = server.server_address[1]
             break
         except OSError:
             continue
     if server is None:
-        print("Kein freier Port zwischen %d und %d gefunden." % (port, port + 19), file=sys.stderr)
+        print("Kein freier Port gefunden.", file=sys.stderr)
         return 1
     url = "http://127.0.0.1:%d" % server.port
     state_dir().mkdir(parents=True, exist_ok=True)

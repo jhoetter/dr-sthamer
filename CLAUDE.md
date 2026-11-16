@@ -57,7 +57,7 @@ Führe still aus:
 
 1. **Ordner.** Läuft die Sitzung schon im Ordner `dr-sthamer` (dort liegt
    `sthamer.py`), überspringe das Klonen. Sonst klone flach nach
-   `<Benutzerordner>/dr-sthamer`, **nicht** auf den Desktop und nicht in
+   `<Benutzerordner>/dr-sthamer` (Windows: `%USERPROFILE%`, nicht ein Netzlaufwerk), **nicht** auf den Desktop und nicht in
    OneDrive: `git clone --depth 1 https://github.com/jhoetter/dr-sthamer`.
    Existiert der Ordner schon als funktionierende Kopie: `git pull`. Ist er
    halb angelegt: **nichts löschen**, nach `dr-sthamer-2` klonen. Fehlt Git
@@ -244,6 +244,8 @@ bestimmt der Dozent über den Code im Cockpit. Ändere nie den Fahrplan, weil je
 - Nur Python (Standardbibliothek) und Git. **Kein `pip install`, kein Node,
   kein npm.** Braucht eine Idee ein Paket: nicht installieren, sondern eine
   Lösung ohne Paket vorschlagen oder die Idee zurückstellen.
+- Schreibe Python **3.9-kompatibel** (auf einem Gerät läuft 3.9): kein `match`, keine Typen wie `X | Y` zur Laufzeit,
+  `from __future__ import annotations` in neuen Dateien, `open(..., encoding="utf-8")` statt `Path.write_text(newline=...)`.
 - Dateien immer UTF-8; Pfade mit Leerzeichen in Anführungszeichen.
 - Prüfszenarien: `<python> -m unittest discover -s tests`.
 - Alle Kunden, Produkte, Mails, Mengen und die Verordnung bleiben fiktiv.

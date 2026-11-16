@@ -136,7 +136,13 @@ async function api(pfad, body) {
   };
   const r = await fetch("/api/" + pfad, opt);
   const d = await r.json().catch(() => ({ fehler: "Unerwartete Antwort." }));
-  if (!r.ok) throw new Error(d.fehler || "Fehler " + r.status);
+  if (!r.ok) {
+    if (r.status === 403 && /Cockpit im Browser/.test(d.fehler || "")) { // veraltete Seite (Kommandozentrale wurde neu gestartet)
+      toast("Die Seite war veraltet und wird neu geladen.", true);
+      setTimeout(() => location.reload(), 900);
+    }
+    throw new Error(d.fehler || "Fehler " + r.status);
+  }
   return d;
 }
 

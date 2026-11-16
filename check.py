@@ -247,10 +247,29 @@ def pruefe_os(system=None, release=None, version=None, maschine=None):
     return Ergebnis("os", OK, "Betriebssystem", "%s %s (%s)" % (system, release, maschine))
 
 
-def pruefe_git(which=None, run=None):
+def finde_git_bash(git_pfad, which=None, existiert=None):
+    """Pfad zu bash.exe neben Git for Windows (oder None). Claude führt Befehle auf Windows über Git Bash aus."""
+    which = which or shutil.which
+    existiert = existiert or os.path.exists
+    ordner = os.path.dirname(git_pfad or "")
+    kandidaten = []
+    for hoch in (1, 2):  # ...\Git\cmd\git.exe und ...\Git\mingw64\bin\git.exe
+        basis = ordner
+        for _ in range(hoch):
+            basis = os.path.dirname(basis)
+        kandidaten.append(os.path.join(basis, "bin", "bash.exe"))
+    for k in kandidaten:
+        if existiert(k):
+            return k
+    gefunden = which("bash")
+    return gefunden if gefunden and "windowsapps" not in gefunden.lower() else None
+
+
+def pruefe_git(which=None, run=None, plattform=None, existiert=None):
     titel = "Git"
     which = which or shutil.which
     run = run or subprocess.run
+    plattform = plattform or sys.platform
     pfad = which("git")
     if not pfad:
         return Ergebnis(
@@ -267,6 +286,11 @@ def pruefe_git(which=None, run=None):
     if antwort.returncode != 0:
         return Ergebnis("git", WARN, titel, "Git meldet einen Fehler.",
                         "Auf dem Mac: Falls ein Fenster 'Befehlszeilentools' erscheint, bestätige die Installation.")
+    if plattform == "win32" and not finde_git_bash(pfad, which, existiert):
+        return Ergebnis(
+            "git", WARN, titel, "Git ist da, aber Git Bash wurde nicht gefunden.",
+            "Die Claude-App führt Befehle auf Windows über Git Bash aus. Installiere „Git for Windows“ neu (Standardeinstellungen) "
+            "und starte danach die Claude-App neu.")
     return Ergebnis("git", OK, titel, text or "Git vorhanden")
 
 
@@ -302,6 +326,8 @@ def pfad_probleme(repo, env=None, home=None, plattform=None):
         probleme.append("Der Pfad enthält ein Leerzeichen. Das geht meist, ist aber eine häufige Fehlerquelle.")
     if any(ord(c) > 127 for c in repo):
         probleme.append("Der Pfad enthält Sonderzeichen (z. B. Umlaute). Das geht meist, ist aber eine mögliche Fehlerquelle.")
+    if repo.startswith("\\\\") or (plattform == "win32" and repo.startswith("//")):
+        probleme.append("Der Ordner liegt auf einem Netzlaufwerk. Die Datenbank kann dort Fehler machen: lege ihn auf die lokale Festplatte.")
     if plattform == "win32" and len(repo) > 120:
         probleme.append("Der Pfad ist sehr lang. Windows kann damit Probleme bekommen.")
     return probleme
@@ -487,7 +513,9 @@ def klassifiziere_netzfehler(fehler, plattform=None):
                 "(Captive Portal) oder eine Firmen-Prüfung des Datenverkehrs (TLS-Inspektion/Proxy). "
                 "Öffne einen Browser und melde dich im WLAN an.")
         if plattform == "darwin":
-            text += " Mac mit Python von python.org: starte einmal 'Install Certificates.command' (siehe INSTALL_MAC.md)."
+            text += " Mac: nimm das Python der Apple-Befehlszeilentools (siehe INSTALL_MAC.md); Python von python.org braucht zusätzlich 'Install Certificates.command'."
+        if sys.version_info >= (3, 13):
+            text += " Python 3.13 prüft Zertifikate strenger als 3.12: Mit Python 3.12 klappt es hinter einer Firmen-Prüfung oft."
         return "tls", text
     if isinstance(fehler, ConnectionRefusedError):
         return "abgelehnt", "Die Verbindung wurde abgelehnt. Wahrscheinlich blockiert eine Firewall diese Seite."
@@ -556,7 +584,7 @@ def pruefe_mcp_json(repo):
     return Ergebnis("mcp-json", OK, titel, "Eintrag vorhanden, Python-Pfad existiert.")
 
 
-def mcp_handshake(befehl, cwd, timeout=10, popen=None):
+def mcp_handshake(befehl, cwd, timeout=25, popen=None):
     """Startet den MCP-Server, sendet 'initialize' und gibt die Antwort zurück.
 
     Rückgabe: (antwort_dict_oder_None, fehlertext_oder_None)
@@ -633,7 +661,7 @@ def mcp_handshake(befehl, cwd, timeout=10, popen=None):
     return antwort, fehler
 
 
-def pruefe_mcp(repo, python=None, popen=None, timeout=10):
+def pruefe_mcp(repo, python=None, popen=None, timeout=25):
     titel = "Werkzeuge für Claude (MCP)"
     skript = os.path.join(repo, "sthamer.py")
     if not os.path.isfile(skript):

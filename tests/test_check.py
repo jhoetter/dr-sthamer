@@ -94,6 +94,23 @@ class Git(unittest.TestCase):
         self.assertEqual(e.status, check.OK)
         self.assertIn("2.45.0", e.detail)
 
+    def test_git_for_windows_ohne_git_bash_ist_warnung(self):
+        class Antwort(object):
+            returncode = 0
+            stdout = "git version 2.45.0.windows.1"
+        git = "C:/Program Files/Git/cmd/git.exe"
+        e = check.pruefe_git(which=lambda n: git if n == "git" else None, run=lambda *a, **k: Antwort(),
+                             plattform="win32", existiert=lambda p: False)
+        self.assertEqual(e.status, check.WARN)
+        self.assertIn("Git Bash", e.detail)
+        ok = check.pruefe_git(which=lambda n: git if n == "git" else None, run=lambda *a, **k: Antwort(),
+                              plattform="win32", existiert=lambda p: p.replace("\\", "/") == "C:/Program Files/Git/bin/bash.exe")
+        self.assertEqual(ok.status, check.OK)
+
+    def test_netzlaufwerk_ist_pfad_warnung(self):
+        probleme = check.pfad_probleme("\\\\server\\freigabe\\dr-sthamer", env={}, home="C:/Users/x", plattform="win32")
+        self.assertTrue(any("Netzlaufwerk" in p for p in probleme), probleme)
+
     def test_git_startet_nicht(self):
         def kaputt(*a, **k):
             raise OSError("kaputt")

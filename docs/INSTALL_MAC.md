@@ -36,9 +36,9 @@ git --version
 - Erscheint ein Fenster **„Das Tool ‚git‘ erfordert die Befehlszeilen-Entwicklertools“**:
   Klicke **„Installieren“**, stimme den Bedingungen zu und warte. Das dauert je
   nach WLAN **5 bis 20 Minuten**. Das Fenster zeigt einen Fortschrittsbalken.
-  Es kann nach einem Kennwort fragen: Dein Mac-Kennwort funktioniert, bei einem
-  Gastgerät nutze das Kennwort, das du von uns oder der IT bekommen hast.
-  Lässt es sich nicht installieren: sag uns Bescheid.
+  Es verlangt in der Regel ein **Administrator-Kennwort**. Hast du das nicht
+  (Gastkonto), **bricht hier alles ab: Git und Python kommen mit diesen Tools, die
+  IT muss sie vorab installieren** (siehe IT-Kurzfassung). Sag uns dann Bescheid.
 
 **So erkennst du, dass es geklappt hat:** Nach der Installation:
 
@@ -50,12 +50,10 @@ python3 --version
 Beide zeigen eine Version. `python3` zeigt meist **Python 3.9.x**: Das ist
 genug für uns.
 
-*Alternative für ein neueres Python:* Von **python.org/downloads** das
-macOS-Paket („macOS 64-bit universal2 installer“) für Python 3.12 oder 3.13
-laden und starten. Danach **einmal** im Ordner **Programme → Python 3.xx** die
-Datei **„Install Certificates.command“** per Doppelklick ausführen. Dieser
-Schritt sorgt dafür, dass Python sichere Internetverbindungen akzeptiert.
-Ohne ihn meldet der Check später Zertifikatsfehler.
+Wir empfehlen genau dieses Python der Befehlszeilentools. Ein Python von
+python.org brauchen wir nicht: Es verlangt zusätzlich einmal die Datei
+**„Install Certificates.command“**, und die lädt ein Zusatzpaket aus dem Internet
+(PyPI), was im Gäste-WLAN oft gesperrt ist.
 
 ## Schritt 2: Claude-App installieren und anmelden
 

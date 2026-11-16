@@ -31,6 +31,16 @@ und keinen Mailversand.
 **Nicht nötig:** `pip`, PyPI, Node.js, npm, Docker, Administratorrechte zur
 Laufzeit, offene eingehende Ports.
 
+**Hinweise zu Windows und Mac (aus unserem Audit des Programms):**
+
+- **Python 3.12** nehmen, nicht 3.13: Es prüft Zertifikate strenger und macht hinter einer TLS-Inspektion eher Probleme.
+- **Git Bash** muss mitinstalliert sein („Git for Windows“ mit den Standardeinstellungen). Die Claude-App führt Befehle auf Windows darüber aus; fehlt es, geht es nicht.
+- Nach dem Installieren die **Claude-App beenden und neu öffnen**, sonst kennt sie die neuen Programme nicht.
+- **TLS-Inspektion:** Windows-Python nutzt den Windows-Zertifikatspeicher, ein verteiltes Prüfzertifikat greift also. Git for Windows braucht dazu das HTTPS-Backend „Windows Secure Channel“. Das Apple-Python am Mac nutzt den Schlüsselbund nicht: dort die Domains ausnehmen.
+- **Mac:** Die Apple-Befehlszeilentools (Git **und** Python 3 kommen damit) brauchen in der Regel Administratorrechte, im Gastkonto also **vorab installieren**.
+- Der Benutzerordner liegt **lokal** (kein Netzlaufwerk), die Datenbank macht sonst Fehler.
+- **PAC- und WPAD-Dateien** zur automatischen Proxy-Erkennung kennt die Software nicht. Für die Probe: Ist ein Proxy Pflicht, dann bitte als feste Adresse nennen.
+
 ## 2. Gäste-WLAN: Domains, die erreichbar sein müssen (HTTPS, Port 443)
 
 Bitte **vollständig mit Unterdomains** freigeben (Wildcard), wo angegeben.

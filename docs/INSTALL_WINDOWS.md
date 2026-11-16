@@ -31,11 +31,11 @@ aus dieser Anleitung kopieren und mit Rechtsklick einfügen.
 ## Schritt 1: Python installieren
 
 1. Öffne im Browser **python.org/downloads**.
-2. Lade für **Python 3.12 oder 3.13** den **„Windows installer (64-bit)“**
+2. Lade **Python 3.12** (nicht 3.13: es prüft Zertifikate strenger und macht
+   hinter einer Firmen-Prüfung eher Probleme) als **„Windows installer (64-bit)“**
    herunter. (Auf der Seite „Download Python“ siehst du oft nur die neueste
-   Version. Falls dort nur ein „Python install manager“ angeboten wird, geh
-   auf **python.org/downloads/windows** und wähle dort die Version 3.12 oder
-   3.13.)
+   Version. Geh dann auf **python.org/downloads/windows** und wähle dort die
+   Version 3.12.)
 3. Starte die heruntergeladene Datei.
 4. Im ersten Fenster:
    - Setze das Häkchen **„Add python.exe to PATH“** (unten im Fenster).
@@ -45,14 +45,16 @@ aus dieser Anleitung kopieren und mit Rechtsklick einfügen.
 5. Klicke auf **„Install Now“** (nicht „Customize“).
 6. Wenn „Setup was successful“ erscheint: **Close**.
 
-**So erkennst du, dass es geklappt hat:** Öffne ein **neues** Terminal (ein
-altes kennt Python noch nicht) und tippe:
+**So erkennst du, dass es geklappt hat:** **Beende die Claude-App und öffne sie
+neu**, falls sie schon lief (sie kennt neu installierte Programme erst nach dem
+Neustart). Öffne außerdem ein **neues** Terminal (ein altes kennt Python noch
+nicht) und tippe:
 
 ```
 python --version
 ```
 
-Es erscheint `Python 3.12.x` (oder 3.13.x).
+Es erscheint `Python 3.12.x`.
 
 - Öffnet sich stattdessen der **Microsoft Store**: siehe Fehlerbehebung
   „python öffnet den Store“.
@@ -78,7 +80,11 @@ Git holt unseren Ordner auf dein Gerät und die Claude-App braucht es auf Window
    **„Choosing the default editor used by Git“**: Wähle
    **„Use Notepad as Git's default editor“**. (Der Standard-Editor „Vim“ ist
    für Einsteiger verwirrend.)
-5. Am Ende: **„Install“**, dann **„Finish“**.
+   Hinter einer **Firmen-Prüfung des Datenverkehrs (TLS-Inspektion)** wähle bei
+   **„Choosing the HTTPS transport backend“** die Option **„Use the native
+   Windows Secure Channel library“**, sonst vertraut Git dem Firmenzertifikat nicht.
+5. Am Ende: **„Install“**, dann **„Finish“**. Danach die Claude-App beenden und
+   neu öffnen, falls sie schon lief.
 
 **So erkennst du, dass es geklappt hat:** Öffne ein **neues** Terminal und tippe:
 

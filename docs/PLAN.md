@@ -225,6 +225,7 @@ Auf einem echten Gastgerät prüfen (`python check.py --netz`, ganzer Ablauf nac
 - Verbindet die Claude-App mit der `.mcp.json` (absoluter Python-Pfad) sauber?
 - Dürfen wir den Claude-Installer ins Offline-Paket legen? (Python und Git ja, Open Source.)
 - Windows-Installer-Beschriftungen von Python/Git stimmen mit der Anleitung überein?
+- Zusatz-Audit (siehe [PROBELAUF_2026-11-12.md](PROBELAUF_2026-11-12.md)): Git Bash gefunden? `py -3` ohne Rückfragen? Portbereiche? Firmenzertifikat für Python und Git? Mac-Gastkonto mit Git und Python?
 
 Nicht getestet: Windows (nur CI), Claude-App-Anbindung mit echtem Client (der MCP-Server ist per Protokolltest geprüft).
 

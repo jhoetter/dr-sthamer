@@ -1,6 +1,8 @@
 """Einstiegspunkt: python sthamer.py <befehl>  (setup, serve, mcp, status, ...)."""
 import sys
 
+sys.dont_write_bytecode = True  # geänderten Code nie durch eine veraltete .pyc-Datei ersetzen lassen
+
 if sys.version_info < (3, 9):
     sys.stderr.write(
         "Dieses Programm braucht Python 3.9 oder neuer. "
