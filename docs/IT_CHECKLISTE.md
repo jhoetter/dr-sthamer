@@ -40,6 +40,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 **4. Netzwerk (Gäste-WLAN)**
 - Freigabe von **`claude.ai`**, **`api.anthropic.com`** (am einfachsten `*.claude.ai` und `*.anthropic.com`) und **`github.com`**
   (dazu `codeload.github.com` und `*.githubusercontent.com`) auf Port 443.
+- **Repo, das wir nutzen: `https://github.com/jhoetter/dr-sthamer`.** Die Teilnehmenden laden es per HTTPS (Port 443) herunter; SSH (Port 22) ist nicht nötig.
 - **TLS-Inspektion** für diese Domains ausnehmen oder das Prüfzertifikat auf den Geräten verteilen.
 - Sitzungsdauer des WLAN-Portals **mindestens 10 Stunden**. Das WLAN muss **bis zu 16 Geräte gleichzeitig** tragen (Downloads, laufende Claude-Sitzungen).
 - Falls ein **Proxy** Pflicht ist: Adresse und Anmeldeart vorab nennen.
@@ -69,7 +70,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 
 - Was Teilnehmende in Claude schreiben, geht an **Anthropic** (über `claude.ai` und `api.anthropic.com`). Es sind **erfundene Daten**; echte
   Kunden-, Preis- oder Rezepturdaten bitte nicht eingeben (wir weisen im Workshop ausdrücklich darauf hin).
-- Die Übungs-Software kommt von **GitHub** (`github.com/jhoetter/dr-sthamer`) und läuft **nur lokal** auf dem Gerät. „Senden“ legt Mails nur als Datei im
+- Die Übungs-Software kommt von **GitHub** (`https://github.com/jhoetter/dr-sthamer`) und läuft **nur lokal** auf dem Gerät. „Senden“ legt Mails nur als Datei im
   Ordner `postausgang` ab, es verlässt nichts das Gerät.
 
 ## Offen, das wir beim Probelauf klären
