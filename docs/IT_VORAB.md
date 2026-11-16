@@ -1,6 +1,6 @@
 # Für die IT von Dr. Sthamer: Vorbereitung der Gastgeräte
 
-Dieses Dokument richtet sich an die IT. Es beschreibt, was die Gastgeräte und
+Dieses Dokument richtet sich an die IT. Die Kurzfassung auf einer Seite steht in [IT_CHECKLISTE.md](IT_CHECKLISTE.md). Es beschreibt, was die Gastgeräte und
 das Gäste-WLAN für den Workshop **„Agentische Systeme“** (ITMP SG, Veranstalter
 mit Dr. Sthamer als Kunde) brauchen. Es ist bewusst kurz und enthält eine
 Checkliste zum Abhaken.
