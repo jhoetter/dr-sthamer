@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Bootcamp — Tag 1: Drill 0 · Arbeitsumgebung</title>
+<!-- ============================================================
+     AI-Bootcamp · Tag 1 · Drill 0 · Arbeitsumgebung
+     Erzeugt 2026-11-21 durch design/build_tag1.py (Teildeck; Gesamtfassung: AI-Bootcamp — Tag 1.html).
+     Raster: Rand 64 px · Kopfzeile 40 px · Titel 104 px · Inhalt 232–616 px · Quelle 626 px · Fusszeile 684 px.
+     Tasten: Pfeile weiter · S Referentenansicht mit Notizen · F Vollbild · ESC Übersicht · ?print-pdf für den PDF-Export.
+     ============================================================ -->
+<link rel="stylesheet" href="gemeinsam/354c2799e6.css">
+<link rel="stylesheet" href="gemeinsam/6d5a288f91.css">
+<style>
+/* ============ Skin «Golden Age» ============ */
+:root {
+  --r-background-color: #F6EBD0;
+  --r-main-font: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --r-main-font-size: 16px; --r-main-color: #111111;
+  --r-heading-font: 'Bangers', Impact, 'Arial Black', sans-serif;
+  --r-heading-color: #111111; --r-heading-text-transform: none;
+  --r-link-color: #2456C7; --r-link-color-hover: #D62828;
+  --r-selection-background-color: rgba(249,217,73,0.55);
+}
+html, body, .reveal-viewport, .reveal .backgrounds { background: #F6EBD0; }
+.reveal { font-family: var(--r-main-font); font-size: 16px; color: #111111; }
+.reveal .slides { text-align: left; }
+.reveal .slides section { padding: 0; margin: 0; width: 1280px; height: 720px; top: 0 !important; }
+.reveal .slides section > div { font-size: 16px; line-height: 1.5; }
+.reveal h1, .reveal h2, .reveal h3, .reveal p, .reveal ul, .reveal ol, .reveal li, .reveal blockquote { margin: 0; line-height: inherit; text-transform: none; }
+.reveal ul, .reveal ol { display: block; }
+.reveal img, .reveal svg { max-width: none; max-height: none; margin: 0; border: 0; box-shadow: none; }
+.reveal strong, .reveal b { font-weight: 700; }
+.reveal .progress { height: 3px; color: #D62828; }
+.reveal .controls { color: #D62828; }
+.reveal .slide-number { display: none !important; }  /* die Fusszeile jeder Folie zaehlt selbst */
+.reveal .controls { bottom: auto; top: 50%; transform: translateY(-50%); }
+@media print { .reveal .controls, .reveal .progress { display: none !important; } }
+
+/* ---- Bausteine: .display .caption .panel .bubble .code .num .tag .mint .dots .foot .title3d .pf-strip ---- */
+    body { margin: 0; }
+    a { color: #2456C7; } a:hover { color: #D62828; }
+    .paper { background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif; }
+    .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(17,17,17,0.13) 1.3px, transparent 1.7px); background-size: 9px 9px; pointer-events: none; }
+    .display { font-family: 'Bangers', 'Impact', 'Arial Black', sans-serif; letter-spacing: 0.02em; }
+    .caption { display: inline-block; background: #F9D949; border: 3px solid #111; padding: 6px 12px; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 4px 4px 0 #111; }
+    .panel { background: #FFFBEF; border: 4px solid #111; box-shadow: 8px 8px 0 #111; }
+    .bubble { position: relative; background: #FFFFFF; border: 3px solid #111; border-radius: 26px; padding: 16px 22px; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; }
+    .bubble::after { content: ""; position: absolute; left: 44px; bottom: -24px; border-style: solid; border-width: 24px 20px 0 0; border-color: #111 transparent transparent transparent; }
+    .bubble::before { content: ""; position: absolute; left: 47px; bottom: -17px; border-style: solid; border-width: 18px 15px 0 0; border-color: #FFFFFF transparent transparent transparent; z-index: 1; }
+    .foot { position: absolute; left: 64px; right: 64px; top: 684px; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #5A4A2A; }
+    .foot b { color: #D62828; }
+    .title3d { color: #D62828; -webkit-text-stroke: 3px #111; paint-order: stroke fill; text-shadow: 7px 7px 0 #2456C7, 10px 10px 0 #111; }
+    .mono { font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; }
+    .code { background: #1B1F3B; color: #F2F6FB; border: 4px solid #111; box-shadow: 8px 8px 0 #111; padding: 18px 22px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 16px; line-height: 1.5; white-space: pre; overflow: hidden; }
+    .code .k { color: #F9D949; } .code .s { color: #7FD1FF; } .code .c { color: #9BA3C7; } .code .n { color: #FF8A7A; }
+    .num { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #D62828; color: #FFF; border: 3px solid #111; font-family: 'Bangers', Impact, sans-serif; font-size: 24px; flex: none; }
+    .tag { display: inline-block; border: 3px solid #111; padding: 3px 10px; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .mint { background: #9FE3C4; }
+    .bubble.r::after { left: auto; right: 44px; border-width: 24px 0 0 20px; }
+    .bubble.r::before { left: auto; right: 47px; border-width: 18px 0 0 15px; }
+    .prompt { background: #FFFFFF; border: 3px solid #111; border-left: 12px solid #2456C7; border-radius: 6px; padding: 10px 16px; font-family: 'Barlow', sans-serif; font-size: 18px; line-height: 1.4; }
+    .pf-strip { position: absolute; left: 0; top: 0; bottom: 0; width: 22px; background: repeating-linear-gradient(135deg, #3DBE8B 0 14px, #111 14px 18px); border-right: 4px solid #111; }
+
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<!-- ===== 01 · Drill 0 ===== -->
+<section data-id="T1-01Drill0">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div class="dots" style="mask-image: radial-gradient(ellipse at 18% 45%, #000 5%, transparent 50%); -webkit-mask-image: radial-gradient(ellipse at 18% 45%, #000 5%, transparent 50%);"></div>
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Drill 0 · 09:45–10:15 · 30 Min.</div>
+    
+  </div>
+  <div class="display" style="position: absolute; left: 70px; top: 120px; font-size: 440px; line-height: 0.85; color: transparent; background-image: radial-gradient(circle, #2456C7 2.2px, transparent 2.6px); background-size: 11px 11px; -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: 3px #111;">0</div>
+  <div style="position: absolute; left: 420px; top: 150px; width: 796px; display: flex; flex-direction: column; gap: 18px;">
+    <div class="caption" style="align-self: flex-start; background: #F9D949;">Drill 0 von 5</div>
+    <h2 class="display" style="margin: 0; font-size: 76px; line-height: 0.95; color: #D62828; -webkit-text-stroke: 2px #111; paint-order: stroke fill; text-shadow: 5px 5px 0 #111;">Arbeitsumgebung</h2>
+    <p style="margin: 0; font-size: 24px; line-height: 1.35; color: #4A3D24;">Den Ordner tag1 in der Claude-App öffnen, Claude die ersten Fragen stellen und festlegen, wer als Kunde zählt.</p>
+    <div class="panel" style="margin-top: 8px; padding: 16px 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; box-shadow: 5px 5px 0 #111;"><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #F9D949;">Eure Rolle</div><div style="font-size: 19px; line-height: 1.3;">Lina Osterkamp, Trainee Vertriebsinnendienst</div></div><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #FFFBEF;">Was entsteht</div><div style="font-size: 19px; line-height: 1.3;">Notiz zur Kundenzahl für Dr. Vossberg</div></div><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #FFFBEF;">Einführung / Übung / Auswertung</div><div style="font-size: 19px; line-height: 1.3;">10 / 15 / 5 Min.</div></div></div>
+  </div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+<!-- ===== 02 · Drill 0 ===== -->
+<section data-id="T1-02Drill0">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Drill 0 · Eure Rolle</div>
+    
+  </div>
+  <div style="position: absolute; left: 64px; top: 104px; width: 1152px; display: flex; flex-direction: column; gap: 12px;">
+    <h2 class="display" style="margin: 0; font-size: 44px; line-height: 1.1; color: #111; white-space: nowrap;">Lina Osterkamp zählt die Kunden</h2>
+    <p style="margin: 0; font-size: 21px; font-weight: 400; color: #4A3D24; white-space: nowrap;">Trainee Vertriebsinnendienst · Werk Nord · 23 Jahre · erste Woche · Ihr übernehmt ihre Rolle</p>
+  </div>
+  <div style="position: absolute; left: 64px; top: 232px; width: 304px; height: 384px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div><div class="bubble" style="font-weight: 400; font-size: 19px; line-height: 1.4;">„Erste Woche, und schon gibt es drei Zahlen für „unsere Kunden“. Welche stimmt denn?“</div></div>
+    <div style="margin-left: -40px; line-height: 0;"><svg width="264" height="239" viewBox="0 0 520 470" role="img" aria-label="Comicfigur Lina Osterkamp, pullover, wave"><g transform="translate(10 10)" opacity="0.9"><path d="M200 66 C274 66 318 136 316 216 C314 292 262 350 200 354 C138 350 86 292 84 216 C82 136 126 66 200 66 Z" fill="#111"/><path d="M48 470 L62 402 C112 376 158 372 176 372 L200 408 L224 372 C242 372 288 376 338 402 L352 470 Z" fill="#111"/></g>
+<circle cx="200" cy="58" r="40" fill="#B5532A" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M176 40 q24 -14 48 0" fill="none" stroke="#E08A5A" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+<path d="M172 336 L172 384 L228 384 L228 336" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M176 340 Q200 364 224 340" fill="#E0AE86" opacity="0.7"/>
+<path d="M48 470 L62 402 C112 376 158 372 176 372 L200 408 L224 372 C242 372 288 376 338 402 L352 470 Z" fill="#1F7A7A" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M168 372 Q200 420 232 372 L224 368 Q200 402 176 368 Z" fill="#4C9595" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+<path d="M186 412 L196 442 M214 412 L204 442" fill="none" stroke="#1B1F3B" stroke-width="5" stroke-linecap="round"/>
+<rect x="180" y="440" width="40" height="28" rx="3" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<rect x="184" y="444" width="32" height="7" fill="#3DBE8B"/><circle cx="191" cy="459" r="4" fill="#1B1F3B"/><rect x="198" y="456" width="14" height="3" fill="#8A7A55"/><rect x="198" y="461" width="10" height="3" fill="#8A7A55"/>
+<path d="M322 410 C348 392 372 340 372 300 L400 306 C400 352 372 420 344 440 Z" fill="#1F7A7A" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M366 300 C356 268 362 250 376 248 C384 246 388 258 384 270 L392 244 C400 236 410 244 406 256 L416 240 C426 236 432 246 426 258 L430 252 C440 250 444 262 438 272 L424 300 C416 314 396 318 380 310 Z" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M372 262 L372 248 M390 262 L392 250 M406 264 L412 254 M420 274 L428 262" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<path d="M200 66 C274 66 318 136 316 216 C314 292 262 350 200 354 C138 350 86 292 84 216 C82 136 126 66 200 66 Z" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<ellipse cx="80" cy="222" rx="13" ry="21" fill="#F2C9A6" stroke="#111" stroke-width="5"/>
+<ellipse cx="320" cy="222" rx="13" ry="21" fill="#F2C9A6" stroke="#111" stroke-width="5"/>
+<path d="M84 214 q6 10 0 20 M316 214 q-6 10 0 20" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<path d="M200 200 L186 246 Q200 256 214 246" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="158" cy="206" rx="21" ry="13" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<circle cx="160" cy="207" r="9" fill="#4F8A5B" stroke="#111" stroke-width="2"/>
+<circle cx="160" cy="207" r="4.5" fill="#111"/><circle cx="163" cy="203" r="2.2" fill="#FFFFFF"/>
+<ellipse cx="242" cy="206" rx="21" ry="13" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<circle cx="244" cy="207" r="9" fill="#4F8A5B" stroke="#111" stroke-width="2"/>
+<circle cx="244" cy="207" r="4.5" fill="#111"/><circle cx="247" cy="203" r="2.2" fill="#FFFFFF"/>
+<path d="M140 198 l-8 -8 M148 194 l-5 -10 M260 198 l8 -8 M252 194 l5 -10" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<path d="M130 184 Q158 170 186 182 M214 182 Q242 170 270 184" fill="none" stroke="#9A4522" stroke-width="8" stroke-linecap="round"/>
+<path d="M126 224 q-8 8 -4 18 M274 224 q8 8 4 18" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+<ellipse cx="200" cy="296" rx="32" ry="26" fill="#C46A5E"/>
+<ellipse cx="200" cy="296" rx="26" ry="20" fill="#3A1F1F" stroke="#111" stroke-width="4"/>
+<path d="M180 286 Q200 292 220 286 L220 292 Q200 300 180 292 Z" fill="#FFFFFF"/>
+<path d="M84 208 C78 150 96 90 140 72 C176 58 224 58 260 72 C304 90 322 150 316 208 C312 176 300 150 282 138 C258 124 228 124 206 138 C200 142 200 142 194 138 C172 124 142 124 118 138 C100 150 88 176 84 208 Z" fill="#B5532A" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M130 112 C160 88 200 80 230 90 M110 150 C130 122 160 108 190 110" fill="none" stroke="#E08A5A" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+</svg></div>
+  </div>
+  <div style="position: absolute; left: 392px; top: 232px; width: 410px; display: flex; flex-direction: column; gap: 14px;">
+    <p style="margin: 0; font-size: 19px; line-height: 1.35;">Duales Studium Betriebswirtschaft, seit drei Wochen im Haus. Die Systeme von Dr. Sthamer kennt sie noch nicht.</p>
+    <div class="panel" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; padding: 14px 18px; gap: 10px; box-shadow: 5px 5px 0 #111;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #F9D949;">Eure Aufgabe heute</div><p style="margin: 0; font-size: 19px; line-height: 1.35;">Den Arbeitsordner öffnen und die erste Frage von Dr. Henrike Vossberg beantworten: Wie viele Kunden haben wir in Deutschland und im Ausland, und wie ist gezählt? Eure Empfehlung speichert Claude als Notiz für sie.</p></div>
+  </div>
+  <div style="position: absolute; left: 826px; top: 232px; width: 390px;"><div class="panel" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; padding: 12px 18px; gap: 9px; box-shadow: 5px 5px 0 #111;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #7FD1FF;">Begriffe, die Lina mitbringt</div><div style="font-size: 17px; line-height: 1.3; border-left: 4px solid #2456C7; padding-left: 10px;"><b>Schaumlöschmittel:</b> Konzentrat, das mit Wasser gemischt und verschäumt wird; löscht vor allem brennende Flüssigkeiten.</div><div style="font-size: 17px; line-height: 1.3; border-left: 4px solid #2456C7; padding-left: 10px;"><b>Lieferstelle:</b> Ort beim Kunden, an den geliefert wird, etwa eine Anlage oder ein Lager. Ein Kunde hat oft mehrere.</div><div style="font-size: 17px; line-height: 1.3; border-left: 4px solid #2456C7; padding-left: 10px;"><b>Kundenstamm:</b> Alle Kunden mit Kundennummer, auch ruhende ohne aktuelle Aufträge.</div><div style="font-size: 17px; line-height: 1.3; border-left: 4px solid #2456C7; padding-left: 10px;"><b>Aktiver Kunde:</b> Je nach Zählweise: Status „aktiv“ oder ein Auftrag in den letzten 24 Monaten.</div></div></div>
+  <div style="position: absolute; left: 64px; top: 626px; font-size: 13px; color: #6B5B3A;">Fiktive Person, frei erfunden · Rolle wie in der Anleitung zu Drill 0</div>
+  <div class="foot"><div>AI-Bootcamp · Tag 1 · AI Augmentation</div><div>Drill 0 · <b>02 / 6</b></div></div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+<!-- ===== 03 · Drill 0 ===== -->
+<section data-id="T1-03Drill0">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Drill 0 · Einführung</div>
+    
+  </div>
+  <div style="position: absolute; left: 64px; top: 104px; width: 1152px; display: flex; flex-direction: column; gap: 12px;">
+    <h2 class="display" style="margin: 0; font-size: 44px; line-height: 1.1; color: #111; white-space: nowrap;">Die Claude-App hat drei Bereiche: Chat, Cowork, Code</h2>
+    <p style="margin: 0; font-size: 21px; font-weight: 400; color: #4A3D24; white-space: nowrap;">Ihr arbeitet im Bereich „Code“, ohne zu programmieren: Claude liest, rechnet und fragt, bevor es handelt.</p>
+  </div>
+  <div style="position: absolute; left: 64px; top: 232px; width: 1152px; display: grid; grid-template-columns: 500px minmax(0, 1fr); gap: 40px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;"><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">1</div><p style="margin: 0; font-size: 19px; line-height: 1.35;"><b>Chat:</b> Ihr sprecht mit Claude, es sieht Eure Dateien nicht</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">2</div><p style="margin: 0; font-size: 19px; line-height: 1.35;"><b>Cowork:</b> Claude erledigt Aufgaben mit Euren Dokumenten (heute nur gezeigt)</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">3</div><p style="margin: 0; font-size: 19px; line-height: 1.35;"><b>Code:</b> Claude arbeitet im Ordner <b>tag1</b> auf Eurem Rechner: liest, rechnet, legt Dateien an</p></div></div>
+    <div class="panel" style="padding: 0; overflow: hidden; align-self: start; display: flex; flex-direction: column;"><div style="background: #1B1F3B; border-bottom: 4px solid #111; padding: 16px 20px; display: flex; align-items: center; gap: 18px;"><svg width="84" height="68" viewBox="0 0 84 68" aria-hidden="true" style="flex: none;"><rect x="3" y="3" width="78" height="50" rx="3" fill="#FFFBEF" stroke="#111" stroke-width="4"/><polygon points="33,15 33,41 56,28" fill="#D62828" stroke="#111" stroke-width="3" stroke-linejoin="round"/><rect x="36" y="53" width="12" height="8" fill="#FFFBEF"/><rect x="22" y="60" width="40" height="6" fill="#FFFBEF"/></svg><div style="display: flex; flex-direction: column; gap: 8px;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #D62828; color: #FFF;">Live-Demo</div><div class="display" style="color: #FFFBEF; font-size: 34px; line-height: 1;">Wechsel in die Claude-App</div></div></div><div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;"><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">1</div><p style="margin: 0; font-size: 19px; line-height: 1.35;">Dieselbe Kundenfrage in Chat und in Code</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">2</div><p style="margin: 0; font-size: 19px; line-height: 1.35;">Ordner „tag1“: CLAUDE.md lesen, Abfrage erlauben</p></div></div></div>
+  </div>
+  <div style="position: absolute; left: 64px; top: 534px; width: 1152px; box-sizing: border-box; display: grid; grid-template-columns: 250px repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; background: #E3F2FF; border: 3px solid #111; box-shadow: 5px 5px 0 #111; padding: 10px 16px;"><div style="display: flex; flex-direction: column; gap: 6px;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #7FD1FF;">Neu in Claude Code</div><div style="font-size: 19px; font-weight: 700; line-height: 1.2;">Arbeitsordner, CLAUDE.md und Berechtigungen</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #5A4A2A;">Was dahinter passiert</div><div style="font-size: 16px; line-height: 1.28;">Claude liest beim Start die CLAUDE.md des Ordners als Projektgedächtnis. Vor jedem Befehl und jeder neuen Datei fragt es.</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #5A4A2A;">Probiert es aus</div><div style="font-size: 16px; line-height: 1.28;">Tippt „@daten/“, wählt kennzahlen.json: „Was steht dort zum aktiven Kunden? Ein Satz.“</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #5A4A2A;">Daran erkennt Ihr es</div><div style="font-size: 16px; line-height: 1.28;">Claude zeigt, welche Datei es liest und welchen Befehl es ausführen will, und wartet auf Euer „Erlauben“.</div></div></div>
+  <div class="foot"><div>AI-Bootcamp · Tag 1 · AI Augmentation</div><div>Drill 0 · <b>03 / 6</b></div></div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+<!-- ===== 04 · Drill 0 ===== -->
+<section data-id="T1-04Drill0">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Drill 0 · Aufgabe</div>
+    
+  </div>
+  <div style="position: absolute; left: 64px; top: 104px; width: 1152px; display: flex; flex-direction: column; gap: 12px;">
+    <h2 class="display" style="margin: 0; font-size: 44px; line-height: 1.1; color: #111; white-space: nowrap;">Öffnet den Ordner und stellt die ersten Fragen</h2>
+    <p style="margin: 0; font-size: 21px; font-weight: 400; color: #4A3D24; white-space: nowrap;">4 Etappen, 15 Minuten. Nach jeder Etappe prüft Ihr das Ergebnis, bevor Ihr die nächste beginnt.</p>
+  </div>
+  <div style="position: absolute; left: 64px; top: 232px; width: 1152px; display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 40px;">
+    <div class="panel" style="padding: 16px 18px; box-shadow: 5px 5px 0 #111; display: flex; flex-direction: column; gap: 8px; align-self: start;"><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #F9D949;">Rolle</div><div style="font-size: 17px; line-height: 1.3;">Lina Osterkamp, Trainee Vertriebsinnendienst</div></div><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #FFFBEF;">Ergebnis</div><div style="font-size: 17px; line-height: 1.3;">Notiz zur Kundenzahl für Dr. Vossberg</div></div><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #F9D949;">Zeit</div><div style="font-size: 17px; line-height: 1.3;">15 Min. Übung</div></div><div style="display: flex; flex-direction: column; gap: 4px;"><div class="tag" style="align-self: flex-start; background: #3DBE8B;">Zusatz für Schnelle</div><div style="font-size: 17px; line-height: 1.3;">Nachfolger und Deklaration vergleichen</div></div></div>
+    <div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; gap: 14px; align-items: flex-start;"><div class="num">1</div><div class="prompt" style="flex: 1; padding: 5px 12px; display: flex; flex-direction: column; gap: 1px;"><div style="font-weight: 700; font-size: 18px; line-height: 1.25;">Ordner öffnen</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Ihr schreibt:</b> „Erkläre mir in drei Sätzen, was in diesem Ordner liegt und woher du das weißt.“</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Dann prüft Ihr:</b> Nennt Claude die Ordner und die CLAUDE.md als Quelle? Sonst ist der falsche Ordner gewählt.</div></div></div><div style="display: flex; gap: 14px; align-items: flex-start;"><div class="num">2</div><div class="prompt" style="flex: 1; padding: 5px 12px; display: flex; flex-direction: column; gap: 1px;"><div style="font-weight: 700; font-size: 18px; line-height: 1.25;">Orientieren</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Ihr schreibt:</b> „Lies Einstiegsblatt und Unternehmensprofil: Wer ist Dr. Sthamer, wie groß ist unser Übungsausschnitt?“</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Dann prüft Ihr:</b> Nennt Claude die 32 Kunden im Ausschnitt oder die Zahlen der ganzen Firma? (Vorführung)</div></div></div><div style="display: flex; gap: 14px; align-items: flex-start;"><div class="num">3</div><div class="prompt" style="flex: 1; padding: 5px 12px; display: flex; flex-direction: column; gap: 1px;"><div style="font-weight: 700; font-size: 18px; line-height: 1.25;">Was ist ein Kunde?</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Ihr schreibt:</b> „Wie viele unserer Kunden sitzen in Deutschland, wie viele im Ausland? Wen hast du gezählt?“</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Dann prüft Ihr:</b> Welche Zählweise empfehlt Ihr Dr. Vossberg? Kurz begründen; Claude legt die Notiz ab.</div></div></div><div style="display: flex; gap: 14px; align-items: flex-start;"><div class="num">4</div><div class="prompt" style="flex: 1; padding: 5px 12px; display: flex; flex-direction: column; gap: 1px;"><div style="font-weight: 700; font-size: 18px; line-height: 1.25;">Ein Kunde, mehrere Quellen</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Ihr schreibt:</b> „Zeig mir die Raffinerie Küstenmark, K-1003, in allen Tabellen; was ist über die Verladestation bekannt?“</div><div style="font-size: 15px; line-height: 1.25; color: #4A3D24;"><b>Dann prüft Ihr:</b> Nachfragen: „Woher weißt du, dass es derselbe Kunde ist?“ Gibt es eine Datenaufnahme vor Ort?</div></div></div></div>
+  </div>
+  <div style="position: absolute; left: 64px; top: 626px; font-size: 13px; color: #6B5B3A;">Ordner „tag1“ in der Claude-App unter „Code“ öffnen, Modell Sonnet · Etappen wörtlich abschicken</div>
+  <div class="foot"><div>AI-Bootcamp · Tag 1 · AI Augmentation</div><div>Drill 0 · <b>04 / 6</b></div></div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+<!-- ===== 05 · Drill 0 ===== -->
+<section data-id="T1-05Drill0">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Drill 0 · Auswertung</div>
+    
+  </div>
+  <div style="position: absolute; left: 64px; top: 104px; width: 1152px; display: flex; flex-direction: column; gap: 12px;">
+    <h2 class="display" style="margin: 0; font-size: 44px; line-height: 1.1; color: #111; white-space: nowrap;">Claude liest, rechnet und fragt, bevor es handelt</h2>
+    <p style="margin: 0; font-size: 21px; font-weight: 400; color: #4A3D24; white-space: nowrap;">Was ist entstanden, was hat funktioniert, wo hat Claude sich geirrt?</p>
+  </div>
+  <div style="position: absolute; left: 64px; top: 232px; width: 1152px; display: flex; flex-direction: column; gap: 18px;">
+    <div class="panel" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; padding: 24px 28px; gap: 18px;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #F9D949;">Gemeinsam besprechen · drei Fragen</div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">1</div><p style="margin: 0; font-size: 24px; line-height: 1.35;">Ihr habt keinen Dateinamen genannt: Woher wusste Claude, wo die Kunden stehen?</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">2</div><p style="margin: 0; font-size: 24px; line-height: 1.35;">Zwei Zählweisen, zwei Zahlen: Welche bekommt Dr. Vossberg, und warum?</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">3</div><p style="margin: 0; font-size: 24px; line-height: 1.35;">Bei welcher Abfrage habt Ihr gezögert, bevor Ihr erlaubt habt?</p></div></div>
+    <p style="margin: 8px 0 0; font-size: 16px; line-height: 1.3; color: #4A3D24;"><b>Entstanden:</b> Notiz zur Kundenzahl für Dr. Vossberg · als Dateien auf Eurem Rechner</p>
+  </div>
+  <div style="position: absolute; left: 64px; top: 626px; font-size: 13px; color: #6B5B3A;">Neue Fähigkeit: Claude im Arbeitsordner lesen, rechnen und um Erlaubnis fragen lassen</div>
+  <div class="foot"><div>AI-Bootcamp · Tag 1 · AI Augmentation</div><div>Drill 0 · <b>05 / 6</b></div></div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+<!-- ===== 06 · Pause ===== -->
+<section data-id="T1-06Pause">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div class="dots" style="mask-image: radial-gradient(ellipse at 50% 50%, #000 10%, transparent 65%); -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 10%, transparent 65%);"></div>
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">10:15–10:30</div>
+    
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 190px; display: flex; flex-direction: column; align-items: center; gap: 30px;">
+    <div class="display title3d" style="font-size: 200px; line-height: 0.9;">Pause</div>
+    <div style="transform: rotate(-2deg); background: #D62828; color: #FFF; border: 4px solid #111; box-shadow: 6px 6px 0 #111; padding: 8px 26px;" class="display"><div style="font-size: 44px; line-height: 1;">Weiter um 10:30 mit Drill 1</div></div>
+  </div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+</div>
+</div>
+<script src="gemeinsam/f24603cc1a.js"></script>
+<script>
+Reveal.initialize({
+  width: 1280, height: 720, margin: /print-pdf/.test(window.location.search) ? 0 : 0.04, minScale: 0.2, maxScale: 2.0,
+  hash: true, center: false, transition: 'fade', transitionSpeed: 'fast',
+  controls: true, controlsLayout: 'edges', controlsBackArrows: 'faded',
+  progress: true, slideNumber: false, overview: true,
+  plugins: [ RevealNotes ]
+});
+</script>
+<style>
+/* ============ Klick-Grossansicht (design/zoom.py) ============ */
+.zoomrahmen { position: relative; cursor: zoom-in; }
+.zoomrahmen::after { content: ""; position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px;
+  background: #F9D949 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2.6' stroke-linecap='round'><circle cx='10' cy='10' r='6'/><path d='M14.5 14.5 L20 20'/><path d='M10 7.5 V12.5 M7.5 10 H12.5'/></svg>") center / 20px 20px no-repeat; border: 2px solid #111; box-shadow: 2px 2px 0 #111;
+  transition: transform .12s; }
+.zoomrahmen:hover::after { transform: scale(1.12); }
+.zoom-ov { position: fixed; inset: 0; z-index: 10000; background: rgba(17,17,17,.86); padding: 26px 34px 30px;
+  box-sizing: border-box; display: flex; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif; color: #111; }
+.zoom-ov[hidden], .zoom-ov [hidden] { display: none !important; }
+.zoom-karte { flex: 1; min-width: 0; display: flex; flex-direction: column; background: #FFFBEF;
+  border: 3px solid #111; box-shadow: 7px 7px 0 #F9D949; }
+.zoom-kopf { display: flex; align-items: center; gap: 10px; padding: 8px 10px 8px 16px; border-bottom: 3px solid #111; flex-wrap: wrap; }
+.zoom-titel { flex: 1; min-width: 200px; font-weight: 700; font-size: 17px; line-height: 1.25; }
+.zoom-kopf button { font: 700 14px/1 'Barlow', Arial, sans-serif; letter-spacing: .5px; color: #111; background: #FFF;
+  border: 2px solid #111; padding: 6px 12px; cursor: pointer; }
+.zoom-kopf button[aria-pressed="true"] { background: #F9D949; }
+.zoom-kopf .zoom-seg { display: flex; }
+.zoom-kopf .zoom-seg button + button { border-left: 0; }
+.zoom-kopf a { font-size: 14px; color: #2456C7; text-decoration: none; border-bottom: 1px dotted #2456C7; white-space: nowrap; }
+.zoom-kopf .zoom-zu { font-size: 22px; width: 36px; height: 34px; padding: 0; background: #D62828; color: #FFF; }
+.zoom-koerper { position: relative; flex: 1; min-height: 0; overflow: auto; background: #FFF; outline: none; }
+.zoom-koerper img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; cursor: zoom-in; }
+.zoom-koerper.eins img { position: static; width: auto; height: auto; max-width: none; max-height: none; margin: 0 auto; cursor: zoom-out; }
+.zoom-koerper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #FFF; }
+.zoom-fuss { padding: 5px 16px; font-size: 13px; color: #6B5B3A; border-top: 2px solid #111; }
+@media print { .zoomrahmen::after, .zoom-ov { display: none !important; } }
+html.print-pdf .zoomrahmen::after, html.reveal-print .zoomrahmen::after { display: none !important; }
+</style>
+<div class="zoom-ov" hidden role="dialog" aria-modal="true" aria-label="Grossansicht">
+  <div class="zoom-karte">
+    <div class="zoom-kopf">
+      <div class="zoom-titel"></div>
+      <div class="zoom-seg"><button type="button" data-modus="bild">Bild</button><button type="button" data-modus="original">Original öffnen</button></div>
+      <button type="button" class="zoom-massstab">1:1</button>
+      <a class="zoom-tab" href="#" target="_blank" rel="noopener">in neuem Tab ↗</a>
+      <button type="button" class="zoom-zu" title="Schliessen (Esc)" aria-label="Schliessen">×</button>
+    </div>
+    <div class="zoom-koerper" tabindex="-1"></div>
+    <div class="zoom-fuss">Esc, Klick auf den dunklen Rand oder × schliesst · Klick ins Bild: eingepasst ↔ 1:1</div>
+  </div>
+</div>
+<script>
+(function () {
+  var ov = document.querySelector('.zoom-ov');
+  if (!ov) return;
+  var titel = ov.querySelector('.zoom-titel'), koerper = ov.querySelector('.zoom-koerper'),
+      seg = ov.querySelector('.zoom-seg'), knopfBild = seg.querySelector('[data-modus="bild"]'),
+      knopfOrig = seg.querySelector('[data-modus="original"]'), massstab = ov.querySelector('.zoom-massstab'),
+      tab = ov.querySelector('.zoom-tab'), fuss = ov.querySelector('.zoom-fuss');
+  var offen = false, quelle = null, original = null;
+
+  function zeige(modus) {
+    koerper.innerHTML = '';
+    koerper.classList.remove('eins');
+    knopfBild.setAttribute('aria-pressed', modus === 'bild');
+    knopfOrig.setAttribute('aria-pressed', modus === 'original');
+    massstab.hidden = modus !== 'bild';
+    massstab.textContent = '1:1';
+    if (modus === 'original' && original) {
+      var f = document.createElement('iframe');
+      f.src = original;
+      f.title = titel.textContent;
+      f.addEventListener('load', function () {
+        try { f.contentWindow.addEventListener('keydown', function (e) { if (e.key === 'Escape') schliesse(); }); } catch (_) {}
+      });
+      koerper.appendChild(f);
+      fuss.textContent = 'Original (HTML) · im Original selbst klicken und scrollen · × oder Klick auf den dunklen Rand schliesst';
+    } else {
+      var img = document.createElement('img');
+      img.src = quelle.src;
+      img.alt = quelle.alt || 'Screenshot';
+      img.addEventListener('click', umschalten);
+      koerper.appendChild(img);
+      fuss.textContent = 'Esc, Klick auf den dunklen Rand oder × schliesst · Klick ins Bild: eingepasst ↔ 1:1 (' +
+        (quelle.naturalWidth || '?') + ' × ' + (quelle.naturalHeight || '?') + ' px)';
+    }
+    koerper.focus({ preventScroll: true });
+  }
+  function umschalten() {
+    var eins = koerper.classList.toggle('eins');
+    massstab.textContent = eins ? 'Einpassen' : '1:1';
+  }
+  function oeffne(img) {
+    quelle = img;
+    original = img.getAttribute('data-original') || null;
+    titel.textContent = img.getAttribute('data-titel') || 'Screenshot';
+    seg.hidden = !original;
+    tab.hidden = !original;
+    if (original) tab.href = original;
+    ov.hidden = false;
+    offen = true;
+    zeige('bild');
+  }
+  function schliesse() {
+    if (!offen) return;
+    offen = false;
+    ov.hidden = true;
+    koerper.innerHTML = '';
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    window.focus();
+  }
+
+  knopfBild.addEventListener('click', function () { zeige('bild'); });
+  knopfOrig.addEventListener('click', function () { zeige('original'); });
+  massstab.addEventListener('click', umschalten);
+  ov.querySelector('.zoom-zu').addEventListener('click', schliesse);
+  ov.addEventListener('click', function (e) { if (e.target === ov) schliesse(); });
+
+  document.addEventListener('click', function (e) {
+    var r = e.target.closest ? e.target.closest('.zoomrahmen') : null;
+    if (!r || offen) return;
+    if (window.Reveal && Reveal.isOverview && Reveal.isOverview()) return;
+    var img = r.querySelector('img[data-zoom]');
+    if (!img) return;
+    e.preventDefault();
+    e.stopPropagation();
+    oeffne(img);
+  }, true);
+
+  // Vor reveal.js (lauscht auf document): solange das Overlay offen ist, keine Tasten an reveal.js
+  // (Pfeile/Leertaste scrollen dann das Bild); S (Sprecheransicht) bleibt frei.
+  window.addEventListener('keydown', function (e) {
+    if (!offen) return;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopImmediatePropagation(); schliesse(); return; }
+    if ((e.key === 's' || e.key === 'S') && !e.ctrlKey && !e.metaKey && !e.altKey) return;
+    e.stopImmediatePropagation();
+  }, true);
+})();
+</script>
+</body>
+</html>

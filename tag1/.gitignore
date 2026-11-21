@@ -1,0 +1,17 @@
+# Eigene Ergebnisse der Teilnehmenden (nie versionieren)
+/meine-ergebnisse/
+notizbuch/Vorbereitung/*
+!notizbuch/Vorbereitung/.gitkeep
+
+# Eigene Skills aus Drill 3
+.claude/skills/*
+!.claude/skills/.gitkeep
+
+# Lokale Einstellungen, persönliches Gedächtnis und Obsidian-Arbeitsstand
+CLAUDE.local.md
+.claude/settings.local.json
+notizbuch/.obsidian/workspace*.json
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Titel des Dashboards]</title>
+<!-- Circle Design: erst die Tokens, dann die Bausteine. Pfade relativ zu dieser Datei.
+     Aus meine-ergebnisse/dashboard.html heißen sie ../design/circle/circle.css und ../design/circle/komponenten.css -->
+<link rel="stylesheet" href="circle.css">
+<link rel="stylesheet" href="komponenten.css">
+<style>
+  /* Nur Anordnung, keine Farbwerte (Farben kommen ausschließlich aus circle.css) */
+  .zwei-drittel { display: grid; gap: var(--space-4); grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  @media (max-width: 900px) { .zwei-drittel { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="seite">
+
+  <!-- ===== Kopfzeile ===== -->
+  <header class="kopf">
+    <div class="kopf__titel">
+      <span class="etikett">Dr. Sthamer · Übungsausschnitt</span>
+      <h1>[Titel des Dashboards] <em>[Akzentwort]</em></h1>
+    </div>
+    <div class="kopf__meta">
+      <span>Stichtag <span class="zahl">[TT.MM.JJJJ]</span></span>
+      <span>Datenbasis [Quelle in Worten]</span>
+      <span class="umschalter" role="group" aria-label="Darstellung">
+        <button type="button" data-thema="system" aria-pressed="true">System</button>
+        <button type="button" data-thema="light" aria-pressed="false">Hell</button>
+        <button type="button" data-thema="dark" aria-pressed="false">Dunkel</button>
+      </span>
+    </div>
+  </header>
+
+  <!-- ===== Reiter: Überblick zuerst ===== -->
+  <nav class="reiter" role="tablist" aria-label="Sichten">
+    <button class="reiter__knopf" role="tab" data-reiter="ueberblick" aria-selected="true">Überblick</button>
+    <button class="reiter__knopf" role="tab" data-reiter="umstellung" aria-selected="false">Umstellung</button>
+    <button class="reiter__knopf" role="tab" data-reiter="finanzen" aria-selected="false">Finanzen</button>
+    <button class="reiter__knopf" role="tab" data-reiter="angebote" aria-selected="false">Angebote</button>
+  </nav>
+
+  <!-- ===== Filterleiste: wirkt auf alle Zahlen des Reiters ===== -->
+  <div class="filter" role="group" aria-label="Filter">
+    <label class="filter__feld">Jahr <select><option>[alle Jahre]</option><option>[Jahr]</option></select></label>
+    <label class="filter__feld">Segment <select><option>[alle Segmente]</option></select></label>
+    <label class="filter__feld">Land <select><option>[alle Länder]</option></select></label>
+    <label class="filter__feld">Vertriebsweg <select><option>[alle Wege]</option></select></label>
+    <span class="filter__ende umschalter" role="group" aria-label="Maß">
+      <button type="button" aria-pressed="true">[Liter]</button>
+      <button type="button" aria-pressed="false">[Umsatz]</button>
+    </span>
+  </div>
+
+  <div class="hinweis hinweis--beispiel"><strong>Gerüst:</strong> Alle Werte sind Platzhalter ohne Bedeutung. Daten kommen später aus einem Skript, nie von Hand.</div>
+
+  <!-- ===================== Reiter Überblick ===================== -->
+  <section class="reiterinhalt" id="reiter-ueberblick" role="tabpanel">
+    <div class="kacheln">
+      <div class="kachel" data-tip="[Definition vollständig, z. B. Zählweise aus der Notiz]">
+        <span class="kachel__name">Kunden</span>
+        <span class="kachel__wert">[n]</span>
+        <span class="kachel__def">[Zählweise in Kurzform]</span>
+      </div>
+      <div class="kachel" data-tip="[Definition Lieferstellen]">
+        <span class="kachel__name">Lieferstellen</span>
+        <span class="kachel__wert">[n]</span>
+        <span class="kachel__def">[Definition in Kurzform]</span>
+      </div>
+      <div class="kachel" data-tip="[netto, ohne Muster, Doppelimporte einmal]">
+        <span class="kachel__name">Absatz</span>
+        <span class="kachel__wert">[n]<small>l</small></span>
+        <span class="kachel__def">[Jahr, netto]</span>
+      </div>
+      <div class="kachel" data-tip="[netto, Konzernkurs des Jahres]">
+        <span class="kachel__name">Umsatz</span>
+        <span class="kachel__wert"><small>EUR</small> [n]</span>
+        <span class="kachel__def">[Jahr, netto, Kurs]</span>
+      </div>
+      <div class="kachel" data-tip="[Zähler / Nenner in Litern]">
+        <span class="kachel__name">Fluorfrei-Anteil</span>
+        <span class="kachel__wert">[n]<small>%</small></span>
+        <span class="kachel__def">[Ziel: n %]</span>
+        <span class="kachel__delta kachel__delta--auf">▲ [n] Prozentpunkte zum Vorjahr</span>
+      </div>
+    </div>
+
+    <div class="zwei-drittel">
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>[Aussage der Zeitreihe als Satz]</h3>
+          <span class="karte__unter">[Maß, Einheit]</span>
+        </div>
+        <div class="diagramm" id="d-linie" role="img" aria-label="[Beschreibung der Zeitreihe]"></div>
+        <div class="legende">
+          <span class="legende__eintrag"><span class="legende__farbe"></span>[Gesamt]</span>
+          <span class="legende__eintrag"><span class="legende__strich"></span>[Ziel]</span>
+          <span class="legende__eintrag">gestrichelt: [Teiljahr]</span>
+        </div>
+        <p class="quelle">Quelle: [Tabelle in Worten], Stichtag [TT.MM.JJJJ]. Definition: [Zähler / Nenner].</p>
+      </article>
+
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>[Bestand nach Segment]</h3>
+          <span class="karte__unter">[Einheit]</span>
+        </div>
+        <div class="diagramm" id="d-balken" role="img" aria-label="[Beschreibung des Balkendiagramms]"></div>
+        <p class="quelle">Quelle: [Tabelle in Worten]. [Einschränkung, z. B. kleine Basis].</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== Reiter Umstellung ===================== -->
+  <section class="reiterinhalt" id="reiter-umstellung" role="tabpanel" hidden>
+    <div class="kernaussage">
+      <span class="etikett">Kernaussage</span>
+      <span class="kernaussage__satz">[Ein ganzer Satz mit Folgerung]</span>
+    </div>
+    <article class="karte">
+      <div class="karte__kopf">
+        <h3>[Ampel: Segment × Land]</h3>
+        <span class="karte__unter">[Jahr, Definition]</span>
+      </div>
+      <div class="regel">
+        <span>Regel:</span>
+        <span class="zustand zustand--crit">rot</span><span>[Bedingung]</span>
+        <span class="zustand zustand--warn">gelb</span><span>[Bedingung]</span>
+        <span class="zustand zustand--ok">grün</span><span>[Bedingung]</span>
+        <span class="zustand zustand--off">Lücke</span><span>[unter n Positionen]</span>
+      </div>
+      <div class="tabelle-rahmen">
+        <table class="tabelle">
+          <thead><tr><th>Segment</th><th>Land</th><th class="zahl">Positionen</th><th class="zahl">[Anteil]</th><th>Ampel</th></tr></thead>
+          <tbody>
+            <tr><td>[Segment A]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--crit">rot</span></td></tr>
+            <tr><td>[Segment A]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--warn">gelb</span></td></tr>
+            <tr><td>[Segment B]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--ok">grün</span></td></tr>
+            <tr><td>[Segment C]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">–</td><td><span class="zustand zustand--off">Lücke</span></td></tr>
+          </tbody>
+          <tfoot><tr><td>Gesamt</td><td></td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <p class="quelle">Quelle: [Tabellen in Worten]. Anteile aus summierten Zählern und Nennern, nie gemittelt.</p>
+    </article>
+  </section>
+
+  <!-- ===================== Reiter Finanzen ===================== -->
+  <section class="reiterinhalt" id="reiter-finanzen" role="tabpanel" hidden>
+    <div class="kacheln">
+      <div class="kachel"><span class="kachel__name">Nettoumsatz Ist</span><span class="kachel__wert"><small>EUR</small> [n]</span><span class="kachel__def">[Jahr, Kurs]</span></div>
+      <div class="kachel"><span class="kachel__name">Deckungsbeitrag Ist</span><span class="kachel__wert"><small>EUR</small> [n]</span><span class="kachel__def">[Stufe nennen]</span></div>
+      <div class="kachel"><span class="kachel__name">Marge Ist</span><span class="kachel__wert">[n]<small>%</small></span><span class="kachel__def">[Stufe nennen]</span></div>
+      <div class="kachel"><span class="kachel__name">Abweichung zum Budget</span><span class="kachel__wert"><small>EUR</small> [n]</span><span class="kachel__delta kachel__delta--ab">▼ [n] %</span></div>
+    </div>
+    <article class="karte karte--flach">
+      <h3>[Brücke Budget → Ist]</h3>
+      <p class="leise">[Hier entsteht in Drill 2 die Brücke. Methode in einem Satz darunter, Abgleich „Summe der Effekte = Gesamtabweichung“.]</p>
+    </article>
+  </section>
+
+  <!-- ===================== Reiter Angebote ===================== -->
+  <section class="reiterinhalt" id="reiter-angebote" role="tabpanel" hidden>
+    <div class="raster">
+      <article class="karte">
+        <h3>[Vorgänge]</h3>
+        <div class="tabelle-rahmen">
+          <table class="tabelle">
+            <thead><tr><th>Vorgang</th><th class="zahl">Wert</th><th>Klasse</th><th>Stand</th></tr></thead>
+            <tbody>
+              <tr><td>[Kennung]</td><td class="zahl">EUR [n]</td><td>[A–E]</td><td><span class="zustand zustand--neutral">offen</span></td></tr>
+              <tr><td>[Kennung]</td><td class="zahl">EUR [n]</td><td>[A–E]</td><td><span class="zustand zustand--crit">Hier entscheidet ein Mensch</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+      <article class="karte karte--flach">
+        <h3>[Regelpfad des gewählten Vorgangs]</h3>
+        <p class="leise">[Schritte mit Angabe, Paragraf und Ergebnis – entsteht in Drill 3.]</p>
+      </article>
+    </div>
+  </section>
+
+  <p class="quelle">Erstellt mit Claude · Circle Design · [Datum]</p>
+</div>
+
+<div class="tooltip" id="tooltip" hidden></div>
+
+<!-- ===================== DIAGRAMM-DATEN =====================
+     Einziger Ort für Werte. Im echten Dashboard ersetzt durch dashboard-daten/<reiter>.js,
+     das ein Skript aus den Tabellen erzeugt. Zähler und Nenner mitführen (für den Tooltip).
+     Die Werte hier sind reine Platzhalter ohne Bedeutung. -->
+<script>
+const DIAGRAMM_DATEN = {
+  linie: {
+    einheit: "%", ziel: 60, max: 100,
+    punkte: [
+      { name: "[J1]", wert: 10, zaehler: "[z]", nenner: "[n]" },
+      { name: "[J2]", wert: 20, zaehler: "[z]", nenner: "[n]" },
+      { name: "[J3]", wert: 25, zaehler: "[z]", nenner: "[n]" },
+      { name: "[J4]", wert: 35, zaehler: "[z]", nenner: "[n]" },
+      { name: "[J5]", wert: 45, zaehler: "[z]", nenner: "[n]" },
+      { name: "[J6]", wert: 50, zaehler: "[z]", nenner: "[n]" },
+      { name: "[Teil]", wert: 55, zaehler: "[z]", nenner: "[n]", teiljahr: true }
+    ]
+  },
+  balken: {
+    einheit: "",
+    reihen: [
+      { name: "[Segment A]", wert: 40 },
+      { name: "[Segment B]", wert: 30 },
+      { name: "[Segment C]", wert: 20 },
+      { name: "[Segment D]", wert: 10 }
+    ]
+  }
+};
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var zahl = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
+
+  function el(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  /* ---- Linie: Inline-SVG, Prozentachse in runden Schritten, Teiljahr gestrichelt ---- */
+  function linie(ziel, d) {
+    var B = Math.max(320, ziel.clientWidth || 600), H = 230, l = 44, r = 56, o = 14, u = 28;
+    var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+    var x = function (i) { return l + i * (B - l - r) / (d.punkte.length - 1); };
+    var y = function (v) { return o + (H - o - u) * (1 - v / d.max); };
+    for (var s = 0; s <= d.max; s += 25) {
+      svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(s), y2: y(s), "class": "d-raster" }));
+      svg.appendChild(el("text", { x: l - 8, y: y(s) + 4, "text-anchor": "end" }, zahl.format(s) + " %"));
+    }
+    svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(d.ziel), y2: y(d.ziel), "class": "d-ziel" }));
+    svg.appendChild(el("text", { x: l + 6, y: y(d.ziel) - 6, "class": "d-name" }, "Ziel " + zahl.format(d.ziel) + " %"));
+    var voll = d.punkte.filter(function (p) { return !p.teiljahr; });
+    var pfad = voll.map(function (p, i) { return (i ? "L" : "M") + x(i) + " " + y(p.wert); }).join(" ");
+    svg.appendChild(el("path", { d: pfad + " L" + x(voll.length - 1) + " " + y(0) + " L" + x(0) + " " + y(0) + " Z", "class": "d-flaeche" }));
+    svg.appendChild(el("path", { d: pfad, "class": "d-linie" }));
+    var n = d.punkte.length;
+    if (d.punkte[n - 1].teiljahr) {
+      svg.appendChild(el("path", { d: "M" + x(n - 2) + " " + y(d.punkte[n - 2].wert) + " L" + x(n - 1) + " " + y(d.punkte[n - 1].wert), "class": "d-linie d-linie--teil" }));
+    }
+    d.punkte.forEach(function (p, i) {
+      svg.appendChild(el("text", { x: x(i), y: H - 8, "text-anchor": "middle" }, p.name));
+      var c = el("circle", { cx: x(i), cy: y(p.wert), r: 4, "class": "d-punkt" });
+      c.setAttribute("data-tip", p.name + ": " + zahl.format(p.wert) + " " + d.einheit + " (" + p.zaehler + " / " + p.nenner + ")");
+      svg.appendChild(c);
+    });
+    var last = d.punkte[n - 1];
+    svg.appendChild(el("text", { x: x(n - 1) + 8, y: y(last.wert) + 4, "class": "d-wert" }, zahl.format(last.wert) + " %"));
+    ziel.appendChild(svg);
+  }
+
+  /* ---- Balken: waagrecht, Wert am Balkenende, Spur im Hintergrund ---- */
+  function balken(ziel, d) {
+    var B = Math.max(280, ziel.clientWidth || 420), zeile = 40, l = 110, r = 46;
+    var H = d.reihen.length * zeile + 8;
+    var max = Math.max.apply(null, d.reihen.map(function (z) { return z.wert; }));
+    var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+    d.reihen.forEach(function (z, i) {
+      var y = 6 + i * zeile, w = (B - l - r) * z.wert / max;
+      svg.appendChild(el("text", { x: l - 10, y: y + 17, "text-anchor": "end", "class": "d-name" }, z.name));
+      svg.appendChild(el("rect", { x: l, y: y + 4, width: B - l - r, height: 18, rx: 4, "class": "d-spur" }));
+      var b = el("rect", { x: l, y: y + 4, width: w, height: 18, rx: 4, "class": "d-balken" });
+      b.setAttribute("data-tip", z.name + ": " + zahl.format(z.wert) + (d.einheit ? " " + d.einheit : ""));
+      svg.appendChild(b);
+      svg.appendChild(el("text", { x: l + w + 6, y: y + 17, "class": "d-wert" }, zahl.format(z.wert)));
+    });
+    ziel.appendChild(svg);
+  }
+
+  /* Diagramme in echter Pixelbreite zeichnen (Schrift bleibt 12 px); neu bei Reiterwechsel und Fenstergröße */
+  function zeichne() {
+    var a = document.getElementById("d-linie"), b = document.getElementById("d-balken");
+    a.textContent = ""; b.textContent = "";
+    if (a.clientWidth) linie(a, DIAGRAMM_DATEN.linie);
+    if (b.clientWidth) balken(b, DIAGRAMM_DATEN.balken);
+  }
+  window.addEventListener("resize", zeichne);
+
+  /* ---- Reiter (auch über die Adresse #umstellung usw.) ---- */
+  function zeige(id) {
+    document.querySelectorAll(".reiter__knopf").forEach(function (k) {
+      k.setAttribute("aria-selected", String(k.dataset.reiter === id));
+    });
+    document.querySelectorAll(".reiterinhalt").forEach(function (s) { s.hidden = s.id !== "reiter-" + id; });
+    window.scrollTo(0, 0);
+    zeichne();
+  }
+  document.querySelectorAll(".reiter__knopf").forEach(function (k) {
+    k.addEventListener("click", function () { history.replaceState(null, "", "#" + k.dataset.reiter); zeige(k.dataset.reiter); });
+  });
+  /* Abschnitte heißen „reiter-…“, damit die Adresse #umstellung die Seite nicht zum Abschnitt springen lässt. */
+  var start = location.hash.slice(1);
+  zeige(document.getElementById("reiter-" + start) ? start : "ueberblick");
+
+  /* ---- Hell / Dunkel / System (auch über ?thema=dark) ---- */
+  function thema(t) {
+    if (t === "system") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", t);
+    document.querySelectorAll("[data-thema]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.thema === t)); });
+  }
+  document.querySelectorAll("[data-thema]").forEach(function (b) { b.addEventListener("click", function () { thema(b.dataset.thema); }); });
+  var q = new URLSearchParams(location.search).get("thema");
+  if (q === "dark" || q === "light") thema(q);
+
+  /* ---- Tooltip für alles mit data-tip ---- */
+  var tip = document.getElementById("tooltip");
+  document.addEventListener("mousemove", function (e) {
+    var t = e.target.closest ? e.target.closest("[data-tip]") : null;
+    if (!t) { tip.hidden = true; return; }
+    tip.textContent = t.getAttribute("data-tip");
+    tip.style.left = (e.clientX + 14) + "px";
+    tip.style.top = (e.clientY + 14) + "px";
+    tip.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

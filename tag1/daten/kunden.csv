@@ -1,0 +1,33 @@
+﻿id,name,segment,land,sprache,ansprechpartner_name,ansprechpartner_rolle,ansprechpartner_email,key_account,ist_haendler,beliefert_endkunden,status
+K-1001,Werkfeuerwehr Hafenchemie Nord GmbH,Industrie,DE,de,Mira Tannenberg,Leiterin Werkfeuerwehr,m.tannenberg@werkfeuerwehr-hafenchemie.example.com,nein,nein,,aktiv
+K-1002,Chemiepark Süd Betriebsfeuerwehr AG,Industrie,DE,de,Dr. Karsten Obermaier,Leiter Anlagensicherheit,k.obermaier@chemiepark-sued.example.com,ja,nein,,aktiv
+K-1003,Raffinerie Küstenmark GmbH,Industrie,DE,de,Jens Albrechtsen,Leiter Brandschutz,j.albrechtsen@raffinerie-kuestenmark.example.com,nein,nein,,aktiv
+K-1004,Stahlwerk Ruhrtal AG,Montanindustrie,DE,de,Sabine Wiegand,Brandschutzbeauftragte,s.wiegand@stahlwerk-ruhrtal.example.com,nein,nein,,aktiv
+K-1005,Kopalnia Śląsk Bergbau Sp. z o.o.,Montanindustrie,PL,en,Tomasz Kowalczyk,Leiter Grubenwehr,t.kowalczyk@kopalnia-slask.example.com,ja,nein,,aktiv
+K-1006,Entsorgungsbetriebe Elbmarsch GmbH,Abfallwirtschaft,DE,de,Frank Reimers,Betriebsleiter,f.reimers@entsorgung-elbmarsch.example.com,nein,nein,,aktiv
+K-1007,Recycling-Park Mitte GmbH,Abfallwirtschaft,AT,de,Ing. Barbara Hollerer,Sicherheitsfachkraft,b.hollerer@recycling-park-mitte.example.com,nein,nein,,aktiv
+K-1008,Feuerwehr Neustadt (Holstein),Feuerwehr kommunal,DE,de,Holger Petersen,Gerätewart,h.petersen@feuerwehr-neustadt-holstein.example.com,nein,nein,,aktiv
+K-1009,Feuerwehr Neustadt am Rübenberge,Feuerwehr kommunal,DE,de,Dirk Meinecke,Stadtbrandmeister,d.meinecke@feuerwehr-neustadt-ruebenberge.example.com,nein,nein,,aktiv
+K-1010,Freiwillige Feuerwehr Bergheim-Land,Feuerwehr kommunal,DE,de,Anja Lindemann,Gemeindebrandmeisterin,a.lindemann@ff-bergheim-land.example.com,nein,nein,,aktiv
+K-1011,Berufsfeuerwehr Alstertal,Feuerwehr kommunal,DE,de,Ralf Sommerfeld,Leiter Technik und Logistik,r.sommerfeld@bf-alstertal.example.com,nein,nein,,aktiv
+K-1012,Brandweer Veluwezoom,Feuerwehr kommunal,NL,en,Joost van der Berg,Equipment Manager,j.vanderberg@brandweer-veluwezoom.example.com,nein,nein,,aktiv
+K-1013,Feuerwehrverband Salzkammergut,Feuerwehr kommunal,AT,de,Gerhard Moosbrugger,Verbandsgerätewart,g.moosbrugger@fw-salzkammergut.example.com,nein,nein,,aktiv
+K-1014,Port of Gdynia Fire Service Sp. z o.o.,Schifffahrt und Werft,PL,en,Piotr Zielinski,Head of Fire Safety,p.zielinski@port-gdynia-fire.example.com,nein,nein,,aktiv
+K-1015,Flughafen Hanse-Airport GmbH,Flughafen,DE,de,Claudia Brandstetter,Leiterin Flughafenfeuerwehr,c.brandstetter@hanse-airport.example.com,nein,nein,,aktiv
+K-1016,Flughafen Alpenrhein AG,Flughafen,AT,de,Markus Eberle,Leiter Flughafenfeuerwehr,m.eberle@flughafen-alpenrhein.example.com,nein,nein,,aktiv
+K-1017,Werft Nordmeer Schiffbau GmbH,Schifffahrt und Werft,DE,de,Ines Carstensen,Leiterin Arbeitssicherheit,i.carstensen@werft-nordmeer.example.com,nein,nein,,aktiv
+K-1018,Reederei Ostsee Linien AG,Schifffahrt und Werft,DE,de,Lars Hinrichsen,Technischer Inspektor,l.hinrichsen@reederei-ostsee-linien.example.com,nein,nein,,aktiv
+K-1019,Nordic Offshore Services AS,Schifffahrt und Werft,NO,en,Henrik Solberg,Fire Safety Manager,h.solberg@nordic-offshore.example.com,nein,nein,,aktiv
+K-1020,Löschgeräte Norddeutschland GmbH,Löschgerätehersteller,DE,de,Wolfgang Prahl,Leiter Produktion,w.prahl@loeschgeraete-nord.example.com,ja,nein,,aktiv
+K-1021,Fireprotect Components Ltd,Löschgerätehersteller,GB,en,Oliver Whitcombe,Purchasing Manager,o.whitcombe@fireprotect-components.example.com,nein,nein,,aktiv
+K-1022,Alpenlösch Gerätebau AG,Löschgerätehersteller,CH,de,Beat Zimmermann,Einkaufsleiter,b.zimmermann@alpenloesch.example.com,nein,nein,,aktiv
+K-1023,Brandschutzhandel Weser GmbH,Händler,DE,de,Susanne Kohlmeyer,Geschäftsführerin,s.kohlmeyer@brandschutzhandel-weser.example.com,nein,ja,K-1009;K-1010;K-1006,aktiv
+K-1024,Fire & Rescue Supply Benelux B.V.,Händler,NL,en,Marieke de Vries,Sales Director,m.devries@frs-benelux.example.com,nein,ja,K-1012;K-1007,aktiv
+K-1025,Forstamt Lüneburger Heide,Forst und Waldbrand,DE,de,Hartmut Brandes,Leiter Waldbrandschutz,h.brandes@forstamt-lueneburger-heide.example.com,nein,nein,,aktiv
+K-1026,Waldbrandverband Brandenburg-Süd,Forst und Waldbrand,DE,de,Katrin Lehmann,Verbandsgeschäftsführerin,k.lehmann@waldbrandverband-bb-sued.example.com,nein,nein,,aktiv
+K-1027,Brandschutzzentrum Münsterland,Übungsanlage,DE,de,Thomas Averbeck,Leiter Übungsbetrieb,t.averbeck@bsz-muensterland.example.com,nein,nein,,aktiv
+K-1028,Landesfeuerwehrschule Ostmark,Übungsanlage,DE,de,Dr. Silke Rönnfeldt,Leiterin Lehrgangswesen,s.roennfeldt@lfs-ostmark.example.com,nein,nein,,aktiv
+K-1029,Altstoff-Verwertung Rheintal GmbH,Abfallwirtschaft,DE,de,Uwe Brandl,Betriebsleiter,u.brandl@altstoff-rheintal.example.com,nein,nein,,ruhend
+K-1030,Hafenchemie Nord Logistik GmbH,Industrie,DE,de,Nadine Hoffmeister,Leiterin Lager und Logistik,n.hoffmeister@hafenchemie-nord-logistik.example.com,nein,nein,,aktiv
+K-1031,Tankterminal Rotterdam-Mond B.V.,Industrie,NL,en,Sander Willemsen,HSE Manager,s.willemsen@tankterminal-rotterdam-mond.example.com,nein,nein,,aktiv
+K-1032,Zementwerk Alpenvorland GmbH,Industrie,AT,de,Peter Kaltenegger,Leiter Werkschutz,p.kaltenegger@zementwerk-alpenvorland.example.com,nein,nein,,aktiv

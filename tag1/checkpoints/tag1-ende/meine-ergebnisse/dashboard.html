@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Sthamer · FreeFoam Dashboard</title>
+<link rel="stylesheet" href="../design/circle/circle.css">
+<link rel="stylesheet" href="../design/circle/komponenten.css">
+<style>
+  /* Nur Anordnung, keine Farbwerte */
+  .zwei { display: grid; gap: var(--space-4); grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); margin-bottom: var(--space-4); }
+  @media (max-width: 900px) { .zwei { grid-template-columns: 1fr; } }
+  .kachel__wert { white-space: nowrap; }
+  .tabelle td.zahl, .tabelle th.zahl { white-space: nowrap; }
+  /* Reiter Angebote: nur Anordnung und Tokens */
+  .angebote { display: grid; gap: var(--space-4); grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: start; margin-bottom: var(--space-4); }
+  .an-liste td, .pfad td { overflow-wrap: anywhere; }
+  @media (max-width: 1000px) { .angebote { grid-template-columns: 1fr; } }
+  .an-zeile { cursor: pointer; }
+  .an-zeile.gewaehlt td { background: var(--color-accent-soft); }
+  .an-zeile:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -2px; }
+  .pfad-mensch td:first-child { box-shadow: inset 4px 0 0 var(--state-crit); }
+  .pfad td, .an-liste td { vertical-align: top; }
+  .vorlage { font-size: var(--font-size-md); line-height: 1.5; color: var(--color-text); }
+  .vorlage h4 { font-size: var(--font-size-lg); margin: 0 0 var(--space-2); }
+  .vorlage h5 { font-size: var(--font-size-lg); margin: var(--space-5) 0 var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+  .vorlage h6 { font-size: var(--font-size-md); margin: var(--space-4) 0 var(--space-2); }
+  .vorlage p, .vorlage ul, .vorlage ol { margin: 0 0 var(--space-3); }
+  .vorlage ul, .vorlage ol { padding-left: var(--space-5); }
+  .vorlage .tabelle-rahmen { margin-bottom: var(--space-3); }
+  .vorlage .tabelle { font-size: var(--font-size-sm); }
+  .an-wer { display: block; margin-top: var(--space-1); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+</style>
+</head>
+<body>
+<div class="seite">
+
+  <header class="kopf">
+    <div class="kopf__titel">
+      <span class="etikett">Dr. Sthamer · Übungsausschnitt</span>
+      <h1>Programm FreeFoam: Wo stehen wir bei <em>fluorfrei</em>?</h1>
+    </div>
+    <div class="kopf__meta">
+      <span>Stichtag <span class="zahl">28.02.2027</span></span>
+      <span>Datenbasis Übungsausschnitt (32 Kunden)</span>
+      <span class="umschalter" role="group" aria-label="Darstellung">
+        <button type="button" data-thema="system" aria-pressed="true">System</button>
+        <button type="button" data-thema="light" aria-pressed="false">Hell</button>
+        <button type="button" data-thema="dark" aria-pressed="false">Dunkel</button>
+      </span>
+    </div>
+  </header>
+
+  <nav class="reiter" role="tablist" aria-label="Sichten">
+    <button class="reiter__knopf" role="tab" data-reiter="ueberblick" aria-selected="true">Überblick</button>
+    <button class="reiter__knopf" role="tab" data-reiter="umstellung" aria-selected="false">Umstellung</button>
+    <button class="reiter__knopf" role="tab" data-reiter="finanzen" aria-selected="false">Finanzen</button>
+    <button class="reiter__knopf" role="tab" data-reiter="angebote" aria-selected="false">Angebote</button>
+  </nav>
+
+  <div class="filter" role="group" aria-label="Filter">
+    <label class="filter__feld">Segment <select id="f-seg"></select></label>
+    <label class="filter__feld">Land <select id="f-land"></select></label>
+    <label class="filter__feld">Vertriebsweg <select id="f-weg"></select></label>
+  </div>
+
+  <!-- ===================== Reiter Überblick ===================== -->
+  <section class="reiterinhalt" id="reiter-ueberblick" role="tabpanel">
+    <div class="kacheln" id="ue-kacheln"></div>
+
+    <div class="zwei">
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3 id="ue-linie-titel">Fluorfrei-Anteil</h3>
+          <span class="karte__unter">Anteil in %, Liter netto</span>
+        </div>
+        <div class="diagramm" id="d-linie" role="img" aria-label="Fluorfrei-Anteil 2021 bis 2026 und Jan.–Feb. 2027"></div>
+        <div class="legende">
+          <span class="legende__eintrag"><span class="legende__farbe"></span>Gesamt (nach Filter)</span>
+          <span class="legende__eintrag"><span class="legende__strich"></span>Ziel 2026: 60 %</span>
+          <span class="legende__eintrag">gestrichelt: Teiljahr Jan.–Feb. 2027</span>
+        </div>
+        <p class="quelle">Quelle: Auftragstabelle (Lieferdatum), Produkttabelle (Produktlinie); Stichtag 28.02.2027. Definition: Liter fluorfreier Produktlinie ÷ alle gelieferten Liter, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte einmal. Punkte mit weniger als 20 Positionen erscheinen als Lücke.</p>
+      </article>
+
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>Absatz in Litern je Jahr</h3>
+          <span class="karte__unter">Liter netto</span>
+        </div>
+        <div class="diagramm" id="d-absatz" role="img" aria-label="Absatz in Litern 2021 bis 2026 und Jan.–Feb. 2027"></div>
+        <p class="quelle">Quelle: Auftragstabelle (Lieferdatum); netto nach Gutschriften und Retouren, ohne Muster. Jan.–Feb. 2027 ist ein Teiljahr, nicht mit ganzen Jahren vergleichbar (helle Säule).</p>
+      </article>
+    </div>
+
+    <article class="karte">
+      <div class="karte__kopf">
+        <h3>Bestand nach <span id="ue-dim-name">Segment</span></h3>
+        <span class="filter__ende umschalter" role="group" aria-label="Gliederung" id="ue-dim">
+          <button type="button" data-dim="seg" aria-pressed="true">Segment</button>
+          <button type="button" data-dim="land" aria-pressed="false">Land</button>
+          <button type="button" data-dim="weg" aria-pressed="false">Vertriebsweg</button>
+          <button type="button" data-dim="anw" aria-pressed="false">Anwendung</button>
+        </span>
+      </div>
+      <div class="tabelle-rahmen">
+        <table class="tabelle">
+          <thead><tr><th id="ue-dim-kopf">Segment</th><th class="zahl">Kunden</th><th class="zahl">Lieferstellen</th><th class="zahl">Liter 2026</th><th class="zahl">Anteil an Litern</th></tr></thead>
+          <tbody id="ue-bestand"></tbody>
+          <tfoot id="ue-bestand-fuss"></tfoot>
+        </table>
+      </div>
+      <p class="quelle" id="ue-bestand-quelle"></p>
+    </article>
+  </section>
+
+  <!-- ===================== Reiter Umstellung ===================== -->
+  <section class="reiterinhalt" id="reiter-umstellung" role="tabpanel" hidden>
+    <div class="kernaussage">
+      <span class="etikett">Kernaussage</span>
+      <span class="kernaussage__satz" id="um-kern"></span>
+    </div>
+
+    <div class="zwei">
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>Fluorfrei-Anteil nach Anwendung</h3>
+          <span class="karte__unter">Anteil in %, Liter netto</span>
+        </div>
+        <div class="diagramm" id="d-um-linie" role="img" aria-label="Fluorfrei-Anteil je Anwendung 2021 bis 2026 und Jan.–Feb. 2027"></div>
+        <div class="legende" id="um-legende"></div>
+        <p class="quelle">Quelle: Auftragstabelle (Lieferdatum), Produkttabelle (Produktlinie), Anwendung laut Auftragsposition; Stichtag 28.02.2027. Definition: fluorfreie Liter ÷ alle Liter, netto, ohne Muster, Doppelimporte einmal. Punkte mit weniger als 20 Positionen sind eine Lücke (kein Punkt). Tragbare und fahrbare Feuerlöscher sind 2021–2025 bei 0 % oder eine Lücke und hier nicht gezeigt. Jan.–Feb. 2027 ist ein Teiljahr.</p>
+      </article>
+
+      <div class="stapel">
+        <article class="karte" id="um-hinweis-karte">
+          <div class="karte__kopf"><h3>Eine einzelne Lieferung verzerrt 2026</h3><span class="karte__unter">Anteil mit und ohne</span></div>
+          <div id="um-ausreisser"></div>
+          <p class="quelle">Quelle: Auftragstabelle (Lieferdatum 2026), Produkttabelle (Produktlinie). „Ohne“ lässt genau diese eine Position weg; der Anteil ist aus Zähler und Nenner neu gerechnet. Der Notfallservice ist nicht budgetiert.</p>
+        </article>
+        <article class="karte">
+          <div class="karte__kopf"><h3>Datenaufnahme bei stationären Anlagen</h3><span class="karte__unter">Lieferstellen im Stamm</span></div>
+          <div id="um-datenaufnahme"></div>
+          <p class="quelle">Quelle: Lieferstellenstamm (Anwendung „stationäre Anlage“, Datum der Datenaufnahme vor Ort); Stichtag 28.02.2027. Filter Segment und Land wirken, der Vertriebsweg nicht.</p>
+        </article>
+      </div>
+    </div>
+
+    <article class="karte">
+      <div class="karte__kopf">
+        <h3>Ampel je Segment und Land, 2026</h3>
+        <span class="karte__unter">Anteil fluorhaltiger Liter</span>
+      </div>
+      <div class="regel">
+        <span>Regel:</span>
+        <span class="zustand zustand--crit">rot</span><span>über 50 % fluorhaltig</span>
+        <span class="zustand zustand--warn">gelb</span><span>20 bis 50 % (Grenzen eingeschlossen)</span>
+        <span class="zustand zustand--ok">grün</span><span>unter 20 %</span>
+        <span class="zustand zustand--off">Lücke</span><span>weniger als 20 Positionen</span>
+      </div>
+      <div class="tabelle-rahmen">
+        <table class="tabelle">
+          <thead><tr><th>Segment</th><th>Land</th><th class="zahl">Positionen</th><th class="zahl">Fluorhaltige Liter</th><th class="zahl">Alle Liter</th><th class="zahl">Anteil fluorhaltig</th><th>Ampel</th></tr></thead>
+          <tbody id="um-ampel"></tbody>
+          <tfoot id="um-ampel-fuss"></tfoot>
+        </table>
+      </div>
+      <p class="quelle">Quelle: Auftragstabelle (Lieferdatum 2026), Kundenstamm (Segment, Land), Produkttabelle (Produktlinie); Stichtag 28.02.2027. Anteil = fluorhaltige Liter ÷ alle Liter, netto, ohne Muster; Netzmittel (Linie „offen“) zählen im Nenner. Aus summierten Zählern und Nennern gerechnet, nie gemittelt. Übungsausschnitt.</p>
+    </article>
+  </section>
+
+  <!-- ===================== Reiter Finanzen ===================== -->
+  <section class="reiterinhalt" id="reiter-finanzen" role="tabpanel" hidden>
+    <div class="filter" role="group" aria-label="Filter Finanzen">
+      <label class="filter__feld">Notfallservice <select id="fi-nf">
+        <option value="mit">mit (eigener Balken)</option>
+        <option value="ohne">ohne</option>
+      </select></label>
+      <span class="filter__ende umschalter" role="group" aria-label="Brücke für" id="fi-wert">
+        <button type="button" data-wert="db" aria-pressed="true">Deckungsbeitrag</button>
+        <button type="button" data-wert="u" aria-pressed="false">Nettoumsatz</button>
+      </span>
+    </div>
+
+    <div class="kacheln" id="fi-kacheln"></div>
+
+    <div class="kernaussage">
+      <span class="etikett">Kernaussage</span>
+      <span class="kernaussage__satz" id="fi-kern"></span>
+    </div>
+
+    <article class="karte">
+      <div class="karte__kopf">
+        <h3 id="fi-bruecke-titel">Brücke Budget → Ist 2026</h3>
+        <span class="karte__unter" id="fi-bruecke-unter">EUR</span>
+      </div>
+      <div class="diagramm" id="d-fi-bruecke" role="img" aria-label="Wasserfall von Budget zu Ist 2026"></div>
+      <p class="hinweis" id="fi-methode"></p>
+      <div id="fi-abgleich"></div>
+      <p class="quelle" id="fi-bruecke-quelle"></p>
+    </article>
+
+    <div class="zwei">
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>Marge je Produktlinie und Segment</h3>
+          <span class="karte__unter">DB-Marge nach Herstellkosten und Fracht, Ist</span>
+        </div>
+        <div class="tabelle-rahmen">
+          <table class="tabelle">
+            <thead><tr><th>Gruppe</th><th class="zahl">Pos. 2026</th><th class="zahl">Nettoumsatz 2026</th><th class="zahl">DB-Marge 2025</th><th class="zahl">DB-Marge 2026</th></tr></thead>
+            <tbody id="fi-marge"></tbody>
+          </table>
+        </div>
+        <p class="quelle" id="fi-marge-quelle"></p>
+      </article>
+
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>Listenpreis gegen realisierten Preis</h3>
+          <span class="karte__unter">EUR je Liter, ohne Notfallservice</span>
+        </div>
+        <div class="diagramm" id="d-fi-preis" role="img" aria-label="Listenpreis und realisierter Preis je Vertriebsweg 2025 und 2026"></div>
+        <div class="legende">
+          <span class="legende__eintrag"><span class="legende__farbe legende__farbe--2"></span>Listenpreis je Liter</span>
+          <span class="legende__eintrag"><span class="legende__farbe"></span>realisierter Preis je Liter</span>
+        </div>
+        <div class="tabelle-rahmen">
+          <table class="tabelle">
+            <thead><tr><th>Vertriebsweg</th><th class="zahl">Jahr</th><th class="zahl">Pos.</th><th class="zahl">Rabattquote</th></tr></thead>
+            <tbody id="fi-rabatt"></tbody>
+          </table>
+        </div>
+        <p class="quelle" id="fi-preis-quelle"></p>
+      </article>
+    </div>
+
+    <article class="karte karte--flach">
+      <div class="karte__kopf"><h3>Fremdwährungseffekt 2026 je Währung</h3><span class="karte__unter">EUR, Ist-Monatskurs gegen Plankurs</span></div>
+      <div id="fi-fx"></div>
+      <p class="quelle" id="fi-fx-quelle"></p>
+    </article>
+  </section>
+
+  <!-- ===================== Reiter Angebote ===================== -->
+  <section class="reiterinhalt" id="reiter-angebote" role="tabpanel" hidden>
+    <div class="kernaussage">
+      <span class="etikett">Kernaussage</span>
+      <span class="kernaussage__satz" id="an-kern"></span>
+    </div>
+    <div class="regel" style="margin: var(--space-3) 0;">
+      <span class="zustand zustand--crit">Hier entscheidet ein Mensch</span><span>Schritt, den nur eine Person entscheiden oder zusagen darf</span>
+      <span class="zustand zustand--ok">System darf versenden</span><span>nur Klasse A bis EUR 25.000</span>
+    </div>
+    <div class="angebote">
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3>Vorgänge im Angebotseingang</h3>
+          <span class="karte__unter">Auftragswert netto in EUR · Klick zeigt den Regelpfad</span>
+        </div>
+        <div class="tabelle-rahmen">
+          <table class="tabelle an-liste">
+            <thead><tr><th>Vorgang</th><th class="zahl">Auftragswert EUR</th><th>Klasse</th><th>Empfehlung</th></tr></thead>
+            <tbody id="an-liste"></tbody>
+          </table>
+        </div>
+        <p class="quelle" id="an-liste-quelle"></p>
+      </article>
+
+      <article class="karte">
+        <div class="karte__kopf">
+          <h3 id="an-titel">Regelpfad</h3>
+          <span class="karte__unter" id="an-unter"></span>
+        </div>
+        <div class="tabelle-rahmen">
+          <table class="tabelle pfad">
+            <thead><tr><th>Schritt</th><th>Angabe</th><th>Paragraf</th><th>Ergebnis</th></tr></thead>
+            <tbody id="an-pfad"></tbody>
+          </table>
+        </div>
+        <p class="quelle" id="an-pfad-quelle"></p>
+        <div class="vorlage" id="an-vorlage"></div>
+      </article>
+    </div>
+  </section>
+
+  <p class="quelle">Erstellt mit Claude · Circle Design · Stand 28.02.2027 · Zahlen aus meine-ergebnisse/skripte/ueberblick.py</p>
+</div>
+
+<div class="tooltip" id="tooltip" hidden></div>
+
+<script src="dashboard-daten/ueberblick.js"></script>
+<script src="dashboard-daten/umstellung.js"></script>
+<script src="dashboard-daten/finanzen.js"></script>
+<script src="dashboard-daten/angebote.js"></script>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var de0 = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+  var de1 = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var NB = " ";
+  var LAND = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz", GB: "Großbritannien", NL: "Niederlande", NO: "Norwegen", PL: "Polen" };
+  var ANW = { stationaere_anlage: "Stationäre Anlage", feuerwehrfahrzeug: "Feuerwehrfahrzeug", lager_bestand: "Lager (Bestand)", uebung_training: "Übung und Training", tragbarer_feuerloescher: "Tragbarer Feuerlöscher", fahrbarer_feuerloescher: "Fahrbarer Feuerlöscher" };
+  var PERIODEN = ["2021", "2022", "2023", "2024", "2025", "2026", "2027T"];
+  var PNAME = { "2027T": "Jan.–Feb. 2027" };
+  function pname(j) { return PNAME[j] || j; }
+  function lname(dim, v) { return dim === "land" ? (LAND[v] || v) : dim === "anw" ? (ANW[v] || v) : v; }
+
+  function el(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function html(id) { return document.getElementById(id); }
+
+  /* ---------- Filter (gilt für alle Zahlen des Reiters) ---------- */
+  var F = { seg: "", land: "", weg: "" };
+  function fuelle(id, werte, alle, dim) {
+    var s = html(id);
+    s.innerHTML = "";
+    var o = document.createElement("option"); o.value = ""; o.textContent = alle; s.appendChild(o);
+    werte.forEach(function (v) {
+      var o2 = document.createElement("option"); o2.value = v; o2.textContent = dim ? lname(dim, v) : v; s.appendChild(o2);
+    });
+    s.addEventListener("change", function () { F[id.slice(2)] = s.value; render(); });
+  }
+  fuelle("f-seg", UEBERBLICK.segmente, "alle Segmente");
+  fuelle("f-land", UEBERBLICK.laender, "alle Länder", "land");
+  fuelle("f-weg", UEBERBLICK.wege, "alle Vertriebswege");
+
+  function passtZelle(z) {
+    return (!F.seg || z.seg === F.seg) && (!F.land || z.land === F.land) && (!F.weg || z.weg === F.weg);
+  }
+  function summe(j) {
+    var s = { l: 0, ff: 0, u: 0, n: 0 };
+    UEBERBLICK.zellen.forEach(function (z) {
+      if (z.j === j && passtZelle(z)) { s.l += z.l; s.ff += z.ff; s.u += z.u; s.n += z.n; }
+    });
+    return s;
+  }
+  function kundenFilter(k) {
+    return (!F.seg || k.seg === F.seg) && (!F.land || k.land === F.land) && (!F.weg || k.wege.indexOf(F.weg) >= 0);
+  }
+  function lsFilter(r) {
+    return (!F.seg || r.seg === F.seg) && (!F.land || r.land === F.land) && (!F.weg || r.wege.indexOf(F.weg) >= 0);
+  }
+
+  /* ---------- Überblick ---------- */
+  function kachel(name, wert, def, tip, delta) {
+    return '<div class="kachel" data-tip="' + tip.replace(/"/g, "&quot;") + '"><span class="kachel__name">' + name +
+      '</span><span class="kachel__wert">' + wert + '</span><span class="kachel__def">' + def + '</span>' + (delta || "") + '</div>';
+  }
+
+  function kacheln() {
+    var s = summe("2026");
+    var nk = UEBERBLICK.kunden.filter(kundenFilter).length;
+    var nl = UEBERBLICK.lieferstellen.filter(lsFilter).length;
+    var anteil = s.l ? 100 * s.ff / s.l : null;
+    var luecke = s.n < 20;
+    var anteilText = (anteil === null || luecke) ? "–" : de1.format(anteil) + "<small>" + NB + "%</small>";
+    var def5 = luecke ? "weniger als 20 Positionen: Lücke" : "Ziel 60" + NB + "% · " + de0.format(s.ff) + NB + "l von " + de0.format(s.l) + NB + "l";
+    html("ue-kacheln").innerHTML =
+      kachel("Kunden", de0.format(nk), "aktiver Kunde nach Definition",
+        "Aktive Kunden nach Definition: mindestens eine Lieferung in den 24 Monaten vor dem Stichtag (ab 01.03.2025). Zählweise nach der Notiz zur Kundenzahl. Eine andere Zählweise (Kundenstamm, Status „aktiv“, ohne Händler) ergibt eine andere Zahl.") +
+      kachel("Lieferstellen", de0.format(nl), "Lieferstellen im Stamm",
+        "Alle Lieferstellen und Anlagen im Lieferstellenstamm (nicht nur die mit Lieferung 2026). Bei gewähltem Vertriebsweg: Lieferstellen, die bisher über diesen Weg beliefert wurden.") +
+      kachel("Absatz 2026", de0.format(s.l) + "<small>" + NB + "l</small>", "netto, ohne Muster",
+        "Gelieferte Liter 2026 nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte einmal; Gebinde ohne Literangabe umgerechnet (IBC 1.000 l, Fass 200 l, Kanister 20 l). " + de0.format(s.n) + " Positionen.") +
+      kachel("Nettoumsatz 2026", "<small>EUR</small>" + NB + de0.format(s.u), "netto, Konzernkurs 2026",
+        "Summe der Nettobeträge 2026 nach Lieferdatum, Gutschriften und Retouren abgezogen, ohne Muster und Doppelimporte. CHF, GBP und NOK zum Konzernkurs 2026 (CHF 1,071 · GBP 1,168 · NOK 0,0849 je Einheit in EUR).") +
+      kachel("Fluorfrei-Anteil 2026", anteilText, def5,
+        "Liter der fluorfreien Produktlinie ÷ alle gelieferten Liter 2026 (Zähler " + de0.format(s.ff) + " l, Nenner " + de0.format(s.l) + " l). Grundlage ist die Produktlinie, nicht die Deklaration; Netzmittel (Linie „offen“) zählen im Nenner, nicht im Zähler. Verbindlich laut Kennzahlen.",
+        (anteil === null || luecke) ? "" : (anteil < UEBERBLICK.ziel
+          ? '<span class="kachel__delta kachel__delta--ab">▼ ' + de1.format(UEBERBLICK.ziel - anteil) + NB + "Prozentpunkte unter dem Ziel</span>"
+          : '<span class="kachel__delta kachel__delta--auf">▲ ' + de1.format(anteil - UEBERBLICK.ziel) + NB + "Prozentpunkte über dem Ziel</span>"));
+  }
+
+  function linie() {
+    var d = html("d-linie");
+    d.textContent = "";
+    if (!d.clientWidth) return;
+    var punkte = PERIODEN.map(function (j) {
+      var s = summe(j);
+      return { j: j, name: pname(j), s: s, luecke: s.n < 20, wert: s.l ? 100 * s.ff / s.l : null, teil: j === "2027T" };
+    });
+    var B = Math.max(320, d.clientWidth), H = 230, l = 44, r = 64, o = 14, u = 28;
+    var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+    var x = function (i) { return l + i * (B - l - r) / (punkte.length - 1); };
+    var y = function (v) { return o + (H - o - u) * (1 - v / 100); };
+    [0, 25, 50, 75, 100].forEach(function (s) {
+      svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(s), y2: y(s), "class": "d-raster" }));
+      svg.appendChild(el("text", { x: l - 8, y: y(s) + 4, "text-anchor": "end" }, de0.format(s) + NB + "%"));
+    });
+    svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(60), y2: y(60), "class": "d-ziel" }));
+    svg.appendChild(el("text", { x: l + 6, y: y(60) - 6, "class": "d-name" }, "Ziel 2026: 60" + NB + "%"));
+    // durchgezogene Linie nur zwischen zwei benachbarten Punkten ohne Lücke (ganze Jahre)
+    var pfad = "", offen = false;
+    punkte.forEach(function (p, i) {
+      if (p.teil) return;
+      if (p.luecke || p.wert === null) { offen = false; return; }
+      pfad += (offen ? "L" : "M") + x(i) + " " + y(p.wert) + " ";
+      offen = true;
+    });
+    if (pfad) svg.appendChild(el("path", { d: pfad, "class": "d-linie" }));
+    var n = punkte.length, t = punkte[n - 1], v = punkte[n - 2];
+    if (!t.luecke && t.wert !== null && !v.luecke && v.wert !== null) {
+      svg.appendChild(el("path", { d: "M" + x(n - 2) + " " + y(v.wert) + " L" + x(n - 1) + " " + y(t.wert), "class": "d-linie d-linie--teil" }));
+    }
+    punkte.forEach(function (p, i) {
+      svg.appendChild(el("text", { x: x(i), y: H - 8, "text-anchor": i === n - 1 ? "end" : "middle" }, p.teil ? "Jan.–Feb. 27" : p.name));
+      if (p.luecke || p.wert === null) {
+        var g = el("circle", { cx: x(i), cy: y(0), r: 4, fill: "none", "class": "d-raster" });
+        g.setAttribute("data-tip", p.name + ": Lücke, nur " + p.s.n + " Positionen (weniger als 20)");
+        svg.appendChild(g);
+        return;
+      }
+      var c = el("circle", { cx: x(i), cy: y(p.wert), r: 4, "class": "d-punkt" });
+      c.setAttribute("data-tip", p.name + ": " + de1.format(p.wert) + " % (Zähler " + de0.format(p.s.ff) + " l fluorfrei, Nenner " + de0.format(p.s.l) + " l, " + p.s.n + " Positionen)" + (p.teil ? " – Teiljahr" : ""));
+      svg.appendChild(c);
+    });
+    var last = null;
+    for (var i = n - 1; i >= 0; i--) { if (!punkte[i].luecke && punkte[i].wert !== null) { last = i; break; } }
+    if (last !== null) svg.appendChild(el("text", { x: x(last) + 8, y: y(punkte[last].wert) + 4, "class": "d-wert" }, de1.format(punkte[last].wert) + NB + "%"));
+    d.appendChild(svg);
+    var luecken = punkte.filter(function (p) { return p.luecke; }).map(function (p) { return p.name; });
+    var p26 = punkte[5];
+    html("ue-linie-titel").textContent = (p26.luecke || p26.wert === null)
+      ? "Für 2026 liegt in dieser Auswahl keine belastbare Zahl vor (weniger als 20 Positionen)"
+      : "Fluorfrei-Anteil 2026: " + de1.format(p26.wert) + NB + "% – Ziel 60" + NB + "%" + (luecken.length ? " (Lücken: " + luecken.join(", ") + ")" : "");
+  }
+
+  function absatz() {
+    var d = html("d-absatz");
+    d.textContent = "";
+    if (!d.clientWidth) return;
+    var reihen = PERIODEN.map(function (j) { return { j: j, name: pname(j), s: summe(j), teil: j === "2027T" }; });
+    var max = Math.max.apply(null, reihen.map(function (z) { return z.s.l; }));
+    if (max <= 0) max = 1;
+    var B = Math.max(280, d.clientWidth), H = 230, l = 12, r = 12, o = 22, u = 40;
+    var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+    var bw = (B - l - r) / reihen.length;
+    reihen.forEach(function (z, i) {
+      var h = (H - o - u) * Math.max(z.s.l, 0) / max, x0 = l + i * bw + bw * 0.18, w = bw * 0.64;
+      var b = el("rect", { x: x0, y: H - u - h, width: w, height: h, rx: 3, "class": z.teil ? "d-balken d-balken--2" : "d-balken" });
+      b.setAttribute("data-tip", z.name + ": " + de0.format(z.s.l) + " l netto, " + z.s.n + " Positionen" + (z.teil ? " – Teiljahr" : ""));
+      svg.appendChild(b);
+      svg.appendChild(el("text", { x: x0 + w / 2, y: H - u - h - 5, "text-anchor": "middle", "class": "d-wert" }, de0.format(z.s.l)));
+      svg.appendChild(el("text", { x: x0 + w / 2, y: H - 22, "text-anchor": "middle" }, z.teil ? "Jan.–Feb." : z.name));
+      if (z.teil) svg.appendChild(el("text", { x: x0 + w / 2, y: H - 8, "text-anchor": "middle" }, "2027"));
+    });
+    d.appendChild(svg);
+  }
+
+  var DIM = "seg";
+  var DIMNAME = { seg: "Segment", land: "Land", weg: "Vertriebsweg", anw: "Anwendung" };
+  function bestand() {
+    var werte = DIM === "seg" ? UEBERBLICK.segmente : DIM === "land" ? UEBERBLICK.laender : DIM === "weg" ? UEBERBLICK.wege : UEBERBLICK.anwendungen;
+    var kunden = UEBERBLICK.kunden.filter(kundenFilter), ls = UEBERBLICK.lieferstellen.filter(lsFilter);
+    var gesamt = 0;
+    var zeilen = werte.map(function (v) {
+      var nk = kunden.filter(function (k) {
+        return DIM === "weg" ? k.wege.indexOf(v) >= 0 : DIM === "anw" ? k.anw.indexOf(v) >= 0 : k[DIM] === v;
+      }).length;
+      var nl = ls.filter(function (r) { return DIM === "weg" ? r.wege.indexOf(v) >= 0 : r[DIM] === v; }).length;
+      var lit = 0;
+      UEBERBLICK.zellen.forEach(function (z) { if (z.j === "2026" && passtZelle(z) && z[DIM] === v) lit += z.l; });
+      gesamt += lit;
+      return { v: v, nk: nk, nl: nl, lit: lit };
+    }).filter(function (z) { return z.nk || z.nl || z.lit; });
+    html("ue-bestand").innerHTML = zeilen.map(function (z) {
+      return "<tr><td>" + lname(DIM, z.v) + '</td><td class="zahl">' + z.nk + '</td><td class="zahl">' + z.nl + '</td><td class="zahl">' + de0.format(z.lit) +
+        '</td><td class="zahl">' + (gesamt ? de1.format(100 * z.lit / gesamt) + NB + "%" : "–") + "</td></tr>";
+    }).join("");
+    var sk = kunden.length, sl = ls.length;
+    html("ue-bestand-fuss").innerHTML = "<tr><td>Gesamt (nach Filter)</td>" +
+      '<td class="zahl">' + sk + '</td><td class="zahl">' + sl + '</td><td class="zahl">' + de0.format(gesamt) + '</td><td class="zahl">100,0' + NB + "%</td></tr>";
+    var hinweis = "";
+    if (DIM === "weg") hinweis = " Kunden und Lieferstellen können über mehrere Vertriebswege beliefert werden und stehen dann in mehreren Zeilen; die Summe der Zeilen ist größer als die Gesamtzahl.";
+    if (DIM === "anw") hinweis = " Ein Kunde kann Lieferstellen mehrerer Anwendungen haben und steht dann in mehreren Zeilen.";
+    html("ue-bestand-quelle").textContent = "Quelle: Kundenstamm, Lieferstellenstamm und Auftragstabelle (Lieferdatum 2026); Stichtag 28.02.2027. Kunden: aktiver Kunde nach Definition (Lieferung ab 01.03.2025). Liter 2026 netto, ohne Muster." + hinweis;
+    html("ue-dim-name").textContent = DIMNAME[DIM];
+    html("ue-dim-kopf").textContent = DIMNAME[DIM];
+  }
+  document.querySelectorAll("#ue-dim button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      DIM = b.dataset.dim;
+      document.querySelectorAll("#ue-dim button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      bestand();
+    });
+  });
+
+  /* ---------- Umstellung ---------- */
+  var ANW_LINIEN = [
+    { a: "stationaere_anlage", farbe: "var(--chart-series)", breit: 3.5 },
+    { a: "feuerwehrfahrzeug", farbe: "var(--chart-benchmark)", breit: 2 },
+    { a: "lager_bestand", farbe: "var(--chart-peer)", breit: 2 },
+    { a: "uebung_training", farbe: "var(--chart-sub)", breit: 2 }
+  ];
+  function uSumme(f) {
+    var s = { l: 0, ff: 0, fh: 0, n: 0 };
+    UMSTELLUNG.zellen.forEach(function (z) {
+      if ((!F.seg || z.seg === F.seg) && (!F.land || z.land === F.land) && (!F.weg || z.weg === F.weg) && f(z)) {
+        s.l += z.l; s.ff += z.ff; s.fh += z.fh; s.n += z.n;
+      }
+    });
+    return s;
+  }
+  function pct(s) { return s.n < 20 || !s.l ? null : 100 * s.ff / s.l; }
+  function pctText(w) { return w === null ? "Lücke" : de1.format(w) + NB + "%"; }
+
+  function umLinie() {
+    var d = html("d-um-linie");
+    d.textContent = "";
+    if (!d.clientWidth) return;
+    var B = Math.max(320, d.clientWidth), H = 260, l = 44, r = 150, o = 14, u = 28;
+    var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+    var x = function (i) { return l + i * (B - l - r) / (PERIODEN.length - 1); };
+    var y = function (v) { return o + (H - o - u) * (1 - v / 100); };
+    [0, 25, 50, 75, 100].forEach(function (s) {
+      svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(s), y2: y(s), "class": "d-raster" }));
+      svg.appendChild(el("text", { x: l - 8, y: y(s) + 4, "text-anchor": "end" }, de0.format(s) + NB + "%"));
+    });
+    svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(60), y2: y(60), "class": "d-ziel" }));
+    svg.appendChild(el("text", { x: B - r + 8, y: y(60) + 4, "class": "d-name" }, "Ziel 60" + NB + "% (2026)"));
+    PERIODEN.forEach(function (j, i) {
+      svg.appendChild(el("text", { x: x(i), y: H - 8, "text-anchor": i === PERIODEN.length - 1 ? "end" : "middle" }, j === "2027T" ? "Jan.–Feb. 27" : j));
+    });
+    var reihen = [{ name: "Gesamt", farbe: "var(--chart-label)", breit: 2.5, f: function () { return true; }, gesamt: true }];
+    ANW_LINIEN.forEach(function (a) { reihen.push({ name: ANW[a.a], farbe: a.farbe, breit: a.breit, f: function (z) { return z.anw === a.a; } }); });
+    var enden = [];
+    reihen.forEach(function (rh) {
+      var pk = PERIODEN.map(function (j) { var s = uSumme(function (z) { return z.j === j && rh.f(z); }); return { j: j, s: s, w: pct(s) }; });
+      var pfad = "", offen = false, teil = "";
+      pk.forEach(function (p, i) {
+        if (p.j === "2027T") return;
+        if (p.w === null) { offen = false; return; }
+        pfad += (offen ? "L" : "M") + x(i) + " " + y(p.w) + " "; offen = true;
+      });
+      var st = { fill: "none", stroke: rh.farbe, "stroke-width": rh.breit, "stroke-linecap": "round", "stroke-linejoin": "round" };
+      if (rh.gesamt) st["stroke-dasharray"] = "1 5";
+      if (pfad) svg.appendChild(el("path", Object.assign({ d: pfad }, st)));
+      var n = pk.length - 1;
+      if (pk[n].w !== null && pk[n - 1].w !== null) {
+        svg.appendChild(el("path", { d: "M" + x(n - 1) + " " + y(pk[n - 1].w) + " L" + x(n) + " " + y(pk[n].w), fill: "none", stroke: rh.farbe, "stroke-width": 1.5, "stroke-dasharray": "3 4" }));
+      }
+      pk.forEach(function (p, i) {
+        if (p.w === null) return;
+        var c = el("circle", { cx: x(i), cy: y(p.w), r: rh.gesamt ? 3 : 3.5, fill: "var(--color-surface)", stroke: rh.farbe, "stroke-width": 2 });
+        c.setAttribute("data-tip", rh.name + ", " + (p.j === "2027T" ? "Jan.–Feb. 2027 (Teiljahr)" : p.j) + ": " + de1.format(p.w) + " % (Zähler " + de0.format(p.s.ff) + " l, Nenner " + de0.format(p.s.l) + " l, " + p.s.n + " Positionen)");
+        svg.appendChild(c);
+      });
+      for (var i = n; i >= 0; i--) { if (pk[i].w !== null) { enden.push({ name: rh.name, w: pk[i].w, i: i, farbe: rh.farbe }); break; } }
+    });
+    // Namen am letzten Punkt, gegeneinander versetzt, damit nichts überdeckt wird
+    enden.sort(function (a, b) { return a.w - b.w; });
+    var ylast = null;
+    enden.forEach(function (e) {
+      var yy = y(e.w) + 4;
+      if (ylast !== null && ylast - yy < 14) yy = ylast - 14;
+      ylast = yy;
+      e.yy = yy;
+    });
+    enden.forEach(function (e) {
+      var xx = x(e.i) + 8;
+      svg.appendChild(el("text", { x: xx, y: e.yy, "class": "d-wert" }, e.name + " " + de1.format(e.w) + NB + "%"));
+    });
+    d.appendChild(svg);
+    var leg = '<span class="legende__eintrag">Linien: Gesamt (gepunktet) und vier Anwendungen, Name und Wert am letzten Punkt</span><span class="legende__eintrag"><span class="legende__strich"></span>Ziel 60 %</span><span class="legende__eintrag">gestrichelt: Teiljahr Jan.–Feb. 2027</span>';
+    html("um-legende").innerHTML = leg;
+  }
+
+  function umAusreisser() {
+    var a = UMSTELLUNG.ausreisser;
+    var passt = (!F.seg || a.segment === F.seg) && (!F.land || true) && (!F.weg || a.weg === F.weg);
+    var mit = uSumme(function (z) { return z.j === "2026"; });
+    var ohne = uSumme(function (z) { return z.j === "2026" && !z.g; });
+    var inLand = !F.land || true;
+    var in26 = uSumme(function (z) { return z.j === "2026" && z.g; });
+    var teil = mit.l ? 100 * in26.l / mit.l : 0;
+    var txt = "<p>Am " + a.datum.split("-").reverse().join(".") + " lieferte der Notfallservice an Kunde " + a.kunde + " (" + a.segment + ", stationäre Anlage) <strong>" + de0.format(a.liter) +
+      NB + "Liter fluorhaltig</strong> in einer einzigen Position. Üblich sind " + de0.format(a.median) + NB + "Liter je Position (Median 2026).</p>";
+    if (!in26.n) {
+      txt += "<p class=\"leise\">In der gewählten Auswahl kommt diese Lieferung nicht vor; der Anteil bleibt unverändert.</p>";
+    } else {
+      var pm = pct(mit), po = pct(ohne);
+      txt += '<table class="tabelle"><thead><tr><th></th><th class="zahl">Anteil</th><th class="zahl">Zähler / Nenner</th></tr></thead><tbody>' +
+        "<tr><td>2026 mit der Lieferung</td><td class=\"zahl\">" + pctText(pm) + "</td><td class=\"zahl\">" + de0.format(mit.ff) + NB + "l / " + de0.format(mit.l) + NB + "l</td></tr>" +
+        "<tr><td>2026 ohne die Lieferung</td><td class=\"zahl\">" + pctText(po) + "</td><td class=\"zahl\">" + de0.format(ohne.ff) + NB + "l / " + de0.format(ohne.l) + NB + "l</td></tr></tbody></table>" +
+        "<p>Die Lieferung macht " + de1.format(teil) + NB + "% aller Liter 2026 in dieser Auswahl aus.</p>";
+    }
+    html("um-ausreisser").innerHTML = txt;
+  }
+
+  function umDatenaufnahme() {
+    var st = UMSTELLUNG.stationaer.filter(function (s) { return (!F.seg || s.seg === F.seg) && (!F.land || s.land === F.land); });
+    var da = st.filter(function (s) { return s.da; }).length;
+    html("um-datenaufnahme").innerHTML = st.length
+      ? "<p><strong>" + da + " von " + st.length + "</strong> stationären Anlagen (" + de1.format(100 * da / st.length) + NB + "%) sind schon vor Ort aufgenommen. Für " + (st.length - da) + " fehlt die Datenaufnahme.</p>"
+      : '<p class="leise">Keine stationären Anlagen in dieser Auswahl.</p>';
+  }
+
+  function umAmpel() {
+    var gruppen = {};
+    UMSTELLUNG.zellen.forEach(function (z) {
+      if (z.j !== "2026" || (F.seg && z.seg !== F.seg) || (F.land && z.land !== F.land) || (F.weg && z.weg !== F.weg)) return;
+      var k = z.seg + "|" + z.land;
+      var g = gruppen[k] || (gruppen[k] = { seg: z.seg, land: z.land, l: 0, fh: 0, n: 0 });
+      g.l += z.l; g.fh += z.fh; g.n += z.n;
+    });
+    var zeilen = Object.keys(gruppen).map(function (k) { return gruppen[k]; }).sort(function (a, b) {
+      return a.seg < b.seg ? -1 : a.seg > b.seg ? 1 : (LAND[a.land] < LAND[b.land] ? -1 : 1);
+    });
+    var T = { l: 0, fh: 0, n: 0 };
+    html("um-ampel").innerHTML = zeilen.map(function (g) {
+      T.l += g.l; T.fh += g.fh; T.n += g.n;
+      var pill, anteil;
+      if (g.n < 20) { pill = '<span class="zustand zustand--off">Lücke</span>'; anteil = "–"; }
+      else {
+        anteil = de1.format(100 * g.fh / g.l) + NB + "%";
+        pill = g.fh * 2 > g.l ? '<span class="zustand zustand--crit">rot</span>'
+          : g.fh * 5 < g.l ? '<span class="zustand zustand--ok">grün</span>'
+          : '<span class="zustand zustand--warn">gelb</span>';
+      }
+      return "<tr><td>" + g.seg + "</td><td>" + LAND[g.land] + '</td><td class="zahl">' + g.n + '</td><td class="zahl">' + de0.format(g.fh) + '</td><td class="zahl">' + de0.format(g.l) + '</td><td class="zahl">' + anteil + "</td><td>" + pill + "</td></tr>";
+    }).join("");
+    html("um-ampel-fuss").innerHTML = "<tr><td>Gesamt (nach Filter)</td><td></td><td class=\"zahl\">" + T.n + '</td><td class="zahl">' + de0.format(T.fh) + '</td><td class="zahl">' + de0.format(T.l) + '</td><td class="zahl">' + (T.n >= 20 && T.l ? de1.format(100 * T.fh / T.l) + NB + "%" : "–") + "</td><td></td></tr>";
+  }
+
+  function umKern() {
+    var s = uSumme(function (z) { return z.j === "2026" && z.anw === "stationaere_anlage"; });
+    var so = uSumme(function (z) { return z.j === "2026" && z.anw === "stationaere_anlage" && !z.g; });
+    var r = uSumme(function (z) { return z.j === "2026" && z.anw !== "stationaere_anlage"; });
+    var t;
+    if (s.n < 20 || r.n < 20) t = "In dieser Auswahl liegen zu wenige Positionen (weniger als 20) für einen Vergleich der stationären Anlagen mit den übrigen Anwendungen vor.";
+    else t = "Der Rückstand sitzt bei den stationären Anlagen: 2026 sind dort nur " + de1.format(100 * s.ff / s.l) + NB + "% der Liter fluorfrei (" + de1.format(100 * so.ff / so.l) +
+      NB + "% ohne die große Einzellieferung), in allen übrigen Anwendungen zusammen " + de1.format(100 * r.ff / r.l) + NB + "% – deshalb sollten wir die Umstellung der stationären Anlagen zuerst angehen.";
+    html("um-kern").textContent = t;
+  }
+
+  /* ---------- Finanzen ---------- */
+  var FI = { nf: "mit", wert: "db" };
+  var de2 = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var de4 = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 3, maximumFractionDigits: 4 });
+  var MINUS = "−";
+  function vz(x, f) { return (x < 0 ? MINUS : "+") + (f || de0).format(Math.abs(x)); }
+  function eur(x, f) { return "EUR" + NB + (x < 0 ? MINUS : "") + (f || de0).format(Math.abs(x)); }
+  function pz(x) { return de1.format(Math.abs(x) < 0.0005 ? 0 : 100 * x) + NB + "%"; }
+  var LINIE = { fluorfrei: "Produktlinie fluorfrei", fluorhaltig: "Produktlinie fluorhaltig", offen: "Produktlinie offen (Netzmittel)" };
+  var WEG = { "direkt": "direkt", "Händler": "Händler", "Rahmenvertrag": "Rahmenvertrag" };
+
+  function fiSumme(fn) {
+    var s = { n: 0, l: 0, u: 0, h: 0, f: 0 };
+    FINANZEN.zellen.forEach(function (z) {
+      if (z.nf && FI.nf === "ohne") return;
+      if (!fn(z)) return;
+      s.n += z.n; s.l += z.l; s.u += z.u; s.h += z.h; s.f += z.f;
+    });
+    s.db = s.u - s.h - s.f;
+    s.marge = s.u ? s.db / s.u : null;
+    return s;
+  }
+  function fiBruecke() {
+    var b = FINANZEN.bruecke[FI.wert];
+    var schritte = [
+      { k: "menge", name: "Menge", tip: "Mengeneffekt: (Ist-Liter − Plan-Liter) × Plan-Durchschnitt je Liter" },
+      { k: "mix", name: "Mix", tip: "Mixeffekt: Summe je Zelle (Ist-Liter × Plan-Wert je Liter) − Ist-Liter gesamt × Plan-Durchschnitt je Liter" },
+      { k: "preis", name: "Preis", tip: "Preiseffekt: Summe je Zelle (Ist-Umsatz zum Plankurs − Ist-Liter × Plan-Preis je Liter)" }
+    ];
+    if (FI.wert === "db") schritte.push({ k: "kosten", name: "Kosten", tip: "Kosteneffekt: Summe je Zelle (Ist-Liter × Plan-Kosten je Liter − Ist-Kosten aus Herstellkosten und Fracht)" });
+    schritte.push({ k: "fx", name: "Fremdwährung", tip: "Fremdwährungseffekt: Ist-Betrag in Fremdwährung × (Ist-Monatskurs − Plankurs), ohne Notfallservice" });
+    if (FI.nf === "mit") schritte.push({ k: "notfall", name: "Notfallservice", sub: "nicht budgetiert", tip: "Notfallservice: eine Lieferung am " + FINANZEN.notfall.datum.split("-").reverse().join(".") + " (" + de0.format(FINANZEN.notfall.liter) + " Liter), nicht im Budget, eigener Balken" });
+    var summe = 0;
+    schritte.forEach(function (s) { s.v = b[s.k]; summe += s.v; });
+    var ohneNf = FI.nf === "ohne" ? b.notfall : 0;
+    var istEnde = b.ist - ohneNf;
+    return { b: b, schritte: schritte, summe: summe, istEnde: istEnde, abw: istEnde - b.plan, diff: (istEnde - b.plan) - summe };
+  }
+
+  function fiKacheln() {
+    var B = FINANZEN.budget, br = fiBruecke(), bu = FINANZEN.bruecke.u, bd = FINANZEN.bruecke.db;
+    var s = fiSumme(function (z) { return z.j === 2026; });
+    var nfTxt = FI.nf === "mit" ? "mit Notfallservice" : "ohne Notfallservice";
+    var ohneU = FI.nf === "ohne" ? bu.notfall : 0, ohneD = FI.nf === "ohne" ? bd.notfall : 0;
+    var abwU = (bu.ist - ohneU) - bu.plan, abwD = (bd.ist - ohneD) - bd.plan;
+    function delta(x, text) { return '<span class="kachel__delta ' + (x < 0 ? "kachel__delta--ab" : "kachel__delta--auf") + '">' + (x < 0 ? "▼ " : "▲ ") + text + "</span>"; }
+    var kurs = "Konzernkurs 2026 (CHF " + de4.format(FINANZEN.kurse2026.CHF) + " · GBP " + de4.format(FINANZEN.kurse2026.GBP) + " · NOK " + de4.format(FINANZEN.kurse2026.NOK) + " je Einheit in EUR)";
+    html("fi-kacheln").innerHTML =
+      kachel("Nettoumsatz 2026 · Ist", "<small>EUR</small>" + NB + de0.format(s.u), "Ist, netto, " + nfTxt,
+        "Ist-Nettoumsatz 2026: Summe der Nettobeträge nach Lieferdatum, Gutschriften und Retouren abgezogen, ohne Muster-Umsatz und Doppelimporte, " + nfTxt + ". Fremdwährung zum " + kurs + ". Das Budget (EUR " + de0.format(B.umsatz) + ") ist zum Plankurs gerechnet; die Abweichung in der Zeile darunter ist die der Brücke (Ist-Monatskurse, Differenz zu dieser Kachel durch die Kursbasis).",
+        delta(abwU, "Budget EUR" + NB + de0.format(B.umsatz) + " · Abweichung " + vz(abwU))) +
+      kachel("Deckungsbeitrag 2026 · Ist", "<small>EUR</small>" + NB + de0.format(s.db), "Ist, nach Herstellkosten und Fracht",
+        "Ist-Deckungsbeitrag 2026 = Nettoumsatz EUR " + de0.format(s.u) + " − Herstellkosten EUR " + de0.format(s.h) + " − Fracht EUR " + de0.format(s.f) + " (" + nfTxt + "). Fracht je Auftrag nach Litern auf die Positionen verteilt. Konzernkurs 2026. Budget-Deckungsbeitrag EUR " + de0.format(B.db) + ".",
+        delta(abwD, "Budget EUR" + NB + de0.format(B.db) + " · Abweichung " + vz(abwD))) +
+      kachel("DB-Marge 2026 · Ist", s.n < 20 ? "–" : pz(s.marge), "Ist, DB ÷ Nettoumsatz, " + nfTxt,
+        "DB-Marge = Deckungsbeitrag ÷ Nettoumsatz, aus den Summen gerechnet (EUR " + de0.format(s.db) + " ÷ EUR " + de0.format(s.u) + "), nie gemittelt. Budget-Marge: EUR " + de0.format(B.db) + " ÷ EUR " + de0.format(B.umsatz) + " = " + pz(B.marge) + ".",
+        delta(s.marge - B.marge, "Budget " + pz(B.marge) + " · " + vz(100 * (s.marge - B.marge), de1) + NB + "Prozentpunkte")) +
+      kachel("Budget 2026 · Plan", "<small>EUR</small>" + NB + de0.format(B.db), "Budget, Deckungsbeitrag, Plankurs",
+        "Budget 2026 der Geschäftsführung (Herbst 2025): Deckungsbeitrag EUR " + de0.format(B.db) + ", Nettoumsatz EUR " + de0.format(B.umsatz) + ", " + de0.format(B.liter) + " Liter, zu Plankursen gerechnet. Einsätze des Notfallservice sind nicht budgetiert.",
+        '<span class="kachel__delta">Nettoumsatz EUR' + NB + de0.format(B.umsatz) + "</span>");
+  }
+
+  function fiKern() {
+    var bd = FINANZEN.bruecke.db, nf = FINANZEN.notfall;
+    var mit = bd.ist - bd.plan, ohne = (bd.ist - bd.notfall) - bd.plan;
+    html("fi-kern").textContent = "Der Ist-Deckungsbeitrag 2026 liegt mit der einen Notfalllieferung vom " + nf.datum.split("-").reverse().join(".") + " (" + de0.format(nf.liter) + " Liter, nicht budgetiert) EUR " +
+      de0.format(Math.abs(mit)) + " " + (mit >= 0 ? "über" : "unter") + " dem Budget (" + de1.format(100 * Math.abs(mit) / bd.plan) + " %), ohne sie EUR " + de0.format(Math.abs(ohne)) + " " +
+      (ohne >= 0 ? "über" : "unter") + " dem Budget (" + de1.format(100 * Math.abs(ohne) / bd.plan) + " %); größter Einzeleffekt ist die Menge (" + vz(bd.menge) + " EUR).";
+  }
+
+  function fiWasserfall() {
+    var W = fiBruecke();
+    var d = html("d-fi-bruecke");
+    d.textContent = "";
+    var istName = FI.wert === "db" ? "Deckungsbeitrag" : "Nettoumsatz";
+    html("fi-bruecke-titel").textContent = FI.wert === "db"
+      ? "Brücke Budget → Ist 2026, Deckungsbeitrag: " + (W.abw >= 0 ? "EUR " + de0.format(W.abw) + " über Budget" : "EUR " + de0.format(-W.abw) + " unter Budget") + (FI.nf === "mit" ? ", getragen vom Notfallservice" : ", ohne Notfallservice")
+      : "Brücke Budget → Ist 2026, Nettoumsatz: " + (W.abw >= 0 ? "EUR " + de0.format(W.abw) + " über Budget" : "EUR " + de0.format(-W.abw) + " unter Budget") + (FI.nf === "mit" ? ", Notfallservice als eigener Balken" : ", ohne Notfallservice");
+    html("fi-bruecke-unter").textContent = istName + " in EUR · Budget zum Plankurs, Ist zum Ist-Monatskurs";
+    if (!d.clientWidth) return;
+    var B = Math.max(480, d.clientWidth), H = 280, l = 70, r = 16, o = 24, u = 52;
+    var spalten = [{ name: "Budget", total: true, v: W.b.plan, tip: "Budget " + istName + " 2026 zum Plankurs: EUR " + de0.format(W.b.plan) }]
+      .concat(W.schritte)
+      .concat([{ name: "Ist", total: true, v: W.istEnde, tip: "Ist " + istName + " 2026 (Ist-Monatskurse, " + (FI.nf === "mit" ? "mit" : "ohne") + " Notfallservice): EUR " + de0.format(W.istEnde) }]);
+    var lauf = 0, hoch = 0;
+    spalten.forEach(function (s) {
+      if (s.total) { s.von = 0; s.bis = s.v; lauf = s.v; }
+      else { s.von = lauf; s.bis = lauf + s.v; lauf = s.bis; }
+      hoch = Math.max(hoch, s.von, s.bis);
+    });
+    var schritt = hoch > 600000 ? 200000 : hoch > 250000 ? 100000 : 50000;
+    var max = Math.ceil(hoch / schritt) * schritt;
+    var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+    var y = function (v) { return o + (H - o - u) * (1 - v / max); };
+    for (var t = 0; t <= max; t += schritt) {
+      svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(t), y2: y(t), "class": "d-raster" }));
+      svg.appendChild(el("text", { x: l - 8, y: y(t) + 4, "text-anchor": "end" }, de0.format(t)));
+    }
+    var breite = (B - l - r) / spalten.length, bw = Math.min(64, breite * 0.6);
+    spalten.forEach(function (s, i) {
+      var cx = l + breite * i + breite / 2;
+      var y1 = y(Math.max(s.von, s.bis)), y2 = y(Math.min(s.von, s.bis));
+      var rect = el("rect", { x: cx - bw / 2, y: y1, width: bw, height: Math.max(2, y2 - y1), rx: 3, "class": s.total ? "d-balken" : "d-balken--2 d-balken" });
+      if (!s.total) rect.setAttribute("class", "d-balken--2");
+      rect.setAttribute("data-tip", s.tip + (s.total ? "" : ": " + vz(s.v) + " EUR"));
+      svg.appendChild(rect);
+      if (i < spalten.length - 1) {
+        svg.appendChild(el("line", { x1: cx + bw / 2, x2: cx + breite - bw / 2, y1: y(s.bis), y2: y(s.bis), "class": "d-raster" }));
+      }
+      var wert = s.total ? de0.format(s.v) : (s.v < 0 ? "▼ " : "▲ ") + vz(s.v);
+      svg.appendChild(el("text", { x: cx, y: y1 - 6, "text-anchor": "middle", "class": "d-wert" }, wert));
+      svg.appendChild(el("text", { x: cx, y: H - u + 18, "text-anchor": "middle" }, s.name));
+      if (s.sub) svg.appendChild(el("text", { x: cx, y: H - u + 33, "text-anchor": "middle", "class": "d-name" }, s.sub));
+    });
+    d.appendChild(svg);
+    html("fi-methode").innerHTML = "<strong>Methode:</strong> " + (FI.wert === "db" ? "Deckungsbrücke" : "Umsatzbrücke") +
+      " je Zelle Produktlinie × Segment in der Reihenfolge Menge → Mix → Preis" + (FI.wert === "db" ? " → Kosten" : "") + " → Fremdwährung → Notfallservice. Mengeneffekt zum Plan-Durchschnitt je Liter (EUR" + NB +
+      de2.format(W.b.avg_plan) + "), Mix zu Plan-Werten je Zelle, Preis mit Ist-Umsatz zum Plankurs gegen Ist-Liter × Plan-Preis" + (FI.wert === "db" ? ", Kosten gegen Plan-Kosten je Liter (Plan-Preis − Plan-DB)" : "") +
+      ", Fremdwährung als Ist-Betrag × (Ist-Monatskurs − Plankurs); der Notfallservice steht als eigener Balken, weil er nicht budgetiert ist. Eine andere Reihenfolge ergäbe andere Einzeleffekte, nicht aber die Gesamtabweichung.";
+    var ok = Math.abs(W.diff) < 0.005;
+    html("fi-abgleich").innerHTML = '<div class="tabelle-rahmen"><table class="tabelle"><thead><tr><th>Abgleich</th><th class="zahl">Summe der Effekte</th><th class="zahl">Gesamtabweichung Ist − Budget</th><th class="zahl">Differenz</th><th>Ergebnis</th></tr></thead><tbody><tr><td>' + istName + " 2026, EUR</td>" +
+      '<td class="zahl">' + vz(W.summe, de2) + '</td><td class="zahl">' + vz(W.abw, de2) + '</td><td class="zahl">' + de2.format(Math.abs(W.diff) < 0.005 ? 0 : W.diff) + "</td>" +
+      '<td><span class="zustand ' + (ok ? "zustand--ok" : "zustand--crit") + '">' + (ok ? "geht auf" : "geht nicht auf") + "</span></td></tr></tbody></table></div>";
+    html("fi-bruecke-quelle").textContent = "Quelle: Auftragstabelle (Lieferdatum 2026), Herstellkostentabelle, Frachttabelle, Budget 2026, Kurstabelle (Plankurs und Ist-Monatskurs); Stichtag 28.02.2027. Ist-Wert der Brücke zum Ist-Monatskurs: EUR " +
+      de2.format(W.b.ist) + " (Notfallservice eingeschlossen); der Ist-Umsatz mit Konzernkurs (Kachel) weicht um die Kursbasis ab. Übungsausschnitt; Muster tragen Kosten (im Kosteneffekt) und haben keinen Umsatz.";
+  }
+
+  function fiZeileMarge(name, fn, sub) {
+    var s26 = fiSumme(function (z) { return z.j === 2026 && fn(z); });
+    var s25 = fiSumme(function (z) { return z.j === 2025 && fn(z); });
+    function m(s) { return s.n < 20 || s.marge === null ? '<span class="zustand zustand--off">Lücke</span>' : pz(s.marge); }
+    var tip = " data-tip=\"2026: Nettoumsatz EUR " + de0.format(s26.u) + " − Herstellkosten EUR " + de0.format(s26.h) + " − Fracht EUR " + de0.format(s26.f) + " = Deckungsbeitrag EUR " + de0.format(s26.db) + " (" + s26.n + " Positionen)\"";
+    return "<tr" + tip + "><td>" + (sub ? "&nbsp;&nbsp;" : "") + name + '</td><td class="zahl">' + s26.n + '</td><td class="zahl">' + (s26.n < 20 ? "–" : de0.format(s26.u)) + '</td><td class="zahl">' + m(s25) + '</td><td class="zahl">' + m(s26) + "</td></tr>";
+  }
+  function fiMarge() {
+    var zeilen = [], segs = {}, kombi = {};
+    FINANZEN.zellen.forEach(function (z) { segs[z.seg] = 1; kombi[z.linie + "|" + z.seg] = 1; });
+    function kopf(t) { zeilen.push('<tr><td colspan="5"><span class="etikett">' + t + "</span></td></tr>"); }
+    zeilen.push(fiZeileMarge("Gesamt", function () { return true; }));
+    kopf("je Produktlinie");
+    ["fluorfrei", "fluorhaltig", "offen"].forEach(function (li) { zeilen.push(fiZeileMarge(LINIE[li], function (z) { return z.linie === li; })); });
+    kopf("je Segment");
+    Object.keys(segs).sort().forEach(function (sg) { zeilen.push(fiZeileMarge(sg, function (z) { return z.seg === sg; })); });
+    kopf("je Produktlinie und Segment (nur Zellen ab 20 Positionen in 2026)");
+    var versteckt = 0;
+    Object.keys(kombi).sort().forEach(function (k) {
+      var li = k.split("|")[0], sg = k.split("|")[1];
+      var s26 = fiSumme(function (z) { return z.j === 2026 && z.linie === li && z.seg === sg; });
+      if (s26.n < 20) { versteckt++; return; }
+      zeilen.push(fiZeileMarge(li + " · " + sg, function (z) { return z.linie === li && z.seg === sg; }, true));
+    });
+    html("fi-marge").innerHTML = zeilen.join("");
+    html("fi-marge-quelle").textContent = "Quelle: Auftragstabelle (Lieferdatum), Herstellkosten- und Frachttabelle, Produkttabelle (Produktlinie), Kundenstamm (Segment); Stichtag 28.02.2027; Ist, EUR zum Konzernkurs des Lieferjahres. DB-Marge = (Nettoumsatz − Herstellkosten − Fracht) ÷ Nettoumsatz, aus Summen gerechnet. " +
+      versteckt + " weitere Zellen Produktlinie × Segment haben 2026 weniger als 20 Positionen und werden nicht ausgewiesen. Beobachtung, keine Ursache. Übungsausschnitt. Notfallservice: " + (FI.nf === "mit" ? "eingeschlossen." : "ausgeschlossen.");
+  }
+
+  function fiPreis() {
+    var d = html("d-fi-preis");
+    d.textContent = "";
+    var P = FINANZEN.preise, wege = ["direkt", "Händler", "Rahmenvertrag"], jahre = [2025, 2026];
+    var gr = [];
+    wege.forEach(function (w) { jahre.forEach(function (j) {
+      var p = P.filter(function (x) { return x.weg === w && x.j === j; })[0];
+      gr.push({ w: w, j: j, p: p, luecke: !p || p.n < 20 });
+    }); });
+    var rows = [];
+    jahre.forEach(function (j) {
+      var t = { n: 0, l: 0, netto: 0, liste: 0 };
+      P.forEach(function (x) { if (x.j === j) { t.n += x.n; t.l += x.l; t.netto += x.netto; t.liste += x.liste; } });
+      rows.push({ w: "alle Wege", j: j, p: t, luecke: t.n < 20 });
+    });
+    html("fi-rabatt").innerHTML = gr.concat(rows).map(function (g) {
+      var q = g.luecke ? '<span class="zustand zustand--off">Lücke</span>' : pz(1 - g.p.netto / g.p.liste);
+      var tip = g.p ? " data-tip=\"" + g.w + " " + g.j + ": Nettobetrag EUR " + de0.format(g.p.netto) + " ÷ Listenwert EUR " + de0.format(g.p.liste) + " → Rabattquote = 1 − Quotient (" + g.p.n + " Positionen)\"" : "";
+      return "<tr" + tip + "><td>" + g.w + '</td><td class="zahl">' + g.j + '</td><td class="zahl">' + (g.p ? g.p.n : 0) + '</td><td class="zahl">' + q + "</td></tr>";
+    }).join("");
+    if (d.clientWidth) {
+      var B = Math.max(360, d.clientWidth), H = 190, l = 36, r = 8, o = 20, u = 44, max = 5;
+      var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
+      var y = function (v) { return o + (H - o - u) * (1 - v / max); };
+      for (var t = 0; t <= max; t++) {
+        svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(t), y2: y(t), "class": "d-raster" }));
+        svg.appendChild(el("text", { x: l - 6, y: y(t) + 4, "text-anchor": "end" }, String(t)));
+      }
+      var breite = (B - l - r) / gr.length, bw = Math.min(22, breite * 0.36);
+      gr.forEach(function (g, i) {
+        var cx = l + breite * i + breite / 2;
+        svg.appendChild(el("text", { x: cx, y: H - u + 16, "text-anchor": "middle" }, g.w === "Rahmenvertrag" ? "Rahmen" : g.w));
+        svg.appendChild(el("text", { x: cx, y: H - u + 31, "text-anchor": "middle", "class": "d-name" }, String(g.j)));
+        if (g.luecke) {
+          svg.appendChild(el("text", { x: cx, y: y(0) - 8, "text-anchor": "middle", "class": "d-name" }, "Lücke"));
+          return;
+        }
+        var li = g.p.liste / g.p.l, re = g.p.netto / g.p.l;
+        var a = el("rect", { x: cx - bw - 1, y: y(li), width: bw, height: y(0) - y(li), rx: 2, "class": "d-balken--2" });
+        a.setAttribute("data-tip", g.w + " " + g.j + ": Listenpreis EUR " + de2.format(li) + " je Liter (Listenwert EUR " + de0.format(g.p.liste) + " ÷ " + de0.format(g.p.l) + " Liter)");
+        var b = el("rect", { x: cx + 1, y: y(re), width: bw, height: y(0) - y(re), rx: 2, "class": "d-balken" });
+        b.setAttribute("data-tip", g.w + " " + g.j + ": realisiert EUR " + de2.format(re) + " je Liter (Nettobetrag EUR " + de0.format(g.p.netto) + " ÷ " + de0.format(g.p.l) + " Liter)");
+        svg.appendChild(a); svg.appendChild(b);
+        svg.appendChild(el("text", { x: cx + bw / 2 + 1, y: y(re) - 5, "text-anchor": "middle", "class": "d-wert" }, de2.format(re)));
+      });
+      d.appendChild(svg);
+    }
+    var k = FINANZEN.liste_korb;
+    html("fi-preis-quelle").textContent = "Quelle: Auftragstabelle (Lieferungen, Lieferdatum), Preislisten 2025 und 2026 (Listenpreis desselben Gebindes), Konzernkurs des Lieferjahres; ohne Notfallservice (Zuschlag statt Rabatt), ohne Muster, Gutschriften und Retouren, ohne Doppelimporte. Rabattquote = 1 − Nettobetrag ÷ Listenwert. Listenpreise 2026 liegen auf dem Korb der Lieferungen 2026 um " +
+      de1.format(100 * (k.liste26 / k.liste25 - 1)) + " % über denen von 2025. Weniger als 20 Positionen = Lücke. Die Quote „alle Wege“ ändert sich auch durch den Anteil der Wege. Beobachtung, keine Ursache.";
+  }
+
+  function fiFx() {
+    var tot = 0;
+    var z = FINANZEN.fx.map(function (x) {
+      tot += x.effekt;
+      return "<tr><td>" + x.w + '</td><td class="zahl">' + x.n + '</td><td class="zahl">' + x.w + NB + de0.format(x.betrag_fw) + '</td><td class="zahl">' + de4.format(FINANZEN.plankurse[x.w]) + '</td><td class="zahl">' + vz(x.effekt, de2) + "</td></tr>";
+    }).join("");
+    html("fi-fx").innerHTML = '<div class="tabelle-rahmen"><table class="tabelle"><thead><tr><th>Währung</th><th class="zahl">Positionen</th><th class="zahl">Ist-Betrag in Fremdwährung</th><th class="zahl">Plankurs (EUR je Einheit)</th><th class="zahl">Effekt in EUR</th></tr></thead><tbody>' + z +
+      '</tbody><tfoot><tr><td>Summe</td><td></td><td></td><td></td><td class="zahl">' + vz(tot, de2) + "</td></tr></tfoot></table></div>";
+    html("fi-fx-quelle").textContent = "Quelle: Auftragstabelle (Lieferdatum 2026, Fremdwährung), Kurstabelle (Ist-Monatskurs, Plankurs); Stichtag 28.02.2027. Effekt = Ist-Betrag in Fremdwährung × (Ist-Monatskurs des Liefermonats − Plankurs), ohne Notfallservice (EUR-Lieferung). Nur CHF-, GBP- und NOK-Positionen; ein GBP-Muster mit Betrag 0 ergibt 0,00. Übungsausschnitt.";
+  }
+
+  document.getElementById("fi-nf").addEventListener("change", function (e) { FI.nf = e.target.value; render(); });
+  document.querySelectorAll("#fi-wert button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      FI.wert = b.dataset.wert;
+      document.querySelectorAll("#fi-wert button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      render();
+    });
+  });
+
+  /* ---------- Angebote ---------- */
+  var anWahl = null;
+  function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function anVorgang(id) {
+    var r = null;
+    ANGEBOTE.vorgaenge.forEach(function (v) { if (v.id === id) r = v; });
+    return r;
+  }
+  function anKern() {
+    var m = ANGEBOTE.vorgaenge.length;
+    var a = ANGEBOTE.vorgaenge.filter(function (v) { return v.klasse === "A" && v.auftragswert <= 25000; }).length;
+    var mensch = ANGEBOTE.vorgaenge.filter(function (v) { return v.pfad.some(function (s) { return s.mensch; }); }).length;
+    html("an-kern").textContent = "Bei " + mensch + " von " + m + " Vorgängen muss an mindestens einem Schritt ein Mensch entscheiden; " +
+      (a === 0 ? "keinen davon dürfte der Angebotsassistent selbst versenden." : "nur " + a + " davon (Klasse A bis EUR 25.000) dürfte er selbst versenden.");
+  }
+  function anListe() {
+    var h = "";
+    ANGEBOTE.vorgaenge.forEach(function (v) {
+      h += '<tr class="an-zeile' + (v.id === anWahl ? " gewaehlt" : "") + '" tabindex="0" data-vorgang="' + esc(v.id) + '">' +
+        "<td><strong>" + esc(v.id) + "</strong> " + esc(v.kunde) + '<span class="an-wer">' + esc(v.titel) + "</span></td>" +
+        '<td class="zahl">' + de2.format(v.auftragswert) + "</td>" +
+        '<td style="white-space: nowrap;">Klasse ' + esc(v.klasse) + "</td>" +
+        "<td>" + esc(v.empfehlung) + '<span class="an-wer">entscheidet: ' + esc(v.entscheidet) + "</span></td></tr>";
+    });
+    html("an-liste").innerHTML = h;
+    html("an-liste-quelle").textContent = "Quelle: Angebotseingang (vier Vorgänge), Angebots- und Freigaberichtlinie RL-ANG-2026, Kompetenzordnung KO-2026, Preislisten 2025 und 2026, Herstellkostentabelle; Stand 01.03.2027, Daten bis 28.02.2027. Auftragswert = Nettowarenwert nach Rabatten ohne Fracht, Zuschläge und Umsatzsteuer (RL § 2 Nr. 1); bei Rahmenverträgen über die ganze Laufzeit. Übungsausschnitt.";
+    document.querySelectorAll(".an-zeile").forEach(function (z) {
+      z.addEventListener("click", function () { anWaehle(z.dataset.vorgang); });
+      z.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); anWaehle(z.dataset.vorgang); } });
+    });
+  }
+  function anWaehle(id) { anWahl = id; anListe(); anDetail(); }
+  function anDetail() {
+    var v = anVorgang(anWahl);
+    if (!v) return;
+    html("an-titel").textContent = "Regelpfad " + v.id + " · " + v.kunde;
+    html("an-unter").textContent = "Auftragswert EUR " + de2.format(v.auftragswert) + " · Klasse " + v.klasse;
+    var h = "";
+    v.pfad.forEach(function (s, i) {
+      var pille = "";
+      if (s.mensch) pille = '<span class="zustand zustand--crit">Hier entscheidet ein Mensch</span><span class="an-wer">' + esc(s.wer) + "</span>";
+      else if (s.ok) pille = '<span class="zustand zustand--ok">System darf versenden</span>';
+      h += '<tr class="' + (s.mensch ? "pfad-mensch" : "") + '"><td><strong>' + (i + 1) + ". " + esc(s.schritt) + "</strong>" + (pille ? "<div>" + pille + "</div>" : "") + "</td>" +
+        "<td>" + esc(s.angabe) + "</td><td>" + esc(s.par) + "</td><td>" + esc(s.ergebnis) + "</td></tr>";
+    });
+    html("an-pfad").innerHTML = h;
+    html("an-pfad-quelle").textContent = "Quelle: RL-ANG-2026 und KO-2026 (Paragrafen je Schritt), Stammdaten und Preislisten; Stand 01.03.2027. Rot markiert sind die Schritte, die ein Mensch entscheidet oder zusagt; ein System darf sie nicht ersetzen (RL § 9 Nr. 2 und 3).";
+    html("an-vorlage").innerHTML = v.vorlage_html;
+  }
+  function anRender() {
+    if (!anWahl) anWahl = ANGEBOTE.vorgaenge[0].id;
+    anKern(); anListe(); anDetail();
+  }
+
+  var RENDER = {
+    ueberblick: function () { kacheln(); linie(); absatz(); bestand(); },
+    umstellung: function () { umKern(); umLinie(); umAusreisser(); umDatenaufnahme(); umAmpel(); },
+    finanzen: function () { fiKacheln(); fiKern(); fiWasserfall(); fiMarge(); fiPreis(); fiFx(); },
+    angebote: function () { anRender(); }
+  };
+
+  var aktuell = "ueberblick";
+  function render() { if (RENDER[aktuell]) RENDER[aktuell](); }
+
+  /* ---------- Reiter ---------- */
+  function zeige(id) {
+    aktuell = id;
+    document.querySelectorAll(".reiter__knopf").forEach(function (k) { k.setAttribute("aria-selected", String(k.dataset.reiter === id)); });
+    document.querySelectorAll(".reiterinhalt").forEach(function (s) { s.hidden = s.id !== "reiter-" + id; }); window.scrollTo(0, 0);
+    document.querySelector('.filter[aria-label="Filter"]').hidden = (id === "finanzen" || id === "angebote"); /* Finanzen hat eigene Filter, Angebote keine */
+    render();
+  }
+  document.querySelectorAll(".reiter__knopf").forEach(function (k) {
+    k.addEventListener("click", function () { history.replaceState(null, "", "#" + k.dataset.reiter); zeige(k.dataset.reiter); });
+  });
+  window.addEventListener("resize", render);
+
+  /* Filter per Adresse vorbelegen (?segment=Industrie&land=DE&weg=direkt) – nur zum Prüfen */
+  var q = new URLSearchParams(location.search);
+  [["segment", "seg", "f-seg"], ["land", "land", "f-land"], ["weg", "weg", "f-weg"]].forEach(function (a) {
+    if (q.get(a[0])) { F[a[1]] = q.get(a[0]); html(a[2]).value = F[a[1]]; }
+  });
+  if (q.get("vorgang") && anVorgang(q.get("vorgang"))) anWahl = q.get("vorgang"); /* nur zum Prüfen */
+  var start = location.hash.slice(1);
+  zeige(document.getElementById("reiter-" + start) ? start : "ueberblick");
+
+  /* ---------- Hell / Dunkel ---------- */
+  function thema(t) {
+    if (t === "system") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", t);
+    document.querySelectorAll("[data-thema]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.thema === t)); });
+  }
+  document.querySelectorAll("[data-thema]").forEach(function (b) { b.addEventListener("click", function () { thema(b.dataset.thema); }); });
+  var th = q.get("thema");
+  if (th === "dark" || th === "light") thema(th);
+
+  /* ---------- Tooltip ---------- */
+  var tip = html("tooltip");
+  document.addEventListener("mousemove", function (e) {
+    var t = e.target.closest ? e.target.closest("[data-tip]") : null;
+    if (!t) { tip.hidden = true; return; }
+    tip.textContent = t.getAttribute("data-tip");
+    tip.style.left = (e.clientX + 14) + "px";
+    tip.style.top = (e.clientY + 14) + "px";
+    tip.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

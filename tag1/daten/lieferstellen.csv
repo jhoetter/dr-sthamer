@@ -1,0 +1,137 @@
+﻿lieferstelle_id,kunde_id,anlage,anwendung,aktuelles_produkt_id,fuellmenge_l,letzte_lieferung,datenaufnahme_am,zumischrate_anlage,zumischrate_crm
+LS-0001,K-1001,"Tanklager Halle 3, Schaumanlage SA-3",stationaere_anlage,P-103,4000,2027-02-28,,,3.0
+LS-0002,K-1001,"Tanklager Halle 5, Schaumanlage SA-5",stationaere_anlage,P-103,3200,2025-08-31,,,3.0
+LS-0003,K-1001,"Tanklager Halle 7, Schaumanlage SA-7",stationaere_anlage,P-103,2800,2025-12-11,2026-10-02,3.0,3.0
+LS-0004,K-1001,Werkfeuerwehr TLF 4000 (2 Fahrzeuge),feuerwehrfahrzeug,P-101,1600,2026-11-29,,,
+LS-0005,K-1001,Schaumlager Gebäude 12,lager_bestand,P-101,2400,2026-01-31,,,
+LS-0006,K-1001,Übungsplatz Werk Nord,uebung_training,P-112,600,2026-07-23,,,
+LS-0007,K-1002,"Reaktorhalle A, Schaumanlage RA-1",stationaere_anlage,P-103,6000,2026-05-17,2024-03-21,3.0,3.0
+LS-0008,K-1002,"Lagerhalle Ost, Schaumanlage LO-2",stationaere_anlage,P-103,5000,2025-12-23,,,3.0
+LS-0009,K-1002,"Altanlage Pumpenhaus, Schaumanlage PH-1",stationaere_anlage,P-121,800,2026-02-03,,,1.0
+LS-0010,K-1002,Werkfeuerwehr HLF und TLF,feuerwehrfahrzeug,P-101,2000,2026-02-26,,,
+LS-0011,K-1002,Zentrallager Schaum,lager_bestand,P-102,3600,2025-05-30,,,
+LS-0012,K-1002,Pilotlager fluorfrei (Test),lager_bestand,P-201,400,2026-12-22,,,
+LS-0013,K-1003,"Tankfeld 1, Schaumleitungen",stationaere_anlage,P-103,8000,2025-07-18,,,3.0
+LS-0014,K-1003,"Verladestation, Schaumanlage",stationaere_anlage,P-103,4500,2026-07-17,,,3.0
+LS-0015,K-1003,Pumpenstation (Testanlage),stationaere_anlage,P-119,600,2025-07-25,,,3.0
+LS-0016,K-1003,Werkfeuerwehr Großlöschfahrzeug,feuerwehrfahrzeug,P-101,3000,2026-10-29,,,
+LS-0017,K-1003,Werkfeuerwehr TLF Reserve,feuerwehrfahrzeug,P-101,1500,2026-12-15,,,
+LS-0018,K-1003,Tanklager,lager_bestand,P-103,5000,2026-03-23,,,
+LS-0019,K-1003,Erprobungsmenge fluorfrei,lager_bestand,P-203,300,2026-04-12,,,
+LS-0020,K-1004,"Kokerei, Mittelschaum-Anlage MS-1",stationaere_anlage,P-108,2500,2026-04-23,,,3.0
+LS-0021,K-1004,"Walzwerk, Mittelschaum-Anlage MS-2",stationaere_anlage,P-108,1800,2027-01-26,,,3.0
+LS-0022,K-1004,Lager Brandschutz,lager_bestand,P-108,1000,2026-01-19,,,
+LS-0023,K-1004,Werkfeuerwehr TLF,feuerwehrfahrzeug,P-101,1200,2026-07-14,,,
+LS-0024,K-1004,"Hubrettungsfahrzeug, Schaumtank",feuerwehrfahrzeug,P-114,400,2025-08-16,,,
+LS-0025,K-1004,Übungsgelände Werkfeuerwehr,uebung_training,P-112,300,2025-07-08,,,
+LS-0026,K-1005,Untertageanlage Schacht 4,stationaere_anlage,P-108,3500,2025-12-30,,,3.0
+LS-0027,K-1005,Übertageanlage Aufbereitung,stationaere_anlage,P-108,2800,2025-12-23,,,3.0
+LS-0028,K-1005,Pilotanlage fluorfrei Schacht 7,stationaere_anlage,P-207,1200,2025-10-08,2023-05-16,3.0,3.0
+LS-0029,K-1005,Grubenwehr-Löschfahrzeug,feuerwehrfahrzeug,P-102,900,2026-03-15,,,
+LS-0030,K-1005,Grubenlager,lager_bestand,P-108,2000,2025-09-15,,,
+LS-0031,K-1005,Grubenlager Nebenlager,lager_bestand,P-102,800,2026-08-31,,,
+LS-0032,K-1006,"Bunkerhalle Müllverbrennung, Schaumanlage",stationaere_anlage,P-121,1500,2027-01-19,,,3.0
+LS-0033,K-1006,"Sortierhalle, Mittelschaum-Anlage",stationaere_anlage,P-108,1800,2025-05-02,,,3.0
+LS-0034,K-1006,Betriebslager,lager_bestand,P-108,600,2026-04-18,,,
+LS-0035,K-1006,Werkfeuerwehr-Fahrzeug,feuerwehrfahrzeug,P-115,300,2026-06-11,,,
+LS-0036,K-1007,"Schredderhalle, Mittelschaum-Anlage",stationaere_anlage,P-108,2200,2025-10-23,,,3.0
+LS-0037,K-1007,Betriebslager,lager_bestand,P-108,500,2026-03-03,,,
+LS-0038,K-1007,Hilfsfahrzeug,feuerwehrfahrzeug,P-116,250,2026-04-21,,,
+LS-0039,K-1008,TLF 3000,feuerwehrfahrzeug,P-115,300,2026-06-10,,,
+LS-0040,K-1008,Gerätehaus,lager_bestand,P-115,120,2026-03-07,,,
+LS-0041,K-1008,Übungsdienst,uebung_training,P-112,80,2027-01-12,,,
+LS-0042,K-1009,HLF 20,feuerwehrfahrzeug,P-120,400,2025-05-05,,,
+LS-0043,K-1009,Gerätehaus,lager_bestand,P-120,200,2027-02-12,,,
+LS-0044,K-1009,Waldbrand-Kleinlöschfahrzeug,feuerwehrfahrzeug,P-111,150,2026-01-27,,,
+LS-0045,K-1010,TLF 3000,feuerwehrfahrzeug,P-102,400,2025-04-24,,,
+LS-0046,K-1010,"Gerätehaus, 20-l-Kanister",lager_bestand,P-102,200,2025-12-30,,,
+LS-0047,K-1010,Waldbrand-Kleinlöschfahrzeug,feuerwehrfahrzeug,P-111,150,2026-05-05,,,
+LS-0048,K-1010,Übungsdienst Gerätehaus,uebung_training,P-112,60,2027-02-02,,,
+LS-0049,K-1011,Hilfeleistungslöschfahrzeug HLF 1,feuerwehrfahrzeug,P-101,600,2026-05-09,,,
+LS-0050,K-1011,Tanklöschfahrzeug TLF 2,feuerwehrfahrzeug,P-101,800,2025-08-30,,,
+LS-0051,K-1011,Zentrallager Wache 1,lager_bestand,P-101,1200,2025-04-17,,,
+LS-0052,K-1011,Löschboot Alster,feuerwehrfahrzeug,P-102,400,2026-09-12,,,
+LS-0053,K-1011,Pilotfahrzeug fluorfrei,feuerwehrfahrzeug,P-201,300,2025-07-11,,,
+LS-0054,K-1011,Übungshalle,uebung_training,P-112,200,2025-08-03,,,
+LS-0055,K-1012,Tankfahrzeug Zwolle,feuerwehrfahrzeug,P-102,500,2026-04-19,,,
+LS-0056,K-1012,Magazijn,lager_bestand,P-111,450,2026-08-14,,,
+LS-0057,K-1012,Vegetationsbrand-Einheit (Netzwasser),feuerwehrfahrzeug,P-107,100,2026-06-19,,,
+LS-0058,K-1013,Tanklöschfahrzeuge (4 Wehren),feuerwehrfahrzeug,P-102,700,2026-12-30,,,
+LS-0059,K-1013,TLF Bad Ischl,feuerwehrfahrzeug,P-102,350,2025-08-13,,,
+LS-0060,K-1013,Waldbrandfahrzeug,feuerwehrfahrzeug,P-111,200,2026-10-25,,,
+LS-0061,K-1013,Verbandslager,lager_bestand,P-102,300,2026-11-14,,,
+LS-0062,K-1014,"Terminal 3, Schaumanlage",stationaere_anlage,P-104,5000,2027-01-23,,,3.0
+LS-0063,K-1014,Hafenfeuerwehr-Fahrzeug,feuerwehrfahrzeug,P-104,1500,2026-04-29,,,
+LS-0064,K-1014,"Kai 7, Sprühschaumanlage",stationaere_anlage,P-117,2500,2026-08-01,,,3.0
+LS-0065,K-1014,Terminal-Lager,lager_bestand,P-104,1500,2027-01-06,,,
+LS-0066,K-1014,Erprobung fluorfrei,lager_bestand,P-204,200,2025-05-28,,,
+LS-0067,K-1014,Übungsbetrieb Terminal,uebung_training,P-112,200,2027-02-03,,,
+LS-0068,K-1015,Flugfeldlöschfahrzeuge (3 Stück),feuerwehrfahrzeug,P-105,9000,2026-03-06,,,
+LS-0069,K-1015,"Hangar 2, Schaumanlage",stationaere_anlage,P-105,6000,2025-09-26,,,3.0
+LS-0070,K-1015,Zentrallager,lager_bestand,P-105,3000,2026-08-31,,,
+LS-0071,K-1015,Außenlager,lager_bestand,P-105,1000,2026-05-16,,,
+LS-0072,K-1015,Testfahrzeug fluorfrei,feuerwehrfahrzeug,P-205,600,2026-02-06,,,
+LS-0073,K-1015,Übungsbetrieb,uebung_training,P-112,300,2026-06-18,,,
+LS-0074,K-1016,Flugfeldlöschfahrzeuge (2 Stück),feuerwehrfahrzeug,P-105,6000,2026-05-26,,,
+LS-0075,K-1016,"Hangar, Schaumanlage",stationaere_anlage,P-105,3000,2027-02-28,,,3.0
+LS-0076,K-1016,Zentrallager,lager_bestand,P-105,2000,2025-06-19,,,
+LS-0077,K-1017,"Dockhalle 2, Sprühschaumanlage",stationaere_anlage,P-117,5000,2026-08-08,,,3.0
+LS-0078,K-1017,"Trockendock 1, Schaumanlage",stationaere_anlage,P-117,3500,2026-11-18,,,3.0
+LS-0079,K-1017,"Montagehalle, Schaumanlage",stationaere_anlage,P-104,2000,2025-10-18,2027-01-10,3.5,3.0
+LS-0080,K-1017,Werftlager,lager_bestand,P-117,2000,2027-01-30,,,
+LS-0081,K-1017,Erprobung fluorfrei,lager_bestand,P-204,300,2027-01-13,,,
+LS-0082,K-1018,"Fähre Baltic Star, Maschinenraum",stationaere_anlage,P-104,800,2025-05-25,,,3.0
+LS-0083,K-1018,"Fähre Baltic Wind, Maschinenraum",stationaere_anlage,P-104,800,2025-09-09,,,3.0
+LS-0084,K-1018,"Fähre Baltic Star, Ro-Ro-Deck",stationaere_anlage,P-117,1200,2026-02-16,,,3.0
+LS-0085,K-1018,Bordlager,lager_bestand,P-117,1000,2027-01-29,,,
+LS-0086,K-1019,Plattform Nord-3,stationaere_anlage,P-117,4000,2027-02-08,,,3.0
+LS-0087,K-1019,Plattformlager,lager_bestand,P-117,1500,2025-07-31,,,
+LS-0088,K-1019,Pilotanlage,stationaere_anlage,P-204,800,2027-01-10,2024-03-19,3.0,3.0
+LS-0089,K-1020,Befüllung Serie LG-6 (6-l-Schaumlöscher),tragbarer_feuerloescher,P-106,12000,2025-05-11,,,
+LS-0090,K-1020,Befüllung Serie LG-9,tragbarer_feuerloescher,P-106,9000,2025-11-08,,,
+LS-0091,K-1020,Befüllung Serie LG-2 (2-l-Schaumlöscher),tragbarer_feuerloescher,P-106,4000,2025-10-04,,,
+LS-0092,K-1020,Befüllung fahrbare Löscher FL-50,fahrbarer_feuerloescher,P-106,6000,2026-05-15,,,
+LS-0093,K-1020,Muster fluorfrei,tragbarer_feuerloescher,P-202,500,2026-06-19,,,
+LS-0094,K-1020,Fabriklager,lager_bestand,P-106,4000,2025-09-23,,,
+LS-0095,K-1021,"Serie FP-9, Export DE und NL",tragbarer_feuerloescher,P-106,8000,2025-09-19,,,
+LS-0096,K-1021,"Serie FP-50, Export DE und NL",fahrbarer_feuerloescher,P-106,3000,2025-06-10,,,
+LS-0097,K-1021,Muster fluorfrei,tragbarer_feuerloescher,P-202,300,2026-02-06,,,
+LS-0098,K-1022,Serie AL-6,tragbarer_feuerloescher,P-106,5000,2027-01-06,,,
+LS-0099,K-1022,Fabriklager,lager_bestand,P-106,2000,2026-11-05,,,
+LS-0100,K-1022,Muster fluorfrei,tragbarer_feuerloescher,P-202,300,2026-05-17,,,
+LS-0101,K-1023,Handelslager Bremen,lager_bestand,P-102,14300,2027-01-02,,,
+LS-0102,K-1023,Außenlager Hannover,lager_bestand,P-102,2500,2026-06-10,,,
+LS-0103,K-1024,Warehouse Venlo,lager_bestand,P-111,8100,2026-10-01,,,
+LS-0104,K-1024,Warehouse Rotterdam,lager_bestand,P-106,3800,2027-02-27,,,
+LS-0105,K-1025,Waldbrand-Fahrzeuge (Netzwasser),feuerwehrfahrzeug,P-107,900,2027-01-21,,,
+LS-0106,K-1025,Waldbrand-Tanklöschfahrzeug Süd,feuerwehrfahrzeug,P-107,600,2026-09-10,,,
+LS-0107,K-1025,Forstdepot,lager_bestand,P-107,400,2026-03-16,,,
+LS-0108,K-1025,Retardant-Depot,lager_bestand,P-110,1500,2026-03-11,,,
+LS-0109,K-1025,Waldbrand-TLF,feuerwehrfahrzeug,P-111,500,2025-11-28,,,
+LS-0110,K-1026,Depot Cottbus,lager_bestand,P-111,2900,2026-05-28,,,
+LS-0111,K-1026,Verbandsfahrzeuge,feuerwehrfahrzeug,P-111,700,2026-05-07,,,
+LS-0112,K-1026,Retardant-Tankfahrzeug,feuerwehrfahrzeug,P-110,1800,2026-11-19,,,
+LS-0113,K-1027,Übungsplatz Hochbau (Brandcontainer),uebung_training,P-113,800,2026-02-28,,,
+LS-0114,K-1027,Übungsplatz Tank,uebung_training,P-113,600,2025-12-22,,,
+LS-0115,K-1027,Übungsplatz Gas,uebung_training,P-113,500,2026-09-06,,,
+LS-0116,K-1027,Atemschutzstrecke,uebung_training,P-112,300,2027-01-02,,,
+LS-0117,K-1027,Übungsdepot,lager_bestand,P-113,1000,2025-10-09,,,
+LS-0118,K-1028,Übungshalle 1,uebung_training,P-113,900,2025-08-05,,,
+LS-0119,K-1028,Übungshalle 2,uebung_training,P-112,700,2026-10-20,,,
+LS-0120,K-1028,Lehrfahrzeuge,feuerwehrfahrzeug,P-102,300,2025-05-24,,,
+LS-0121,K-1028,Übungsdepot,lager_bestand,P-113,600,2026-01-09,,,
+LS-0122,K-1029,"Bunker 2, Schaumanlage (außer Betrieb)",stationaere_anlage,P-101,1200,2025-07-31,,,3.0
+LS-0123,K-1029,Betriebslager,lager_bestand,P-101,400,2025-06-29,,,
+LS-0124,K-1030,"Hochregallager, Schaumanlage HRL-1",stationaere_anlage,P-118,3000,2025-04-20,2025-02-11,3.5,3.0
+LS-0125,K-1030,"Gefahrstofflager, Schaumanlage GL-2",stationaere_anlage,P-114,1800,2025-07-05,2024-09-24,3.0,3.0
+LS-0126,K-1030,Gefahrstofflager,lager_bestand,P-114,600,2026-10-06,,,
+LS-0127,K-1030,Hochregallager,lager_bestand,P-118,400,2027-01-10,,,
+LS-0128,K-1031,Tankpark A,stationaere_anlage,P-103,7000,2026-11-08,2025-05-17,3.0,3.0
+LS-0129,K-1031,Tankpark B,stationaere_anlage,P-103,7000,2025-08-26,,,3.0
+LS-0130,K-1031,Tankpark C (Testbereich),stationaere_anlage,P-119,1500,2025-08-20,2025-06-11,3.0,3.0
+LS-0131,K-1031,Terminallager,lager_bestand,P-103,3000,2026-12-27,,,
+LS-0132,K-1031,Erprobung fluorfrei,lager_bestand,P-203,500,2025-06-29,,,
+LS-0133,K-1032,"Kohlebunker, Schaumanlage",stationaere_anlage,P-118,1200,2025-09-04,2025-05-20,3.0,3.0
+LS-0134,K-1032,"Brennstofflager, Schaumanlage",stationaere_anlage,P-119,900,2026-01-18,2024-04-23,3.0,3.0
+LS-0135,K-1032,Werkfeuerwehr,feuerwehrfahrzeug,P-116,200,2025-06-18,,,
+LS-0136,K-1032,Betriebslager,lager_bestand,P-118,300,2025-06-05,,,

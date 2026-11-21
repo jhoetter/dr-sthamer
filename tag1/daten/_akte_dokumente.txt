@@ -1,0 +1,19 @@
+# Vorgesehene Dokumente der Akte tag1/akten/K-1003 Raffinerie Kuestenmark/
+# (aus kontakte.csv, Feld dokument; erzeugt von werkzeuge/erzeuge_daten.py)
+D02 2026-03-03 CRM-Auszug Anlage Verladestation.md
+D01 2026-03-03 Mail Angebot Erprobungsmenge.eml
+D03 2026-04-12 Lieferschein Erprobungsmenge.md
+D04 2026-05-07 Pruefprotokoll Probeverschaeumung.md
+D05 2026-05-08 Reklamation Kundenportal.md
+D06 2026-05-08 Mail Antwort Portal-Assistent.eml
+D07 2026-05-11 Telefonnotiz Aussendienst.md
+D08 2026-05-12 Mail Teamleitung an Labor.eml
+D09 2026-05-15 Schreiben Sachversicherer.md
+D10 2026-05-19 Brief Kunde an Geschaeftsfuehrung.md
+D11 2026-05-20 Laborbefund Rueckstellmuster.md
+D12 2026-05-21 Mail Geschaeftsfuehrerin an Teamleitung.eml
+D13 2026-05-29 Antwortschreiben an Kunden (versandt).md
+D14 2026-06-03 Laborbericht Tankprobe und Zumischung.md
+D15 2026-06-05 Memo Programmleitung.md
+D16 2026-06-10 Gespraechsnotiz Termin vor Ort.md
+D17 2026-07-10 Mail Bestellung AR-AFFF.eml

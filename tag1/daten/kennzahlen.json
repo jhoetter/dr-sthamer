@@ -1,0 +1,109 @@
+{
+  "stichtag": "2027-02-28",
+  "heute": "2027-03-01",
+  "waehrung_konzern": "EUR",
+  "konzernkurse": {
+    "hinweis": "1 Einheit Fremdwährung = x EUR, Jahresdurchschnitt; 2027 = Kurs 2026",
+    "kurse": {
+      "2021": {
+        "CHF": 0.925,
+        "GBP": 1.163,
+        "NOK": 0.0985
+      },
+      "2022": {
+        "CHF": 0.995,
+        "GBP": 1.173,
+        "NOK": 0.0945
+      },
+      "2023": {
+        "CHF": 1.029,
+        "GBP": 1.15,
+        "NOK": 0.0872
+      },
+      "2024": {
+        "CHF": 1.052,
+        "GBP": 1.181,
+        "NOK": 0.0857
+      },
+      "2025": {
+        "CHF": 1.066,
+        "GBP": 1.187,
+        "NOK": 0.0852
+      },
+      "2026": {
+        "CHF": 1.071,
+        "GBP": 1.168,
+        "NOK": 0.0849
+      },
+      "2027": {
+        "CHF": 1.071,
+        "GBP": 1.168,
+        "NOK": 0.0849
+      }
+    }
+  },
+  "ziele": {
+    "fluorfrei_anteil": {
+      "2026": 0.6,
+      "2027": 0.8
+    }
+  },
+  "definitionen": {
+    "fluorfrei_anteil": {
+      "formel": "Liter der fluorfreien Produktlinie / alle gelieferten Liter im Kalenderjahr",
+      "zaehler": "Positionen mit produkte.produktlinie = 'fluorfrei'",
+      "nenner": "alle Positionen (alle Produktlinien)",
+      "jahr": "nach Lieferdatum (Kalenderjahr)",
+      "netto": "Gutschriften und Retouren mit ihren negativen Mengen abziehen",
+      "ohne": [
+        "Muster (art = 'Muster')",
+        "Doppelimporte (gleiche auftrag_id und position nur einmal zählen)"
+      ],
+      "liter": "menge_l; fehlt es, menge x Gebindegröße (umrechnung_gebinde)",
+      "hinweis": "Die Deklaration (produkte.fluorfrei_deklariert) ist nicht die Grundlage der Kennzahl."
+    },
+    "aktiver_kunde": "mindestens ein Auftrag (art = 'Lieferung') in den 24 Monaten vor dem Stichtag",
+    "umrechnung_gebinde": {
+      "IBC": 1000,
+      "Fass": 200,
+      "Kanister": 20,
+      "l": 1
+    },
+    "deckungsbeitrag": {
+      "formel": "Deckungsbeitrag = Nettoumsatz - Herstellkosten - Fracht; DB-Marge = Deckungsbeitrag / Nettoumsatz",
+      "nettoumsatz": "Summe nettobetrag aller Positionen (Lieferungen, Gutschriften und Retouren negativ, Muster 0) in EUR, ohne Doppelimporte, Jahr nach Lieferdatum",
+      "herstellkosten": "Liter x (rohstoff_eur_l + fertigung_eur_l) aus herstellkosten.csv für Produkt und Lieferjahr; für Lieferungen und Muster, Retouren mindern (Ware kommt zurück); Gutschriften ohne Herstellkosten (Ware bleibt beim Kunden)",
+      "fracht": "fracht.csv je Auftrag; auf die Positionen des Auftrags nach Litern verteilt, Jahr nach Lieferdatum der Position",
+      "hinweis": "Margen und Quoten aus den Summen bilden, nie Prozentwerte mitteln."
+    },
+    "umrechnung_fremdwaehrung": {
+      "ist_berichte": "Konzernkurs des Lieferjahres (konzernkurse)",
+      "plan_ist_2026": "Budget ist zum Plankurs gerechnet; Ist zum Ist-Monatskurs des Liefermonats (kurse.csv)",
+      "fremdwaehrungseffekt": "Ist-Betrag in Fremdwährung x (Ist-Monatskurs - Plankurs)"
+    },
+    "rabattquote": {
+      "formel": "1 - Summe nettobetrag (EUR) / Summe Listenwert",
+      "listenwert": "menge x Listenpreis des gleichen Gebindes (einheit 'l' = lose) aus der Preisliste des Lieferjahres",
+      "positionen": "art = 'Lieferung', ohne Notfallservice (Zuschlag statt Rabatt), ohne Doppelimporte",
+      "fremdwaehrung": "zum Konzernkurs des Lieferjahres in EUR",
+      "jahre": "nur 2025 und 2026 (für frühere Jahre gibt es keine Preisliste im Ausschnitt)"
+    },
+    "plan_ist_bruecke": {
+      "zellen": "Produktlinie x Segment, Kalenderjahr 2026",
+      "ist": "netto Liter wie fluorfrei_anteil; Umsatz und Kosten wie deckungsbeitrag; Notfallservice nicht in den Zellen, sondern als eigener Balken (nicht budgetiert)",
+      "mengeneffekt": "(Ist-Liter gesamt - Plan-Liter gesamt) x Plan-Durchschnitt je Liter",
+      "mixeffekt": "Summe je Zelle (Ist-Liter x Plan-Wert je Liter) - Ist-Liter gesamt x Plan-Durchschnitt je Liter",
+      "preiseffekt": "Summe je Zelle (Ist-Umsatz zum Plankurs - Ist-Liter x Plan-Preis je Liter)",
+      "kosteneffekt": "nur Deckungsbeitrag: Summe je Zelle (Ist-Liter x Plan-Kosten je Liter - Ist-Kosten); Plan-Kosten je Liter = Plan-Preis - Plan-DB je Liter",
+      "fremdwaehrungseffekt": "wie umrechnung_fremdwaehrung, ohne Notfallservice",
+      "wert_je_liter": "Umsatzbrücke: Umsatz je Liter; DB-Brücke: Deckungsbeitrag je Liter"
+    }
+  },
+  "ampel_regel": {
+    "grundlage": "Anteil fluorhaltiger Liter (produktlinie = 'fluorhaltig') je Segment und Land, Kalenderjahr",
+    "rot": "> 0.50",
+    "gelb": "0.20 bis 0.50 (beide Grenzen eingeschlossen)",
+    "gruen": "< 0.20",
+    "luecke": "weniger als 20 Positionen: keine Ampel, als Lücke zeigen"
+  }
+}

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Bootcamp — Tag 1: Abschluss</title>
+<!-- ============================================================
+     AI-Bootcamp · Tag 1 · Abschluss
+     Erzeugt 2026-11-21 durch design/build_tag1.py (Teildeck; Gesamtfassung: AI-Bootcamp — Tag 1.html).
+     Raster: Rand 64 px · Kopfzeile 40 px · Titel 104 px · Inhalt 232–616 px · Quelle 626 px · Fusszeile 684 px.
+     Tasten: Pfeile weiter · S Referentenansicht mit Notizen · F Vollbild · ESC Übersicht · ?print-pdf für den PDF-Export.
+     ============================================================ -->
+<link rel="stylesheet" href="gemeinsam/354c2799e6.css">
+<link rel="stylesheet" href="gemeinsam/6d5a288f91.css">
+<style>
+/* ============ Skin «Golden Age» ============ */
+:root {
+  --r-background-color: #F6EBD0;
+  --r-main-font: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --r-main-font-size: 16px; --r-main-color: #111111;
+  --r-heading-font: 'Bangers', Impact, 'Arial Black', sans-serif;
+  --r-heading-color: #111111; --r-heading-text-transform: none;
+  --r-link-color: #2456C7; --r-link-color-hover: #D62828;
+  --r-selection-background-color: rgba(249,217,73,0.55);
+}
+html, body, .reveal-viewport, .reveal .backgrounds { background: #F6EBD0; }
+.reveal { font-family: var(--r-main-font); font-size: 16px; color: #111111; }
+.reveal .slides { text-align: left; }
+.reveal .slides section { padding: 0; margin: 0; width: 1280px; height: 720px; top: 0 !important; }
+.reveal .slides section > div { font-size: 16px; line-height: 1.5; }
+.reveal h1, .reveal h2, .reveal h3, .reveal p, .reveal ul, .reveal ol, .reveal li, .reveal blockquote { margin: 0; line-height: inherit; text-transform: none; }
+.reveal ul, .reveal ol { display: block; }
+.reveal img, .reveal svg { max-width: none; max-height: none; margin: 0; border: 0; box-shadow: none; }
+.reveal strong, .reveal b { font-weight: 700; }
+.reveal .progress { height: 3px; color: #D62828; }
+.reveal .controls { color: #D62828; }
+.reveal .slide-number { display: none !important; }  /* die Fusszeile jeder Folie zaehlt selbst */
+.reveal .controls { bottom: auto; top: 50%; transform: translateY(-50%); }
+@media print { .reveal .controls, .reveal .progress { display: none !important; } }
+
+/* ---- Bausteine: .display .caption .panel .bubble .code .num .tag .mint .dots .foot .title3d .pf-strip ---- */
+    body { margin: 0; }
+    a { color: #2456C7; } a:hover { color: #D62828; }
+    .paper { background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif; }
+    .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(17,17,17,0.13) 1.3px, transparent 1.7px); background-size: 9px 9px; pointer-events: none; }
+    .display { font-family: 'Bangers', 'Impact', 'Arial Black', sans-serif; letter-spacing: 0.02em; }
+    .caption { display: inline-block; background: #F9D949; border: 3px solid #111; padding: 6px 12px; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 4px 4px 0 #111; }
+    .panel { background: #FFFBEF; border: 4px solid #111; box-shadow: 8px 8px 0 #111; }
+    .bubble { position: relative; background: #FFFFFF; border: 3px solid #111; border-radius: 26px; padding: 16px 22px; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; }
+    .bubble::after { content: ""; position: absolute; left: 44px; bottom: -24px; border-style: solid; border-width: 24px 20px 0 0; border-color: #111 transparent transparent transparent; }
+    .bubble::before { content: ""; position: absolute; left: 47px; bottom: -17px; border-style: solid; border-width: 18px 15px 0 0; border-color: #FFFFFF transparent transparent transparent; z-index: 1; }
+    .foot { position: absolute; left: 64px; right: 64px; top: 684px; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #5A4A2A; }
+    .foot b { color: #D62828; }
+    .title3d { color: #D62828; -webkit-text-stroke: 3px #111; paint-order: stroke fill; text-shadow: 7px 7px 0 #2456C7, 10px 10px 0 #111; }
+    .mono { font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; }
+    .code { background: #1B1F3B; color: #F2F6FB; border: 4px solid #111; box-shadow: 8px 8px 0 #111; padding: 18px 22px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 16px; line-height: 1.5; white-space: pre; overflow: hidden; }
+    .code .k { color: #F9D949; } .code .s { color: #7FD1FF; } .code .c { color: #9BA3C7; } .code .n { color: #FF8A7A; }
+    .num { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #D62828; color: #FFF; border: 3px solid #111; font-family: 'Bangers', Impact, sans-serif; font-size: 24px; flex: none; }
+    .tag { display: inline-block; border: 3px solid #111; padding: 3px 10px; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .mint { background: #9FE3C4; }
+    .bubble.r::after { left: auto; right: 44px; border-width: 24px 0 0 20px; }
+    .bubble.r::before { left: auto; right: 47px; border-width: 18px 0 0 15px; }
+    .prompt { background: #FFFFFF; border: 3px solid #111; border-left: 12px solid #2456C7; border-radius: 6px; padding: 10px 16px; font-family: 'Barlow', sans-serif; font-size: 18px; line-height: 1.4; }
+    .pf-strip { position: absolute; left: 0; top: 0; bottom: 0; width: 22px; background: repeating-linear-gradient(135deg, #3DBE8B 0 14px, #111 14px 18px); border-right: 4px solid #111; }
+
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<!-- ===== 01 · Abschluss ===== -->
+<section data-id="T1-01Abschluss">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Abschluss · 17:05</div>
+    
+  </div>
+  <div style="position: absolute; left: 64px; top: 104px; width: 1152px; display: flex; flex-direction: column; gap: 12px;">
+    <h2 class="display" style="margin: 0; font-size: 44px; line-height: 1.1; color: #111; white-space: nowrap;">Heute unterstützt Claude, morgen handeln KI-Agenten</h2>
+    <p style="margin: 0; font-size: 21px; font-weight: 400; color: #4A3D24; white-space: nowrap;">Heute habt Ihr geprüft und entschieden. Tag 2 mit Johannes Hötter zeigt, wo ein Mensch freigeben muss.</p>
+  </div>
+  <div style="position: absolute; left: 64px; top: 232px; width: 1152px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px;">
+    <div class="panel" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #3DBE8B;">Heute entstanden</div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">1</div><p style="margin: 0; font-size: 19px; line-height: 1.35;">Ein <b>Dashboard</b>: Umstellung, Finanzen und Angebote auf einer Seite</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">2</div><p style="margin: 0; font-size: 19px; line-height: 1.35;">Ein <b>Notizbuch</b> mit vorbereiteten Jahresgesprächen für Birte</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">3</div><p style="margin: 0; font-size: 19px; line-height: 1.35;">Eine <b>Präsentation</b> für den Beirat aus den eigenen Zahlen</p></div><p style="margin: 0; font-size: 18px; line-height: 1.35; color: #4A3D24;"><b>Zum Schluss reihum</b> ein Satz pro Person: Was hat Euch heute überrascht?</p></div>
+    <div class="panel" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;"><div class="caption" style="align-self: flex-start; box-shadow: none; background: #7FD1FF;">Tag 2 · Agentische Systeme</div><p style="margin: 0; font-size: 20px; line-height: 1.4;">Morgen arbeiten KI-Agenten, also Programme, die selbst handeln, ganze Abläufe ab. Die Frage ist: Wo muss ein Mensch freigeben?</p><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">1</div><p style="margin: 0; font-size: 18px; line-height: 1.35;">Eine E-Mail kommt an, ein <b>Agent</b> bereitet den Fall vor</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">2</div><p style="margin: 0; font-size: 18px; line-height: 1.35;"><b>Pflichtfreigabe:</b> Hier gibt immer ein Mensch frei</p></div><div style="display: flex; gap: 12px; align-items: flex-start;"><div class="num">3</div><p style="margin: 0; font-size: 18px; line-height: 1.35;"><b>Eingriffsfenster:</b> Die Antwort geht raus, wenn niemand widerspricht</p></div></div>
+  </div>
+  <div class="foot"><div>AI-Bootcamp · Tag 1 · AI Augmentation</div><div>Abschluss · <b>01 / 2</b></div></div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+<!-- ===== 02 · Schluss ===== -->
+<section data-id="T1-02Schluss">
+<div style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F6EBD0; color: #111111; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;">
+  <div style="position: absolute; left: 64px; right: 64px; top: 40px; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="caption">Ausblick auf Tag 2</div>
+    
+  </div>
+  <div style="position: absolute; left: 60px; top: 200px; transform: rotate(-2deg); background: #D62828; color: #FFF; border: 4px solid #111; box-shadow: 6px 6px 0 #111; padding: 8px 26px;" class="display">
+    <div style="font-size: 64px; line-height: 1;">Bis morgen, [Uhrzeit prüfen]</div>
+  </div>
+  <div style="position: absolute; left: 64px; top: 330px; width: 700px; font-size: 22px; color: #4A3D24; line-height: 1.4;">Tag 2 · Agentische Systeme mit Johannes Hötter. Bringt den Laptop geladen mit und behaltet den Ordner „tag1“: Darin liegen Eure Ergebnisse von heute.</div>
+  <div style="position: absolute; left: 820px; top: 300px;"><svg width="200" height="181" viewBox="0 0 520 470" role="img" aria-label="Comicfigur Falk, hemd, wave"><path d="M172 336 L172 384 L228 384 L228 336" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M176 340 Q200 364 224 340" fill="#E0AE86" opacity="0.7"/>
+<path d="M48 470 L62 402 C112 376 158 372 176 372 L200 408 L224 372 C242 372 288 376 338 402 L352 470 Z" fill="#FFFFFF" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M172 368 L200 412 L186 416 L150 384 Z M228 368 L200 412 L214 416 L250 384 Z" fill="#FFFFFF" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="200" cy="440" r="4" fill="none" stroke="#111" stroke-width="3"/>
+<path d="M322 410 C348 392 372 340 372 300 L400 306 C400 352 372 420 344 440 Z" fill="#FFFFFF" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M366 300 C356 268 362 250 376 248 C384 246 388 258 384 270 L392 244 C400 236 410 244 406 256 L416 240 C426 236 432 246 426 258 L430 252 C440 250 444 262 438 272 L424 300 C416 314 396 318 380 310 Z" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M372 262 L372 248 M390 262 L392 250 M406 264 L412 254 M420 274 L428 262" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<path d="M200 62 C280 62 326 132 322 218 C318 296 268 350 200 352 C132 350 82 296 78 218 C74 132 120 62 200 62 Z" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<ellipse cx="80" cy="222" rx="13" ry="21" fill="#F2C9A6" stroke="#111" stroke-width="5"/>
+<ellipse cx="320" cy="222" rx="13" ry="21" fill="#F2C9A6" stroke="#111" stroke-width="5"/>
+<path d="M84 214 q6 10 0 20 M316 214 q-6 10 0 20" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="158" cy="108" rx="26" ry="11" fill="#FFFFFF" opacity="0.75" transform="rotate(-25 158 108)"/>
+<path d="M79 226 C80 300 132 352 200 356 C268 352 320 300 321 226 C302 262 258 270 240 262 C232 250 168 250 160 262 C142 270 98 262 79 226 Z" fill="#6E5A45" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M150 318 C170 344 230 344 250 318 C236 328 164 328 150 318 Z" fill="#A8A29A" opacity="0.9"/>
+<path d="M90 246 C98 284 116 308 138 322 C116 302 102 276 90 246 Z M310 246 C302 284 284 308 262 322 C284 302 298 276 310 246 Z" fill="#A8A29A" opacity="0.8"/>
+<path d="M150 262 C168 246 232 246 250 262 C232 258 168 258 150 262 Z" fill="#6E5A45" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+<path d="M200 200 L186 246 Q200 256 214 246" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="158" cy="206" rx="21" ry="13" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<circle cx="160" cy="207" r="9" fill="#4A7FC1" stroke="#111" stroke-width="2"/>
+<circle cx="160" cy="207" r="4.5" fill="#111"/><circle cx="163" cy="203" r="2.2" fill="#FFFFFF"/>
+<ellipse cx="242" cy="206" rx="21" ry="13" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<circle cx="244" cy="207" r="9" fill="#4A7FC1" stroke="#111" stroke-width="2"/>
+<circle cx="244" cy="207" r="4.5" fill="#111"/><circle cx="247" cy="203" r="2.2" fill="#FFFFFF"/>
+<path d="M130 184 Q158 170 186 182 M214 182 Q242 170 270 184" fill="none" stroke="#8A6A45" stroke-width="8" stroke-linecap="round"/>
+<path d="M126 224 q-8 8 -4 18 M274 224 q8 8 4 18" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+<path d="M148 278 Q200 338 252 278 Q200 296 148 278 Z" fill="#3A1F1F" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+<path d="M158 284 Q200 298 242 284 L240 294 Q200 312 160 294 Z" fill="#FFFFFF"/>
+</svg></div>
+  <div style="position: absolute; left: 1010px; top: 290px;"><svg width="200" height="181" viewBox="0 0 520 470" role="img" aria-label="Comicfigur Johannes, schwarz, wave"><path d="M172 336 L172 384 L228 384 L228 336" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M176 340 Q200 364 224 340" fill="#E0AE86" opacity="0.7"/>
+<path d="M48 470 L62 402 C112 376 158 372 176 372 L200 408 L224 372 C242 372 288 376 338 402 L352 470 Z" fill="#1E1E1E" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<path d="M172 368 L200 412 L186 416 L150 384 Z M228 368 L200 412 L214 416 L250 384 Z" fill="#1E1E1E" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="200" cy="440" r="4" fill="none" stroke="#F6EBD0" stroke-width="3"/>
+<path d="M322 410 C348 392 372 340 372 300 L400 306 C400 352 372 420 344 440 Z" fill="#1E1E1E" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M366 300 C356 268 362 250 376 248 C384 246 388 258 384 270 L392 244 C400 236 410 244 406 256 L416 240 C426 236 432 246 426 258 L430 252 C440 250 444 262 438 272 L424 300 C416 314 396 318 380 310 Z" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M372 262 L372 248 M390 262 L392 250 M406 264 L412 254 M420 274 L428 262" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<path d="M200 66 C272 66 316 136 314 222 C312 302 264 358 200 362 C136 358 88 302 86 222 C84 136 128 66 200 66 Z" fill="#F2C9A6" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+<ellipse cx="80" cy="222" rx="13" ry="21" fill="#F2C9A6" stroke="#111" stroke-width="5"/>
+<ellipse cx="320" cy="222" rx="13" ry="21" fill="#F2C9A6" stroke="#111" stroke-width="5"/>
+<path d="M84 214 q6 10 0 20 M316 214 q-6 10 0 20" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+<path d="M88 236 C92 306 138 358 200 362 C262 358 308 306 312 236 C300 296 258 336 200 340 C142 336 100 296 88 236 Z" fill="#6E5238" opacity="0.65"/>
+<path d="M160 258 C176 250 224 250 240 258 C224 262 176 262 160 258 Z" fill="#7A5C42" opacity="0.5"/>
+<path d="M170 322 C186 332 214 332 230 322" fill="none" stroke="#7A5C42" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<path d="M200 200 L186 246 Q200 256 214 246" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="158" cy="206" rx="21" ry="13" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<circle cx="160" cy="207" r="9" fill="#6C8FB0" stroke="#111" stroke-width="2"/>
+<circle cx="160" cy="207" r="4.5" fill="#111"/><circle cx="163" cy="203" r="2.2" fill="#FFFFFF"/>
+<ellipse cx="242" cy="206" rx="21" ry="13" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+<circle cx="244" cy="207" r="9" fill="#6C8FB0" stroke="#111" stroke-width="2"/>
+<circle cx="244" cy="207" r="4.5" fill="#111"/><circle cx="247" cy="203" r="2.2" fill="#FFFFFF"/>
+<path d="M130 184 Q158 170 186 182 M214 182 Q242 170 270 184" fill="none" stroke="#5E4128" stroke-width="8" stroke-linecap="round"/>
+<path d="M126 224 q-8 8 -4 18 M274 224 q8 8 4 18" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+<path d="M148 278 Q200 338 252 278 Q200 296 148 278 Z" fill="#3A1F1F" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+<path d="M158 284 Q200 298 242 284 L240 294 Q200 312 160 294 Z" fill="#FFFFFF"/>
+<path d="M88 214 C82 150 108 88 160 70 C196 58 246 60 282 82 C312 100 322 150 316 200 C308 170 286 148 262 140 C232 130 206 134 176 128 C150 124 124 138 112 162 C102 180 96 200 88 214 Z" fill="#5E4128" stroke="#111" stroke-width="5" stroke-linejoin="round"/><path d="M150 92 C186 78 226 76 262 90 M136 118 C170 100 214 96 250 106" fill="none" stroke="#8A6540" stroke-width="5" stroke-linecap="round" opacity="0.8"/><path d="M92 210 C92 190 100 176 112 166 M312 196 C310 176 300 160 286 150" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+</svg></div>
+  <div style="position: absolute; left: 64px; right: 64px; bottom: 44px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 4px solid #111; padding-top: 18px;">
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 22px; font-weight: 700;">Prof. Dr. Falk Uebernickel</div>
+    </div>
+    <div class="display" style="font-size: 30px; color: #D62828;">Vielen Dank</div>
+  </div>
+  <a href="Tag%201%20·%20Übersicht.html" style="position: absolute; left: 64px; top: 10px; font-size: 13px; color: #6B5B3A; text-decoration: none; border-bottom: 1px dotted #6B5B3A;">← Übersicht Tag 1</a>
+</div>
+
+</section>
+</div>
+</div>
+<script src="gemeinsam/f24603cc1a.js"></script>
+<script>
+Reveal.initialize({
+  width: 1280, height: 720, margin: /print-pdf/.test(window.location.search) ? 0 : 0.04, minScale: 0.2, maxScale: 2.0,
+  hash: true, center: false, transition: 'fade', transitionSpeed: 'fast',
+  controls: true, controlsLayout: 'edges', controlsBackArrows: 'faded',
+  progress: true, slideNumber: false, overview: true,
+  plugins: [ RevealNotes ]
+});
+</script>
+<style>
+/* ============ Klick-Grossansicht (design/zoom.py) ============ */
+.zoomrahmen { position: relative; cursor: zoom-in; }
+.zoomrahmen::after { content: ""; position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px;
+  background: #F9D949 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2.6' stroke-linecap='round'><circle cx='10' cy='10' r='6'/><path d='M14.5 14.5 L20 20'/><path d='M10 7.5 V12.5 M7.5 10 H12.5'/></svg>") center / 20px 20px no-repeat; border: 2px solid #111; box-shadow: 2px 2px 0 #111;
+  transition: transform .12s; }
+.zoomrahmen:hover::after { transform: scale(1.12); }
+.zoom-ov { position: fixed; inset: 0; z-index: 10000; background: rgba(17,17,17,.86); padding: 26px 34px 30px;
+  box-sizing: border-box; display: flex; font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif; color: #111; }
+.zoom-ov[hidden], .zoom-ov [hidden] { display: none !important; }
+.zoom-karte { flex: 1; min-width: 0; display: flex; flex-direction: column; background: #FFFBEF;
+  border: 3px solid #111; box-shadow: 7px 7px 0 #F9D949; }
+.zoom-kopf { display: flex; align-items: center; gap: 10px; padding: 8px 10px 8px 16px; border-bottom: 3px solid #111; flex-wrap: wrap; }
+.zoom-titel { flex: 1; min-width: 200px; font-weight: 700; font-size: 17px; line-height: 1.25; }
+.zoom-kopf button { font: 700 14px/1 'Barlow', Arial, sans-serif; letter-spacing: .5px; color: #111; background: #FFF;
+  border: 2px solid #111; padding: 6px 12px; cursor: pointer; }
+.zoom-kopf button[aria-pressed="true"] { background: #F9D949; }
+.zoom-kopf .zoom-seg { display: flex; }
+.zoom-kopf .zoom-seg button + button { border-left: 0; }
+.zoom-kopf a { font-size: 14px; color: #2456C7; text-decoration: none; border-bottom: 1px dotted #2456C7; white-space: nowrap; }
+.zoom-kopf .zoom-zu { font-size: 22px; width: 36px; height: 34px; padding: 0; background: #D62828; color: #FFF; }
+.zoom-koerper { position: relative; flex: 1; min-height: 0; overflow: auto; background: #FFF; outline: none; }
+.zoom-koerper img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; cursor: zoom-in; }
+.zoom-koerper.eins img { position: static; width: auto; height: auto; max-width: none; max-height: none; margin: 0 auto; cursor: zoom-out; }
+.zoom-koerper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #FFF; }
+.zoom-fuss { padding: 5px 16px; font-size: 13px; color: #6B5B3A; border-top: 2px solid #111; }
+@media print { .zoomrahmen::after, .zoom-ov { display: none !important; } }
+html.print-pdf .zoomrahmen::after, html.reveal-print .zoomrahmen::after { display: none !important; }
+</style>
+<div class="zoom-ov" hidden role="dialog" aria-modal="true" aria-label="Grossansicht">
+  <div class="zoom-karte">
+    <div class="zoom-kopf">
+      <div class="zoom-titel"></div>
+      <div class="zoom-seg"><button type="button" data-modus="bild">Bild</button><button type="button" data-modus="original">Original öffnen</button></div>
+      <button type="button" class="zoom-massstab">1:1</button>
+      <a class="zoom-tab" href="#" target="_blank" rel="noopener">in neuem Tab ↗</a>
+      <button type="button" class="zoom-zu" title="Schliessen (Esc)" aria-label="Schliessen">×</button>
+    </div>
+    <div class="zoom-koerper" tabindex="-1"></div>
+    <div class="zoom-fuss">Esc, Klick auf den dunklen Rand oder × schliesst · Klick ins Bild: eingepasst ↔ 1:1</div>
+  </div>
+</div>
+<script>
+(function () {
+  var ov = document.querySelector('.zoom-ov');
+  if (!ov) return;
+  var titel = ov.querySelector('.zoom-titel'), koerper = ov.querySelector('.zoom-koerper'),
+      seg = ov.querySelector('.zoom-seg'), knopfBild = seg.querySelector('[data-modus="bild"]'),
+      knopfOrig = seg.querySelector('[data-modus="original"]'), massstab = ov.querySelector('.zoom-massstab'),
+      tab = ov.querySelector('.zoom-tab'), fuss = ov.querySelector('.zoom-fuss');
+  var offen = false, quelle = null, original = null;
+
+  function zeige(modus) {
+    koerper.innerHTML = '';
+    koerper.classList.remove('eins');
+    knopfBild.setAttribute('aria-pressed', modus === 'bild');
+    knopfOrig.setAttribute('aria-pressed', modus === 'original');
+    massstab.hidden = modus !== 'bild';
+    massstab.textContent = '1:1';
+    if (modus === 'original' && original) {
+      var f = document.createElement('iframe');
+      f.src = original;
+      f.title = titel.textContent;
+      f.addEventListener('load', function () {
+        try { f.contentWindow.addEventListener('keydown', function (e) { if (e.key === 'Escape') schliesse(); }); } catch (_) {}
+      });
+      koerper.appendChild(f);
+      fuss.textContent = 'Original (HTML) · im Original selbst klicken und scrollen · × oder Klick auf den dunklen Rand schliesst';
+    } else {
+      var img = document.createElement('img');
+      img.src = quelle.src;
+      img.alt = quelle.alt || 'Screenshot';
+      img.addEventListener('click', umschalten);
+      koerper.appendChild(img);
+      fuss.textContent = 'Esc, Klick auf den dunklen Rand oder × schliesst · Klick ins Bild: eingepasst ↔ 1:1 (' +
+        (quelle.naturalWidth || '?') + ' × ' + (quelle.naturalHeight || '?') + ' px)';
+    }
+    koerper.focus({ preventScroll: true });
+  }
+  function umschalten() {
+    var eins = koerper.classList.toggle('eins');
+    massstab.textContent = eins ? 'Einpassen' : '1:1';
+  }
+  function oeffne(img) {
+    quelle = img;
+    original = img.getAttribute('data-original') || null;
+    titel.textContent = img.getAttribute('data-titel') || 'Screenshot';
+    seg.hidden = !original;
+    tab.hidden = !original;
+    if (original) tab.href = original;
+    ov.hidden = false;
+    offen = true;
+    zeige('bild');
+  }
+  function schliesse() {
+    if (!offen) return;
+    offen = false;
+    ov.hidden = true;
+    koerper.innerHTML = '';
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    window.focus();
+  }
+
+  knopfBild.addEventListener('click', function () { zeige('bild'); });
+  knopfOrig.addEventListener('click', function () { zeige('original'); });
+  massstab.addEventListener('click', umschalten);
+  ov.querySelector('.zoom-zu').addEventListener('click', schliesse);
+  ov.addEventListener('click', function (e) { if (e.target === ov) schliesse(); });
+
+  document.addEventListener('click', function (e) {
+    var r = e.target.closest ? e.target.closest('.zoomrahmen') : null;
+    if (!r || offen) return;
+    if (window.Reveal && Reveal.isOverview && Reveal.isOverview()) return;
+    var img = r.querySelector('img[data-zoom]');
+    if (!img) return;
+    e.preventDefault();
+    e.stopPropagation();
+    oeffne(img);
+  }, true);
+
+  // Vor reveal.js (lauscht auf document): solange das Overlay offen ist, keine Tasten an reveal.js
+  // (Pfeile/Leertaste scrollen dann das Bild); S (Sprecheransicht) bleibt frei.
+  window.addEventListener('keydown', function (e) {
+    if (!offen) return;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopImmediatePropagation(); schliesse(); return; }
+    if ((e.key === 's' || e.key === 'S') && !e.ctrlKey && !e.metaKey && !e.altKey) return;
+    e.stopImmediatePropagation();
+  }, true);
+})();
+</script>
+</body>
+</html>
