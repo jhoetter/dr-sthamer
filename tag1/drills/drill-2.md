@@ -92,7 +92,7 @@ angekommen? Vergleiche die Rabattquote 2025 und 2026 nach unserer Definition, ge
 zeig mir den Fremdwährungseffekt 2026 je Währung. Ergänze beides im Reiter ‚Finanzen‘, die anderen Teile bleiben
 unverändert.“ Prüfe: Wo bleibt die Preiserhöhung hängen, bei welchem Vertriebsweg?
 
-**Danach die Rückfrage-Runde.** Unser externes Beiratsmitglied war lange Finanzchef in der Industrie. Frag Claude:
+**Danach die Rückfrage-Runde.** Unser externes Beiratsmitglied war früher Finanzchef eines Industrieunternehmens. Frag Claude:
 „Welche drei Fragen würde ein früherer Finanzchef zu meinem Kommentar stellen, um zu prüfen, ob die Marge
 schöngerechnet ist? Beantworte jede mit einer Zahl aus unseren Tabellen.“ Den Kommentar änderst du nur, wenn eine
 Aussage dadurch nicht mehr hält.

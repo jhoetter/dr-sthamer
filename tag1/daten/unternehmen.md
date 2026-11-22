@@ -92,7 +92,7 @@ Geschäftsführerin
 - **Jasper Dierksmeyer** verantwortet Budget, Plan-Ist-Vergleich und Deckungsbeitragsrechnung.
 - **Birte Lohmeyer** führt 14 Personen, davon 6 direkt.
 - **Beirat:** Vorsitzender aus dem Gesellschafterkreis; ein externes Mitglied, früher Finanzchef eines
-  Chemieunternehmens.
+  Industrieunternehmens.
 
 ## Systeme
 
