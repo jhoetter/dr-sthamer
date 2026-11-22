@@ -1,87 +1,78 @@
-# Reiter „Finanzen“: erzeugt dashboard-daten/finanzen.js
-# Definitionen: kennzahlen.json -> deckungsbeitrag, umrechnung_fremdwaehrung, rabattquote, plan_ist_bruecke
+# -*- coding: utf-8 -*-
+"""Reiter „Finanzen“: rechnet aus den Tabellen und schreibt dashboard-daten/finanzen.js.
+
+Aufruf: python meine-ergebnisse/skripte/finanzen.py
+
+Inhalt der Datei:
+- zeilen: je Jahr (2025, 2026), Segment, Vertriebsweg, Schaumart die Summen Nettoumsatz (Konzernkurs des Jahres),
+  Herstellkosten, Fracht (nach Litern verteilt), Positionen ohne Muster. Muster tragen Kosten, keinen Umsatz.
+  Der Browser bildet Deckungsbeitrag und Marge immer aus diesen Summen (nie Margen mitteln).
+- bruecke: Budget -> Ist 2026 (Deckungsbeitrag), gerechnet von bruecke.py (Ist zum Ist-Monatskurs, Budget zum Plankurs).
+"""
 import json
 import os
 import sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from fin_kern import lade_fin, absatz
-from bruecke import bruecke, fx_je_waehrung, plan_zellen
-from preise import rabatt_gruppen, listenpreiserhoehung_2026
-from kern import BASIS, KURSE, lese_csv
+import finanz_basis as fb
+import gemeinsam as g
+import bruecke as br
 
-pos, stat = lade_fin()
+pos, kd, prod, pruef = fb.lade()
+WEGE = ["direkt", "Händler", "Rahmenvertrag", "Notfallservice"]
+segmente = sorted(set(k["segment"] for k in kd.values()))
+schaumarten = sorted(set(p["schaumart"] for p in prod.values()))
 
-# 1) Zellen Jahr x Produktlinie x Segment x Notfallservice (Konzernkurs des Lieferjahres); Marge wird im Browser aus Summen gerechnet
-z = defaultdict(lambda: {"n": 0, "l": 0.0, "u": 0.0, "h": 0.0, "f": 0.0})
+acc = defaultdict(lambda: [0.0, 0.0, 0.0, 0, 0.0])
 for p in pos:
     if p["jahr"] not in (2025, 2026):
         continue
-    k = (p["jahr"], p["linie"], p["segment"], p["vertriebsweg"] == "Notfallservice")
-    c = z[k]
-    c["n"] += 1
-    if absatz(p):
-        c["l"] += p["liter"]
-    c["u"] += p["umsatz"]
-    c["h"] += p["herst"]
-    c["f"] += p["fracht"]
-zellen = [{"j": k[0], "linie": k[1], "seg": k[2], "nf": k[3], "n": v["n"], "l": round(v["l"], 2),
-           "u": round(v["u"], 2), "h": round(v["h"], 2), "f": round(v["f"], 2)} for k, v in sorted(z.items())]
+    key = (p["jahr"], segmente.index(p["segment"]), WEGE.index(p["vw"]), schaumarten.index(p["schaumart"]))
+    a = acc[key]
+    a[0] += p["eur"]
+    a[1] += p["hk"]
+    a[2] += p["fracht"]
+    if not p["muster"]:
+        a[3] += 1
+        a[4] += p["liter"]
+zeilen = [[k[0], k[1], k[2], k[3], round(v[0], 4), round(v[1], 4), round(v[2], 4), v[3], round(v[4], 1)] for k, v in sorted(acc.items())]
 
-# 2) Brücken
-br = {}
-for w in ("u", "db"):
-    b = bruecke(pos, w)
-    br[w] = {k: round(v, 2) for k, v in b.items()}
-    if abs(b["differenz"]) > 0.005:
-        raise SystemExit("Brücke geht nicht auf: " + w + " " + str(b["differenz"]))
-
-plan = plan_zellen()
-plan_u = sum(c["u"] for c in plan.values())
-plan_db = sum(c["db"] for c in plan.values())
-plan_l = sum(c["l"] for c in plan.values())
-
-# 3) Preise: Rabattquote je Jahr und Vertriebsweg (ohne Notfallservice)
-g = rabatt_gruppen(pos, lambda p: (p["jahr"], p["vertriebsweg"]))
-preise = []
-for k in sorted(g):
-    v = g[k]
-    preise.append({"j": k[0], "weg": k[1], "n": v["n"], "l": round(v["liter"], 2), "netto": round(v["netto"], 2),
-                   "liste": round(v["liste"], 2)})
-a, b, fehlt = listenpreiserhoehung_2026(pos)
-
-# 4) Fremdwährung je Währung
-fx = [{"w": w, "n": v["n"], "betrag_fw": round(v["betrag_fw"], 2), "effekt": round(v["effekt"], 2)}
-      for w, v in sorted(fx_je_waehrung(pos).items())]
-
-# 5) Notfallservice 2026 (Angaben für Text und Tooltip) und Plankurse
-nf = [p for p in pos if p["jahr"] == 2026 and p["vertriebsweg"] == "Notfallservice"]
-notfall = {"n": len(nf), "datum": nf[0]["datum"] if nf else "", "liter": round(sum(p["liter"] for p in nf), 2)}
-plankurse = {}
-for r in lese_csv("kurse.csv"):
-    plankurse[r["waehrung"]] = float(r["plankurs_eur"])
-
-daten = {
-    "notfall": notfall,
-    "plankurse": plankurse,
-    "stichtag": "28.02.2027",
-    "zellen": zellen,
-    "bruecke": br,
-    "budget": {"umsatz": round(plan_u, 2), "db": round(plan_db, 2), "liter": plan_l,
-               "marge": plan_db / plan_u},
-    "preise": preise,
-    "liste_korb": {"liste25": round(a, 2), "liste26": round(b, 2)},
-    "fx": fx,
-    "kurse2026": KURSE["2026"],
-    "pruefung": {"fracht_tabelle": stat["fracht_summe_tabelle"], "fracht_verteilt": stat["fracht_summe_verteilt"],
-                 "doppelt": stat["doppelt"], "muster": stat["Muster"], "gutschriften": stat["Gutschrift"],
-                 "retouren": stat["Retoure"]},
+r = br.rechne()
+E = r["effekte"]
+bruecke = {
+    "budget_db": round(r["DBp"], 2), "budget_umsatz": round(r["Up"], 2), "budget_liter": r["Qp"],
+    "ist_db": round(r["ist_db_gesamt"], 2), "ist_db_ohne_notfall": round(r["ist_db_zellen"], 2),
+    "ist_umsatz_monat": round(r["ist_u_monat"], 2),
+    "effekte": [
+        {"name": "Mengeneffekt", "wert": round(E["menge"], 2), "bewertung": "(Ist-Liter − Plan-Liter) × Plan-DB je Liter im Durchschnitt"},
+        {"name": "Mixeffekt", "wert": round(E["mix"], 2), "bewertung": "Ist-Liter je Zelle × Plan-DB je Liter der Zelle, minus Ist-Liter × Plan-Durchschnitt"},
+        {"name": "Preiseffekt", "wert": round(E["preis"], 2), "bewertung": "Ist-Umsatz zum Plankurs minus Ist-Liter × Plan-Preis je Liter der Zelle"},
+        {"name": "Kosteneffekt", "wert": round(E["kosten"], 2), "bewertung": "Ist-Liter × Plan-Kosten je Liter minus Ist-Kosten (Herstellkosten und Fracht)"},
+        {"name": "Fremdwährung", "wert": round(E["fx"], 2), "bewertung": "Ist-Betrag in Fremdwährung × (Ist-Monatskurs − Plankurs)"},
+        {"name": "Notfallservice", "wert": round(E["notfall"], 2), "bewertung": "ganzer Deckungsbeitrag der Notfalllieferung, nicht budgetiert"},
+    ],
+    "summe_effekte": round(r["summe"], 2), "gesamtabweichung": round(r["gesamtabw"], 2),
+    "differenz": round(r["summe"] - r["gesamtabw"], 6),
+    "notfall": {"liter": r["notfall"]["l"], "umsatz_monat": round(r["notfall"]["u_monat"], 2), "hk": round(r["notfall"]["hk"], 2),
+                "fracht": round(r["notfall"]["fracht"], 2), "db": round(r["nf_db"], 2)},
+    "kurse_2026": g.kurse()["2026"],
 }
-ziel = os.path.join(BASIS, "meine-ergebnisse", "dashboard-daten", "finanzen.js")
-with open(ziel, "w", encoding="utf-8") as f:
-    f.write("/* erzeugt von skripte/finanzen.py – nicht von Hand ändern */\nvar FINANZEN = ")
-    json.dump(daten, f, ensure_ascii=False, separators=(",", ":"))
-    f.write(";\n")
-print("geschrieben:", ziel, "Zellen:", len(zellen), "Preisgruppen:", len(preise))
-print("Brücke Umsatz Differenz:", br["u"]["differenz"], " Brücke DB Differenz:", br["db"]["differenz"])
+daten = {
+    "segmente": segmente, "wege": WEGE, "schaumarten": schaumarten, "zeilen": zeilen, "bruecke": bruecke,
+    "min_positionen": 20,
+}
+ziel = os.path.join(g.BASIS, "meine-ergebnisse", "dashboard-daten")
+os.makedirs(ziel, exist_ok=True)
+with open(os.path.join(ziel, "finanzen.js"), "w", encoding="utf-8") as f:
+    f.write("/* erzeugt von skripte/finanzen.py, nicht von Hand ändern */\n")
+    f.write("const FINANZEN_DATEN = " + json.dumps(daten, ensure_ascii=False, separators=(",", ":")) + ";\n")
+
+# ---- Kontrollzahlen (stehen im Chat) ----
+print("Zeilen in finanzen.js:", len(zeilen))
+for jahr in (2025, 2026):
+    u = sum(z[4] for z in zeilen if z[0] == jahr)
+    hk = sum(z[5] for z in zeilen if z[0] == jahr)
+    fr = sum(z[6] for z in zeilen if z[0] == jahr)
+    print(jahr, "Umsatz", g.de(u, 2), "HK", g.de(hk, 2), "Fracht", g.de(fr, 2), "DB", g.de(u - hk - fr, 2), "Marge {:.2f} %".format((u - hk - fr) / u * 100))
+print("Brücke: Summe der Effekte", g.de(r["summe"], 2), "Gesamtabweichung", g.de(r["gesamtabw"], 2), "Differenz", round(r["summe"] - r["gesamtabw"], 6))

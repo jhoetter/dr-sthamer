@@ -1,265 +1,169 @@
-﻿monat,produktlinie,segment,menge_l,preis_eur_l,umsatz_eur,db_eur
-2026-01,fluorhaltig,Abfallwirtschaft,100,4.60,460.00,246.00
-2026-01,fluorhaltig,Feuerwehr kommunal,150,3.95,592.50,275.79
-2026-01,fluorhaltig,Flughafen,790,4.67,3689.30,1919.88
-2026-01,fluorhaltig,Händler,1900,2.80,5320.00,1977.72
-2026-01,fluorhaltig,Industrie,1100,4.58,5038.00,2662.93
-2026-01,fluorhaltig,Löschgerätehersteller,1320,3.51,4633.20,2142.84
-2026-01,fluorhaltig,Montanindustrie,310,3.53,1094.30,516.77
-2026-01,fluorhaltig,Schifffahrt und Werft,580,4.59,2662.20,1370.94
-2026-01,fluorhaltig,Übungsanlage,250,2.25,562.50,233.86
-2026-01,fluorfrei,Abfallwirtschaft,190,4.52,858.80,255.14
-2026-01,fluorfrei,Feuerwehr kommunal,520,4.83,2511.60,798.58
-2026-01,fluorfrei,Flughafen,910,3.76,3421.60,1016.81
-2026-01,fluorfrei,Forst und Waldbrand,1010,2.90,2929.00,746.03
-2026-01,fluorfrei,Händler,3090,4.25,13132.50,2552.26
-2026-01,fluorfrei,Industrie,1950,4.36,8502.00,2719.96
-2026-01,fluorfrei,Löschgerätehersteller,970,3.81,3695.70,846.68
-2026-01,fluorfrei,Montanindustrie,380,3.59,1364.20,333.15
-2026-01,fluorfrei,Schifffahrt und Werft,610,3.35,2043.50,453.06
-2026-01,fluorfrei,Übungsanlage,780,2.43,1895.40,319.53
-2026-01,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-01,offen,Forst und Waldbrand,130,6.46,839.80,422.77
-2026-01,offen,Händler,300,4.97,1491.00,528.97
-2026-02,fluorhaltig,Abfallwirtschaft,100,4.60,460.00,246.00
-2026-02,fluorhaltig,Feuerwehr kommunal,150,3.95,592.50,275.79
-2026-02,fluorhaltig,Flughafen,770,4.67,3595.90,1871.28
-2026-02,fluorhaltig,Händler,1860,2.80,5208.00,1936.09
-2026-02,fluorhaltig,Industrie,1080,4.58,4946.40,2614.52
-2026-02,fluorhaltig,Löschgerätehersteller,1290,3.51,4527.90,2094.14
-2026-02,fluorhaltig,Montanindustrie,310,3.53,1094.30,516.77
-2026-02,fluorhaltig,Schifffahrt und Werft,560,4.59,2570.40,1323.67
-2026-02,fluorhaltig,Übungsanlage,240,2.25,540.00,224.51
-2026-02,fluorfrei,Abfallwirtschaft,180,4.52,813.60,241.71
-2026-02,fluorfrei,Feuerwehr kommunal,510,4.83,2463.30,783.22
-2026-02,fluorfrei,Flughafen,890,3.76,3346.40,994.46
-2026-02,fluorfrei,Forst und Waldbrand,980,2.90,2842.00,723.88
-2026-02,fluorfrei,Händler,3020,4.25,12835.00,2494.44
-2026-02,fluorfrei,Industrie,1910,4.36,8327.60,2664.17
-2026-02,fluorfrei,Löschgerätehersteller,950,3.81,3619.50,829.23
-2026-02,fluorfrei,Montanindustrie,370,3.59,1328.30,324.38
-2026-02,fluorfrei,Schifffahrt und Werft,590,3.35,1976.50,438.21
-2026-02,fluorfrei,Übungsanlage,770,2.43,1871.10,315.44
-2026-02,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-02,offen,Forst und Waldbrand,120,6.46,775.20,390.25
-2026-02,offen,Händler,300,4.97,1491.00,528.97
-2026-03,fluorhaltig,Abfallwirtschaft,110,4.60,506.00,270.60
-2026-03,fluorhaltig,Feuerwehr kommunal,160,3.95,632.00,294.18
-2026-03,fluorhaltig,Flughafen,840,4.67,3922.80,2041.40
-2026-03,fluorhaltig,Händler,2040,2.80,5712.00,2123.45
-2026-03,fluorhaltig,Industrie,1180,4.58,5404.40,2856.60
-2026-03,fluorhaltig,Löschgerätehersteller,1410,3.51,4949.10,2288.94
-2026-03,fluorhaltig,Montanindustrie,330,3.53,1164.90,550.11
-2026-03,fluorhaltig,Schifffahrt und Werft,620,4.59,2845.80,1465.49
-2026-03,fluorhaltig,Übungsanlage,270,2.25,607.50,252.57
-2026-03,fluorfrei,Abfallwirtschaft,200,4.52,904.00,268.56
-2026-03,fluorfrei,Feuerwehr kommunal,560,4.83,2704.80,860.00
-2026-03,fluorfrei,Flughafen,970,3.76,3647.20,1083.85
-2026-03,fluorfrei,Forst und Waldbrand,1080,2.90,3132.00,797.74
-2026-03,fluorfrei,Händler,3310,4.25,14067.50,2733.97
-2026-03,fluorfrei,Industrie,2090,4.36,9112.40,2915.24
-2026-03,fluorfrei,Löschgerätehersteller,1040,3.81,3962.40,907.78
-2026-03,fluorfrei,Montanindustrie,400,3.59,1436.00,350.69
-2026-03,fluorfrei,Schifffahrt und Werft,650,3.35,2177.50,482.77
-2026-03,fluorfrei,Übungsanlage,840,2.43,2041.20,344.11
-2026-03,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-03,offen,Forst und Waldbrand,140,6.46,904.40,455.29
-2026-03,offen,Händler,320,4.97,1590.40,564.24
-2026-04,fluorhaltig,Abfallwirtschaft,110,4.60,506.00,270.60
-2026-04,fluorhaltig,Feuerwehr kommunal,160,3.95,632.00,294.18
-2026-04,fluorhaltig,Flughafen,830,4.67,3876.10,2017.09
-2026-04,fluorhaltig,Händler,1990,2.80,5572.00,2071.40
-2026-04,fluorhaltig,Industrie,1150,4.58,5267.00,2783.98
-2026-04,fluorhaltig,Löschgerätehersteller,1380,3.51,4843.80,2240.24
-2026-04,fluorhaltig,Montanindustrie,330,3.53,1164.90,550.11
-2026-04,fluorhaltig,Schifffahrt und Werft,600,4.59,2754.00,1418.21
-2026-04,fluorhaltig,Übungsanlage,260,2.25,585.00,243.22
-2026-04,fluorfrei,Abfallwirtschaft,200,4.52,904.00,268.56
-2026-04,fluorfrei,Feuerwehr kommunal,550,4.83,2656.50,844.65
-2026-04,fluorfrei,Flughafen,950,3.76,3572.00,1061.50
-2026-04,fluorfrei,Forst und Waldbrand,1050,2.90,3045.00,775.58
-2026-04,fluorfrei,Händler,3230,4.25,13727.50,2667.89
-2026-04,fluorfrei,Industrie,2040,4.36,8894.40,2845.50
-2026-04,fluorfrei,Löschgerätehersteller,1020,3.81,3886.20,890.33
-2026-04,fluorfrei,Montanindustrie,390,3.59,1400.10,341.92
-2026-04,fluorfrei,Schifffahrt und Werft,630,3.35,2110.50,467.92
-2026-04,fluorfrei,Übungsanlage,820,2.43,1992.60,335.92
-2026-04,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-04,offen,Forst und Waldbrand,130,6.46,839.80,422.77
-2026-04,offen,Händler,320,4.97,1590.40,564.24
-2026-05,fluorhaltig,Abfallwirtschaft,110,4.60,506.00,270.60
-2026-05,fluorhaltig,Feuerwehr kommunal,160,3.95,632.00,294.18
-2026-05,fluorhaltig,Flughafen,840,4.67,3922.80,2041.40
-2026-05,fluorhaltig,Händler,2040,2.80,5712.00,2123.45
-2026-05,fluorhaltig,Industrie,1180,4.58,5404.40,2856.60
-2026-05,fluorhaltig,Löschgerätehersteller,1410,3.51,4949.10,2288.94
-2026-05,fluorhaltig,Montanindustrie,330,3.53,1164.90,550.11
-2026-05,fluorhaltig,Schifffahrt und Werft,620,4.59,2845.80,1465.49
-2026-05,fluorhaltig,Übungsanlage,270,2.25,607.50,252.57
-2026-05,fluorfrei,Abfallwirtschaft,200,4.52,904.00,268.56
-2026-05,fluorfrei,Feuerwehr kommunal,560,4.83,2704.80,860.00
-2026-05,fluorfrei,Flughafen,970,3.76,3647.20,1083.85
-2026-05,fluorfrei,Forst und Waldbrand,1080,2.90,3132.00,797.74
-2026-05,fluorfrei,Händler,3310,4.25,14067.50,2733.97
-2026-05,fluorfrei,Industrie,2090,4.36,9112.40,2915.24
-2026-05,fluorfrei,Löschgerätehersteller,1040,3.81,3962.40,907.78
-2026-05,fluorfrei,Montanindustrie,400,3.59,1436.00,350.69
-2026-05,fluorfrei,Schifffahrt und Werft,650,3.35,2177.50,482.77
-2026-05,fluorfrei,Übungsanlage,840,2.43,2041.20,344.11
-2026-05,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-05,offen,Forst und Waldbrand,140,6.46,904.40,455.29
-2026-05,offen,Händler,320,4.97,1590.40,564.24
-2026-06,fluorhaltig,Abfallwirtschaft,100,4.60,460.00,246.00
-2026-06,fluorhaltig,Feuerwehr kommunal,150,3.95,592.50,275.79
-2026-06,fluorhaltig,Flughafen,800,4.67,3736.00,1944.19
-2026-06,fluorhaltig,Händler,1930,2.80,5404.00,2008.95
-2026-06,fluorhaltig,Industrie,1110,4.58,5083.80,2687.14
-2026-06,fluorhaltig,Löschgerätehersteller,1330,3.51,4668.30,2159.07
-2026-06,fluorhaltig,Montanindustrie,320,3.53,1129.60,533.44
-2026-06,fluorhaltig,Schifffahrt und Werft,580,4.59,2662.20,1370.94
-2026-06,fluorhaltig,Übungsanlage,250,2.25,562.50,233.86
-2026-06,fluorfrei,Abfallwirtschaft,190,4.52,858.80,255.14
-2026-06,fluorfrei,Feuerwehr kommunal,530,4.83,2559.90,813.93
-2026-06,fluorfrei,Flughafen,920,3.76,3459.20,1027.98
-2026-06,fluorfrei,Forst und Waldbrand,1020,2.90,2958.00,753.42
-2026-06,fluorfrei,Händler,3130,4.25,13302.50,2585.30
-2026-06,fluorfrei,Industrie,1980,4.36,8632.80,2761.81
-2026-06,fluorfrei,Löschgerätehersteller,980,3.81,3733.80,855.41
-2026-06,fluorfrei,Montanindustrie,380,3.59,1364.20,333.15
-2026-06,fluorfrei,Schifffahrt und Werft,610,3.35,2043.50,453.06
-2026-06,fluorfrei,Übungsanlage,790,2.43,1919.70,323.63
-2026-06,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-06,offen,Forst und Waldbrand,130,6.46,839.80,422.77
-2026-06,offen,Händler,310,4.97,1540.70,546.61
-2026-07,fluorhaltig,Abfallwirtschaft,90,4.60,414.00,221.40
-2026-07,fluorhaltig,Feuerwehr kommunal,130,3.95,513.50,239.02
-2026-07,fluorhaltig,Flughafen,690,4.67,3222.30,1676.86
-2026-07,fluorhaltig,Händler,1660,2.80,4648.00,1727.90
-2026-07,fluorhaltig,Industrie,960,4.58,4396.80,2324.01
-2026-07,fluorhaltig,Löschgerätehersteller,1150,3.51,4036.50,1866.87
-2026-07,fluorhaltig,Montanindustrie,270,3.53,953.10,450.09
-2026-07,fluorhaltig,Schifffahrt und Werft,500,4.59,2295.00,1181.84
-2026-07,fluorhaltig,Übungsanlage,220,2.25,495.00,205.80
-2026-07,fluorfrei,Abfallwirtschaft,160,4.52,723.20,214.85
-2026-07,fluorfrei,Feuerwehr kommunal,460,4.83,2221.80,706.43
-2026-07,fluorfrei,Flughafen,790,3.76,2970.40,882.72
-2026-07,fluorfrei,Forst und Waldbrand,880,2.90,2552.00,650.01
-2026-07,fluorfrei,Händler,2700,4.25,11475.00,2230.13
-2026-07,fluorfrei,Industrie,1700,4.36,7412.00,2371.25
-2026-07,fluorfrei,Löschgerätehersteller,850,3.81,3238.50,741.94
-2026-07,fluorfrei,Montanindustrie,330,3.59,1184.70,289.32
-2026-07,fluorfrei,Schifffahrt und Werft,530,3.35,1775.50,393.65
-2026-07,fluorfrei,Übungsanlage,680,2.43,1652.40,278.57
-2026-07,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-07,offen,Forst und Waldbrand,110,6.46,710.60,357.73
-2026-07,offen,Händler,260,4.97,1292.20,458.44
-2026-08,fluorhaltig,Abfallwirtschaft,100,4.60,460.00,246.00
-2026-08,fluorhaltig,Feuerwehr kommunal,150,3.95,592.50,275.79
-2026-08,fluorhaltig,Flughafen,800,4.67,3736.00,1944.19
-2026-08,fluorhaltig,Händler,1930,2.80,5404.00,2008.95
-2026-08,fluorhaltig,Industrie,1110,4.58,5083.80,2687.14
-2026-08,fluorhaltig,Löschgerätehersteller,1330,3.51,4668.30,2159.07
-2026-08,fluorhaltig,Montanindustrie,320,3.53,1129.60,533.44
-2026-08,fluorhaltig,Schifffahrt und Werft,580,4.59,2662.20,1370.94
-2026-08,fluorhaltig,Übungsanlage,250,2.25,562.50,233.86
-2026-08,fluorfrei,Abfallwirtschaft,190,4.52,858.80,255.14
-2026-08,fluorfrei,Feuerwehr kommunal,530,4.83,2559.90,813.93
-2026-08,fluorfrei,Flughafen,920,3.76,3459.20,1027.98
-2026-08,fluorfrei,Forst und Waldbrand,1020,2.90,2958.00,753.42
-2026-08,fluorfrei,Händler,3130,4.25,13302.50,2585.30
-2026-08,fluorfrei,Industrie,1980,4.36,8632.80,2761.81
-2026-08,fluorfrei,Löschgerätehersteller,980,3.81,3733.80,855.41
-2026-08,fluorfrei,Montanindustrie,380,3.59,1364.20,333.15
-2026-08,fluorfrei,Schifffahrt und Werft,610,3.35,2043.50,453.06
-2026-08,fluorfrei,Übungsanlage,790,2.43,1919.70,323.63
-2026-08,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-08,offen,Forst und Waldbrand,130,6.46,839.80,422.77
-2026-08,offen,Händler,310,4.97,1540.70,546.61
-2026-09,fluorhaltig,Abfallwirtschaft,90,4.60,414.00,221.40
-2026-09,fluorhaltig,Feuerwehr kommunal,140,3.95,553.00,257.40
-2026-09,fluorhaltig,Flughafen,720,4.67,3362.40,1749.77
-2026-09,fluorhaltig,Händler,1730,2.80,4844.00,1800.77
-2026-09,fluorhaltig,Industrie,1000,4.58,4580.00,2420.85
-2026-09,fluorhaltig,Löschgerätehersteller,1190,3.51,4176.90,1931.80
-2026-09,fluorhaltig,Montanindustrie,280,3.53,988.40,466.76
-2026-09,fluorhaltig,Schifffahrt und Werft,520,4.59,2386.80,1229.12
-2026-09,fluorhaltig,Übungsanlage,230,2.25,517.50,215.15
-2026-09,fluorfrei,Abfallwirtschaft,170,4.52,768.40,228.28
-2026-09,fluorfrei,Feuerwehr kommunal,470,4.83,2270.10,721.79
-2026-09,fluorfrei,Flughafen,820,3.76,3083.20,916.25
-2026-09,fluorfrei,Forst und Waldbrand,910,2.90,2639.00,672.17
-2026-09,fluorfrei,Händler,2800,4.25,11900.00,2312.73
-2026-09,fluorfrei,Industrie,1770,4.36,7717.20,2468.89
-2026-09,fluorfrei,Löschgerätehersteller,880,3.81,3352.80,768.12
-2026-09,fluorfrei,Montanindustrie,340,3.59,1220.60,298.08
-2026-09,fluorfrei,Schifffahrt und Werft,550,3.35,1842.50,408.50
-2026-09,fluorfrei,Übungsanlage,710,2.43,1725.30,290.86
-2026-09,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-09,offen,Forst und Waldbrand,110,6.46,710.60,357.73
-2026-09,offen,Händler,270,4.97,1341.90,476.08
-2026-10,fluorhaltig,Abfallwirtschaft,110,4.60,506.00,270.60
-2026-10,fluorhaltig,Feuerwehr kommunal,160,3.95,632.00,294.18
-2026-10,fluorhaltig,Flughafen,840,4.67,3922.80,2041.40
-2026-10,fluorhaltig,Händler,2040,2.80,5712.00,2123.45
-2026-10,fluorhaltig,Industrie,1180,4.58,5404.40,2856.60
-2026-10,fluorhaltig,Löschgerätehersteller,1410,3.51,4949.10,2288.94
-2026-10,fluorhaltig,Montanindustrie,330,3.53,1164.90,550.11
-2026-10,fluorhaltig,Schifffahrt und Werft,620,4.59,2845.80,1465.49
-2026-10,fluorhaltig,Übungsanlage,270,2.25,607.50,252.57
-2026-10,fluorfrei,Abfallwirtschaft,200,4.52,904.00,268.56
-2026-10,fluorfrei,Feuerwehr kommunal,560,4.83,2704.80,860.00
-2026-10,fluorfrei,Flughafen,970,3.76,3647.20,1083.85
-2026-10,fluorfrei,Forst und Waldbrand,1080,2.90,3132.00,797.74
-2026-10,fluorfrei,Händler,3310,4.25,14067.50,2733.97
-2026-10,fluorfrei,Industrie,2090,4.36,9112.40,2915.24
-2026-10,fluorfrei,Löschgerätehersteller,1040,3.81,3962.40,907.78
-2026-10,fluorfrei,Montanindustrie,400,3.59,1436.00,350.69
-2026-10,fluorfrei,Schifffahrt und Werft,650,3.35,2177.50,482.77
-2026-10,fluorfrei,Übungsanlage,840,2.43,2041.20,344.11
-2026-10,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-10,offen,Forst und Waldbrand,140,6.46,904.40,455.29
-2026-10,offen,Händler,320,4.97,1590.40,564.24
-2026-11,fluorhaltig,Abfallwirtschaft,80,4.60,368.00,196.80
-2026-11,fluorhaltig,Feuerwehr kommunal,120,3.95,474.00,220.63
-2026-11,fluorhaltig,Flughafen,620,4.67,2895.40,1506.74
-2026-11,fluorhaltig,Händler,1510,2.80,4228.00,1571.77
-2026-11,fluorhaltig,Industrie,870,4.58,3984.60,2106.14
-2026-11,fluorhaltig,Löschgerätehersteller,1040,3.51,3650.40,1688.30
-2026-11,fluorhaltig,Montanindustrie,250,3.53,882.50,416.75
-2026-11,fluorhaltig,Schifffahrt und Werft,460,4.59,2111.40,1087.30
-2026-11,fluorhaltig,Übungsanlage,200,2.25,450.00,187.09
-2026-11,fluorfrei,Abfallwirtschaft,150,4.52,678.00,201.42
-2026-11,fluorfrei,Feuerwehr kommunal,410,4.83,1980.30,629.65
-2026-11,fluorfrei,Flughafen,720,3.76,2707.20,804.51
-2026-11,fluorfrei,Forst und Waldbrand,800,2.90,2320.00,590.92
-2026-11,fluorfrei,Händler,2440,4.25,10370.00,2015.38
-2026-11,fluorfrei,Industrie,1540,4.36,6714.40,2148.07
-2026-11,fluorfrei,Löschgerätehersteller,770,3.81,2933.70,672.11
-2026-11,fluorfrei,Montanindustrie,300,3.59,1077.00,263.01
-2026-11,fluorfrei,Schifffahrt und Werft,480,3.35,1608.00,356.51
-2026-11,fluorfrei,Übungsanlage,620,2.43,1506.60,253.99
-2026-11,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-11,offen,Forst und Waldbrand,100,6.46,646.00,325.20
-2026-11,offen,Händler,240,4.97,1192.80,423.18
-2026-12,fluorhaltig,Abfallwirtschaft,80,4.60,368.00,196.80
-2026-12,fluorhaltig,Feuerwehr kommunal,120,3.95,474.00,220.63
-2026-12,fluorhaltig,Flughafen,630,4.67,2942.10,1531.05
-2026-12,fluorhaltig,Händler,1530,2.80,4284.00,1592.59
-2026-12,fluorhaltig,Industrie,880,4.58,4030.40,2130.35
-2026-12,fluorhaltig,Löschgerätehersteller,1060,3.51,3720.60,1720.76
-2026-12,fluorhaltig,Montanindustrie,250,3.53,882.50,416.75
-2026-12,fluorhaltig,Schifffahrt und Werft,460,4.59,2111.40,1087.30
-2026-12,fluorhaltig,Übungsanlage,200,2.25,450.00,187.09
-2026-12,fluorfrei,Abfallwirtschaft,150,4.52,678.00,201.42
-2026-12,fluorfrei,Feuerwehr kommunal,420,4.83,2028.60,645.00
-2026-12,fluorfrei,Flughafen,730,3.76,2744.80,815.68
-2026-12,fluorfrei,Forst und Waldbrand,810,2.90,2349.00,598.31
-2026-12,fluorfrei,Händler,2480,4.25,10540.00,2048.41
-2026-12,fluorfrei,Industrie,1570,4.36,6845.20,2189.92
-2026-12,fluorfrei,Löschgerätehersteller,780,3.81,2971.80,680.84
-2026-12,fluorfrei,Montanindustrie,300,3.59,1077.00,263.01
-2026-12,fluorfrei,Schifffahrt und Werft,490,3.35,1641.50,363.94
-2026-12,fluorfrei,Übungsanlage,630,2.43,1530.90,258.09
-2026-12,offen,Feuerwehr kommunal,10,6.75,67.50,32.09
-2026-12,offen,Forst und Waldbrand,100,6.46,646.00,325.20
-2026-12,offen,Händler,240,4.97,1192.80,423.18
+﻿monat,segment,vertriebsweg,menge_l,preis_eur_l,umsatz_eur,db_eur
+2026-01,Abfallwirtschaft,direkt,240,4.61,1106.40,481.43
+2026-01,Feuerwehr kommunal,direkt,370,4.27,1579.90,616.76
+2026-01,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-01,Flughafen,direkt,2360,4.53,10690.80,4734.26
+2026-01,Forst und Waldbrand,direkt,510,3.76,1917.60,840.27
+2026-01,Händler,Händler,5920,3.07,18174.40,5695.24
+2026-01,Industrie,direkt,3630,4.56,16552.80,7480.47
+2026-01,Industrie,Rahmenvertrag,620,4.15,2573.00,1127.39
+2026-01,Löschgerätehersteller,direkt,640,3.65,2336.00,923.05
+2026-01,Löschgerätehersteller,Rahmenvertrag,2850,3.35,9547.50,3584.84
+2026-01,Montanindustrie,direkt,690,3.55,2449.50,901.43
+2026-01,Schifffahrt und Werft,direkt,1150,4.40,5060.00,2204.32
+2026-01,Schifffahrt und Werft,Rahmenvertrag,500,4.19,2095.00,924.15
+2026-01,Übungsanlage,direkt,750,2.27,1702.50,330.39
+2026-02,Abfallwirtschaft,direkt,240,4.61,1106.40,481.43
+2026-02,Feuerwehr kommunal,direkt,370,4.27,1579.90,616.76
+2026-02,Feuerwehr kommunal,Rahmenvertrag,120,3.92,470.40,150.58
+2026-02,Flughafen,direkt,2310,4.53,10464.30,4633.96
+2026-02,Forst und Waldbrand,direkt,500,3.76,1880.00,823.80
+2026-02,Händler,Händler,5780,3.07,17744.60,5560.55
+2026-02,Industrie,direkt,3540,4.56,16142.40,7295.01
+2026-02,Industrie,Rahmenvertrag,600,4.15,2490.00,1091.02
+2026-02,Löschgerätehersteller,direkt,620,3.65,2263.00,894.21
+2026-02,Löschgerätehersteller,Rahmenvertrag,2780,3.35,9313.00,3496.79
+2026-02,Montanindustrie,direkt,670,3.55,2378.50,875.30
+2026-02,Schifffahrt und Werft,direkt,1120,4.40,4928.00,2146.82
+2026-02,Schifffahrt und Werft,Rahmenvertrag,490,4.19,2053.10,905.66
+2026-02,Übungsanlage,direkt,740,2.27,1679.80,325.98
+2026-03,Abfallwirtschaft,direkt,260,4.61,1198.60,521.55
+2026-03,Feuerwehr kommunal,direkt,400,4.27,1708.00,666.77
+2026-03,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-03,Flughafen,direkt,2530,4.53,11460.90,5075.29
+2026-03,Forst und Waldbrand,direkt,550,3.76,2068.00,906.18
+2026-03,Händler,Händler,6340,3.07,19463.80,6099.29
+2026-03,Industrie,direkt,3880,4.56,17692.80,7995.66
+2026-03,Industrie,Rahmenvertrag,660,4.15,2739.00,1200.13
+2026-03,Löschgerätehersteller,direkt,680,3.65,2482.00,980.74
+2026-03,Löschgerätehersteller,Rahmenvertrag,3050,3.35,10217.50,3836.41
+2026-03,Montanindustrie,direkt,730,3.55,2591.50,953.68
+2026-03,Schifffahrt und Werft,direkt,1230,4.40,5412.00,2357.66
+2026-03,Schifffahrt und Werft,Rahmenvertrag,530,4.19,2220.70,979.59
+2026-03,Übungsanlage,direkt,810,2.27,1838.70,356.82
+2026-04,Abfallwirtschaft,direkt,250,4.61,1152.50,501.49
+2026-04,Feuerwehr kommunal,direkt,390,4.27,1665.30,650.10
+2026-04,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-04,Flughafen,direkt,2470,4.53,11189.10,4954.92
+2026-04,Forst und Waldbrand,direkt,540,3.76,2030.40,889.70
+2026-04,Händler,Händler,6200,3.07,19034.00,5964.61
+2026-04,Industrie,direkt,3800,4.56,17328.00,7830.80
+2026-04,Industrie,Rahmenvertrag,650,4.15,2697.50,1181.94
+2026-04,Löschgerätehersteller,direkt,660,3.65,2409.00,951.90
+2026-04,Löschgerätehersteller,Rahmenvertrag,2980,3.35,9983.00,3748.36
+2026-04,Montanindustrie,direkt,720,3.55,2556.00,940.62
+2026-04,Schifffahrt und Werft,direkt,1200,4.40,5280.00,2300.16
+2026-04,Schifffahrt und Werft,Rahmenvertrag,520,4.19,2178.80,961.11
+2026-04,Übungsanlage,direkt,790,2.27,1793.30,348.01
+2026-05,Abfallwirtschaft,direkt,260,4.61,1198.60,521.55
+2026-05,Feuerwehr kommunal,direkt,400,4.27,1708.00,666.77
+2026-05,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-05,Flughafen,direkt,2530,4.53,11460.90,5075.29
+2026-05,Forst und Waldbrand,direkt,550,3.76,2068.00,906.18
+2026-05,Händler,Händler,6340,3.07,19463.80,6099.29
+2026-05,Industrie,direkt,3880,4.56,17692.80,7995.66
+2026-05,Industrie,Rahmenvertrag,660,4.15,2739.00,1200.13
+2026-05,Löschgerätehersteller,direkt,680,3.65,2482.00,980.74
+2026-05,Löschgerätehersteller,Rahmenvertrag,3050,3.35,10217.50,3836.41
+2026-05,Montanindustrie,direkt,730,3.55,2591.50,953.68
+2026-05,Schifffahrt und Werft,direkt,1230,4.40,5412.00,2357.66
+2026-05,Schifffahrt und Werft,Rahmenvertrag,530,4.19,2220.70,979.59
+2026-05,Übungsanlage,direkt,810,2.27,1838.70,356.82
+2026-06,Abfallwirtschaft,direkt,250,4.61,1152.50,501.49
+2026-06,Feuerwehr kommunal,direkt,380,4.27,1622.60,633.43
+2026-06,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-06,Flughafen,direkt,2390,4.53,10826.70,4794.44
+2026-06,Forst und Waldbrand,direkt,520,3.76,1955.20,856.75
+2026-06,Händler,Händler,5990,3.07,18389.30,5762.58
+2026-06,Industrie,direkt,3670,4.56,16735.20,7562.90
+2026-06,Industrie,Rahmenvertrag,620,4.15,2573.00,1127.39
+2026-06,Löschgerätehersteller,direkt,640,3.65,2336.00,923.05
+2026-06,Löschgerätehersteller,Rahmenvertrag,2880,3.35,9648.00,3622.57
+2026-06,Montanindustrie,direkt,690,3.55,2449.50,901.43
+2026-06,Schifffahrt und Werft,direkt,1160,4.40,5104.00,2223.49
+2026-06,Schifffahrt und Werft,Rahmenvertrag,500,4.19,2095.00,924.15
+2026-06,Übungsanlage,direkt,760,2.27,1725.20,334.79
+2026-07,Abfallwirtschaft,direkt,210,4.61,968.10,421.25
+2026-07,Feuerwehr kommunal,direkt,330,4.27,1409.10,550.08
+2026-07,Feuerwehr kommunal,Rahmenvertrag,110,3.92,431.20,138.03
+2026-07,Flughafen,direkt,2060,4.53,9331.80,4132.45
+2026-07,Forst und Waldbrand,direkt,450,3.76,1692.00,741.42
+2026-07,Händler,Händler,5160,3.07,15841.20,4964.09
+2026-07,Industrie,direkt,3160,4.56,14409.60,6511.93
+2026-07,Industrie,Rahmenvertrag,540,4.15,2241.00,981.92
+2026-07,Löschgerätehersteller,direkt,550,3.65,2007.50,793.25
+2026-07,Löschgerätehersteller,Rahmenvertrag,2490,3.35,8341.50,3132.02
+2026-07,Montanindustrie,direkt,600,3.55,2130.00,783.85
+2026-07,Schifffahrt und Werft,direkt,1000,4.40,4400.00,1916.80
+2026-07,Schifffahrt und Werft,Rahmenvertrag,430,4.19,1801.70,794.76
+2026-07,Übungsanlage,direkt,660,2.27,1498.20,290.74
+2026-08,Abfallwirtschaft,direkt,250,4.61,1152.50,501.49
+2026-08,Feuerwehr kommunal,direkt,380,4.27,1622.60,633.43
+2026-08,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-08,Flughafen,direkt,2390,4.53,10826.70,4794.44
+2026-08,Forst und Waldbrand,direkt,520,3.76,1955.20,856.75
+2026-08,Händler,Händler,5990,3.07,18389.30,5762.58
+2026-08,Industrie,direkt,3670,4.56,16735.20,7562.90
+2026-08,Industrie,Rahmenvertrag,620,4.15,2573.00,1127.39
+2026-08,Löschgerätehersteller,direkt,640,3.65,2336.00,923.05
+2026-08,Löschgerätehersteller,Rahmenvertrag,2880,3.35,9648.00,3622.57
+2026-08,Montanindustrie,direkt,690,3.55,2449.50,901.43
+2026-08,Schifffahrt und Werft,direkt,1160,4.40,5104.00,2223.49
+2026-08,Schifffahrt und Werft,Rahmenvertrag,500,4.19,2095.00,924.15
+2026-08,Übungsanlage,direkt,760,2.27,1725.20,334.79
+2026-09,Abfallwirtschaft,direkt,220,4.61,1014.20,441.31
+2026-09,Feuerwehr kommunal,direkt,340,4.27,1451.80,566.75
+2026-09,Feuerwehr kommunal,Rahmenvertrag,110,3.92,431.20,138.03
+2026-09,Flughafen,direkt,2140,4.53,9694.20,4292.93
+2026-09,Forst und Waldbrand,direkt,460,3.76,1729.60,757.90
+2026-09,Händler,Händler,5370,3.07,16485.90,5166.12
+2026-09,Industrie,direkt,3290,4.56,15002.40,6779.82
+2026-09,Industrie,Rahmenvertrag,560,4.15,2324.00,1018.29
+2026-09,Löschgerätehersteller,direkt,580,3.65,2117.00,836.52
+2026-09,Löschgerätehersteller,Rahmenvertrag,2590,3.35,8676.50,3257.80
+2026-09,Montanindustrie,direkt,620,3.55,2201.00,809.98
+2026-09,Schifffahrt und Werft,direkt,1040,4.40,4576.00,1993.47
+2026-09,Schifffahrt und Werft,Rahmenvertrag,450,4.19,1885.50,831.73
+2026-09,Übungsanlage,direkt,680,2.27,1543.60,299.55
+2026-10,Abfallwirtschaft,direkt,260,4.61,1198.60,521.55
+2026-10,Feuerwehr kommunal,direkt,400,4.27,1708.00,666.77
+2026-10,Feuerwehr kommunal,Rahmenvertrag,130,3.92,509.60,163.12
+2026-10,Flughafen,direkt,2530,4.53,11460.90,5075.29
+2026-10,Forst und Waldbrand,direkt,550,3.76,2068.00,906.18
+2026-10,Händler,Händler,6340,3.07,19463.80,6099.29
+2026-10,Industrie,direkt,3880,4.56,17692.80,7995.66
+2026-10,Industrie,Rahmenvertrag,660,4.15,2739.00,1200.13
+2026-10,Löschgerätehersteller,direkt,680,3.65,2482.00,980.74
+2026-10,Löschgerätehersteller,Rahmenvertrag,3050,3.35,10217.50,3836.41
+2026-10,Montanindustrie,direkt,730,3.55,2591.50,953.68
+2026-10,Schifffahrt und Werft,direkt,1230,4.40,5412.00,2357.66
+2026-10,Schifffahrt und Werft,Rahmenvertrag,530,4.19,2220.70,979.59
+2026-10,Übungsanlage,direkt,810,2.27,1838.70,356.82
+2026-11,Abfallwirtschaft,direkt,190,4.61,875.90,381.13
+2026-11,Feuerwehr kommunal,direkt,300,4.27,1281.00,500.08
+2026-11,Feuerwehr kommunal,Rahmenvertrag,100,3.92,392.00,125.48
+2026-11,Flughafen,direkt,1870,4.53,8471.10,3751.30
+2026-11,Forst und Waldbrand,direkt,400,3.76,1504.00,659.04
+2026-11,Händler,Händler,4680,3.07,14367.60,4502.31
+2026-11,Industrie,direkt,2870,4.56,13087.20,5914.31
+2026-11,Industrie,Rahmenvertrag,490,4.15,2033.50,891.00
+2026-11,Löschgerätehersteller,direkt,500,3.65,1825.00,721.13
+2026-11,Löschgerätehersteller,Rahmenvertrag,2250,3.35,7537.50,2830.14
+2026-11,Montanindustrie,direkt,540,3.55,1917.00,705.46
+2026-11,Schifffahrt und Werft,direkt,910,4.40,4004.00,1744.29
+2026-11,Schifffahrt und Werft,Rahmenvertrag,390,4.19,1634.10,720.83
+2026-11,Übungsanlage,direkt,600,2.27,1362.00,264.31
+2026-12,Abfallwirtschaft,direkt,200,4.61,922.00,401.19
+2026-12,Feuerwehr kommunal,direkt,300,4.27,1281.00,500.08
+2026-12,Feuerwehr kommunal,Rahmenvertrag,100,3.92,392.00,125.48
+2026-12,Flughafen,direkt,1900,4.53,8607.00,3811.48
+2026-12,Forst und Waldbrand,direkt,410,3.76,1541.60,675.52
+2026-12,Händler,Händler,4750,3.07,14582.50,4569.66
+2026-12,Industrie,direkt,2910,4.56,13269.60,5996.74
+2026-12,Industrie,Rahmenvertrag,490,4.15,2033.50,891.00
+2026-12,Löschgerätehersteller,direkt,510,3.65,1861.50,735.56
+2026-12,Löschgerätehersteller,Rahmenvertrag,2290,3.35,7671.50,2880.45
+2026-12,Montanindustrie,direkt,550,3.55,1952.50,718.53
+2026-12,Schifffahrt und Werft,direkt,920,4.40,4048.00,1763.46
+2026-12,Schifffahrt und Werft,Rahmenvertrag,400,4.19,1676.00,739.32
+2026-12,Übungsanlage,direkt,610,2.27,1384.70,268.71

@@ -22,7 +22,7 @@ tags: [person, team, aussendienst, rufbereitschaft]
 ## Entwicklungswünsche
 - will „einfach draußen bleiben“, keine Führung
 - Interesse an Zumischtechnik (Schulung Hersteller), Sept. erwähnt
-- mehr Umstellungsbegleitungen statt nur Notfälle (März 2026)
+- mehr Kundenschulungen statt nur Notfälle (März 2026)
 
 ## Privat – nur für mich
 - Trennung im Sommer, Kinder jedes zweite Wochenende bei ihm

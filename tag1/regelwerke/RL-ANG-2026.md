@@ -15,7 +15,7 @@ vertraulichkeit: intern
 # Angebots- und Freigaberichtlinie RL-ANG-2026
 
 Interne Richtlinie für alle Angebote über Schaumlöschmittel, Netzmittel und Übungsschaum an Kunden
-und Interessenten: Einzelangebote, Nachbestellungen, Umstellungen auf fluorfreie Nachfolgeprodukte,
+und Interessenten: Einzelangebote, Nachbestellungen, Erst- und Neubefüllungen stationärer Anlagen,
 Rahmenverträge und Ausschreibungen. Sie gilt für Angebote mit **Angebotsdatum ab 1. Januar 2026**
 und löst die RL-ANG-2025 ab. Angebote mit früherem Angebotsdatum bleiben nach der damals gültigen
 Fassung zu beurteilen. Sie gilt gleichermaßen für Mitarbeitende und für Systeme, insbesondere den
@@ -39,10 +39,11 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
    (Kopie mit Datum, Produkt, Menge), darf die Leitung Vertrieb darauf reagieren; jede Reaktion ist
    ein Rabatt über der Staffel (§ 3 Nr. 6) und wird in der Entscheidungsvorlage begründet.
 4. **Keine Rechtsauskunft.** Angebote, Begleitschreiben und Antworten an Kunden enthalten keine
-   Aussagen zur Rechtslage: weder zur Konformität eines Produkts mit Vorschriften der EU oder eines
-   Staates noch zur Zulässigkeit eines Einsatzes, zur Einstufung oder Kennzeichnung, noch zu
-   angekündigten Beschränkungen. Solche Fragen gehen an Regulatory Affairs (KO-2026 § 3). Bis zu
-   deren Antwort teilen wir dem Kunden nur mit, dass die Frage geprüft wird und wer antwortet.
+   Aussagen zur Rechtslage: weder zur Übereinstimmung mit Vorschriften der EU oder eines Staates noch
+   zu Zoll, Einfuhrabgaben und Steuern im Bestimmungsland, zur Zulässigkeit eines Einsatzes, zu
+   Haftung oder zur Auslegung von Verträgen. Solche Fragen gehen an die Abteilung Recht und
+   Compliance (KO-2026 § 3). Bis zu deren Antwort teilen wir dem Kunden nur mit, dass die Frage
+   geprüft wird und wer antwortet.
 5. **Produktaussagen** stützen sich ausschließlich auf das gültige Technische Datenblatt (TDB) und
    das Sicherheitsdatenblatt. Alles, was darüber hinausgeht, ist eine technische Zusage nach § 5.
 6. **Vertrauliches.** Deckungsbeitrag, Marge, interne Bonitätseinstufung und Angebotsklasse gehören
@@ -64,14 +65,12 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
 | 25.000,01 bis 150.000 | zusätzlich Deckungsbeitrag, Bonität (§ 4), Lieferfähigkeit (§ 6) |
 | über 150.000 | zusätzlich Vertragsprüfung, Liefer- und Rohstoffplanung, Referenzen nur aus der freigegebenen Referenzliste |
 
-4. **Stationäre Anlagen.** Betrifft ein Angebot die Erstbefüllung oder Umstellung einer stationären
-   Löschanlage (Tanklager, Verladestation, Sprinkler- und Schaumanlage, Maschinenraum, Plattform)
-   und liegt der Auftragswert **ab 25.000**, ist eine **Datenaufnahme der Anlage Pflicht**, bevor
-   das Angebot verbindlich wird: eingestellte Zumischrate am Zumischer, Zumischrate laut
-   Anlagendokumentation, Füllmenge, Restbestand und Reinigung des Tanks, letzte Prüfung. Die
-   Datenaufnahme macht die Anwendungstechnik; ihr Datum steht in den Stammdaten der Lieferstelle
-   (`datenaufnahme_am`). Unter 25.000 ist sie empfohlen, aber nicht Pflicht. Unabhängig vom Wert
-   gilt § 5: ohne Datenaufnahme keine technische Zusage.
+4. **Stationäre Anlagen.** Betrifft ein Angebot die Erstbefüllung oder Neubefüllung einer
+   stationären Löschanlage (Tanklager, Verladestation, Sprinkler- und Schaumanlage, Maschinenraum,
+   Plattform, Hubschrauberdeck), nennt es je Anlage die Befüllungsmenge laut Angabe des Kunden und
+   trennt sie von Lager- und Reservemengen (wichtig für den Projektrabatt, § 3 Nr. 2). Liefertermin
+   und Zugang zur Anlage (Werft, Plattform, Tanklager) stimmt der Vertrieb vor der Lieferung mit dem
+   Kunden ab. Technische Zusagen zur Anlage regelt § 5.
 5. Fehlen Unterlagen, die eine Anfrage nennt oder eine Ausschreibung verlangt, wird nichts ergänzt
    oder vermutet. Die Lücke steht als offene Rückfrage in der Entscheidungsvorlage.
 
@@ -79,6 +78,7 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
 
 1. **Mengenrabatt** nach der Gesamtmenge des Angebots in Litern, über alle Positionen desselben
    Produkts. Es gilt **nur die höchste erreichte Stufe**; die Stufen werden nicht zusammengezählt.
+   Für Rahmenverträge mit fester Abnahmemenge gilt kein Mengenrabatt, sondern nur Nr. 3.
 
 | Menge je Angebot und Produkt | Mengenrabatt |
 |---|---|
@@ -87,16 +87,21 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
 | ab 5.000 l | 6 % |
 | ab 20.000 l | 10 % |
 
-2. **Projektrabatt Umstellung: 5 %**, einmal je Angebot, für die Umstellung stationärer Anlagen
-   von einem fluorhaltigen Produkt auf seinen fluorfreien Nachfolger laut Stammdaten
-   (`nachfolger_id`). Er gilt nur auf die **Erstbefüllungsmenge** der umzustellenden Anlagen, nicht
-   auf Lager- und Reservemengen und nicht auf Nachbestellungen. Mehrere Anlagen im selben Angebot
-   sind ein Projekt; der Projektrabatt wird nicht je Anlage wiederholt.
-3. **Rahmenvertragsrabatt** bis 8 % für Rahmenverträge mit fester Abnahmemenge und Laufzeit ab
-   12 Monaten. Er **ersetzt** den Mengenrabatt und wird nicht mit ihm kombiniert.
+2. **Projektrabatt Anlagenbefüllung: 5 %**, einmal je Angebot, für die **Erstbefüllung** einer neuen
+   oder die **Neubefüllung** einer bestehenden stationären Anlage (die Anlage wird ganz befüllt,
+   § 2 Nr. 4). Er gilt nur auf die **Befüllungsmenge** dieser Anlagen, nicht auf Lager- und
+   Reservemengen und nicht auf Nachbestellungen oder Nachfüllungen. Mehrere Anlagen im selben
+   Angebot sind ein Projekt; der Projektrabatt wird nicht je Anlage wiederholt. Tragbare und
+   fahrbare Löscher sind keine stationären Anlagen.
+3. **Rahmenvertragsrabatt** bis 8 % für Rahmenverträge mit **fester Abnahmemenge** (der Kunde
+   verpflichtet sich verbindlich zur Abnahme einer bestimmten Menge) und Laufzeit ab 12 Monaten. Er
+   **ersetzt** den Mengenrabatt und wird nie mit ihm kombiniert, auch wenn die Menge eine Stufe nach
+   Nr. 1 erreicht. Den Satz zwischen 0 und 8 % legt die zuständige Stelle fest (§ 9). Nennt ein
+   Rahmenvertrag nur **geschätzte, unverbindliche Mengen**, gibt es keinen Rahmenvertragsrabatt; dann
+   gilt der Mengenrabatt nach Nr. 1 auf die Menge des einzelnen Abrufs.
 4. **Händlerkonditionen.** Kunden, die in den Stammdaten als Händler geführt sind
-   (`ist_haendler`), erhalten die Händlerkondition (Listenpreis minus 15 %) **anstelle** von Mengen-
-   und Projektrabatt, nie zusätzlich. Kunden ohne Händlerkennzeichen erhalten keine
+   (`ist_haendler`), erhalten die Händlerkondition (Listenpreis minus 15 %) **anstelle** von Mengen-,
+   Projekt- und Rahmenvertragsrabatt, nie zusätzlich. Kunden ohne Händlerkennzeichen erhalten keine
    Händlerkondition, auch wenn sie große Mengen kaufen oder mehrere Standorte beliefern.
 5. **Rechenweg.** Rabatte werden auf den Listenpreis bezogen und zusammengezählt, nicht
    nacheinander angewendet: Positionspreis = Listenpreis × (1 − Summe der Rabattsätze der Position).
@@ -127,18 +132,19 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
 
 1. Standard ist die Produktbeschreibung nach TDB: Schaumart, Brandklassen, Zumischrate,
    Einsatzbereiche, Lagerung. Mehr sagt ein Angebot ohne Prüfung nicht zu.
-2. **Technische Zusage** ist jede Aussage, die über das TDB hinausgeht, insbesondere: Eignung oder
-   Löschwirkung für eine bestimmte Anlage oder Plattform, Wirksamkeit «mindestens wie bisher»,
-   Garantie einer Löschleistung, Verträglichkeit mit Restbeständen im Tank oder mit vorhandenen
-   Zumischern, Umstellung «ohne Anpassung der Anlage».
+2. **Technische Zusage** ist jede Aussage, die über das TDB hinausgeht, insbesondere: Eignung für
+   eine bestimmte Anlage, Plattform oder einen bestimmten Zumischer, Befüllung «ohne Reinigung des
+   Tanks» oder «ohne Anpassung der Anlage», Verträglichkeit mit Restbeständen im Tank, Garantie einer
+   Leistung. **Jede Aussage über eine bestimmte Anlage des Kunden ist eine technische Zusage**, auch
+   wenn sie selbstverständlich erscheint, etwa weil Produkt und Zumischrate gleich bleiben.
 3. Technische Zusagen gibt **nur die Anwendungstechnik**, schriftlich, für die genannte Anlage,
-   und **nur nach einer Datenaufnahme dieser Anlage** (§ 2 Nr. 4). Die Zusage nennt die
-   Bedingungen, unter denen sie gilt (eingestellte Zumischrate, gereinigter Tank, Probeverschäumung).
-4. Eine pauschale Garantie der Löschwirkung unter Einsatzbedingungen des Kunden geben wir nicht.
+   und **nur nach einer Prüfung dieser Anlage durch die Anwendungstechnik** (Anlagenprüfung, vor Ort
+   oder anhand der Anlagendokumentation). Die Zusage nennt die Bedingungen, unter denen sie gilt.
+4. Eine pauschale Leistungsgarantie unter Einsatzbedingungen des Kunden geben wir nicht.
    Haftungsübernahmen, Vertragsstrafen und Gewährleistungen über das Gesetz hinaus entscheidet die
    Geschäftsführung (KO-2026 § 2).
-5. Bis die Zusage vorliegt, nennt das Angebot die Produktdaten nach TDB und schlägt Datenaufnahme
-   und Probeverschäumung als ersten Schritt vor.
+5. Bis die Zusage vorliegt, nennt das Angebot die Produktdaten nach TDB und schlägt eine
+   Anlagenprüfung durch die Anwendungstechnik als ersten Schritt vor.
 
 ## § 6 Preisliste, Gültigkeit und Lieferzeit
 
@@ -179,9 +185,10 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
    **Lieferort** an, wegen Währungsrisiko und Exportabwicklung, nie an das Sitzland des Kunden oder an
    Personen (§ 1 Nr. 2). Ein Kunde mit Sitz außerhalb der EU, der in EUR bestellt und an einen Ort in
    der EU liefern lässt, erhält dort 0 Punkte.
-4. Fragen, ob ein Produkt im Bestimmungsland oder nach Vorschriften der EU eingesetzt werden darf,
-   welchen Anforderungen es dort genügt oder ob es «konform» ist, sind Rechtsfragen (§ 1 Nr. 4).
-   Das Angebot beantwortet sie nicht, auch nicht teilweise oder «nach unserem Kenntnisstand».
+4. Fragen zu Zoll, Einfuhrabgaben und Steuern im Bestimmungsland, ob eine Lieferung davon befreit
+   ist, ob ein Produkt dort eingesetzt werden darf oder welchen Vorschriften es dort genügt, sind
+   Rechtsfragen (§ 1 Nr. 4). Das Angebot beantwortet sie nicht, auch nicht teilweise oder «nach
+   unserem Kenntnisstand».
 5. Angebote in Englisch sind zulässig; maßgeblich für die Prüfung ist dieselbe Richtlinie.
 
 ## § 8 Angebotsklasse A bis E
@@ -195,7 +202,7 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
 |---|---|---|---|---|
 | Auftragswert (§ 2 Nr. 1) | bis 25.000 | – | 25.000,01 bis 150.000 | über 150.000 |
 | Rabatt (§ 3) | genau nach Staffel (§ 3 Nr. 1 bis 4) | – | über der Staffel (§ 3 Nr. 6) | – |
-| Technik (§ 2 Nr. 4, § 5) | nur Produktdaten nach TDB | Erstbefüllung oder Umstellung einer stationären Anlage, ohne Zusage über das TDB hinaus | technische Zusage über das TDB hinaus verlangt oder enthalten | – |
+| Technik (§ 2 Nr. 4, § 5) | nur Produktdaten nach TDB | Erst- oder Neubefüllung einer stationären Anlage, ohne Zusage über das TDB hinaus | technische Zusage über das TDB hinaus verlangt oder enthalten | – |
 | Vertrag (§ 5 Nr. 4, § 6 Nr. 6) | Standardbedingungen, Laufzeit bis 12 Monate | – | Laufzeit über 12 Monate, Preisgleitung, Vertragsstrafe, Haftungsübernahme oder abweichende Bedingungen des Kunden | – |
 | Zahlung (§ 4) | 30 Tage netto, Bonität geprüft oder nicht erforderlich | Zahlungsziel über 30 Tage, Skonto oder Bonität nicht geprüft | – | – |
 | Kundenstatus (§ 4 Nr. 3) | Bestandskunde | Neukunde, Interessent oder ruhender Kunde | – | – |
@@ -259,8 +266,9 @@ angegeben. Mengen werden immer in Litern gerechnet: **IBC = 1.000 l, Fass = 200 
    angewendet wurden, ob der Angebotsassistent einen Entwurf erstellt oder versandt hat und wer
    freigegeben hat (Rolle, ohne Namen). Fehler werden benannt und nicht verschwiegen; über eine
    Korrektur zu Gunsten oder zu Lasten des Kunden entscheidet die zuständige Stelle nach § 9.
-4. Rechtsfragen: Schreiben nennen nur, dass Regulatory Affairs die Frage prüft und antwortet
-   (§ 1 Nr. 4). Technische Fragen: Hinweis auf Datenaufnahme durch die Anwendungstechnik (§ 5).
+4. Rechtsfragen: Schreiben nennen nur, dass die Abteilung Recht und Compliance die Frage prüft und
+   antwortet (§ 1 Nr. 4). Technische Fragen: Hinweis auf die Anlagenprüfung durch die
+   Anwendungstechnik (§ 5).
 5. Mündliche Zusagen des Außendienstes gelten erst, wenn sie im Angebot schriftlich stehen. Beruft
    sich ein Kunde auf eine mündliche Zusage, wird sie geklärt und nicht stillschweigend übernommen.
 6. Antworten an Kunden auf Anfragen und Rückfragen gehen innerhalb von 3 Arbeitstagen hinaus,

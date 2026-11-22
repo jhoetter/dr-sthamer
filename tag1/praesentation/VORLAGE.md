@@ -17,15 +17,15 @@ Titel, Arial für Text. Es gibt kein Logo.
 ## Regeln für den Inhalt
 
 1. **Eine Botschaft je Folie.** Der Titel ist diese Botschaft als ganzer Satz mit Verb (Aktionstitel):
-   „Stationäre Anlagen bremsen die Umstellung“, nicht „Fluorfrei-Anteil“. Höchstens zwei Zeilen. Wer nur die Titel
+   „[Gruppe] wächst schneller als der Rest, weil [Grund]“, nicht „Umsatz nach [Gruppe]“. Höchstens zwei Zeilen. Wer nur die Titel
    liest, kennt die Geschichte. Ausnahme: Titelfolie und Anhang.
 2. **Die Meta-Zeile unter dem Titel** nennt Kennzahl, Zeitraum und Zählweise in Kürze, Fakten mit « · » getrennt,
    das erste fett.
 3. **Der Inhalt belegt den Titel** und nichts anderes. Höchstens drei Punkte in einer Karte, höchstens drei Beschlüsse
    auf der Entscheidungsfolie, je ein Satz.
 4. **Jede Zahl mit Quelle und Definition** in der Quellenzeile unten: Tabelle oder Unterlage in Worten, Stichtag, was
-   gezählt wird (etwa „Liter der fluorfreien Produktlinie geteilt durch alle gelieferten Liter im Kalenderjahr, netto
-   nach Gutschriften und Retouren, ohne Muster“), Währung und Kurs. Keine Dateipfade, keine Spaltennamen.
+   gezählt wird (etwa „Umsatz im Kalenderjahr nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster, in EUR
+   zum Konzernkurs des Jahres“), Währung und Kurs. Keine Dateipfade, keine Spaltennamen.
    Einschränkungen (Übungsausschnitt, Teiljahr, Zahl für das ganze Unternehmen, kleine Basis) stehen dort, nicht nur in
    den Notizen. Ist, Budget und Ziel immer als solche bezeichnen.
 5. **Zahlen** aus den eigenen Ergebnissen oder frisch aus den Tabellen, nie geschätzt. Deutsches Format: 1.513.301 ·
@@ -58,7 +58,7 @@ nie auf einer Folie.
 
 ## Aufbau einer Folie
 
-Rand links und rechts 56 px. Von oben: Rubrik (blau, Großbuchstaben, etwa „Umstellungsprogramm · Frage 1“) →
+Rand links und rechts 56 px. Von oben: Rubrik (blau, Großbuchstaben, etwa „Geschäftsjahr 2026 · Frage 1“) →
 Aktionstitel (Georgia 30 px, höchstens zwei Zeilen) → Meta-Zeile → Inhaltsfläche → optional Fazitbox → Quellenzeile →
 Fußzeile. Fußzeile und Foliennummer setzt die Vorlage selbst; den Text der Fußzeile ändert man einmal im Attribut
 `data-fuss` (etwa „Beirat · 09.03.2027“).
@@ -87,12 +87,13 @@ Einheit einmal) schreibt die Vorlage aus `titel`, `zusatz` und `einheit`.
 |---|---|---|
 | `linie` | Verlauf über die Jahre, Abstand zum Ziel | `x` (Jahre als Text), `reihen` mit `name`, `werte`; eine Reihe `betont: true` (navy), Vergleich `grau: true`; `ziel: { wert, text }`; `teiljahr: true` setzt den letzten Wert gestrichelt ab |
 | `balken` | Rangfolge, Vergleich von Gruppen | `balken` mit `name`, `wert`, eine Gruppe `betont: true` |
-| `wasserfall` | Brücke von einem Wert zum anderen, etwa Budget → Ist nach Menge, Mix, Preis, Währung | `schritte` mit `name`, `wert`; erster und letzter mit `summe: true`; optional `basis` (Achse beginnt nicht bei 0, Bruchzeichen auf den Summen; dann in der Quellenzeile sagen) |
+| `wasserfall` | Brücke von einem Wert zum anderen, etwa Budget → Ist nach Menge, Mix, Preis, Währung | `schritte` mit `name`, `wert`; erster und letzter mit `summe: true`, eine Zwischensumme (etwa „Ist ohne Sondereffekt“) ebenso mit `summe: true`; optional `basis` (Achse beginnt nicht bei 0, Bruchzeichen auf den Summen; dann in der Quellenzeile sagen) |
 | Tabelle | genaue Werte | Baustein `tabelle`, kein Datenblock |
 
 - Eine Botschafts-Reihe oder ein Botschafts-Balken in Navy, die anderen blau, Vergleich grau. Werte stehen an den
   Linienenden und Balken; keine Legende, keine Ampelfarben, keine Torten, kein 3D.
 - `null` heißt Lücke (kein oder zu kleiner Bestand, etwa weniger als 20 Positionen), nie 0 eintragen.
+- `linie` und `balken` zeigen nur Werte ab 0 (Liter, EUR, Anteile). Veränderungen, auch negative, gehören in den Wasserfall, in die Beleg-Zahl unter dem Titel oder in eine Tabelle.
 - Ein Wert in einer Linie darf `{ wert, zaehler, nenner }` sein: Zähler und Nenner zeigt der Tooltip beim Überfahren.
 - Im Wasserfall müssen Anfang und Schritte genau das Ende ergeben; sonst meldet es der Prüfkasten.
 - Reihen- und Schrittnamen kurz (rund 15 Zeichen). Nach dem Eintragen echter Werte den Hinweis «Beispieldaten» auf der

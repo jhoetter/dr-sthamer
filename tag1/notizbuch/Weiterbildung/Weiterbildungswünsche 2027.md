@@ -17,7 +17,7 @@ Gesammelt bis 09.10. (Nachzügler bis 19.10.), Grundlage für [[Budget 2027]].
 | [[Anke Wiebusch]] | Seminar Kundenkommunikation in schwierigen Fällen | 900 EUR | beantragt |
 | [[Hauke Brodersen]] | Disponentenschulung | 1.100 EUR | beantragt |
 | [[Tobias Kreienbrink]] | – („keine Zeit“) | – | – |
-| Team | Inhouse-Schulung Zumischtechnik fluorfrei (alle Außendienst + Labor) | 3.000 EUR | beantragt |
+| Team | Inhouse-Schulung Anlagentechnik (alle Außendienst + Labor) | 3.000 EUR | beantragt |
 
 ---
 

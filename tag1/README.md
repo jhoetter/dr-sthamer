@@ -7,7 +7,7 @@ Material für Tag 1 eines zweitägigen AI-Bootcamps an der Übungsfirma Dr. Stha
 ## So öffnen
 
 - Die Claude-App (Reiter „Code“) **im Ordner `tag1` selbst** öffnen, nicht im Repository darüber. Nur dann gelten `tag1/CLAUDE.md` und `tag1/.claude/settings.json`.
-- Laden ohne GitHub-Konto: Branch `tag1-augmentation` als ZIP herunterladen und nur den Ordner `tag1` entpacken, oder `git clone --depth 1 -b tag1-augmentation <Repository-URL>` und dann den Unterordner `tag1` öffnen.
+- Laden (Drill 0, Etappe 1): Standard ist, dass Claude in einer Sitzung im Benutzerordner das Repository nach `%USERPROFILE%\dr-sthamer` klont („Klone [Repo-Adresse prüfen] in den Ordner dr-sthamer in meinem Benutzerordner und öffne den Ordner tag1“); Rückfall ohne Git: „Code → Download ZIP“ und nach `%USERPROFILE%\dr-sthamer` entpacken (nicht OneDrive, nicht Desktop). Danach eine neue Sitzung im Unterordner `tag1`. Repo-Adresse `[Repo-Adresse prüfen]`: Für den Kurstag setzen die Dozenten ein eigenes Repository auf; bis dahin liegt der Stand in `https://github.com/jhoetter/dr-sthamer`, Branch `tag1-augmentation` (privat, für Teilnehmende ohne Konto nicht klonbar).
 - Voraussetzungen wie an Tag 2: Python ab 3.9 (nur Standardbibliothek), Edge oder Chrome für PDF, optional Obsidian. Kein pip, kein Node, kein Internet nötig.
 
 ## Aufbau
@@ -19,7 +19,8 @@ Material für Tag 1 eines zweitägigen AI-Bootcamps an der Übungsfirma Dr. Stha
 | `.claude/settings.json` | Modell, Rechte und Sperren für diesen Ordner |
 | `.claude/skills/` | leer; Ziel des eigenen Skills aus Drill 3 |
 | `drills/` | Anleitungen Drill 0–5 |
-| `daten/`, `angebotseingang/`, `regelwerke/`, `notizbuch/`, `praesentation/`, `akten/` | Übungsmaterial |
+| `daten/`, `angebotseingang/`, `regelwerke/`, `notizbuch/`, `praesentation/` | Übungsmaterial |
+| `design/circle/` | Circle Design (Stilfibel, Tokens, Bausteine, Gerüst) für das Dashboard |
 | `checkpoints/` | Zwischenstände zum Einsteigen nach einem Drill |
 | `folien/` | Folien des Tages ohne Sprechernotizen |
 | `werkzeuge/` | Herstellung des Arbeitsstands (`erzeuge_daten.py`, `pruefe_daten.py`) und Notizbuch-Ansicht ohne Obsidian (`notizbuch_ansicht.py`) |

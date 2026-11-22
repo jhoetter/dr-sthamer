@@ -9,85 +9,66 @@ tags: [vorbereitung, entwurf-claude]
 
 Entwurf von Claude auf Basis der Notizen bis 26.02.2027, von Birte zu prüfen.
 
-Formular: [[Vorlage Jahresgespräch]] · Vorlage sieht 60–90 Min. vor, nicht zwischen zwei Terminen. Uhrzeit und Ort für den 04.03.: keine Angabe in den Notizen ([[2027-01-19 1-1 Sönke]]).
+Formular der Personalabteilung: [[Vorlage Jahresgespräch]] · Person: [[Sönke Rathjens]] · Ziele: [[Zielvereinbarung 2026 Sönke Rathjens]]
 
 ## 1. Gesprächseinstieg
-Konkrete Anlässe für Wertschätzung (Birte wählt):
-- Notfalllieferung Tankpark am Di 22.09.2026: 24.000 l, Nacht durchgefahren, Kunde sehr zufrieden ([[2026-10-05 Jour fixe]]). Die Auftragstabelle zeigt für den 22.09.2026 eine Notfalllieferung von 24.000 Litern (Übungsausschnitt).
-- Dankesmail eines Kunden an die Geschäftsführerin für den Samstagseinsatz (Anlage nach Fehlauslösung wieder befüllt), in der Teamleiterrunde vorgelesen ([[2026-12-14 Jour fixe]]).
-- Erste Umstellungsbegleitung Feuerwehr Süd am 26.11.2026, „lief gut“ ([[2026-11-30 Jour fixe]]).
-- Zwei Kunden im Süden fragten direkt nach ihm ([[2026-11-16 Jour fixe]]).
-- Das Lob für den Tankpark-Einsatz hat Birte am 27.10. weitergegeben ([[2026-10-27 1-1 Sönke]]).
-
-Mein Einstieg (Birte): „Sönke, im Herbst bist du für den Tankpark die Nacht durchgefahren, und im Süden haben Kunden direkt nach dir gefragt. Danke dafür.“ ([[2026-10-05 Jour fixe]], [[2026-11-16 Jour fixe]])
+- Mögliche Wertschätzung, konkret:
+  - Notfalllieferung Tankpark am 22.09.2026, Nacht durchgefahren, Kunde sehr zufrieden · [[2026-10-05 Jour fixe]] (Auftragstabelle: Lieferdatum 22.09.2026, 24.000 l)
+  - Dankesmail eines Kunden an die GF für den Samstagseinsatz, in der Teamleiterrunde vorgelesen · [[2026-12-14 Jour fixe]]
+  - Erste Schulung für Gerätewarte der Feuerwehr Süd am Do 26.11.2026, „lief gut“, Wehr wollte einen Folgetermin im Frühjahr · [[2026-11-30 Jour fixe]]
+- Entwurf des Satzes (Birte entscheidet): „Sönke, im September bist du für den Tankpark die Nacht durchgefahren, hat sich ein Kunde über die GF für deinen Samstagseinsatz bedankt, die Mail haben wir am 14.12. im Jour fixe gehört, und am 26.11. hast du die erste Schulung für die Gerätewarte gehalten. Dafür möchte ich mich zuerst bedanken.“
 
 ## 2. Rückblick: Ziele 2026
-Quelle der Ziele: [[Zielvereinbarung 2026 Sönke Rathjens]] (vereinbart 10.03.2026). Die Einschätzung trägt Birte selbst nach dem Gespräch ein.
+Vereinbart am 10.03.2026 · [[Zielvereinbarung 2026 Sönke Rathjens]]
 
 | Ziel | Messgröße | Was ist belegt? (Fundstelle) | Wie sieht es die Person? |
 |---|---|---|---|
-| 1 Reaktionszeit Notfalleinsätze Region Süd | ≤ 4 h vom Anruf bis vor Ort in ≥ 95 % der Einsätze, bis 31.12.2026 | 96 % ≤ 4 h, Jan.–Nov., **Team gesamt** (Ziel Haukes: 95 %) ([[2026-12-09 1-1 Hauke]]). Wert nur für die Region Süd: keine Angabe in den Notizen. | |
-| 2 Umstellungen begleiten | 2 Begleitungen bei Feuerwehren Region Süd, bis 31.12.2026 | Eine am 26.11.2026 ([[2026-11-30 Jour fixe]]). Zweite „verschoben auf 2027, Wehr hat abgesagt“ ([[2026-12-14 Jour fixe]]). | |
-| 3 Vertretung Rufbereitschaft Süd | zweite Person eingearbeitet (mit Hauke), bis 30.09.2026 | Stelle Süd im Budget 2027 abgelehnt, Entscheid 17.12.2026 ([[Budget 2027]]). Übergang: Nord übernimmt jedes dritte Wochenende ab Feb. 2027 ([[2027-01-25 Jour fixe]]). Einarbeitung der Aushilfe aus Nord: keine Angabe (am 15.09.2026: „kennt die Anlagen nicht“, [[2026-09-15 1-1 Sönke]]). | |
-| 4 Zeitkonto | ≤ 40 h zum Jahresende, 31.12.2026 | +34 h (15.09., [[2026-09-15 1-1 Sönke]]), +52 h (27.10., [[2026-10-27 1-1 Sönke]]), +88 h (08.12., [[2026-12-08 1-1 Sönke]]), +97 h bei Kappung 100 h (19.01.2027, [[2027-01-19 1-1 Sönke]]). Stand 31.12.2026: keine Angabe. | |
+| 1 Reaktionszeit Notfalleinsätze Region Süd | ≤ 4 h vom Anruf bis vor Ort in ≥ 95 % der Einsätze, bis 31.12.2026 | Für das Team insgesamt: 96 % der Einsätze Jan.–Nov. innerhalb 4 h (Hauke, 09.12.) · [[2026-12-09 1-1 Hauke]]. Wert für Region Süd allein: keine Angabe in den Notizen. | |
+| 2 Kundenschulungen Region Süd | 2 Schulungen für Gerätewarte bei Feuerwehren Region Süd, bis 31.12.2026 | Erste Schulung am 26.11.2026 gehalten · [[2026-11-30 Jour fixe]]. Zweite „verschoben auf 2027, Wehr hat abgesagt“ · [[2026-12-14 Jour fixe]]; am 08.12. „wackelt, Wehr hat Terminprobleme“ · [[2026-12-08 1-1 Sönke]]. | |
+| 3 Vertretung Rufbereitschaft Süd | zweite Person eingearbeitet (mit Hauke), bis 30.09.2026 | 21.09.: „zweite Person fehlt weiter“ · [[2026-09-21 Jour fixe]]. Stelle am 17.12.2026 nicht bewilligt, „mit Nord überbrücken“ · [[Budget 2027]]. Übergang: Nord übernimmt jedes dritte Wochenende ab Feb. · [[2027-01-25 Jour fixe]]; 08.02.: „Übergang Nord läuft“ · [[2027-02-08 Jour fixe]]. Eine Einarbeitung einer zweiten Person: keine Angabe in den Notizen. | |
+| 4 Zeitkonto | ≤ 40 h zum Jahresende, 31.12.2026 | Stand +34 h (15.09.) · [[2026-09-15 1-1 Sönke]]; +52 h (27.10.) · [[2026-10-27 1-1 Sönke]]; +88 h (08.12.) · [[2026-12-08 1-1 Sönke]]; +97 h (19.01.2027), Kappung bei 100 h · [[2027-01-19 1-1 Sönke]]. Stand zum 31.12.2026: keine Angabe in den Notizen. | |
+
+Hinweis: Die Einstufung der Zielerreichung trägt Birte selbst nach dem Gespräch ein.
 
 ## 3. Zusammenarbeit und Arbeitssituation
-**Was Sönke geschildert hat**
-- Süden: „wir sind halt nur einer“; Aushilfe aus Nord kennt die Anlagen nicht ([[2026-09-15 1-1 Sönke]]).
-- Hat Wochenenden für zwei Kollegen aus Nord übernommen ([[2026-10-27 1-1 Sönke]]).
-- Zum Budget: „dann bleibt der Süden eben bei mir“ ([[2027-01-19 1-1 Sönke]]).
-- Zum Jahresgespräch: „müssen wir das machen?“ ([[2027-01-19 1-1 Sönke]]).
+Berufliche Tatsachen aus den Notizen:
+- Wochenend-Einsätze Rufbereitschaft, davon Sönke (Jour-fixe-Zahlen): seit 01.09. (Stand 21.09.) 3, davon 1 · [[2026-09-21 Jour fixe]]; Sept. 5, davon 3 · [[2026-10-05 Jour fixe]]; Okt. 7, davon 5 · [[2026-11-16 Jour fixe]]; Nov. 8, davon 6 · [[2026-12-14 Jour fixe]]; Dez. 9, davon 6, inkl. Feiertage · [[2027-01-11 Jour fixe]]; Jan. 7, davon 5 · [[2027-02-08 Jour fixe]]; Feb. bisher (Stand 22.02.) 4, davon 3 · [[2027-02-22 Jour fixe]].
+- Dienste für Kollegen aus Nord übernommen (Sönke, 27.10.) · [[2026-10-27 1-1 Sönke]]; Hauke 07.10.: „Sönke tauscht ständig Wochenenden“ · [[2026-10-07 1-1 Hauke]]; Hauke 09.12.: im Süden seit Okt. „praktisch nur noch Sönke“ · [[2026-12-09 1-1 Hauke]].
+- Weihnachtsdienst 24.–26.12.2026 hat Sönke selbst eingetragen · [[2026-12-09 1-1 Hauke]].
+- Budget 2027: keine neue Stelle für die zweite Rufbereitschaft Süd; Sönke am 19.01.: „dann bleibt der Süden eben bei mir“ · [[2027-01-19 1-1 Sönke]], [[Budget 2027]].
+- Zeitkonto laut Notizen von +34 h (15.09.) auf +97 h (19.01.), Kappung bei 100 h, Stunden verfallen sonst; ein vereinbarter Abbau liegt nicht vor (08.12.: „nichts aufgeschrieben“) · [[2026-12-08 1-1 Sönke]], [[2027-01-19 1-1 Sönke]].
 
-**Berufliche Tatsachen (Rufbereitschaft, Wochenend-Einsätze: Team gesamt / davon Sönke)**
-
-| Monat | Einsätze | davon Sönke | Fundstelle |
-|---|---|---|---|
-| Aug. 2026 | 2 | keine Angabe | [[2026-09-07 Jour fixe]] |
-| Sept. 2026 | 5 | 3 | [[2026-10-05 Jour fixe]] |
-| Okt. 2026 | 7 | 5 | [[2026-11-16 Jour fixe]] |
-| Nov. 2026 | 8 | 6 | [[2026-12-14 Jour fixe]] |
-| Dez. 2026 | 9 | 6 | [[2027-01-11 Jour fixe]] |
-| Jan. 2027 | 7 | 5 | [[2027-02-08 Jour fixe]] |
-| Feb. 2027 (bis 22.02.) | 4 | 3 | [[2027-02-22 Jour fixe]] |
-
-- Rufbereitschaft Süd besteht aus Sönke und einer Aushilfe aus Nord ([[2026-09-21 Jour fixe]]).
-- Hauke schildert: „ich muss ihn bremsen, er sagt immer ja“ ([[2026-10-07 1-1 Hauke]]); „im Süden ist es seit Okt. praktisch nur noch Sönke“ ([[2026-12-09 1-1 Hauke]]). Das sind Haukes Worte.
-- Sönke hat sich für 24.–26.12.2026 in die Rufbereitschaft eingetragen ([[2026-12-09 1-1 Hauke]]).
-- Länge der 1:1: 45 Min. (15.09.), 30 Min. (27.10., vom 13.10. verschoben), 15 Min. (08.12.), 10 Min. (19.01.) ([[2026-09-15 1-1 Sönke]], [[2026-10-27 1-1 Sönke]], [[2026-12-08 1-1 Sönke]], [[2027-01-19 1-1 Sönke]]). Das 1:1 am 16.02.2027 ist ausgefallen und nicht nachgeholt ([[2027-02-22 Jour fixe]]).
-- Übergang Nord läuft seit Feb., „Nord murrt“ ([[2027-02-08 Jour fixe]]).
-
-**Offene Fragen für das Gespräch**
-1. Was hat sich im Süden seit September verändert, was lief gut, was war schwierig?
-2. Wie sollte die Rufbereitschaft Süd verteilt sein, solange die Übergangslösung mit Nord läuft?
-3. Was müsste sich ändern, damit das Zeitkonto vor der Kappung bei 100 h sinkt?
-4. Wie soll die zweite Umstellungsbegleitung 2027 aussehen, was brauchst du dafür?
-5. Was brauchst du, damit die Rufbereitschaft Süd auf mehr als einer Person ruht?
+Offene Fragen:
+1. Wie hast du 2026 die Rufbereitschaft und die Kundenschulungen erlebt: Was lief gut, was war schwierig?
+2. Wie läuft für dich die Übergangslösung mit Nord seit Februar, und was müsste sich ändern, damit sie im Süden trägt?
+3. Wie möchtest du das Zeitkonto vor der Kappung bei 100 h abbauen, und was bräuchtest du dafür?
+4. Was würde helfen, damit die zweite Schulung für die Feuerwehr Süd 2027 zustande kommt?
 
 ## 4. Offene Zusagen
-**der Person**
-- [ ] **Weiterbildungswunsch Zumischtechnik nachreichen (Sönke, bis 30.10.2026) – kein Haken, Frist verstrichen**; erste Frist 09.10.2026 ebenfalls ohne Haken · [[2026-10-27 1-1 Sönke]], [[2026-09-15 1-1 Sönke]], [[Weiterbildungswünsche 2027]] („Kosten ?“, „nachgereicht?“)
-- [ ] **Freizeitausgleich Feb. eintragen (Sönke, bis 31.01.2027) – kein Haken, Frist verstrichen**; Zeitkonto danach: keine Angabe · [[2027-01-19 1-1 Sönke]]
-- [ ] Wehr Süd Schulung Frühjahr anfragen (Sönke, ohne Frist) – offen · [[2026-11-30 Jour fixe]]
-- [ ] Termine Umstellungsbegleitung Feuerwehren Süd melden (Sönke, bis 30.09.2026) – kein Haken; erste Begleitung fand am 26.11.2026 statt · [[2026-09-15 1-1 Sönke]], [[2026-11-30 Jour fixe]]
+**Der Person (Sönke):**
+- [ ] Termine Schulungen Feuerwehren Süd melden (Sönke, bis 30.09.) – nicht abgehakt; erste Schulung am 26.11. gehalten, zweite verschoben · [[2026-09-15 1-1 Sönke]], [[2026-11-30 Jour fixe]], [[2026-12-14 Jour fixe]]
+- [ ] **Herstellerschulung Zumischtechnik in die Weiterbildungswünsche (Sönke, bis 09.10.; nachreichen bis 30.10.) – Fristen verstrichen**; in der Liste mit Kosten „?“ und „nachgereicht?“ · [[2026-09-15 1-1 Sönke]], [[2026-10-27 1-1 Sönke]], [[Weiterbildungswünsche 2027]]
+- [ ] Wehr Süd Schulung Frühjahr anfragen (Sönke, ohne Frist) – 14.12.: Wehr hat abgesagt, verschoben auf 2027 · [[2026-11-30 Jour fixe]], [[2026-12-14 Jour fixe]]
+- [ ] **Freizeitausgleich Feb. eintragen (Sönke, bis 31.01.) – Frist verstrichen**, kein Haken, keine spätere Notiz dazu · [[2027-01-19 1-1 Sönke]]
 
-**meine (Birte)**
-- [ ] Unterlagen Jahresgespräche vorbereiten (Birte, bis 01.03.2027) – heute fällig · [[2027-01-25 Jour fixe]]
-- [ ] **„Ich rede mit Hauke über den WE-Plan“ (Birte, ohne Frist) – keine Notiz, ob und was daraus wurde** · [[2026-10-27 1-1 Sönke]]
-- [ ] Zeitkonto-Abbau: „Abbau im Jan.?“, „mal sehen, wenn es ruhiger wird“; Vereinbarung nicht aufgeschrieben · [[2026-12-08 1-1 Sönke]]
-- [ ] 1:1 vom 16.02.2027 nicht nachgeholt, „sehen uns ja am 04.03.“ · [[2027-02-22 Jour fixe]]
-- Erledigt: Stelle Süd ins Budget gebracht (abgelehnt am 17.12.2026), Übergangslösung mit Nord (Haken 25.01.2027) · [[Budget 2027]], [[2027-01-25 Jour fixe]]
+**Meine (Birte):**
+- [ ] **Mit Hauke über den Wochenend-Plan reden (Birte, ohne Frist) – 27.10. angesagt, in den Notizen danach kein Eintrag dazu** · [[2026-10-27 1-1 Sönke]]
+- [ ] Unterlagen Jahresgespräche vorbereiten (Birte, bis 01.03.) – diese Notiz · [[2027-01-25 Jour fixe]]
+- Stelle Rufbereitschaft Süd ins Budget aufgenommen (JF 19.10.), am 17.12. nicht bewilligt; Übergangslösung mit Nord am 25.01. abgehakt · [[2026-10-19 Jour fixe]], [[Budget 2027]], [[2027-01-25 Jour fixe]]
+- Lob für den Tankpark-Einsatz an Sönke weitergegeben (27.10.) · [[2026-10-27 1-1 Sönke]]
 
 ## 5. Entwicklung und Weiterbildung
-- Wunsch: Herstellerschulung Zumischtechnik, Kosten offen („?“), in der Budgettabelle 2027 keine eigene Zeile · [[Weiterbildungswünsche 2027]], [[Budget 2027]].
-- Im Budget 2027 steht eine Inhouse-Schulung „Zumischtechnik fluorfrei“ für Außendienst und Labor, 3.000 EUR; Reserve 2.100 EUR · [[Budget 2027]]. Offene Frage: Deckt die Inhouse-Schulung den Wunsch ab?
-- Weiterbildung 2026: keine besucht, Termin im Mai wegen Notfall abgesagt · [[Weiterbildung Rückblick 2026]].
-- Rolle: will „einfach draußen bleiben“, keine Führung; mehr Umstellungsbegleitungen statt nur Notfälle (Wunsch März 2026) · [[Sönke Rathjens]].
+- Wünsche laut Personennotiz: „einfach draußen bleiben“, keine Führung; Interesse an Zumischtechnik (Herstellerschulung); mehr Kundenschulungen statt nur Notfälle · [[Sönke Rathjens]]
+- 2026 besucht: keine Weiterbildung; Termin im Mai wegen Notfall abgesagt · [[Weiterbildung Rückblick 2026]]
+- Zumischtechnik 2027: Kosten „?“, Status „nachgereicht?“ · [[Weiterbildungswünsche 2027]]; in der Budgettabelle kein eigener Posten, Reserve EUR 2.100, Inhouse-Schulung Anlagentechnik EUR 3.000 für Außendienst und Labor · [[Budget 2027]]
+- Frage an Sönke: Welche Schulung wäre 2027 für dich am wichtigsten, und was kostet sie?
 
 ## 6. Ziele 2027 (Entwurf, gemeinsam festlegen)
-- Umstellungsbegleitungen Süd 2027: zweite verschoben, Wehr will Schulung im Frühjahr · [[2026-12-14 Jour fixe]], [[2026-11-30 Jour fixe]]
-- Reaktionszeit Region Süd getrennt messen (2026 liegt nur ein Teamwert vor) · [[2026-12-09 1-1 Hauke]], [[Zielvereinbarung 2026 Sönke Rathjens]]
-- Verteilung und Einarbeitung der Rufbereitschaft Süd bei Übergang mit Nord · [[2027-01-25 Jour fixe]]
-- Zumischtechnik-Schulung: Wunsch und Budget klären · [[Weiterbildungswünsche 2027]]
+Nur Themenvorschläge, nichts davon ist vereinbart:
+- Kundenschulungen Feuerwehren Süd 2027 (zweite Schulung verschoben, Wehr wollte Folgetermin) · [[2026-12-14 Jour fixe]]
+- Rufbereitschaft Süd: Verteilung der Wochenenden mit der Übergangslösung · [[2027-01-25 Jour fixe]], [[Budget 2027]]
+- Zeitkonto und Freizeitausgleich · [[2027-01-19 1-1 Sönke]]
+- Zumischtechnik / Weiterbildung · [[Weiterbildungswünsche 2027]]
 
 ## 7. Vereinbarungen
 - [ ]

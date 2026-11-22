@@ -10,10 +10,10 @@ Preislisten und alle weiteren Tabellen wurden für Tag 1 ergänzt.
 
 - **Format:** CSV, UTF-8 (mit BOM), Trennzeichen Komma, erste Zeile = Spaltennamen.
 - **Datum:** ISO-Format `JJJJ-MM-TT` (zum Beispiel `2026-04-12`). Leeres Feld = kein Wert.
-- **Zahlen:** Dezimalpunkt, kein Tausendertrennzeichen (`1250.5`). Erst in Berichten und im Cockpit
+- **Zahlen:** Dezimalpunkt, kein Tausendertrennzeichen (`1250.5`). Erst in Berichten und im Dashboard
   schreiben wir deutsch (1.250,5).
-- **Kennungen:** Kunden `K-1001` bis `K-1032`; Produkte `P-101` bis `P-121` (fluorhaltige Altprodukte
-  und Sonderprodukte) und `P-201` bis `P-207` (fluorfreie Nachfolger); Lieferstellen `LS-0001` ff.
+- **Kennungen:** Kunden `K-1001` bis `K-1032`; Produkte `P-101` bis `P-121` und `P-201` bis `P-207`;
+  Lieferstellen `LS-0001` ff.
 - **Interessenten** ohne Kundenstamm haben Nummern ab `K-9001`. Sie kommen nur in Unterlagen von Tag 1
   vor (Angebotseingang), nicht in den Tabellen.
 - **Übungsausschnitt:** Die Tabellen enthalten ausgewählte Kunden, nicht das ganze Unternehmen.
@@ -41,18 +41,14 @@ Preislisten und alle weiteren Tabellen wurden für Tag 1 ergänzt.
 | Spalte | Bedeutung |
 |---|---|
 | `id` | Produktnummer (`P-101` …) |
-| `name` | Handelsname |
-| `schaumart` | Schwerschaum, Mittelschaum, Netzwasser, Übungsschaum, Retardant, CAFS |
-| `brandklassen` | Brandklassen, für die das Produkt ausgelegt ist (A feste Stoffe, B Flüssigkeiten, Training), getrennt durch `;` |
+| `name` | Artikelbezeichnung |
+| `schaumart` | Produktgruppe: Schwerschaum, Mittelschaum, Netzwasser, Übungsschaum, Retardant, CAFS (Druckluftschaum) |
 | `einsatzbereiche` | typische Einsatzbereiche, getrennt durch `;` |
-| `basis` | chemische Basis laut Rezeptur: AFFF, AR-AFFF, FFFP, Proteinschaum (fluorhaltig), fluorfrei-synthetisch, fluorfrei-Protein, Netzmittel |
-| `produktlinie` | `fluorhaltig`, `fluorfrei` oder `offen`, abgeleitet aus der Basis: AFFF, AR-AFFF, FFFP und Proteinschaum = fluorhaltig; fluorfrei-synthetisch und fluorfrei-Protein = fluorfrei; Netzmittel = offen (nach der Basis allein nicht zuzuordnen) |
-| `fluorfrei_deklariert` | `ja`/`nein`: Das Produkt wird gegenüber Kunden als fluorfrei ausgewiesen. Kann von `produktlinie` abweichen |
-| `zumischrate_prozent` | vorgesehene Zumischrate des Konzentrats in Prozent (3 = 3 % Konzentrat in der Schaumlösung) |
-| `nachfolger_id` | fluorfreies Nachfolgeprodukt, auf das Kunden umgestellt werden sollen; leer, wenn es keinen Nachfolger gibt |
 | `status` | `aktiv` oder `auslaufend` |
-| `eingefuehrt_am` | Datum der Markteinführung |
+| `eingefuehrt_am` | Datum der Markteinführung; vorher wurde das Produkt nicht geliefert |
 | `ausgelaufen_am` | Datum, ab dem nicht mehr geliefert wird; leer, solange das Produkt lieferbar ist |
+
+Gebinde und Listenpreise stehen in den Preislisten, Herstellkosten in `herstellkosten.csv`.
 
 ## lieferstellen.csv – Lieferstellen und Anlagen (eine Zeile je Lieferstelle)
 
@@ -68,9 +64,7 @@ Fahrzeug, ein Lager, ein Übungsplatz. Ein Kunde kann viele Lieferstellen haben.
 | `aktuelles_produkt_id` | Produkt, das zuletzt an diese Lieferstelle geliefert wurde |
 | `fuellmenge_l` | Füllmenge der Anlage bzw. übliche Bestandsmenge in Litern |
 | `letzte_lieferung` | Datum der letzten Lieferung an diese Lieferstelle |
-| `datenaufnahme_am` | Datum, an dem unsere Anwendungstechnik die Anlage vor Ort aufgenommen hat (Zumischer, Zumischrate, Tank); leer = keine Datenaufnahme |
-| `zumischrate_anlage` | bei der Datenaufnahme vor Ort festgestellte Zumischrate in Prozent; leer, wenn keine Datenaufnahme stattfand |
-| `zumischrate_crm` | im CRM hinterlegte Zumischrate in Prozent; kann veraltet sein, wenn die Anlage beim Kunden geändert wurde |
+| `erstbefuellung_am` | Datum der Erstbefüllung, wenn die Lieferstelle seit 01.01.2021 neu dazugekommen ist (neue Anlage, neues Fahrzeug, neues Lager); leer = schon vorher beliefert |
 
 ## auftraege.csv – Auftragspositionen 01.01.2021 bis 28.02.2027 (eine Zeile je Position)
 
@@ -90,7 +84,8 @@ Fahrzeug, ein Lager, ein Übungsplatz. Ein Kunde kann viele Lieferstellen haben.
 | `preis_netto_je_einheit` | Nettopreis je Einheit in der Währung der Spalte `waehrung` |
 | `waehrung` | `EUR`, `CHF`, `GBP` oder `NOK`. Umrechnung in EUR mit den Konzernkursen aus `kennzahlen.json` |
 | `nettobetrag` | `menge` × `preis_netto_je_einheit`, in der Auftragswährung |
-| `vertriebsweg` | `direkt`, `Händler`, `Rahmenvertrag`, `Notfallservice` |
+| `vertriebsweg` | `direkt`, `Händler`, `Rahmenvertrag`, `Notfallservice`. Erstbefüllungen neuer Anlagen laufen als Projekt immer `direkt`, auch bei Kunden mit Rahmenvertrag (außer bei Händlern) |
+| `auftragsart` | `Nachfüllung` (wiederkehrender Bedarf einer bestehenden Lieferstelle), `Erstbefüllung` (erste Befüllung einer neuen Anlage, eines neuen Fahrzeugs oder Lagers; einmaliges Projektgeschäft), `Notfall` (Lieferung des Notfallservice), `Muster`. Gutschriften und Retouren tragen die Auftragsart der ursprünglichen Lieferung |
 | `art` | `Lieferung`, `Gutschrift`, `Retoure` oder `Muster`. Gutschriften und Retouren haben negative Mengen und Beträge; Muster werden mit 0 EUR berechnet |
 | `quellsystem` | `ERP-alt` (Aufträge bis 30.06.2024) oder `ERP-neu` (ab 01.07.2024) |
 
@@ -113,9 +108,9 @@ Welche Preisliste für ein Angebot gilt, richtet sich nach dem Angebotsdatum.
 | `heute` | „heute“ in der Übung (01.03.2027) |
 | `waehrung_konzern` | Berichtswährung des Konzerns (EUR) |
 | `konzernkurse` | je Jahr ein Kurs je Fremdwährung (CHF, GBP, NOK) in EUR; gilt für alle Umrechnungen in Berichten |
-| `ziele` | Ziele der Geschäftsführung für den Fluorfrei-Anteil (2026: 0,60; 2027: 0,80) |
-| `definitionen` | verbindliche Definitionen, unter anderem `fluorfrei_anteil`, `aktiver_kunde` und `umrechnung_gebinde`; für die Finanzanalyse `deckungsbeitrag`, `umrechnung_fremdwaehrung`, `rabattquote` und `plan_ist_bruecke` |
-| `ampel_regel` | Regel für die Ampel nach Segment und Land |
+| `ziele` | Ziele der Geschäftsführung für 2026 (= Budget 2026): Nettoumsatz, Absatz, Deckungsbeitrag und DB-Marge des Übungsausschnitts, zum Plankurs, ohne Notfallservice |
+| `definitionen` | verbindliche Definitionen: `bereinigung`, `umrechnung_gebinde`, `absatz_l`, `nettoumsatz`, `wachstum`, `auftragsart`, `nachfuell_anteil`, `top5_anteil`, `aktiver_kunde`, `kundenstatus` (aktiv / ruhend / verloren); für die Finanzanalyse `deckungsbeitrag`, `umrechnung_fremdwaehrung`, `rabattquote` und `plan_ist_bruecke` |
+| `ampel_wachstum` | Regel für die Wachstumsampel (Veränderung des Nettoumsatzes 2026 gegen 2025 je Gruppe) |
 
 Bei Widerspruch zwischen diesem Katalog und `kennzahlen.json` gilt `kennzahlen.json`.
 
@@ -128,23 +123,10 @@ Bei Widerspruch zwischen diesem Katalog und `kennzahlen.json` gilt `kennzahlen.j
 | `rekl_id` | Vorgangsnummer der Reklamation (`R-JJJJ-nnn`) |
 | `eingang` | Datum des Eingangs |
 | `kunde_id` | Kunde |
-| `produkt_id` | reklamiertes Produkt |
-| `kategorie` | Art der Beanstandung, zum Beispiel Schaumqualität, Probeumstellung, Gebinde/Verpackung, Lieferung/Menge, Rechnung, Dokumentation |
-| `auto_beantwortet` | `ja`/`nein`: Die erste Antwort kam automatisch aus dem Kundenportal |
-| `tage_bis_antwort` | Arbeitstage vom Eingang bis zur ersten Antwort an den Kunden; 0 = noch am Tag des Eingangs, auch bei automatischer Antwort |
-| `status` | Stand des Vorgangs: offen, in Bearbeitung, abgeschlossen, abgeschlossen (Kulanz), abgelehnt |
-
-### kontakte.csv – Kontakte mit der Raffinerie Küstenmark (K-1003)
-
-| Spalte | Bedeutung |
-|---|---|
-| `datum` | Datum des Kontakts |
-| `kunde_id` | Kunde (hier immer K-1003) |
-| `kanal` | Telefon, E-Mail, Brief, Kundenportal, Besuch, Lieferschein, Bericht, Memo, System |
-| `richtung` | eingehend, ausgehend oder intern |
-| `bearbeitung` | wer den Kontakt bearbeitet hat (Rolle; „automatisch“ bei Antworten des Portals) |
-| `betreff` | Stichwort |
-| `dokument` | Dateiname des zugehörigen Dokuments in `akten/`, falls vorhanden |
+| `produkt_id` | Produkt der beanstandeten Lieferung |
+| `kategorie` | Art der Beanstandung: Lieferverzug, Lieferung/Menge, Gebinde/Verpackung, Beschädigte Ware, Rechnung, Dokumentation |
+| `tage_bis_antwort` | Arbeitstage vom Eingang bis zur ersten Antwort an den Kunden |
+| `status` | Stand des Vorgangs: offen, abgeschlossen, abgeschlossen (Kulanz), abgelehnt |
 
 ## Finanzdaten
 
@@ -176,8 +158,8 @@ Herstellkosten je Liter = `rohstoff_eur_l` + `fertigung_eur_l`. Fracht ist **nic
 | `frachtkosten_eur` | Frachtkosten in EUR, die wir tragen (Lieferung frei Haus); nicht in `nettobetrag` enthalten |
 
 Nur Aufträge mit Lieferungen oder Mustern haben Fracht; Gutschriften und Retouren nicht. Ein Auftrag kann
-mehrere Positionen haben: Für Auswertungen je Produkt oder Produktlinie wird die Fracht nach Litern auf die
-Positionen verteilt.
+mehrere Positionen haben: Für Auswertungen je Produkt, Schaumart, Segment oder Vertriebsweg wird die Fracht
+nach Litern auf die Positionen verteilt.
 
 ### kurse.csv – Plankurse und Ist-Monatskurse 2026 (eine Zeile je Monat und Währung)
 
@@ -191,22 +173,25 @@ Positionen verteilt.
 Der Durchschnitt der zwölf Ist-Monatskurse ergibt den Konzernkurs 2026 aus `kennzahlen.json`. Berichte über
 das Ist rechnen mit dem Konzernkurs; der Plan-Ist-Vergleich rechnet das Ist mit dem Kurs des Liefermonats.
 
-### budget_2026.csv – Budget 2026 (eine Zeile je Monat, Produktlinie und Segment)
+### budget_2026.csv – Budget 2026 (eine Zeile je Monat, Segment und Vertriebsweg)
 
 | Spalte | Bedeutung |
 |---|---|
 | `monat` | Monat (`2026-01` … `2026-12`) |
-| `produktlinie` | `fluorhaltig`, `fluorfrei` oder `offen` (wie in `produkte.csv`) |
 | `segment` | Kundensegment (wie in `kunden.csv`) |
+| `vertriebsweg` | `direkt`, `Händler` oder `Rahmenvertrag` (wie in `auftraege.csv`) |
 | `menge_l` | geplante Liter (netto, ohne Muster) |
 | `preis_eur_l` | geplanter Nettopreis je Liter in EUR (zum Plankurs) |
 | `umsatz_eur` | geplanter Nettoumsatz in EUR = `menge_l` × `preis_eur_l` |
 | `db_eur` | geplanter Deckungsbeitrag in EUR nach Herstellkosten und Fracht |
 
-Das Budget wurde im Herbst 2025 von der Geschäftsführung beschlossen. Einsätze des Notfallservice sind nicht
-budgetiert. Zeilen ohne geplante Menge fehlen.
+Das Budget wurde im Herbst 2025 von der Geschäftsführung beschlossen; es schreibt das Ist 2025 je Segment
+und Vertriebsweg mit einem Wachstum je Vertriebsweg fort, zu den Nettopreisen 2025. Die Auftragsart ist
+im Budget nicht getrennt geplant. Einsätze des Notfallservice sind nicht budgetiert. Zeilen ohne geplante
+Menge fehlen.
 
 ## Was es in diesen Daten nicht gibt
 
-Messwerte zu Inhaltsstoffen, Sicherheits- und Technische Datenblätter sowie Angaben zu Vorgaben der EU
-sind nicht Teil des Übungsausschnitts von Tag 1.
+Rezepturen, Inhaltsstoffe, Prüfwerte, Sicherheits- und Technische Datenblätter sind nicht Teil des
+Übungsausschnitts. Aussagen über Eigenschaften oder Wirksamkeit einzelner Produkte lassen sich aus diesen
+Tabellen nicht ableiten.

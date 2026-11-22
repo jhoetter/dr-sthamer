@@ -7,21 +7,21 @@
 <!--
   ANLEITUNG FÜR CLAUDE (Vorlage im Exhibit-Stil, Folien 1280 × 720 px, 16:9)
   ==========================================================================
-  Firmenbezeichnung: Dr. Sthamer   (Attribut data-firma am <main class="buehne">; erscheint in der Fußzeile)
+  Firmenbezeichnung: Dr. Sthamer   (Attribut data-firma am Element main.buehne; erscheint in der Fußzeile)
   Regeln in Worten: VORLAGE.md in diesem Ordner. Kurzfassung:
   0. Die Datei läuft ohne Internet direkt aus dem Ordner (file://). D3 7.9.0 ist am Ende der Datei eingebettet
      (Block «EINGEBETTETE BIBLIOTHEK»). Diesen Block nicht lesen, nicht ändern, nichts aus dem Netz nachladen.
      Schriften sind Systemschriften (Georgia für Titel, Arial für Text). Kein Logo, kein Bild einer Marke.
   1. Nicht diese Datei ändern, sondern sie nach meine-ergebnisse/praesentation.html kopieren und dort arbeiten.
      Stil (Block <style>), Raster und Skripte unverändert lassen.
-  2. Jede Folie ist ein <section class="folie" data-baustein="…"> … </section> in <main class="buehne">.
+  2. Jede Folie ist ein <section class="folie" data-baustein="…"> … </section> im Element main.buehne.
      Neue Folie = passende <section> ganz kopieren (vom öffnenden bis zum schließenden Tag), an die gewünschte
      Stelle setzen, Texte in [eckigen Klammern] ersetzen. Nicht gebrauchte Bausteine löschen.
      Bausteine: titel · zusammenfassung · diagramm · tabelle · entscheidung · anhang.
   3. Kopf jeder Inhaltsfolie: .eyebrow (Rubrik, blau, Großbuchstaben) → h2 (Aktionstitel: eine Aussage als ganzer
      Satz, höchstens zwei Zeilen) → .meta (Fakten mit « · » getrennt, das erste fett). Unten: .quelle (Quelle und
      Definition jeder Zahl in Worten, keine Dateipfade). Fußzeile und Foliennummer setzt das Skript selbst; den Text
-     der Fußzeile einmal im Attribut data-fuss an <main class="buehne"> ändern.
+     der Fußzeile einmal im Attribut data-fuss am Element main.buehne ändern.
   4. Diagramme: Daten nur im Block «DIAGRAMM-DATEN» weiter unten ändern. Ein <svg class="diagramm" data-daten="name">
      auf einer Folie zeichnet den Eintrag «name» aus diesem Block. Arten: "linie", "balken", "wasserfall".
      Werte aus den eigenen Ergebnissen oder frisch aus den Tabellen gerechnet, nie geschätzt. Danach das Element
@@ -475,6 +475,7 @@ Zeit: 0 Minuten
      balken:     balken: [{ name, wert, betont: true }] waagrecht, in der angegebenen Reihenfolge.
      wasserfall: schritte: [{ name, wert, summe: true }] – erster und letzter Eintrag mit summe: true (Anfang, Ende),
                  dazwischen Veränderungen mit Vorzeichen. Anfang + Schritte muss das Ende ergeben (Prüfkasten).
+                 Eine Zwischensumme (etwa „Ist ohne Sondereffekt“) ist ein weiterer Eintrag mit summe: true.
                  basis: Wert, bei dem die Achse beginnt (Standard 0). Größer als 0 nur, wenn die Schritte sonst nicht
                  lesbar sind; die Summenbalken bekommen dann ein Bruchzeichen, und die Quellzeile sagt es.
      Reihennamen kurz (rund 15 Zeichen). Eine Reihe betont (navy), die anderen blau, Vergleich grau.
@@ -787,7 +788,11 @@ function pruefeLayout() {
     if (ph) meldungen.push("DIAGRAMM-DATEN «" + name + "»: Platzhalter in eckigen Klammern");
     if (D.art === "wasserfall" && D.schritte && D.schritte.length > 1) {
       const S = D.schritte, a = S[0].wert, e = S[S.length - 1].wert;
-      const summe = a + S.slice(1, -1).reduce((x, s) => x + s.wert, 0);
+      let summe = a;
+      S.slice(1, -1).forEach(s => {   /* Zwischensumme (summe: true) muss dem Lauf entsprechen und zählt nicht mit */
+        if (s.summe) { if (Math.abs(summe - s.wert) > 1.01 * Math.pow(10, -(D.stellen || 0))) meldungen.push("DIAGRAMM-DATEN «" + name + "»: Zwischensumme «" + s.name + "» passt nicht zu den Schritten davor"); }
+        else summe += s.wert;
+      });
       /* erlaubt: eine Einheit der letzten Stelle (Rundung) */
       if (Math.abs(summe - e) > 1.01 * Math.pow(10, -(D.stellen || 0)))
         meldungen.push("DIAGRAMM-DATEN «" + name + "»: Wasserfall geht nicht auf (Anfang + Schritte = " + fmt(summe, D.stellen || 0) + ", Ende = " + fmt(e, D.stellen || 0) + ")");

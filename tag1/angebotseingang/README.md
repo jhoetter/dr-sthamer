@@ -8,8 +8,8 @@ Montag, 01.03.2027.
 |---|---|---|---|---|
 | A-01 | K-1018 Reederei Ostsee Linien AG | Angebot vom Juli 2026 kommt zurück: Rückfrage zum Rabatt, Bestellwunsch zum alten Preis | 02.02.2027 | offen |
 | A-02 | K-9001 Zweckverband Feuerwehrbedarf Lindenmoor (Interessent) | Ausschreibung Rahmenvertrag drei Jahre | 15.02.2027 | offen |
-| A-03 | K-1019 Nordic Offshore Services AS | Anfrage auf Englisch, Preise in NOK, Garantie und Bestätigung verlangt | 16.02.2027 | offen |
-| A-04 | K-1020 Löschgeräte Norddeutschland GmbH | Nachbestellung für eine Löscherserie, Expresslieferung | 24.02.2027 | offen |
+| A-03 | K-1019 Nordic Offshore Services AS | Anfrage auf Englisch, Preise in NOK, technische Bestätigung und Zollbestätigung verlangt | 16.02.2027 | offen |
+| A-04 | K-1020 Löschgeräte Norddeutschland GmbH | Einzelbestellung für eine Löscherserie, Expresslieferung | 24.02.2027 | offen |
 
 Der Ordner von A-01 enthält die ganze Vorgeschichte: Anfrage, Angebot, Rabattrechnung und die
 Kundenmail. Die anderen Vorgänge sind je eine Datei.

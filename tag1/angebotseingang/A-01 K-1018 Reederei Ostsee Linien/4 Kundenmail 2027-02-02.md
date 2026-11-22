@@ -17,7 +17,7 @@ quelle: Postfach Angebotsmanagement
 Sehr geehrter Herr Grevenbroich,
 
 die Werftzeit unserer Fähren hat sich verschoben; sie ist jetzt für Ende März und April 2027
-geplant. Wir möchten die Umstellung der beiden Maschinenräume wie angeboten bestellen, zu den
+geplant. Wir möchten die Neubefüllung der beiden Maschinenräume wie angeboten bestellen, zu den
 Preisen aus Ihrem Angebot vom 14. Juli 2026.
 
 Vorher haben wir drei Fragen:
@@ -28,12 +28,13 @@ Vorher haben wir drei Fragen:
 2. Ihr Außendienst hat uns im Herbst am Telefon gesagt, als Flottenbetreiber mit mehreren Schiffen
    stünden uns eigentlich Händlerkonditionen zu, zusätzlich zu den Rabatten im Angebot. Können Sie
    das berücksichtigen?
-3. Uns liegt ein Angebot eines Wettbewerbers für ein vergleichbares fluorfreies Schaummittel vor,
-   das rund 20 % unter Ihrem Preis liegt. Wir bleiben gern bei Ihnen, erwarten aber ein
-   entsprechendes Entgegenkommen.
+3. Uns liegt ein Angebot eines Wettbewerbers für ein vergleichbares Schaummittel vor, das rund 20 %
+   unter Ihrem Preis liegt. Wir bleiben gern bei Ihnen, erwarten aber ein entsprechendes
+   Entgegenkommen.
 
-Außerdem bitten wir Sie, noch einmal schriftlich zu bestätigen, dass die Umstellung ohne Anpassung
-unserer Anlagen erfolgen kann, wie es in Ihrem Angebot steht. Unsere Werft plant danach.
+Außerdem bitten wir Sie, uns noch einmal schriftlich zu bestätigen, dass die Neubefüllung ohne
+Reinigung der Tanks und ohne Anpassung der Zumischer erfolgen kann, wie es in Ihrem Angebot steht.
+Unsere Werft plant danach.
 
 Für eine Antwort bis Mitte Februar wären wir dankbar.
 

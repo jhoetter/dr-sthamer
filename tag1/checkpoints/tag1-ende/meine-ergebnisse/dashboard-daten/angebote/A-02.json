@@ -1,0 +1,59 @@
+{
+  "id": "A-02",
+  "kunde": "Zweckverband Feuerwehrbedarf Lindenmoor (Interessent K-9001)",
+  "thema": "Ausschreibung Rahmenvertrag Schaummittel 2027 bis 2030, Abgabe 22.03.2027",
+  "datum": "01.03.2027",
+  "auftragswert_eur": 224156.16,
+  "auftragswert_hinweis": "bei meinem Vorschlag 6 % Rahmenvertragsrabatt, 3 Jahre, ohne Fracht und Preisgleitung; zulässig EUR 219.386,88 bis 238.464,00",
+  "klasse": "E",
+  "punkte": 7,
+  "empfehlung_kurz": "Entwurf des Assistenten (18 %) nicht hochladen; Teilnahme und Rabattsatz bis 8 % entscheidet die Geschäftsführung",
+  "entscheid": "Rabattsatz-Vorschlag 6 % an die Geschäftsführung; Freigabe und endgültiger Satz bleiben bei der Geschäftsführung",
+  "vorlage": "entscheidungsvorlage-a-02.md",
+  "pfad": [
+    {
+      "schritt": "Preisliste und Richtlinie",
+      "angabe": "Abgabe bis 22.03.2027, Angebotsdatum nach dem 01.01.2026",
+      "paragraf": "RL-ANG-2026 § 6 Nr. 1",
+      "ergebnis": "Preisliste 2026 (die Preisliste 2027 ist erst für April 2027 angekündigt) und RL-ANG-2026",
+      "mensch": false
+    },
+    {
+      "schritt": "Prüfumfang nach Auftragswert",
+      "angabe": "36.000 l P-111 über drei Jahre, Listenwert EUR 238.464,00; Auftragswert EUR 219.386,88 (8 %) bis 238.464,00 (0 %)",
+      "paragraf": "RL-ANG-2026 § 2 Nr. 1 und 3",
+      "ergebnis": "über EUR 150.000: zusätzlich Vertragsprüfung, Liefer- und Rohstoffplanung, Referenzen nur aus der freigegebenen Referenzliste (Referenzliste liegt nicht bei)",
+      "mensch": false
+    },
+    {
+      "schritt": "Rabatt",
+      "angabe": "Feste Abnahme 12.000 l je Jahr, Laufzeit 36 Monate; der Entwurf rechnete 10 % Mengenrabatt plus 8 % Rahmenvertragsrabatt",
+      "paragraf": "RL-ANG-2026 § 3 Nr. 1, 3 und 6",
+      "ergebnis": "Rahmenvertragsrabatt 0 bis 8 %, ersetzt den Mengenrabatt, nie zusammen; 18 % wären über der Staffel; entschieden durch mich: Vorschlag 6 % an die Geschäftsführung, endgültiger Satz dort",
+      "mensch": true,
+      "stelle": "Geschäftsführung (Satz zwischen 0 und 8 %)"
+    },
+    {
+      "schritt": "Anlagenprüfung",
+      "angabe": "Schaummittel für Fahrzeuge mit Druckluftschaumanlage, keine bestimmte stationäre Anlage",
+      "paragraf": "RL-ANG-2026 § 2 Nr. 4, § 5",
+      "ergebnis": "nicht Pflicht; Eignung für bestimmte Fahrzeuge wäre eine technische Zusage der Anwendungstechnik",
+      "mensch": false
+    },
+    {
+      "schritt": "Angebotsklasse",
+      "angabe": "7 Punkte (Auftragswert 4, Vertrag 2, Kundenstatus 1); Mindestklassen D (Ausschreibung) und E (über EUR 150.000)",
+      "paragraf": "RL-ANG-2026 § 8 Nr. 2 bis 4",
+      "ergebnis": "Klasse E",
+      "mensch": false
+    },
+    {
+      "schritt": "Kompetenz",
+      "angabe": "Klasse E, Rahmenvertrag über EUR 150.000, Vertragsstrafe, Teilnahme an der Ausschreibung; Lieferzeit 5 Arbeitstage unter Standard",
+      "paragraf": "RL-ANG-2026 § 9 Nr. 1 und 3; KO-2026 § 2, § 6",
+      "ergebnis": "Geschäftsführung entscheidet über Teilnahme, Freigabe und Satz; Lieferzeit: Leitung Vertrieb; Zeichnung durch zwei Personen",
+      "mensch": true,
+      "stelle": "Geschäftsführung"
+    }
+  ]
+}

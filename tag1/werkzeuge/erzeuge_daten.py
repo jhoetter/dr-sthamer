@@ -35,11 +35,13 @@ START = date(2021, 1, 1)
 STICHTAG = date(2027, 2, 28)
 HEUTE = date(2027, 3, 1)
 ERP_WECHSEL = date(2024, 7, 1)
-PORTAL_ASSISTENT_AB = date(2025, 10, 1)
-RL_REKLAMATION_V11_AB = date(2026, 6, 16)
 RUHEND_AB = date(2025, 10, 1)  # K-1029: keine Aufträge mehr ab Oktober 2025
 
 GEBINDE_L = {"l": 1, "Kanister": 20, "Fass": 200, "IBC": 1000}
+JAHRE = list(range(2021, 2028))
+
+# Generierte Dateien, die es nicht mehr gibt (werden beim Schreiben entfernt)
+ENTFALLEN = ["kontakte.csv", "_akte_dokumente.txt"]
 
 # --------------------------------------------------------------------------
 # Hilfen
@@ -78,6 +80,10 @@ def _ja(b: bool) -> str:
     return "ja" if b else "nein"
 
 
+def _quartal(d: date) -> int:
+    return (d.month - 1) // 3 + 1
+
+
 def lade_quelle() -> tuple[list, list, list]:
     kunden = json.loads((QUELLE / "kunden.json").read_text(encoding="utf-8"))
     produkte = json.loads((QUELLE / "produkte.json").read_text(encoding="utf-8"))
@@ -89,14 +95,28 @@ def lade_quelle() -> tuple[list, list, list]:
 # Feste Annahmen der Übungswelt
 # --------------------------------------------------------------------------
 
-# Einführungskalender (Johannes' Daten haben kein Einführungsdatum).
+# Artikelbezeichnungen in Tag 1 (wo die Quelle eine abweichende Bezeichnung führt).
+PRODUKTNAME = {
+    "P-108": "Mittelschaum MS-30", "P-112": "TrainFoam Plus 3%", "P-118": "PureGuard 3%",
+    "P-201": "NordFoam Neo 3%", "P-202": "NordFoam Neo 6%", "P-203": "NordFoam Neo AR 3x3",
+    "P-204": "NordFoam Neo Marine 3%", "P-205": "NordFoam Neo Aero 3%", "P-206": "Waldfuchs Netzwasser Plus",
+    "P-207": "NordFoam Neo MS Mittelschaum",
+}
+# Anlagenbezeichnungen in Tag 1 (Schlüssel bleibt die Bezeichnung der Quelle).
+ANLAGENNAME = {
+    "L-00012": "Zusatzlager", "L-00019": "Probelieferung", "L-00028": "Pilotanlage Schacht 7",
+    "L-00053": "Zusatzfahrzeug", "L-00067": "Probelieferung", "L-00073": "Zusatzfahrzeug",
+    "L-00083": "Probelieferung", "L-00096": "Muster", "L-00100": "Muster", "L-00103": "Muster",
+    "L-00145": "Probelieferung",
+}
+
+# Einführungskalender (die Quelle hat kein Einführungsdatum).
 EINFUEHRUNG = {
     "P-101": "2009-04-01", "P-102": "2009-04-01", "P-103": "2011-09-01", "P-104": "2012-03-01",
     "P-105": "2013-05-01", "P-106": "2010-02-01", "P-107": "2014-06-01", "P-108": "2008-10-01",
     "P-113": "2012-01-15", "P-117": "2015-03-01", "P-120": "2016-02-01", "P-121": "2010-09-01",
     "P-110": "2012-05-01", "P-111": "2015-04-01", "P-112": "2019-03-01", "P-114": "2018-06-01",
     "P-115": "2019-02-01", "P-116": "2019-02-01", "P-118": "2020-04-01", "P-119": "2020-09-01",
-    # fluorfreie Nachfolger, gestaffelt 2021-2025
     "P-201": "2021-03-01", "P-202": "2021-09-01", "P-206": "2022-03-01", "P-207": "2023-04-01",
     "P-204": "2023-10-01", "P-203": "2024-03-01", "P-205": "2025-02-01",
 }
@@ -129,79 +149,67 @@ KONZERNKURSE = {
     "2026": {"CHF": 1.071, "GBP": 1.168, "NOK": 0.0849},
     "2027": {"CHF": 1.071, "GBP": 1.168, "NOK": 0.0849},
 }
-RAHMENVERTRAG = {"K-1002", "K-1005", "K-1020"}
+RAHMENVERTRAG = {"K-1002", "K-1013", "K-1017", "K-1020", "K-1022"}
 
-# Umsatz (Liter je Jahr als Vielfaches der Füllmenge) und Lieferungen je Jahr nach Anwendung.
+# Nachfüllbedarf (Liter je Jahr als Vielfaches der Füllmenge) und Lieferungen je Jahr nach Anwendung.
 UMSCHLAG = {"stationaere_anlage": 0.30, "feuerwehrfahrzeug": 0.85, "lager_bestand": 1.0,
             "uebung_training": 2.6, "tragbarer_feuerloescher": 1.3, "fahrbarer_feuerloescher": 0.9}
 FREQUENZ = {"stationaere_anlage": 1.8, "feuerwehrfahrzeug": 3.0, "lager_bestand": 5.0,
             "uebung_training": 7.0, "tragbarer_feuerloescher": 10.0, "fahrbarer_feuerloescher": 6.0}
-
-# Zeitliche Entwicklung (Faktor auf die Liter je Lieferung): fluorfreie Produkte wachsen,
-# fluorhaltige werden ausser in stationären Anlagen weniger nachgekauft.
-TREND_FLUORFREI = {2021: 2.0, 2022: 2.15, 2023: 2.3, 2024: 2.5, 2025: 2.75, 2026: 3.6, 2027: 3.6}
-TREND_FLUORHALTIG = {2021: 1.15, 2022: 1.08, 2023: 1.0, 2024: 0.9, 2025: 0.78, 2026: 0.66, 2027: 0.66}
 HAENDLER_FAKTOR = 2.0      # Händlerlager drehen schneller
 FRUEHES_ENDE_FAKTOR = 0.6  # Lieferstellen ohne Lieferung seit 2026: seltener Bedarf
 
-# Lieferzeilen mit fluorfreiem Produkt: Beginn der Belieferung oder Wechsel vom Vorgänger.
-# ("start", Datum): Lieferstelle erst ab diesem Datum beliefert.
-# ("wechsel", Datum, Vorgänger): vorher Vorgängerprodukt an derselben Lieferstelle.
-# ("einmal", Art): genau eine Lieferung am Datum der letzten Lieferung (Erprobung/Muster).
+# Entwicklung des Nachfüllgeschäfts je Vertriebsweg (Index auf das Mittel 2021-2023 der Rohwerte).
+# Händler wachsen jedes Jahr, direktes Nachfüllgeschäft und Rahmenverträge bleiben stabil.
+NACHFUELL_INDEX = {
+    "Händler": {2021: 0.92, 2022: 0.99, 2023: 1.06, 2024: 1.13, 2025: 1.20, 2026: 1.40, 2027: 1.45},
+    "direkt": {2021: 1.00, 2022: 1.02, 2023: 0.98, 2024: 1.01, 2025: 1.00, 2026: 0.98, 2027: 0.98},
+    "Rahmenvertrag": {2021: 0.98, 2022: 1.00, 2023: 1.02, 2024: 1.03, 2025: 1.04, 2026: 1.05, 2027: 1.05},
+}
+SAISON = [0.086, 0.084, 0.092, 0.090, 0.092, 0.087, 0.075, 0.087, 0.078, 0.092, 0.068, 0.069]
+NACHFUELL_FAKTOR_MAX = 5.0
+
+# Erstbefüllungen neuer stationärer Anlagen (Projektgeschäft): Lieferzeile -> Datum der Erstbefüllung.
+# Vorher wird die Anlage nicht beliefert, danach folgt das Nachfüllgeschäft. 2025 viele grosse Anlagen,
+# 2026 nur eine kleine.
+ERSTBEFUELLUNG = {
+    "L-00002": "2021-05-17", "L-00080": "2021-09-20",
+    "L-00033": "2022-03-14", "L-00137": "2022-06-20", "L-00065": "2022-10-10",
+    "L-00027": "2023-02-13", "L-00138": "2023-04-17", "L-00028": "2023-06-05", "L-00143": "2023-09-04",
+    "L-00015": "2024-02-05", "L-00091": "2024-04-08", "L-00007": "2024-04-15", "L-00147": "2024-05-06",
+    "L-00078": "2024-09-16",
+    "L-00070": "2025-02-10", "L-00141": "2025-03-17", "L-00142": "2025-05-12", "L-00079": "2025-06-16",
+    "L-00008": "2025-09-22",
+    "L-00021": "2026-05-11",
+}
+
+# Weitere Lieferzeilen mit Beginn im Zeitraum (neue Fahrzeuge, Lager) oder Artikelwechsel.
+# ("start", Datum): erste Lieferung = Erstbefüllung mit der Füllmenge.
+# ("wechsel", Datum, Vorgänger): vorher Vorgängerartikel an derselben Lieferstelle.
+# ("einmal", "Muster"): genau eine Musterlieferung am Datum der letzten Lieferung.
 VERLAUF = {
-    # Übungsschaum: Wechsel TrainFoam Classic -> TrainFoam Fluorfrei
     "L-00006": ("wechsel", "2022-05-02", "P-113"), "L-00025": ("wechsel", "2023-03-06", "P-113"),
     "L-00041": ("wechsel", "2021-09-13", "P-113"), "L-00048": ("wechsel", "2022-10-04", "P-113"),
     "L-00054": ("wechsel", "2021-06-07", "P-113"), "L-00068": ("wechsel", "2024-02-05", "P-113"),
     "L-00074": ("wechsel", "2023-09-11", "P-113"), "L-00129": ("wechsel", "2024-06-03", "P-113"),
     "L-00132": ("wechsel", "2025-01-13", "P-113"),
-    # Brandax Pro S -> Brandax Pro
     "L-00039": ("wechsel", "2022-04-04", "P-120"), "L-00040": ("wechsel", "2022-04-04", "P-120"),
     "L-00035": ("wechsel", "2023-05-08", "P-120"),
-    # neue Fahrzeuge, Lager, Testanlagen
     "L-00044": ("start", "2022-06-01"), "L-00047": ("start", "2023-04-03"),
     "L-00061": ("start", "2021-03-01"), "L-00058": ("start", "2023-02-01"),
     "L-00110": ("start", "2021-05-03"), "L-00114": ("start", "2022-03-01"),
     "L-00108": ("start", "2022-01-10"), "L-00024": ("start", "2022-09-05"),
     "L-00038": ("start", "2024-03-04"), "L-00148": ("start", "2023-01-09"),
-    "L-00015": ("start", "2024-02-05"), "L-00143": ("start", "2023-09-04"),
-    "L-00147": ("start", "2024-05-06"), "L-00121": ("start", "2022-04-04"),
-    "L-00123": ("start", "2023-03-01"), "L-00125": ("start", "2023-03-01"),
-    # fluorfreie Nachfolger (FreeFoam)
-    "L-00012": ("start", "2025-04-07"), "L-00028": ("start", "2023-06-05"),
-    "L-00053": ("start", "2022-03-07"), "L-00073": ("start", "2025-03-03"),
-    "L-00091": ("start", "2024-04-08"), "L-00115": ("start", "2021-10-04"),
-    # Erprobungsmengen und Muster
-    "L-00019": ("einmal", "Lieferung"), "L-00067": ("einmal", "Lieferung"),
-    "L-00083": ("einmal", "Lieferung"), "L-00145": ("einmal", "Lieferung"),
-    "L-00096": ("einmal", "Muster"), "L-00100": ("einmal", "Muster"), "L-00103": ("einmal", "Muster"),
+    "L-00121": ("start", "2022-04-04"), "L-00123": ("start", "2023-03-01"), "L-00125": ("start", "2023-03-01"),
+    "L-00012": ("start", "2025-04-07"), "L-00053": ("start", "2022-03-07"),
+    "L-00073": ("start", "2025-03-03"), "L-00115": ("start", "2021-10-04"),
+    "L-00019": ("einmal", "Muster"), "L-00067": ("einmal", "Muster"), "L-00083": ("einmal", "Muster"),
+    "L-00145": ("einmal", "Muster"), "L-00096": ("einmal", "Muster"), "L-00100": ("einmal", "Muster"),
+    "L-00103": ("einmal", "Muster"),
 }
 
 # Notfalleinsätze (Ausreisser): Lieferzeile, Lieferdatum, IBC
 NOTFALL = [("L-00020", "2022-08-16", 18), ("L-00063", "2024-03-11", 20), ("L-00141", "2026-09-22", 24)]
-
-# K-1003 Verladestation: P-103 bis März 2026, Erprobung P-203 am 12.04.2026, dann wieder P-103.
-K1003_VERLADESTATION = "L-00014"
-K1003_VERLADE_LETZTE_VOR_TEST = "2026-02-24"
-K1003_ERPROBUNG = "L-00019"
-K1003_ERPROBUNG_AUFTRAG = "2026-03-27"
-K1003_KULANZ = "2026-06-24"
-K1003_NACHBESTELLUNG = "2026-07-10"  # Akte D17: Bestellung AR-AFFF, Lieferung 17.07.2026
-
-# Stationäre Anlagen mit Datenaufnahme: feste Auswahl plus Hash; Verladestation nie.
-DATENAUFNAHME_FEST = {"L-00028": "2023-05-16", "L-00091": "2024-03-19", "L-00137": "2025-02-11",
-                      "L-00138": "2024-09-24", "L-00146": "2025-05-20", "L-00147": "2024-04-23"}
-DATENAUFNAHME_NIE = {"L-00014", "L-00135", "L-00015"}
-DATENAUFNAHME_ZIEL = 11  # von 37 stationären Anlagen, ca. 30 %
-
-
-def produktlinie(p: dict) -> str:
-    b = p["basis"]
-    if b.startswith("fluorfrei"):
-        return "fluorfrei"
-    if b == "Netzmittel":
-        return "offen"
-    return "fluorhaltig"
 
 
 def listenpreis(pid: str, gebinde: str, jahr: int) -> float:
@@ -232,7 +240,7 @@ def gebinde_fuer(pid: str) -> list:
 
 
 # --------------------------------------------------------------------------
-# Tabellen
+# Stammtabellen
 # --------------------------------------------------------------------------
 
 
@@ -254,12 +262,8 @@ def baue_produkte(produkte: list) -> list:
     zeilen = []
     for p in produkte:
         zeilen.append({
-            "id": p["id"], "name": p["name"], "schaumart": p["schaumart"],
-            "brandklassen": ";".join(p["brandklassen"]), "einsatzbereiche": ";".join(p["einsatzbereiche"]),
-            "basis": p["basis"], "produktlinie": produktlinie(p),
-            "fluorfrei_deklariert": _ja(p["fluorfrei_deklariert"]),
-            "zumischrate_prozent": _zahl(p["zumischrate_prozent"], 1),
-            "nachfolger_id": p["nachfolger_id"] or "", "status": p["status"],
+            "id": p["id"], "name": PRODUKTNAME.get(p["id"], p["name"]), "schaumart": p["schaumart"],
+            "einsatzbereiche": ";".join(p["einsatzbereiche"]), "status": p["status"],
             "eingefuehrt_am": EINFUEHRUNG[p["id"]], "ausgelaufen_am": "",
         })
     return zeilen
@@ -277,49 +281,27 @@ def lieferstellen_index(lieferungen: list) -> tuple[dict, dict]:
     return ls_von, zeile_ls
 
 
-def baue_lieferstellen(lieferungen: list, produkte: list) -> list:
-    rate = {p["id"]: p["zumischrate_prozent"] for p in produkte}
-    ls_von, zeile_ls = lieferstellen_index(lieferungen)
+def baue_lieferstellen(lieferungen: list, auftraege: list) -> list:
+    _, zeile_ls = lieferstellen_index(lieferungen)
     gruppen = {}
     for l in lieferungen:
         gruppen.setdefault(zeile_ls[l["id"]], []).append(l)
-
-    # Datenaufnahme: stationäre Anlagen
-    stationaer = [l for l in lieferungen if l["anwendung"] == "stationaere_anlage"]
-    datenaufnahme = dict(DATENAUFNAHME_FEST)
-    kandidaten = sorted((l for l in stationaer if l["id"] not in datenaufnahme
-                         and l["id"] not in DATENAUFNAHME_NIE), key=lambda l: _h("da", l["id"]))
-    for l in kandidaten:
-        if len(datenaufnahme) >= DATENAUFNAHME_ZIEL:
-            break
-        datenaufnahme[l["id"]] = _tage(_d("2023-03-01"), _d("2027-02-19"), "da-datum", l["id"]).isoformat()
-
+    erstbef = {}
+    for z in auftraege:
+        if z["auftragsart"] == "Erstbefüllung" and z["art"] == "Lieferung":
+            ls = z["lieferstelle_id"]
+            erstbef[ls] = min(erstbef.get(ls, "9999"), z["lieferdatum"])
     zeilen = []
     for ls_id in sorted(gruppen):
         g = gruppen[ls_id]
         aktuell = max(g, key=lambda l: (l["letzte_lieferung"], -g.index(l)))
-        anw = g[0]["anwendung"]
-        da = ""
-        z_anlage = ""
-        z_crm = ""
-        if anw == "stationaere_anlage":
-            l = g[0]
-            soll = rate[l["produkt_id"]]
-            z_crm = _zahl(soll, 1)
-            if l["id"] == "L-00032":  # Altanlage: CRM führt noch die frühere Rate
-                z_crm = "3.0"
-            if l["id"] in datenaufnahme:
-                da = datenaufnahme[l["id"]]
-                gemessen = soll
-                if _u("zm", l["id"]) < 0.25:
-                    gemessen = soll + (0.5 if soll >= 1 else 0.1)
-                z_anlage = _zahl(gemessen, 1)
         zeilen.append({
-            "lieferstelle_id": ls_id, "kunde_id": g[0]["kunde_id"], "anlage": g[0]["anlage"],
-            "anwendung": anw, "aktuelles_produkt_id": aktuell["produkt_id"],
+            "lieferstelle_id": ls_id, "kunde_id": g[0]["kunde_id"],
+            "anlage": ANLAGENNAME.get(g[0]["id"], g[0]["anlage"]),
+            "anwendung": g[0]["anwendung"], "aktuelles_produkt_id": aktuell["produkt_id"],
             "fuellmenge_l": str(sum(x["menge_l"] for x in g)),
             "letzte_lieferung": max(x["letzte_lieferung"] for x in g),
-            "datenaufnahme_am": da, "zumischrate_anlage": z_anlage, "zumischrate_crm": z_crm,
+            "erstbefuellung_am": erstbef.get(ls_id, ""),
         })
     return zeilen
 
@@ -334,7 +316,12 @@ def baue_preisliste(produkte: list, jahr: int) -> list:
     return zeilen
 
 
-def _menge_einheit(pid: str, liter: float, anwendung: str, *schluessel: object) -> tuple[str, int]:
+# --------------------------------------------------------------------------
+# Aufträge
+# --------------------------------------------------------------------------
+
+
+def _menge_einheit(pid: str, liter: float, anwendung: str) -> tuple[str, int]:
     """Liter -> (Einheit, Anzahl) nach Gebindelogik."""
     if liter >= 5000 and pid in LOSE_WARE and anwendung == "stationaere_anlage":
         return "l", max(500, int(round(liter / 500.0)) * 500)
@@ -345,34 +332,36 @@ def _menge_einheit(pid: str, liter: float, anwendung: str, *schluessel: object) 
     return "Kanister", max(1, int(round(liter / 20.0)))
 
 
-FLUORFREI_IDS = {pid for pid in PREIS_L_2026 if pid >= "P-2" or pid in
-                 ("P-110", "P-111", "P-112", "P-114", "P-115", "P-116", "P-118", "P-119")}
-
-
-def _trend(pid: str, anwendung: str, jahr: int) -> float:
-    if pid in FLUORFREI_IDS:
-        return TREND_FLUORFREI[jahr]
-    if anwendung == "stationaere_anlage" or pid in ("P-107", "P-206"):
-        return 1.0
-    return TREND_FLUORHALTIG[jahr]
+def standardweg(k: dict) -> str:
+    if k["ist_haendler"]:
+        return "Händler"
+    if k["id"] in RAHMENVERTRAG:
+        return "Rahmenvertrag"
+    return "direkt"
 
 
 def _ereignisse_zeile(l: dict) -> list:
-    """Lieferereignisse (datum, produkt, liter_wunsch, art, fest) einer Lieferzeile."""
+    """Rohe Lieferereignisse einer Lieferzeile: dict(datum, pid, liter, art, auftragsart)."""
     anw = l["anwendung"]
     ende = _d(l["letzte_lieferung"])
     verlauf = VERLAUF.get(l["id"])
     if verlauf and verlauf[0] == "einmal":
-        return [(ende, l["produkt_id"], float(l["menge_l"]), verlauf[1], True)]
+        return [{"datum": ende, "pid": l["produkt_id"], "liter": float(l["menge_l"]), "art": "Muster",
+                 "auftragsart": "Muster"}]
 
     start = START
     wechsel = None
     vorgaenger = None
-    if verlauf and verlauf[0] == "start":
-        start = _d(verlauf[1])
+    erstbef = None
+    if l["id"] in ERSTBEFUELLUNG:
+        erstbef = _d(ERSTBEFUELLUNG[l["id"]])
+    elif verlauf and verlauf[0] == "start":
+        erstbef = _d(verlauf[1])
     elif verlauf and verlauf[0] == "wechsel":
         wechsel = _d(verlauf[1])
         vorgaenger = verlauf[2]
+    if erstbef is not None:
+        start = erstbef + timedelta(days=45)
 
     ereignisse = []
     frequenz = FREQUENZ[anw] * (0.8 + 0.4 * _u("f", l["id"]))
@@ -383,44 +372,135 @@ def _ereignisse_zeile(l: dict) -> list:
     if ende < date(2026, 1, 1):
         jahresmenge *= FRUEHES_ENDE_FAKTOR
 
-    letzte = ende
-    if l["id"] == K1003_VERLADESTATION:
-        letzte = _d(K1003_VERLADE_LETZTE_VOR_TEST)
-        ereignisse.append((ende, l["produkt_id"], float(l["menge_l"]), "Lieferung", True))
-
-    d = letzte
+    d = ende
     i = 0
-    while d >= start:
+    while d >= start or i == 0:
         pid = l["produkt_id"]
         if wechsel is not None and d < wechsel:
             pid = vorgaenger
-        liter = jahresmenge / frequenz * (0.6 + 0.8 * _u("q", l["id"], i)) * _trend(pid, anw, d.year)
-        ereignisse.append((d, pid, liter, "Lieferung", False))
+        liter = jahresmenge / frequenz * (0.6 + 0.8 * _u("q", l["id"], i))
+        frueh = max(start, wechsel if (wechsel is not None and pid != vorgaenger) else START,
+                    _d(EINFUEHRUNG[pid]))
+        ereignisse.append({"datum": d, "pid": pid, "liter": liter, "art": "Lieferung",
+                           "auftragsart": "Nachfüllung", "frueh": frueh})
         i += 1
         schritt = intervall * (0.55 + 0.9 * _u("t", l["id"], i))
         d = d - timedelta(days=max(7, int(round(schritt))))
-    # Erstbefüllung, wenn die Lieferstelle im Zeitraum neu beliefert wird
-    if start > START and ereignisse:
-        erstes = min(ereignisse, key=lambda e: e[0])
-        ereignisse.remove(erstes)
-        ereignisse.append((erstes[0], erstes[1], float(l["menge_l"]), "Lieferung", False))
+    if erstbef is not None:
+        ereignisse.append({"datum": erstbef, "pid": l["produkt_id"], "liter": float(l["menge_l"]),
+                           "art": "Lieferung", "auftragsart": "Erstbefüllung"})
     return ereignisse
+
+
+def _nachfuell_faktoren(roh: list, feld: str = "liter", basis_von: dict | None = None,
+                        grenze: float = 1e9) -> tuple[dict, dict]:
+    """Faktor je (Vertriebsweg, Jahr, Quartal), damit das Nachfüllgeschäft dem Index folgt; dazu die Basis."""
+    summe = {}
+    for e in roh:
+        if e["auftragsart"] != "Nachfüllung":
+            continue
+        s = (e["weg"], e["datum"].year, _quartal(e["datum"]))
+        summe[s] = summe.get(s, 0.0) + e.get(feld, e["liter"])
+    anteil_q = [sum(SAISON[3 * (q - 1): 3 * q]) for q in (1, 2, 3, 4)]
+    faktoren = {}
+    basen = {}
+    for weg, index in NACHFUELL_INDEX.items():
+        basis = sum(summe.get((weg, j, q), 0.0) for j in (2021, 2022, 2023) for q in (1, 2, 3, 4)) / 3.0
+        if basis_von is not None:
+            basis = basis_von[weg]
+        basen[weg] = basis
+        for j in JAHRE:
+            for q in (1, 2, 3, 4):
+                ist = summe.get((weg, j, q), 0.0)
+                if ist <= 0:
+                    continue
+                anteil = anteil_q[q - 1]
+                if j == 2027 and q == 1:
+                    anteil = SAISON[0] + SAISON[1]
+                faktoren[(weg, j, q)] = min(grenze, basis * index[j] * anteil / ist)
+    return faktoren, basen
 
 
 def baue_auftraege(kunden: list, produkte: list, lieferungen: list) -> list:
     kunde = {k["id"]: k for k in kunden}
     _, zeile_ls = lieferstellen_index(lieferungen)
-    positionen = []  # vor Vergabe der Auftragsnummern
 
-    def neue_position(l, lieferdatum, pid, menge, einheit, art, weg, auftragsdatum):
+    # 1. Rohe Ereignisse mit Vertriebsweg
+    roh = []
+    for l in lieferungen:
+        k = kunde[l["kunde_id"]]
+        for e in _ereignisse_zeile(l):
+            if e["datum"] < START:
+                continue
+            if l["kunde_id"] == "K-1029" and e["datum"] >= RUHEND_AB:
+                continue
+            if e["datum"] < _d(EINFUEHRUNG[e["pid"]]):
+                continue
+            if e["art"] == "Muster":
+                weg = "direkt"
+            elif e["auftragsart"] == "Erstbefüllung" and not k["ist_haendler"]:
+                weg = "direkt"  # Projektgeschäft läuft immer direkt, auch bei Rahmenvertragskunden
+            else:
+                weg = standardweg(k)
+            e = dict(e)
+            e.update({"weg": weg, "zeile": l})
+            roh.append(e)
+
+    # Erstbefüllung nur, wenn die Lieferstelle vorher nichts bekommen hat (sonst: neuer Artikel an einer
+    # bestehenden Lieferstelle = Nachfüllung)
+    frueheste = {}
+    for e in roh:
+        ls = zeile_ls[e["zeile"]["id"]]
+        frueheste[ls] = min(frueheste.get(ls, e["datum"]), e["datum"])
+    erst_ls = set()
+    for e in sorted(roh, key=lambda e: (e["datum"], e["zeile"]["id"])):
+        if e["auftragsart"] != "Erstbefüllung":
+            continue
+        ls = zeile_ls[e["zeile"]["id"]]
+        if ls in erst_ls or e["datum"] > frueheste[ls]:
+            e["auftragsart"] = "Nachfüllung"
+            e["frueh"] = e["datum"]
+            e["weg"] = standardweg(kunde[e["zeile"]["kunde_id"]])
+        else:
+            erst_ls.add(ls)
+
+    # 2. Nachfüllgeschäft kalibrieren (Händler wachsen, direkt und Rahmenvertrag stabil)
+    faktoren, basen = _nachfuell_faktoren(roh, grenze=NACHFUELL_FAKTOR_MAX)
+    # Mehr Bedarf heißt mehr Lieferungen gleicher Größe: Faktor >= 1 -> zusätzliche Lieferungen in den
+    # Wochen davor; Faktor < 1 -> kleinere Lieferung. So bleiben Gebinde und Liefergrößen je Lieferstelle gleich.
+    erweitert = []
+    for e in roh:
+        if e["auftragsart"] != "Nachfüllung":
+            erweitert.append(e)
+            continue
+        f = faktoren.get((e["weg"], e["datum"].year, _quartal(e["datum"])), 1.0)
+        if f < 1.0:
+            e = dict(e)
+            e["liter_skaliert"] = e["liter"] * f
+            erweitert.append(e)
+            continue
+        anzahl = int(f) + (1 if _u("nf", e["zeile"]["id"], e["datum"]) < f - int(f) else 0)
+        d = e["datum"]
+        for n in range(max(1, anzahl)):
+            if n > 0:
+                d = d - timedelta(days=9 + _h("nfd", e["zeile"]["id"], e["datum"], n) % 24)
+                if d < e["frueh"]:
+                    break
+            k = dict(e)
+            k.update({"datum": d, "liter_skaliert": e["liter"]})
+            erweitert.append(k)
+    # Feinabgleich nach dem Verschieben der zusätzlichen Lieferungen (nahe 1)
+    fein, _ = _nachfuell_faktoren(erweitert, "liter_skaliert", basen, grenze=1.5)
+    for e in erweitert:
+        if e["auftragsart"] == "Nachfüllung":
+            e["liter_skaliert"] *= fein.get((e["weg"], e["datum"].year, _quartal(e["datum"])), 1.0)
+    roh = erweitert
+    positionen = []
+
+    def neue_position(l, lieferdatum, pid, menge, einheit, art, auftragsart, weg, auftragsdatum):
         k = kunde[l["kunde_id"]]
         jahr = lieferdatum.year
-        gebinde = einheit
-        if einheit not in gebinde_fuer(pid):
-            gebinde = "IBC"
-        preis_eur = listenpreis(pid, gebinde, jahr) if art != "Muster" else 0.0
-        if einheit != gebinde:  # sollte nicht vorkommen
-            preis_eur = 0.0
+        preis_eur = listenpreis(pid, einheit, jahr) if art != "Muster" else 0.0
         if weg == "Händler":
             preis_eur *= 0.82
         elif weg == "Rahmenvertrag":
@@ -429,63 +509,51 @@ def baue_auftraege(kunden: list, produkte: list, lieferungen: list) -> list:
             preis_eur *= 1.35
         elif k["key_account"]:
             preis_eur *= 0.95
-        if jahr == 2026 and art == "Lieferung" and l["id"] != K1003_ERPROBUNG:
+        if jahr == 2026 and art == "Lieferung":
             preis_eur *= preisschutz_2026(weg, auftragsdatum)
         waehrung = WAEHRUNG.get(k["id"], "EUR")
         preis = preis_eur
         if waehrung != "EUR":
             preis = preis_eur / KONZERNKURSE[str(jahr)][waehrung]
-        preis = round(preis, 2)
         positionen.append({
             "auftragsdatum": auftragsdatum, "lieferdatum": lieferdatum, "kunde_id": l["kunde_id"],
             "lieferstelle_id": zeile_ls[l["id"]], "produkt_id": pid, "anwendung": l["anwendung"],
-            "menge": menge, "einheit": einheit, "preis": preis, "waehrung": waehrung,
-            "vertriebsweg": weg, "art": art, "zeile": l["id"],
+            "menge": menge, "einheit": einheit, "preis": round(preis, 2), "waehrung": waehrung,
+            "vertriebsweg": weg, "art": art, "auftragsart": auftragsart, "zeile": l["id"],
         })
 
-    def standardweg(kid):
-        k = kunde[kid]
-        if k["ist_haendler"]:
-            return "Händler"
-        if kid in RAHMENVERTRAG:
-            return "Rahmenvertrag"
-        return "direkt"
-
-    for l in lieferungen:
-        for (lieferdatum, pid, liter, art, fest) in _ereignisse_zeile(l):
-            if lieferdatum < START:
-                continue
-            if l["kunde_id"] == "K-1029" and lieferdatum >= RUHEND_AB:
-                continue
-            if pid in EINFUEHRUNG and lieferdatum < _d(EINFUEHRUNG[pid]):
-                continue
-            if l["id"] == K1003_ERPROBUNG:
-                einheit, menge = "Kanister", int(round(liter / 20))
-            elif fest and liter >= 1000 and l["anwendung"] == "stationaere_anlage":
+    for e in roh:
+        l = e["zeile"]
+        liter = e.get("liter_skaliert", e["liter"])
+        if e["art"] == "Muster":
+            einheit, menge = "Kanister", max(1, int(round(liter / 20)))
+        elif e["auftragsart"] == "Erstbefüllung" and l["anwendung"] == "stationaere_anlage":
+            if e["pid"] in LOSE_WARE:
                 einheit, menge = "l", int(liter)
-            elif fest and art == "Muster":
-                einheit, menge = "Kanister", int(round(liter / 20))
             else:
-                einheit, menge = _menge_einheit(pid, liter, l["anwendung"], l["id"], lieferdatum)
-            vorlauf = 2 + _h("v", l["id"], lieferdatum) % 11
-            auftragsdatum = lieferdatum - timedelta(days=vorlauf)
-            if l["id"] == K1003_ERPROBUNG:
-                auftragsdatum = _d(K1003_ERPROBUNG_AUFTRAG)
-            if l["id"] == K1003_VERLADESTATION and lieferdatum == _d(l["letzte_lieferung"]):
-                auftragsdatum = _d(K1003_NACHBESTELLUNG)
-            if auftragsdatum < START:
-                auftragsdatum = START
-            weg = "direkt" if art == "Muster" else standardweg(l["kunde_id"])
-            neue_position(l, lieferdatum, pid, menge, einheit, art, weg, auftragsdatum)
+                einheit, menge = "IBC", max(1, int(round(liter / 1000.0)))
+        else:
+            # Gebinde nach dem üblichen Bedarf der Lieferstelle (ungeskaliert), Anzahl nach dem Bedarf
+            einheit, _ = _menge_einheit(e["pid"], e["liter"], l["anwendung"])
+            if einheit == "l":
+                menge = max(500, int(round(liter / 500.0)) * 500)
+            else:
+                menge = max(1, int(round(liter / GEBINDE_L[einheit])))
+        vorlauf = 2 + _h("v", l["id"], e["datum"]) % 11
+        if e["auftragsart"] == "Erstbefüllung":
+            vorlauf = 21 + _h("ve", l["id"]) % 35  # Projekte werden früher bestellt
+        auftragsdatum = max(START, e["datum"] - timedelta(days=vorlauf))
+        neue_position(l, e["datum"], e["pid"], menge, einheit, e["art"], e["auftragsart"], e["weg"],
+                      auftragsdatum)
 
     zeile_von = {l["id"]: l for l in lieferungen}
     for (zid, datum, ibc) in NOTFALL:
         l = zeile_von[zid]
         lieferdatum = _d(datum)
-        neue_position(l, lieferdatum, l["produkt_id"], ibc, "IBC", "Lieferung", "Notfallservice",
+        neue_position(l, lieferdatum, l["produkt_id"], ibc, "IBC", "Lieferung", "Notfall", "Notfallservice",
                       lieferdatum - timedelta(days=1))
 
-    # Gutschriften und Retouren (negativ); Kulanz Raffinerie fest
+    # Gutschriften und Retouren (negativ), mit Auftragsart der ursprünglichen Lieferung
     gutschriften = []
     for p in positionen:
         if p["art"] != "Lieferung" or p["vertriebsweg"] == "Notfallservice":
@@ -504,23 +572,17 @@ def baue_auftraege(kunden: list, produkte: list, lieferungen: list) -> list:
         q = dict(p)
         q.update({"auftragsdatum": datum, "lieferdatum": datum, "menge": -menge, "art": art})
         gutschriften.append(q)
-    for p in positionen:
-        if p["zeile"] == K1003_ERPROBUNG:
-            q = dict(p)
-            q.update({"auftragsdatum": _d(K1003_KULANZ), "lieferdatum": _d(K1003_KULANZ),
-                      "menge": -p["menge"], "art": "Gutschrift"})
-            gutschriften.append(q)
     positionen.extend(gutschriften)
 
-    # Auftragsnummern: je Kunde, Auftragsdatum, Vertriebsweg und Art ein Auftrag
+    # Auftragsnummern: je Kunde, Auftragsdatum, Vertriebsweg, Art und Auftragsart ein Auftrag
     positionen.sort(key=lambda p: (p["auftragsdatum"], p["kunde_id"], p["vertriebsweg"], p["art"],
-                                   p["lieferstelle_id"], p["produkt_id"], p["lieferdatum"]))
+                                   p["auftragsart"], p["lieferstelle_id"], p["produkt_id"], p["lieferdatum"]))
     zaehler = {}
     auftrag_von = {}
     pos_zaehler = {}
     zeilen = []
     for p in positionen:
-        schluessel = (p["auftragsdatum"], p["kunde_id"], p["vertriebsweg"], p["art"])
+        schluessel = (p["auftragsdatum"], p["kunde_id"], p["vertriebsweg"], p["art"], p["auftragsart"])
         if schluessel not in auftrag_von:
             jahr = p["auftragsdatum"].year
             alt = p["auftragsdatum"] < ERP_WECHSEL
@@ -544,7 +606,7 @@ def baue_auftraege(kunden: list, produkte: list, lieferungen: list) -> list:
             "einheit": p["einheit"], "menge_l": menge_l,
             "preis_netto_je_einheit": _zahl(p["preis"]), "waehrung": p["waehrung"],
             "nettobetrag": _zahl(round(p["menge"] * p["preis"], 2)),
-            "vertriebsweg": p["vertriebsweg"], "art": p["art"],
+            "vertriebsweg": p["vertriebsweg"], "auftragsart": p["auftragsart"], "art": p["art"],
             "quellsystem": "ERP-alt" if alt else "ERP-neu",
         })
 
@@ -561,44 +623,19 @@ def baue_auftraege(kunden: list, produkte: list, lieferungen: list) -> list:
 
 
 # --------------------------------------------------------------------------
-# Reklamationen und Kontakte (P1)
+# Reklamationen
 # --------------------------------------------------------------------------
 
-# Feste Reklamationen: (eingang, kunde, produkt, kategorie, auto, tage, status)
-REKLAMATIONEN_FEST = [
-    # Probeumstellungen 2025
-    ("2025-06-23", "K-1014", "P-204", "Probeumstellung", False, 6, "abgeschlossen"),
-    ("2025-07-21", "K-1011", "P-201", "Probeumstellung", False, 4, "abgeschlossen"),
-    ("2025-07-14", "K-1031", "P-203", "Probeumstellung", False, 8, "abgeschlossen"),
-    ("2025-11-03", "K-1005", "P-207", "Probeumstellung", True, 0, "abgeschlossen"),
-    # Probeumstellungen 2026 bis zum Memo (7 im ganzen Unternehmen)
-    ("2026-01-20", "K-1005", "P-207", "Probeumstellung", False, 5, "abgeschlossen"),
-    ("2026-02-24", "K-1015", "P-205", "Probeumstellung", True, 0, "abgeschlossen"),
-    ("2026-03-10", "K-1021", "P-202", "Probeumstellung", False, 7, "abgeschlossen"),
-    ("2026-04-02", "K-1002", "P-201", "Probeumstellung", True, 0, "abgeschlossen"),
-    ("2026-05-08", "K-1003", "P-203", "Probeumstellung", True, 0, "abgeschlossen (Kulanz)"),
-    ("2026-05-19", "K-1003", "P-203", "Probeumstellung", False, 10, "abgeschlossen (Kulanz)"),
-    ("2026-05-27", "K-1022", "P-202", "Probeumstellung", True, 0, "abgeschlossen"),
-    # danach
-    ("2026-07-02", "K-1020", "P-202", "Probeumstellung", False, 3, "abgeschlossen"),
-    ("2026-07-08", "K-1024", "P-201", "Probeumstellung", False, 4, "abgeschlossen"),
-    ("2027-01-26", "K-1017", "P-204", "Probeumstellung", False, 5, "in Bearbeitung"),
-    ("2027-02-15", "K-1019", "P-204", "Probeumstellung", False, 3, "offen"),
-]
-KATEGORIEN = ["Schaumqualität", "Lieferung/Menge", "Gebinde/Verpackung", "Rechnung", "Dokumentation"]
-REKLAMATIONEN_ZUSATZ = 36
-R2026_VOR_RAFFINERIE_ZUSATZ = 3  # + 4 feste Probeumstellungen = 7 Meldungen vor R-2026-008
+KATEGORIEN = ["Lieferverzug", "Lieferung/Menge", "Gebinde/Verpackung", "Rechnung", "Dokumentation",
+              "Beschädigte Ware"]
+REKLAMATIONEN_ANZAHL = 48
 
 
 def baue_reklamationen(auftraege: list) -> list:
-    faelle = list(REKLAMATIONEN_FEST)
-    # Kandidaten: echte Lieferungen 2024-2027 (ohne K-1003 Pumpenstation, ohne Muster)
     kandidaten = []
     gesehen = set()
     for z in auftraege:
         if z["art"] != "Lieferung" or z["lieferdatum"] < "2023-12-01":
-            continue
-        if z["kunde_id"] == "K-1003" and z["produkt_id"] == "P-119":
             continue
         schluessel = (z["auftrag_id"], z["position"])
         if schluessel in gesehen:
@@ -606,199 +643,49 @@ def baue_reklamationen(auftraege: list) -> list:
         gesehen.add(schluessel)
         kandidaten.append(z)
     kandidaten.sort(key=lambda z: _h("rk", z["auftrag_id"], z["position"]))
-    vor_r008 = 0  # Akte: Portalmeldung vom 08.05.2026 ist R-2026-008, Brief vom 19.05.2026 R-2026-009
+    faelle = []
     for z in kandidaten:
-        if len(faelle) >= len(REKLAMATIONEN_FEST) + REKLAMATIONEN_ZUSATZ:
+        if len(faelle) >= REKLAMATIONEN_ANZAHL:
             break
         eingang = _d(z["lieferdatum"]) + timedelta(days=3 + _h("rke", z["auftrag_id"]) % 35)
         if eingang < date(2024, 1, 2) or eingang > date(2027, 2, 26):
             continue
-        if date(2026, 5, 8) <= eingang <= date(2026, 5, 19):
-            continue
-        if date(2026, 1, 1) <= eingang < date(2026, 5, 8):
-            if vor_r008 >= R2026_VOR_RAFFINERIE_ZUSATZ:
-                continue
-            vor_r008 += 1
         kat = KATEGORIEN[_h("rkk", z["auftrag_id"]) % len(KATEGORIEN)]
-        auto = PORTAL_ASSISTENT_AB <= eingang < RL_REKLAMATION_V11_AB and _u("rka", z["auftrag_id"]) < 0.55
-        tage = 0 if auto else 1 + _h("rkt", z["auftrag_id"]) % (9 if eingang < RL_REKLAMATION_V11_AB else 5)
+        if z["vertriebsweg"] == "Notfallservice":
+            kat = "Lieferverzug"
+        tage = 1 + _h("rkt", z["auftrag_id"]) % 9
         if eingang >= date(2027, 2, 1):
             status = "offen"
-        elif auto and _u("rks", z["auftrag_id"]) < 0.5:
-            status = "abgelehnt"
         elif _u("rks2", z["auftrag_id"]) < 0.15:
             status = "abgeschlossen (Kulanz)"
+        elif _u("rks", z["auftrag_id"]) < 0.12:
+            status = "abgelehnt"
         else:
             status = "abgeschlossen"
-        faelle.append((eingang.isoformat(), z["kunde_id"], z["produkt_id"], kat, auto, tage, status))
+        faelle.append((eingang.isoformat(), z["kunde_id"], z["produkt_id"], kat, tage, status))
     faelle.sort(key=lambda f: (f[0], f[1], f[2]))
     zeilen = []
     zaehler = {}
-    for (eingang, kid, pid, kat, auto, tage, status) in faelle:
+    for (eingang, kid, pid, kat, tage, status) in faelle:
         jahr = eingang[:4]
         zaehler[jahr] = zaehler.get(jahr, 0) + 1
         zeilen.append({
             "rekl_id": "R-%s-%03d" % (jahr, zaehler[jahr]), "eingang": eingang, "kunde_id": kid,
-            "produkt_id": pid, "kategorie": kat, "auto_beantwortet": _ja(auto),
-            "tage_bis_antwort": str(tage), "status": status,
+            "produkt_id": pid, "kategorie": kat, "tage_bis_antwort": str(tage), "status": status,
         })
     return zeilen
-
-
-# Kontakte K-1003: (datum, kanal, richtung, bearbeitung, betreff, dokument)
-# Dateinamen = Dokumente der Akte tag1/akten/K-1003 Raffinerie Kuestenmark/ (Abgleich: _akte_dokumente.txt)
-AT = "Jannik Thormählen (Außendienst-Anwendungstechnik)"
-BL = "Birte Lohmeyer (Teamleitung Anwendungstechnik & Kundendienst)"
-KONTAKTE_K1003 = [
-    ("2024-02-20", "Besuch", "ausgehend", AT, "Jahresgespräch Werkfeuerwehr", ""),
-    ("2024-06-04", "E-Mail", "eingehend", "Vertriebsinnendienst", "Bestellung AR-AFFF Tanklager", ""),
-    ("2024-09-17", "Telefon", "ausgehend", AT, "Vorstellung Umstellungsprogramm FreeFoam", ""),
-    ("2024-11-05", "Besuch", "ausgehend", AT, "Begehung Tankfeld 1", ""),
-    ("2025-03-12", "E-Mail", "ausgehend", "Vertrieb", "Einladung Fachtag fluorfreie Schaummittel", ""),
-    ("2025-07-08", "E-Mail", "eingehend", "Vertriebsinnendienst", "Bestellung AR-AFFF Tankfeld 1", ""),
-    ("2025-11-20", "Besuch", "ausgehend", AT, "Jahresgespräch 2026, Interesse an Erprobung fluorfrei", ""),
-    ("2026-02-26", "Telefon", "eingehend", AT, "Anfrage Erprobungsmenge Verladestation", ""),
-    ("2026-03-03", "System", "intern", AT, "CRM-Auszug Anlage Verladestation",
-     "D02 2026-03-03 CRM-Auszug Anlage Verladestation.md"),
-    ("2026-03-03", "E-Mail", "ausgehend", AT, "Angebot Erprobungsmenge FreeFoam AR 3x3",
-     "D01 2026-03-03 Mail Angebot Erprobungsmenge.eml"),
-    ("2026-03-27", "E-Mail", "eingehend", "Vertriebsinnendienst", "Bestellung Erprobungsmenge", ""),
-    ("2026-04-12", "Lieferschein", "ausgehend", "Versand Werk Nord", "Lieferung Erprobungsmenge",
-     "D03 2026-04-12 Lieferschein Erprobungsmenge.md"),
-    ("2026-04-27", "Telefon", "eingehend", AT, "Termin Probeverschäumung", ""),
-    ("2026-05-07", "Kundenportal", "eingehend", "Kundenportal", "Prüfprotokoll Probeverschäumung (Anhang zur Reklamation)",
-     "D04 2026-05-07 Pruefprotokoll Probeverschaeumung.md"),
-    ("2026-05-08", "Kundenportal", "eingehend", "Kundenportal", "Reklamation Probeverschäumung Verladestation",
-     "D05 2026-05-08 Reklamation Kundenportal.md"),
-    ("2026-05-08", "E-Mail", "ausgehend", "Kundenportal (Assistent, automatisch)", "Antwort auf Reklamation",
-     "D06 2026-05-08 Mail Antwort Portal-Assistent.eml"),
-    ("2026-05-11", "Telefon", "eingehend", AT, "Telefonat mit Leiter Brandschutz zur Reklamation",
-     "D07 2026-05-11 Telefonnotiz Aussendienst.md"),
-    ("2026-05-12", "E-Mail", "intern", BL, "Auftrag Labor: Rückstellmuster und Tankprobe",
-     "D08 2026-05-12 Mail Teamleitung an Labor.eml"),
-    ("2026-05-15", "Brief", "eingehend", "Geschäftsführung", "Schreiben des Sachversicherers an den Kunden (Anlage zum Brief vom 19.05.)",
-     "D09 2026-05-15 Schreiben Sachversicherer.md"),
-    ("2026-05-19", "Brief", "eingehend", "Geschäftsführung", "Reklamation der Werkleiterin an die Geschäftsführung",
-     "D10 2026-05-19 Brief Kunde an Geschaeftsfuehrung.md"),
-    ("2026-05-20", "Bericht", "intern", "Labor Schaumanalyse", "Zwischenbefund Rückstellmuster",
-     "D11 2026-05-20 Laborbefund Rueckstellmuster.md"),
-    ("2026-05-21", "E-Mail", "intern", "Geschäftsführung", "Weiterleitung Brief der Werkleiterin",
-     "D12 2026-05-21 Mail Geschaeftsfuehrerin an Teamleitung.eml"),
-    ("2026-05-29", "Brief", "ausgehend", BL, "Antwort auf die Reklamationen",
-     "D13 2026-05-29 Antwortschreiben an Kunden (versandt).md"),
-    ("2026-06-03", "Bericht", "intern", "Labor Schaumanalyse", "Laborbericht Tankprobe und Zumischung",
-     "D14 2026-06-03 Laborbericht Tankprobe und Zumischung.md"),
-    ("2026-06-05", "Memo", "intern", "Dr. Henrike Vossberg (Programmleitung Fluorfrei-Umstellung)",
-     "Memo Probeumstellungen 2026", "D15 2026-06-05 Memo Programmleitung.md"),
-    ("2026-06-10", "Besuch", "ausgehend", BL, "Termin vor Ort mit Werkleitung",
-     "D16 2026-06-10 Gespraechsnotiz Termin vor Ort.md"),
-    ("2026-06-24", "System", "intern", "Buchhaltung", "Kulanzgutschrift Erprobungsmenge", ""),
-    ("2026-07-10", "E-Mail", "eingehend", "Vertriebsinnendienst", "Bestellung AR-AFFF Verladestation",
-     "D17 2026-07-10 Mail Bestellung AR-AFFF.eml"),
-    ("2026-09-08", "Telefon", "ausgehend", AT, "Nachfassen: Datenaufnahme der Anlage angeboten", ""),
-    ("2026-10-20", "E-Mail", "eingehend", "Vertriebsinnendienst", "Bestellung Werkfeuerwehr Großlöschfahrzeug", ""),
-    ("2026-12-03", "E-Mail", "ausgehend", AT, "Termin Jahresgespräch 2027", ""),
-    ("2026-12-08", "E-Mail", "eingehend", "Vertriebsinnendienst", "Bestellung Werkfeuerwehr TLF Reserve", ""),
-    ("2027-01-19", "Besuch", "ausgehend", AT, "Jahresgespräch 2027", ""),
-    ("2027-02-16", "Telefon", "ausgehend", AT, "Terminvorschlag Datenaufnahme Verladestation", ""),
-]
-
-
-def baue_kontakte() -> list:
-    zeilen = []
-    for (datum, kanal, richtung, bearbeitung, betreff, dokument) in KONTAKTE_K1003:
-        zeilen.append({"datum": datum, "kunde_id": "K-1003", "kanal": kanal, "richtung": richtung,
-                       "bearbeitung": bearbeitung, "betreff": betreff, "dokument": dokument})
-    return zeilen
-
-
-def baue_akte_liste() -> str:
-    teile = ["# Vorgesehene Dokumente der Akte tag1/akten/K-1003 Raffinerie Kuestenmark/",
-             "# (aus kontakte.csv, Feld dokument; erzeugt von werkzeuge/erzeuge_daten.py)"]
-    for k in KONTAKTE_K1003:
-        if k[5]:
-            teile.append(k[5])
-    return "\n".join(teile) + "\n"
-
-
-def baue_kennzahlen() -> dict:
-    return {
-        "stichtag": STICHTAG.isoformat(),
-        "heute": HEUTE.isoformat(),
-        "waehrung_konzern": "EUR",
-        "konzernkurse": {"hinweis": "1 Einheit Fremdwährung = x EUR, Jahresdurchschnitt; 2027 = Kurs 2026",
-                         "kurse": KONZERNKURSE},
-        "ziele": {"fluorfrei_anteil": {"2026": 0.60, "2027": 0.80}},
-        "definitionen": {
-            "fluorfrei_anteil": {
-                "formel": "Liter der fluorfreien Produktlinie / alle gelieferten Liter im Kalenderjahr",
-                "zaehler": "Positionen mit produkte.produktlinie = 'fluorfrei'",
-                "nenner": "alle Positionen (alle Produktlinien)",
-                "jahr": "nach Lieferdatum (Kalenderjahr)",
-                "netto": "Gutschriften und Retouren mit ihren negativen Mengen abziehen",
-                "ohne": ["Muster (art = 'Muster')", "Doppelimporte (gleiche auftrag_id und position nur einmal zählen)"],
-                "liter": "menge_l; fehlt es, menge x Gebindegröße (umrechnung_gebinde)",
-                "hinweis": "Die Deklaration (produkte.fluorfrei_deklariert) ist nicht die Grundlage der Kennzahl.",
-            },
-            "aktiver_kunde": "mindestens ein Auftrag (art = 'Lieferung') in den 24 Monaten vor dem Stichtag",
-            "umrechnung_gebinde": {"IBC": 1000, "Fass": 200, "Kanister": 20, "l": 1},
-            "deckungsbeitrag": {
-                "formel": "Deckungsbeitrag = Nettoumsatz - Herstellkosten - Fracht; DB-Marge = Deckungsbeitrag / Nettoumsatz",
-                "nettoumsatz": "Summe nettobetrag aller Positionen (Lieferungen, Gutschriften und Retouren negativ, "
-                               "Muster 0) in EUR, ohne Doppelimporte, Jahr nach Lieferdatum",
-                "herstellkosten": "Liter x (rohstoff_eur_l + fertigung_eur_l) aus herstellkosten.csv für Produkt und "
-                                  "Lieferjahr; für Lieferungen und Muster, Retouren mindern (Ware kommt zurück); "
-                                  "Gutschriften ohne Herstellkosten (Ware bleibt beim Kunden)",
-                "fracht": "fracht.csv je Auftrag; auf die Positionen des Auftrags nach Litern verteilt, "
-                          "Jahr nach Lieferdatum der Position",
-                "hinweis": "Margen und Quoten aus den Summen bilden, nie Prozentwerte mitteln.",
-            },
-            "umrechnung_fremdwaehrung": {
-                "ist_berichte": "Konzernkurs des Lieferjahres (konzernkurse)",
-                "plan_ist_2026": "Budget ist zum Plankurs gerechnet; Ist zum Ist-Monatskurs des Liefermonats (kurse.csv)",
-                "fremdwaehrungseffekt": "Ist-Betrag in Fremdwährung x (Ist-Monatskurs - Plankurs)",
-            },
-            "rabattquote": {
-                "formel": "1 - Summe nettobetrag (EUR) / Summe Listenwert",
-                "listenwert": "menge x Listenpreis des gleichen Gebindes (einheit 'l' = lose) aus der Preisliste "
-                              "des Lieferjahres",
-                "positionen": "art = 'Lieferung', ohne Notfallservice (Zuschlag statt Rabatt), ohne Doppelimporte",
-                "fremdwaehrung": "zum Konzernkurs des Lieferjahres in EUR",
-                "jahre": "nur 2025 und 2026 (für frühere Jahre gibt es keine Preisliste im Ausschnitt)",
-            },
-            "plan_ist_bruecke": {
-                "zellen": "Produktlinie x Segment, Kalenderjahr 2026",
-                "ist": "netto Liter wie fluorfrei_anteil; Umsatz und Kosten wie deckungsbeitrag; "
-                       "Notfallservice nicht in den Zellen, sondern als eigener Balken (nicht budgetiert)",
-                "mengeneffekt": "(Ist-Liter gesamt - Plan-Liter gesamt) x Plan-Durchschnitt je Liter",
-                "mixeffekt": "Summe je Zelle (Ist-Liter x Plan-Wert je Liter) - Ist-Liter gesamt x Plan-Durchschnitt je Liter",
-                "preiseffekt": "Summe je Zelle (Ist-Umsatz zum Plankurs - Ist-Liter x Plan-Preis je Liter)",
-                "kosteneffekt": "nur Deckungsbeitrag: Summe je Zelle (Ist-Liter x Plan-Kosten je Liter - Ist-Kosten); "
-                                "Plan-Kosten je Liter = Plan-Preis - Plan-DB je Liter",
-                "fremdwaehrungseffekt": "wie umrechnung_fremdwaehrung, ohne Notfallservice",
-                "wert_je_liter": "Umsatzbrücke: Umsatz je Liter; DB-Brücke: Deckungsbeitrag je Liter",
-            },
-        },
-        "ampel_regel": {
-            "grundlage": "Anteil fluorhaltiger Liter (produktlinie = 'fluorhaltig') je Segment und Land, Kalenderjahr",
-            "rot": "> 0.50",
-            "gelb": "0.20 bis 0.50 (beide Grenzen eingeschlossen)",
-            "gruen": "< 0.20",
-            "luecke": "weniger als 20 Positionen: keine Ampel, als Lücke zeigen",
-        },
-    }
 
 
 # --------------------------------------------------------------------------
 # Finanzdaten (Drill 2): Herstellkosten, Fracht, Kurse, Budget 2026
 # --------------------------------------------------------------------------
 
-# Herstellkosten je Liter: Rohstoff als Anteil am Listenpreis 2026 je Liter, Fertigung fest.
-# Fluorfreie Rezepturen brauchen teurere Rohstoffe (Tenside, Polysaccharide) -> geringere Marge.
-HK_ROHSTOFF_ANTEIL = {"fluorhaltig": 0.31, "fluorfrei": 0.47, "offen": 0.40}
-HK_FERTIGUNG_L = {"fluorhaltig": 0.42, "fluorfrei": 0.56, "offen": 0.48}
+# Herstellkosten je Liter: Rohstoff als Anteil am Listenpreis 2026 je Liter, Fertigung je Schaumart.
+HK_ROHSTOFF_ANTEIL = {"Schwerschaum": 0.36, "Mittelschaum": 0.40, "Übungsschaum": 0.50, "Netzwasser": 0.30,
+                      "Retardant": 0.52, "CAFS": 0.32}
+HK_FERTIGUNG_L = {"Schwerschaum": 0.48, "Mittelschaum": 0.50, "Übungsschaum": 0.42, "Netzwasser": 0.46,
+                  "Retardant": 0.40, "CAFS": 0.55}
 HK_INDEX = {2021: 0.86, 2022: 0.97, 2023: 1.03, 2024: 1.00, 2025: 0.98, 2026: 1.0, 2027: 1.01}
-HK_JAHRE = list(range(2021, 2028))
 
 # Fracht je Sendung (= je Auftrag): Grundbetrag EUR, EUR je Liter
 LAND_ZONE = {"DE": "Inland", "AT": "EU", "NL": "EU", "PL": "EU", "NO": "Drittland", "GB": "Drittland",
@@ -819,24 +706,21 @@ KURS_ABWEICHUNG_2026 = {
 }
 KURS_STELLEN = {"CHF": 4, "GBP": 4, "NOK": 5}
 
-# Budget 2026 (aufgestellt im Herbst 2025 aus dem Ist 2025): Wachstum je Segment, Fluorfrei-Ziel 60 %,
-# Nettopreise wie Ist 2025 (Preiserhöhung nicht eingeplant), Kosten = Herstellkosten 2026 beim Produktmix 2025 + Fracht je Liter 2025.
-BUDGET_WACHSTUM = {"Händler": 1.10, "Löschgerätehersteller": 1.08, "Übungsanlage": 1.06,
-                   "Feuerwehr kommunal": 1.03, "Forst und Waldbrand": 1.02}
-BUDGET_FLUORFREI_ZIEL = 0.60
-BUDGET_PREIS_FAKTOR = 1.0
-BUDGET_SAISON = [0.086, 0.084, 0.092, 0.090, 0.092, 0.087, 0.075, 0.087, 0.078, 0.092, 0.068, 0.069]
-LINIEN = ["fluorhaltig", "fluorfrei", "offen"]
+# Budget 2026 (aufgestellt im Herbst 2025 aus dem Ist 2025): Wachstum je Vertriebsweg; das Projektgeschäft
+# (Erstbefüllungen) ist wie 2025 eingeplant. Nettopreise wie Ist 2025 (Preiserhöhung nicht eingeplant),
+# Kosten = Herstellkosten 2026 beim Produktmix 2025 + Fracht je Liter 2025 der Zelle.
+BUDGET_WACHSTUM = {"Händler": 1.10, "direkt": 1.04, "Rahmenvertrag": 1.03}
+WEGE = ["direkt", "Händler", "Rahmenvertrag"]
 
 
 def baue_herstellkosten(produkte: list) -> list:
     zeilen = []
     for p in sorted(produkte, key=lambda x: x["id"]):
-        linie = produktlinie(p)
+        art = p["schaumart"]
         streuung = 0.92 + 0.16 * _u("hk", p["id"])
-        roh26 = PREIS_L_2026[p["id"]] * HK_ROHSTOFF_ANTEIL[linie] * streuung
-        fert26 = HK_FERTIGUNG_L[linie] * (0.95 + 0.10 * _u("hkf", p["id"]))
-        for j in HK_JAHRE:
+        roh26 = PREIS_L_2026[p["id"]] * HK_ROHSTOFF_ANTEIL[art] * streuung
+        fert26 = HK_FERTIGUNG_L[art] * (0.95 + 0.10 * _u("hkf", p["id"]))
+        for j in JAHRE:
             zeilen.append({"produkt_id": p["id"], "jahr": str(j),
                            "rohstoff_eur_l": _zahl(roh26 * HK_INDEX[j], 3),
                            "fertigung_eur_l": _zahl(fert26 * (1 + 0.02 * (j - 2026)), 3)})
@@ -912,87 +796,169 @@ def _hk_je_l(herstellkosten: list) -> dict:
             for z in herstellkosten}
 
 
-def baue_budget(auftraege: list, kunden: list, produkte: list, herstellkosten: list, fracht: list) -> list:
-    """Budget 2026 je Monat x Produktlinie x Segment, abgeleitet aus dem Ist 2025."""
+def baue_budget(auftraege: list, kunden: list, herstellkosten: list, fracht: list) -> list:
+    """Budget 2026 je Monat x Segment x Vertriebsweg, abgeleitet aus dem Ist 2025."""
     segment = {k["id"]: k["segment"] for k in kunden}
-    linie = {p["id"]: produktlinie(p) for p in produkte}
     hk = _hk_je_l(herstellkosten)
-    # Fracht 2025 je Liter und Segment (nur Lieferungen)
-    fr_seg = {}
+    pos = _eindeutig(auftraege)
+    weg_auftrag = {z["auftrag_id"]: z["vertriebsweg"] for z in pos}
+    # Fracht 2025 je Liter und Zelle (ohne Express)
+    fr_zelle = {}
     for f in fracht:
         if f["versanddatum"][:4] == "2025" and f["versandart"] != "Express":
-            s = segment[f["kunde_id"]]
-            b, l = fr_seg.get(s, (0.0, 0))
-            fr_seg[s] = (b + float(f["frachtkosten_eur"]), l + int(f["liter"]))
+            c = (segment[f["kunde_id"]], weg_auftrag[f["auftrag_id"]])
+            b, l = fr_zelle.get(c, (0.0, 0))
+            fr_zelle[c] = (b + float(f["frachtkosten_eur"]), l + int(f["liter"]))
     # Ist 2025 je Zelle: Liter, Umsatz EUR (Konzernkurs 2025), Liter je Produkt
     liter = {}
     umsatz = {}
     mix = {}
-    for z in _eindeutig(auftraege):
+    for z in pos:
         if z["lieferdatum"][:4] != "2025" or z["art"] == "Muster" or z["vertriebsweg"] == "Notfallservice":
             continue
-        c = (linie[z["produkt_id"]], segment[z["kunde_id"]])
+        c = (segment[z["kunde_id"]], z["vertriebsweg"])
         lt = _liter_z(z)
         kurs = 1.0 if z["waehrung"] == "EUR" else KONZERNKURSE["2025"][z["waehrung"]]
         liter[c] = liter.get(c, 0) + lt
         umsatz[c] = umsatz.get(c, 0.0) + float(z["nettobetrag"]) * kurs
         mix.setdefault(c, {})
         mix[c][z["produkt_id"]] = mix[c].get(z["produkt_id"], 0) + lt
-    segmente = sorted({c[1] for c in liter})
-    # Linienmittel als Ersatz für leere Zellen
-    def linien_mittel(li):
-        lt = sum(v for c, v in liter.items() if c[0] == li)
-        um = sum(v for c, v in umsatz.items() if c[0] == li)
-        pm = {}
-        for c, m in mix.items():
-            if c[0] == li:
-                for pid, v in m.items():
-                    pm[pid] = pm.get(pid, 0) + v
-        return um / lt, pm
-    # Planmenge je Segment und Fluorfrei-Anteil (Ziel 60 % über alle Liter)
-    plan_seg = {}
-    ff25 = {}
-    offen25 = {}
-    for s in segmente:
-        ges = sum(liter.get((li, s), 0) for li in LINIEN)
-        plan_seg[s] = ges * BUDGET_WACHSTUM.get(s, 1.0)
-        ff25[s] = liter.get(("fluorfrei", s), 0) / ges
-        offen25[s] = liter.get(("offen", s), 0) / ges
-    gesamt = sum(plan_seg.values())
-    # Anteil fluorhaltig je Segment = (1 - ff - offen) * lam; lam so, dass Fluorfrei gesamt = Ziel
-    fh = sum(plan_seg[s] * (1 - ff25[s] - offen25[s]) for s in segmente)
-    ff = sum(plan_seg[s] * ff25[s] for s in segmente)
-    of = sum(plan_seg[s] * offen25[s] for s in segmente)
-    lam = (gesamt - of - BUDGET_FLUORFREI_ZIEL * gesamt) / fh if fh else 0.0
     zeilen = []
-    for s in segmente:
-        anteil = {"fluorhaltig": (1 - ff25[s] - offen25[s]) * lam, "offen": offen25[s]}
-        anteil["fluorfrei"] = 1 - anteil["fluorhaltig"] - anteil["offen"]
-        b, l = fr_seg.get(s, (0.0, 0))
+    for c in sorted(liter):
+        if liter[c] <= 0:
+            continue
+        s, weg = c
+        jahr_l = liter[c] * BUDGET_WACHSTUM[weg]
+        preis = round(umsatz[c] / liter[c], 2)
+        pm = mix[c]
+        pl = sum(v for v in pm.values() if v > 0)
+        b, l = fr_zelle.get(c, (0.0, 0))
         fracht_l = b / l if l else 0.15
-        for li in LINIEN:
-            jahr_l = plan_seg[s] * anteil[li]
-            if jahr_l < 1:
+        kosten_l = sum(hk[(pid, 2026)] * v for pid, v in pm.items() if v > 0) / pl + fracht_l
+        for m in range(12):
+            menge = int(round(jahr_l * SAISON[m] / 10.0)) * 10
+            if menge <= 0:
                 continue
-            c = (li, s)
-            if liter.get(c, 0) > 0:
-                preis25 = umsatz[c] / liter[c]
-                pm = mix[c]
-            else:
-                preis25, pm = linien_mittel(li)
-            preis = round(preis25 * BUDGET_PREIS_FAKTOR, 2)
-            pl = sum(pm.values())
-            kosten_l = sum(hk[(pid, 2026)] * v for pid, v in pm.items()) / pl + fracht_l
-            for m in range(12):
-                menge = int(round(jahr_l * BUDGET_SAISON[m] / 10.0)) * 10
-                if menge <= 0:
-                    continue
-                um = round(menge * preis, 2)
-                zeilen.append({"monat": "2026-%02d" % (m + 1), "produktlinie": li, "segment": s,
-                               "menge_l": str(menge), "preis_eur_l": _zahl(preis), "umsatz_eur": _zahl(um),
-                               "db_eur": _zahl(round(um - menge * kosten_l, 2))})
-    zeilen.sort(key=lambda z: (z["monat"], LINIEN.index(z["produktlinie"]), z["segment"]))
+            um = round(menge * preis, 2)
+            zeilen.append({"monat": "2026-%02d" % (m + 1), "segment": s, "vertriebsweg": weg,
+                           "menge_l": str(menge), "preis_eur_l": _zahl(preis), "umsatz_eur": _zahl(um),
+                           "db_eur": _zahl(round(um - menge * kosten_l, 2))})
+    zeilen.sort(key=lambda z: (z["monat"], z["segment"], WEGE.index(z["vertriebsweg"])))
     return zeilen
+
+
+# --------------------------------------------------------------------------
+# Kennzahlen und Ziele
+# --------------------------------------------------------------------------
+
+
+def baue_kennzahlen(budget: list) -> dict:
+    plan_umsatz = sum(float(b["umsatz_eur"]) for b in budget)
+    plan_db = sum(float(b["db_eur"]) for b in budget)
+    plan_liter = sum(int(b["menge_l"]) for b in budget)
+    return {
+        "stichtag": STICHTAG.isoformat(),
+        "heute": HEUTE.isoformat(),
+        "waehrung_konzern": "EUR",
+        "konzernkurse": {"hinweis": "1 Einheit Fremdwährung = x EUR, Jahresdurchschnitt; 2027 = Kurs 2026",
+                         "kurse": KONZERNKURSE},
+        "ziele": {
+            "hinweis": "Ziele der Geschäftsführung für 2026 = Budget 2026 (budget_2026.csv), zum Plankurs, "
+                       "ohne Notfallservice; für 2027 noch nicht beschlossen",
+            "2026": {"nettoumsatz_eur": round(plan_umsatz, 2), "absatz_l": plan_liter,
+                     "deckungsbeitrag_eur": round(plan_db, 2),
+                     "db_marge": round(plan_db / plan_umsatz, 4)},
+        },
+        "definitionen": {
+            "bereinigung": {
+                "doppelimporte": "gleiche auftrag_id und position nur einmal zählen",
+                "jahr": "nach Lieferdatum (Kalenderjahr); Jan.-Feb. 2027 ist ein Teiljahr",
+            },
+            "umrechnung_gebinde": {"IBC": 1000, "Fass": 200, "Kanister": 20, "l": 1},
+            "absatz_l": {
+                "formel": "Summe Liter aller Positionen, netto (Gutschriften und Retouren mit ihren negativen "
+                          "Mengen abziehen), ohne Muster",
+                "liter": "menge_l; fehlt es, menge x Gebindegröße (umrechnung_gebinde)",
+            },
+            "nettoumsatz": "Summe nettobetrag aller Positionen (Lieferungen, Gutschriften und Retouren negativ, "
+                           "Muster 0), Fremdwährung zum Konzernkurs des Lieferjahres in EUR",
+            "wachstum": {
+                "formel": "Wert 2026 / Wert 2025 - 1, für Absatz (Liter) oder Nettoumsatz (EUR)",
+                "hinweis": "nur ganze Jahre vergleichen; Teiljahr 2027 nie gegen ganze Jahre stellen",
+            },
+            "auftragsart": {
+                "Nachfüllung": "wiederkehrender Bedarf einer bestehenden Lieferstelle (Ersatz nach Einsatz, "
+                               "Übung, Ablauf, Lagerumschlag)",
+                "Erstbefüllung": "erste Befüllung einer neuen Anlage, eines neuen Fahrzeugs oder Lagers "
+                                 "(einmaliges Projektgeschäft)",
+                "Notfall": "Lieferung des Notfallservice nach einem Einsatz (nicht planbar, nicht budgetiert)",
+                "Muster": "Musterlieferung, 0 EUR, zählt nicht zum Absatz",
+            },
+            "nachfuell_anteil": {
+                "formel": "Absatz (Liter) mit auftragsart = 'Nachfüllung' / gesamter Absatz (Liter) im Kalenderjahr",
+                "projektanteil": "Absatz mit auftragsart = 'Erstbefüllung' / gesamter Absatz",
+                "hinweis": "Gutschriften und Retouren zählen zu der Auftragsart der ursprünglichen Lieferung",
+            },
+            "top5_anteil": {
+                "formel": "Nettoumsatz der fünf umsatzstärksten Kunden / gesamter Nettoumsatz im Kalenderjahr",
+                "kunde": "Kunde nach kunde_id (Händler zählen als ein Kunde, ihre Endkunden nicht einzeln)",
+            },
+            "aktiver_kunde": "mindestens ein Auftrag (art = 'Lieferung') in den 24 Monaten vor dem Stichtag",
+            "kundenstatus": {
+                "grundlage": "Lieferdatum der letzten Lieferung (art = 'Lieferung') je Kunde, gemessen am Stichtag",
+                "aktiv": "letzte Lieferung höchstens 12 Monate vor dem Stichtag (ab 01.03.2026)",
+                "ruhend": "letzte Lieferung 12 bis 24 Monate vor dem Stichtag (01.03.2025 bis 28.02.2026)",
+                "verloren": "letzte Lieferung mehr als 24 Monate vor dem Stichtag (vor 01.03.2025) oder nie",
+                "hinweis": "aktiv + ruhend = aktiver Kunde (24 Monate); das Feld status im Kundenstamm ist "
+                           "etwas anderes",
+            },
+            "deckungsbeitrag": {
+                "formel": "Deckungsbeitrag = Nettoumsatz - Herstellkosten - Fracht; DB-Marge = Deckungsbeitrag / Nettoumsatz",
+                "nettoumsatz": "Summe nettobetrag aller Positionen (Lieferungen, Gutschriften und Retouren negativ, "
+                               "Muster 0) in EUR, ohne Doppelimporte, Jahr nach Lieferdatum",
+                "herstellkosten": "Liter x (rohstoff_eur_l + fertigung_eur_l) aus herstellkosten.csv für Produkt und "
+                                  "Lieferjahr; für Lieferungen und Muster, Retouren mindern (Ware kommt zurück); "
+                                  "Gutschriften ohne Herstellkosten (Ware bleibt beim Kunden)",
+                "fracht": "fracht.csv je Auftrag; auf die Positionen des Auftrags nach Litern verteilt, "
+                          "Jahr nach Lieferdatum der Position",
+                "produktgruppe": "Schaumart aus produkte.csv",
+                "hinweis": "Margen und Quoten aus den Summen bilden, nie Prozentwerte mitteln.",
+            },
+            "umrechnung_fremdwaehrung": {
+                "ist_berichte": "Konzernkurs des Lieferjahres (konzernkurse)",
+                "plan_ist_2026": "Budget ist zum Plankurs gerechnet; Ist zum Ist-Monatskurs des Liefermonats (kurse.csv)",
+                "fremdwaehrungseffekt": "Ist-Betrag in Fremdwährung x (Ist-Monatskurs - Plankurs)",
+            },
+            "rabattquote": {
+                "formel": "1 - Summe nettobetrag (EUR) / Summe Listenwert",
+                "listenwert": "menge x Listenpreis des gleichen Gebindes (einheit 'l' = lose) aus der Preisliste "
+                              "des Lieferjahres",
+                "positionen": "art = 'Lieferung', ohne Notfallservice (Zuschlag statt Rabatt), ohne Doppelimporte",
+                "fremdwaehrung": "zum Konzernkurs des Lieferjahres in EUR",
+                "jahre": "nur 2025 und 2026 (für frühere Jahre gibt es keine Preisliste im Ausschnitt)",
+            },
+            "plan_ist_bruecke": {
+                "zellen": "Segment x Vertriebsweg, Kalenderjahr 2026",
+                "ist": "netto Liter wie absatz_l; Umsatz und Kosten wie deckungsbeitrag; "
+                       "Notfallservice nicht in den Zellen, sondern als eigener Balken (nicht budgetiert)",
+                "reihenfolge": "Menge, Mix, Preis, (beim Deckungsbeitrag) Kosten, Fremdwährung, Notfallservice",
+                "mengeneffekt": "(Ist-Liter gesamt - Plan-Liter gesamt) x Plan-Durchschnitt je Liter",
+                "mixeffekt": "Summe je Zelle (Ist-Liter x Plan-Wert je Liter) - Ist-Liter gesamt x Plan-Durchschnitt je Liter",
+                "preiseffekt": "Summe je Zelle (Ist-Umsatz zum Plankurs - Ist-Liter x Plan-Preis je Liter)",
+                "kosteneffekt": "nur Deckungsbeitrag: Summe je Zelle (Ist-Liter x Plan-Kosten je Liter - Ist-Kosten); "
+                                "Plan-Kosten je Liter = Plan-Preis - Plan-DB je Liter",
+                "fremdwaehrungseffekt": "wie umrechnung_fremdwaehrung, ohne Notfallservice",
+                "wert_je_liter": "Umsatzbrücke: Umsatz je Liter; DB-Brücke: Deckungsbeitrag je Liter",
+            },
+        },
+        "ampel_wachstum": {
+            "grundlage": "Veränderung des Nettoumsatzes 2026 gegen 2025 je Gruppe (Konzernkurs), aus Summen gerechnet",
+            "wachstum": "> +0.05",
+            "stabil": "-0.05 bis +0.05 (beide Grenzen eingeschlossen)",
+            "rueckgang": "< -0.05",
+            "luecke": "weniger als 20 Positionen 2026 oder 2025: keine Ampel, als Lücke zeigen",
+        },
+    }
 
 
 # --------------------------------------------------------------------------
@@ -1003,24 +969,19 @@ FELDER = {
     "kunden.csv": ["id", "name", "segment", "land", "sprache", "ansprechpartner_name",
                    "ansprechpartner_rolle", "ansprechpartner_email", "key_account", "ist_haendler",
                    "beliefert_endkunden", "status"],
-    "produkte.csv": ["id", "name", "schaumart", "brandklassen", "einsatzbereiche", "basis", "produktlinie",
-                     "fluorfrei_deklariert", "zumischrate_prozent", "nachfolger_id", "status",
-                     "eingefuehrt_am", "ausgelaufen_am"],
+    "produkte.csv": ["id", "name", "schaumart", "einsatzbereiche", "status", "eingefuehrt_am", "ausgelaufen_am"],
     "lieferstellen.csv": ["lieferstelle_id", "kunde_id", "anlage", "anwendung", "aktuelles_produkt_id",
-                          "fuellmenge_l", "letzte_lieferung", "datenaufnahme_am", "zumischrate_anlage",
-                          "zumischrate_crm"],
+                          "fuellmenge_l", "letzte_lieferung", "erstbefuellung_am"],
     "auftraege.csv": ["auftrag_id", "position", "auftragsdatum", "lieferdatum", "kunde_id", "lieferstelle_id",
                       "produkt_id", "anwendung", "menge", "einheit", "menge_l", "preis_netto_je_einheit",
-                      "waehrung", "nettobetrag", "vertriebsweg", "art", "quellsystem"],
+                      "waehrung", "nettobetrag", "vertriebsweg", "auftragsart", "art", "quellsystem"],
     "preisliste_2025.csv": ["produkt_id", "gebinde", "preis_netto_eur", "gueltig_ab"],
     "preisliste_2026.csv": ["produkt_id", "gebinde", "preis_netto_eur", "gueltig_ab"],
-    "reklamationen.csv": ["rekl_id", "eingang", "kunde_id", "produkt_id", "kategorie", "auto_beantwortet",
-                          "tage_bis_antwort", "status"],
-    "kontakte.csv": ["datum", "kunde_id", "kanal", "richtung", "bearbeitung", "betreff", "dokument"],
+    "reklamationen.csv": ["rekl_id", "eingang", "kunde_id", "produkt_id", "kategorie", "tage_bis_antwort", "status"],
     "herstellkosten.csv": ["produkt_id", "jahr", "rohstoff_eur_l", "fertigung_eur_l"],
     "fracht.csv": ["auftrag_id", "versanddatum", "kunde_id", "versandart", "liter", "frachtkosten_eur"],
     "kurse.csv": ["monat", "waehrung", "ist_kurs_eur", "plankurs_eur"],
-    "budget_2026.csv": ["monat", "produktlinie", "segment", "menge_l", "preis_eur_l", "umsatz_eur", "db_eur"],
+    "budget_2026.csv": ["monat", "segment", "vertriebsweg", "menge_l", "preis_eur_l", "umsatz_eur", "db_eur"],
 }
 
 
@@ -1039,23 +1000,23 @@ def erzeuge() -> dict:
     auftraege = baue_auftraege(kunden, produkte, lieferungen)
     herstellkosten = baue_herstellkosten(produkte)
     fracht = baue_fracht(auftraege, kunden)
+    budget = baue_budget(auftraege, kunden, herstellkosten, fracht)
     tabellen = {
         "kunden.csv": baue_kunden(kunden),
         "produkte.csv": baue_produkte(produkte),
-        "lieferstellen.csv": baue_lieferstellen(lieferungen, produkte),
+        "lieferstellen.csv": baue_lieferstellen(lieferungen, auftraege),
         "auftraege.csv": auftraege,
         "preisliste_2025.csv": baue_preisliste(produkte, 2025),
         "preisliste_2026.csv": baue_preisliste(produkte, 2026),
         "reklamationen.csv": baue_reklamationen(auftraege),
-        "kontakte.csv": baue_kontakte(),
         "herstellkosten.csv": herstellkosten,
         "fracht.csv": fracht,
         "kurse.csv": baue_kurse(),
-        "budget_2026.csv": baue_budget(auftraege, kunden, produkte, herstellkosten, fracht),
+        "budget_2026.csv": budget,
     }
     dateien = {name: csv_bytes(FELDER[name], zeilen) for name, zeilen in tabellen.items()}
-    dateien["kennzahlen.json"] = (json.dumps(baue_kennzahlen(), ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-    dateien["_akte_dokumente.txt"] = baue_akte_liste().encode("utf-8")
+    dateien["kennzahlen.json"] = (json.dumps(baue_kennzahlen(budget), ensure_ascii=False, indent=2)
+                                  + "\n").encode("utf-8")
     return dateien
 
 
@@ -1064,6 +1025,10 @@ def schreibe(dateien: dict) -> None:
     for name, inhalt in dateien.items():
         (ZIEL / name).write_bytes(inhalt)
         print("geschrieben: daten/%s (%d Bytes)" % (name, len(inhalt)))
+    for name in ENTFALLEN:
+        if (ZIEL / name).exists():
+            (ZIEL / name).unlink()
+            print("entfernt: daten/%s" % name)
 
 
 def pruefe_bytes(dateien: dict) -> list:
@@ -1074,6 +1039,9 @@ def pruefe_bytes(dateien: dict) -> list:
             fehler.append("fehlt: daten/%s" % name)
         elif pfad.read_bytes() != inhalt:
             fehler.append("weicht ab: daten/%s (neu erzeugen)" % name)
+    for name in ENTFALLEN:
+        if (ZIEL / name).exists():
+            fehler.append("entfallen, liegt noch da: daten/%s (neu erzeugen)" % name)
     return fehler
 
 

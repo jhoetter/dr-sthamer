@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dr. Sthamer · Beirat 09.03.2027 · Ein Jahr Umstellungsprogramm</title>
+<title>Dr. Sthamer · Vorlage Präsentation (Exhibit-Stil)</title>
 <!--
   ANLEITUNG FÜR CLAUDE (Vorlage im Exhibit-Stil, Folien 1280 × 720 px, 16:9)
   ==========================================================================
-  Firmenbezeichnung: Dr. Sthamer   (Attribut data-firma am <main class="buehne">; erscheint in der Fußzeile)
+  Firmenbezeichnung: Dr. Sthamer   (Attribut data-firma am Element main.buehne; erscheint in der Fußzeile)
   Regeln in Worten: VORLAGE.md in diesem Ordner. Kurzfassung:
   0. Die Datei läuft ohne Internet direkt aus dem Ordner (file://). D3 7.9.0 ist am Ende der Datei eingebettet
      (Block «EINGEBETTETE BIBLIOTHEK»). Diesen Block nicht lesen, nicht ändern, nichts aus dem Netz nachladen.
      Schriften sind Systemschriften (Georgia für Titel, Arial für Text). Kein Logo, kein Bild einer Marke.
   1. Nicht diese Datei ändern, sondern sie nach meine-ergebnisse/praesentation.html kopieren und dort arbeiten.
      Stil (Block <style>), Raster und Skripte unverändert lassen.
-  2. Jede Folie ist ein <section class="folie" data-baustein="…"> … </section> in <main class="buehne">.
+  2. Jede Folie ist ein <section class="folie" data-baustein="…"> … </section> im Element main.buehne.
      Neue Folie = passende <section> ganz kopieren (vom öffnenden bis zum schließenden Tag), an die gewünschte
      Stelle setzen, Texte in [eckigen Klammern] ersetzen. Nicht gebrauchte Bausteine löschen.
      Bausteine: titel · zusammenfassung · diagramm · tabelle · entscheidung · anhang.
   3. Kopf jeder Inhaltsfolie: .eyebrow (Rubrik, blau, Großbuchstaben) → h2 (Aktionstitel: eine Aussage als ganzer
      Satz, höchstens zwei Zeilen) → .meta (Fakten mit « · » getrennt, das erste fett). Unten: .quelle (Quelle und
      Definition jeder Zahl in Worten, keine Dateipfade). Fußzeile und Foliennummer setzt das Skript selbst; den Text
-     der Fußzeile einmal im Attribut data-fuss an <main class="buehne"> ändern.
+     der Fußzeile einmal im Attribut data-fuss am Element main.buehne ändern.
   4. Diagramme: Daten nur im Block «DIAGRAMM-DATEN» weiter unten ändern. Ein <svg class="diagramm" data-daten="name">
      auf einer Folie zeichnet den Eintrag «name» aus diesem Block. Arten: "linie", "balken", "wasserfall".
      Werte aus den eigenen Ergebnissen oder frisch aus den Tabellen gerechnet, nie geschätzt. Danach das Element
@@ -226,32 +226,31 @@
 
 <!-- Fußzeile: data-fuss einmal ändern (etwa Gremium und Datum der Sitzung). data-firma = Firmenbezeichnung. -->
 <main class="buehne" data-firma="Dr. Sthamer" data-fuss="Beirat · 09.03.2027">
-
   <section class="folie" data-baustein="titel" data-quelle="keine">
     <div class="titel-band"></div>
     <div class="titel-innen">
-      <div class="eyebrow">Beirat · Ein Jahr Umstellungsprogramm FreeFoam</div>
-      <div class="t-titel">34,6&nbsp;% fluorfrei 2026: Wir verfehlen das Ziel von 60&nbsp;%</div>
-      <div class="t-unter">Ein Jahr FreeFoam: Wo die Umstellung steht, ob sie sich rechnet und was der Beirat entscheiden soll</div>
+      <div class="eyebrow">Beirat · Geschäftsjahr 2026 und Prioritäten 2027</div>
+      <div class="t-titel">Der Absatz wächst nur dank einer Notfalllieferung; 2027 trägt die Nachfüllung</div>
+      <div class="t-unter">Wo wir wachsen, wo wir verlieren, wo wir Geld verdienen – und was der Beirat für 2027 beschließen soll</div>
       <div class="t-meta">
         <div><div class="lab">Sitzung</div><div>Beirat, 09.03.2027</div></div>
-        <div><div class="lab">Vorgelegt von</div><div>Dr. Henrike Vossberg, Programmleiterin Fluorfrei-Umstellung</div></div>
-        <div><div class="lab">Datenstand</div><div>28.02.2027, Übungsausschnitt</div></div>
+        <div><div class="lab">Vorgelegt von</div><div>Dr. Henrike Vossberg, Leiterin Unternehmensentwicklung</div></div>
+        <div><div class="lab">Datenstand</div><div>28.02.2027 · Übungsausschnitt</div></div>
       </div>
     </div>
     <aside class="notizen">
-Kernsatz: Wir liegen mit 34,6 % fluorfrei 2026 deutlich unter dem Ziel von 60 %; ich zeige, wo es hängt, ob es sich rechnet und was Sie heute beschließen sollen.
-Zur Zahl: 34,6 % heißt: Von 144.660 Litern, die wir 2026 geliefert haben, waren 50.040 Liter fluorfrei.
-Einschränkung: Alle Zahlen stammen aus dem Übungsausschnitt mit 32 Kunden, Stand 28.02.2027. Zur angekündigten EU-Beschränkung sage ich heute nichts; Regulatory Affairs berichtet, sobald der Text da ist.
-Überleitung: Zuerst die Frage, wo die Umstellung hängt.
+Kernsatz: Der Absatz 2026 wächst nur wegen einer einzigen Notfalllieferung; tragen muss 2027 das Nachfüllgeschäft.
+Zur Zahl: –
+Einschränkung: Alle Zahlen stammen aus dem Übungsausschnitt (32 Kunden), Stand 28.02.2027, nicht aus dem ganzen Unternehmen.
+Überleitung: Zuerst zur Frage, wo wir wachsen und wo wir verlieren.
 Zeit: 1 Minute
     </aside>
   </section>
 
   <section class="folie" data-baustein="diagramm">
-    <div class="eyebrow">Umstellungsprogramm · Frage 1: Wo steht die Umstellung?</div>
-    <h2>Stationäre Anlagen bremsen die Umstellung: Nur 3,0&nbsp;% ihrer Liter sind 2026 fluorfrei, in allen übrigen Anwendungen 46,9&nbsp;%</h2>
-    <div class="meta"><b>Fluorfrei-Anteil</b><span class="dot">·</span>2021 bis 2026, Ist<span class="dot">·</span>Liter netto, ohne Muster</div>
+    <div class="eyebrow">Geschäftsjahr 2026 · Frage 1: Wachsen und verlieren</div>
+    <h2>Der Absatz wächst um 0,6&nbsp;% – ohne die Notfalllieferung sinkt er um 10,1&nbsp;%</h2>
+    <div class="meta"><b>Absatz in Litern</b><span class="dot">·</span>2021–2026<span class="dot">·</span>netto nach Gutschriften und Retouren, ohne Muster</div>
     <div class="inhalt zwei">
       <div class="diagrammfeld">
         <div class="diagrammkopf" data-kopf="verlauf"></div>
@@ -259,58 +258,28 @@ Zeit: 1 Minute
       </div>
       <div class="karte">
         <div class="labb">Einordnung</div>
-        <div class="gross tnum">3,0&nbsp;%<small>fluorfrei 2026</small></div>
-        <div class="erl">Stationäre Anlagen: 1.200 von 40.600&nbsp;Litern, 24 Positionen</div>
+        <div class="gross tnum">−10,1&nbsp;%</div>
+        <div class="erl">Absatz 2026 gegen 2025 ohne die Notfalllieferung (24.000&nbsp;l)</div>
         <ul>
-          <li>Gesamt 32,4&nbsp;% auf 34,6&nbsp;%: fluorfreie Liter −20,0&nbsp;%, alle Liter −25,0&nbsp;%; der Anteil steigt, weil fluorhaltig stärker sinkt.</li>
-          <li>Ohne die Notfalllieferung vom 22.09.2026 (24.000&nbsp;Liter fluorhaltig) sind es 7,2&nbsp;%.</li>
-          <li>Nur 11 von 37 stationären Anlagen haben eine Datenaufnahme vor Ort.</li>
+          <li>Nachfüllung wächst um 2,2&nbsp;% auf 199.860&nbsp;l.</li>
+          <li>Erstbefüllungen fallen von 28.900&nbsp;l auf 1.800&nbsp;l.</li>
         </ul>
       </div>
     </div>
-    <div class="quelle"><span class="qk">Quelle</span>Auftrags-, Produkt- und Lieferstellentabelle, Stichtag 28.02.2027, Übungsausschnitt (32 Kunden). Fluorfrei-Anteil = Liter der fluorfreien Produktlinie ÷ alle gelieferten Liter im Kalenderjahr, netto nach Gutschriften und Retouren, ohne Muster; Ist, ohne Jan.–Feb. 2027 (Teiljahr).</div>
+    <div class="quelle"><span class="qk">Quelle</span>Auftragstabelle, Übungsausschnitt (32 Kunden), Stichtag 28.02.2027. Absatz = Liter im Kalenderjahr nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte einmal; nur ganze Jahre. Erstbefüllungen: 1 Position 2026 gegen 8 2025, kleine Basis.</div>
     <aside class="notizen">
-Kernsatz: Der Rückstand sitzt bei den stationären Anlagen: Nur 3,0 % ihrer Liter sind fluorfrei, in allen übrigen Anwendungen 46,9 %.
-Zur Zahl: 1.200 von 40.600 Litern, 24 Positionen; Liter netto nach Gutschriften und Retouren, ohne Muster.
-Einschränkung: Eine Notfalllieferung vom 22.09.2026 mit 24.000 Litern fluorhaltig drückt den Wert mit; ohne sie sind es 7,2 %, also immer noch weit unter den übrigen. Der Gesamtanteil steigt nur, weil die fluorhaltigen Liter stärker sinken als die fluorfreien; absolut haben wir 12.540 Liter weniger fluorfrei geliefert. Das sind Liter, keine Kundenzahlen.
-Überleitung: Jetzt zur Frage, ob sich die Umstellung rechnet.
-Zeit: 3 Minuten
-    </aside>
-  </section>
-
-  <section class="folie" data-baustein="tabelle">
-    <div class="eyebrow">Umstellungsprogramm · Frage 2: Rechnet sie sich?</div>
-    <h2>Fluorfreie Produkte erzielen 2026 weniger als die Hälfte der Marge fluorhaltiger: 23,0&nbsp;% gegen 48,3&nbsp;%</h2>
-    <div class="meta"><b>DB-Marge</b><span class="dot">·</span>2025 und 2026, Ist<span class="dot">·</span>nach Herstellkosten und Fracht, Konzernkurs des Lieferjahres</div>
-    <div class="inhalt">
-      <div>
-        <div class="einheitzeile">Tsd. EUR, netto; DB-Marge in % des Nettoumsatzes</div>
-        <table class="tabelle">
-          <thead><tr><th>Produktlinie und Jahr</th><th class="z">Nettoumsatz</th><th class="z">Deckungsbeitrag</th><th class="z">DB-Marge</th><th class="z">Positionen</th></tr></thead>
-          <tbody>
-            <tr class="betont"><td>2026 fluorfrei</td><td class="z">187,4</td><td class="z">43,0</td><td class="z">23,0&nbsp;%</td><td class="z">104</td></tr>
-            <tr><td>2026 fluorhaltig, ohne Notfallservice</td><td class="z">260,5</td><td class="z">125,8</td><td class="z">48,3&nbsp;%</td><td class="z">154</td></tr>
-            <tr><td>2026 fluorhaltig, mit Notfallservice</td><td class="z">421,5</td><td class="z">227,9</td><td class="z">54,1&nbsp;%</td><td class="z">155</td></tr>
-            <tr><td>2025 fluorfrei</td><td class="z">238,1</td><td class="z">63,7</td><td class="z">26,8&nbsp;%</td><td class="z">170</td></tr>
-            <tr><td>2025 fluorhaltig</td><td class="z">468,8</td><td class="z">226,0</td><td class="z">48,2&nbsp;%</td><td class="z">340</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="quelle"><span class="qk">Quelle</span>Auftrags-, Herstellkosten- und Frachttabelle, Stichtag 28.02.2027, Übungsausschnitt. DB-Marge = (Nettoumsatz − Herstellkosten − Fracht) ÷ Nettoumsatz, aus Summen gerechnet; Ist, netto, ohne Muster im Umsatz. Notfallservice = eine Lieferung am 22.09.2026 (24.000&nbsp;Liter). Eine Ursache belegt keine Tabelle.</div>
-    <aside class="notizen">
-Kernsatz: Fluorfreie Produkte erzielen weniger als die Hälfte der Marge fluorhaltiger: 23,0 % gegen 48,3 %.
-Zur Zahl: Marge heißt Umsatz minus Herstellkosten minus Fracht, geteilt durch den Umsatz; fluorfrei EUR 43.035 auf EUR 187.401, 104 Positionen. Die Tabelle zeigt fluorhaltig auch mit der Notfalllieferung.
-Einschränkung: Das gilt nach Herstellkosten und Fracht. Ohne die Fracht wären es 28,0 % gegen 54,1 %, also knapp über der Hälfte. Warum die Marge niedriger ist, belegt keine Tabelle.
-Überleitung: Und wie lief das Jahr gegen das Budget?
+Kernsatz: Der Absatz wächst um 0,6 %, aber nur wegen einer Notfalllieferung; ohne sie sinkt er um 10,1 %.
+Zur Zahl: Absatz = Liter im Kalenderjahr nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster: 225.660 Liter 2026 gegen 224.420 Liter 2025; ohne die Notfalllieferung vom 22.09.2026 (24.000 Liter) 201.660 Liter.
+Einschränkung: Notfalllieferungen gab es auch 2022 und 2024, sie sind nicht planbar. Die Erstbefüllungen sind eine kleine Basis: 1 Position 2026 gegen 8 Positionen 2025.
+Überleitung: Wachstum ist das eine; die Frage ist, ob wir daran auch verdienen.
 Zeit: 3 Minuten
     </aside>
   </section>
 
   <section class="folie" data-baustein="diagramm">
-    <div class="eyebrow">Umstellungsprogramm · Frage 2: Rechnet sie sich?</div>
-    <h2>Der Ist-Deckungsbeitrag 2026 liegt nur dank einer einzigen Notfalllieferung über dem Budget; ohne sie fehlen EUR&nbsp;84.726</h2>
-    <div class="meta"><b>Deckungsbeitrag</b><span class="dot">·</span>Ist 2026 gegen Budget 2026<span class="dot">·</span>EUR, Ist-Monatskurse, Budget zum Plankurs</div>
+    <div class="eyebrow">Geschäftsjahr 2026 · Frage 2: Wo wir Geld verdienen</div>
+    <h2>Ohne den Notfallservice liegt der Deckungsbeitrag 2026 um 14,6&nbsp;% unter dem Budget</h2>
+    <div class="meta"><b>Deckungsbeitrag nach Herstellkosten und Fracht</b><span class="dot">·</span>Ist 2026 gegen Budget 2026<span class="dot">·</span>EUR, Ist-Monatskurse, Budget zum Plankurs</div>
     <div class="inhalt zwei">
       <div class="diagrammfeld">
         <div class="diagrammkopf" data-kopf="bruecke"></div>
@@ -319,58 +288,85 @@ Zeit: 3 Minuten
       <div class="karte">
         <div class="labb">Treiber</div>
         <ul>
-          <li><b>Menge:</b> −EUR&nbsp;104.543, 120.660&nbsp;Liter gegen 201.760&nbsp;Liter im Budget (ohne Notfallservice).</li>
-          <li><b>Notfallservice:</b> +EUR&nbsp;102.111 aus einer nicht budgetierten Lieferung.</li>
-          <li><b>Mix, Preis, Kosten, Währung:</b> zusammen +EUR&nbsp;19.816.</li>
+          <li><b>Ohne Notfallservice:</b> Ist EUR&nbsp;297.939 gegen Budget EUR&nbsp;348.764, also −EUR&nbsp;50.825 (−14,6&nbsp;%).</li>
+          <li><b>Menge:</b> größter Abzug,−EUR&nbsp;51.592 bei 35.010&nbsp;l weniger Absatz als im Budget.</li>
+          <li><b>Notfallservice:</b> EUR&nbsp;+93.247 aus einer Lieferung, nicht budgetiert.</li>
         </ul>
       </div>
     </div>
-    <div class="quelle"><span class="qk">Quelle</span>Auftrags-, Budget-, Herstellkosten-, Fracht- und Kurstabelle, Stichtag 28.02.2027, Übungsausschnitt. Ist EUR&nbsp;277.465 gegen Budget EUR&nbsp;260.081 = +EUR&nbsp;17.385; ohne Notfallservice EUR&nbsp;175.354 (−32,6&nbsp;%). Reihenfolge Menge → Mix → Preis → Kosten → Währung → Notfall, je Zelle Produktlinie × Segment; Summe der Effekte = Abweichung; Einzelwerte gerundet.</div>
+    <div class="quelle"><span class="qk">Quelle</span>Finanzkommentar 2026 aus Auftrags-, Herstellkosten-, Fracht- und Budgettabelle, Übungsausschnitt, Stichtag 28.02.2027. Ist zum Ist-Monatskurs, Budget zum Plankurs (CHF 1,04 · GBP 1,19 · NOK 0,09). Reihenfolge Menge, Mix, Preis, Kosten, Währung, Notfallservice; Summe der Effekte = Abweichung EUR&nbsp;+42.422.</div>
     <aside class="notizen">
-Kernsatz: Der Ist-Deckungsbeitrag liegt mit EUR 277.465 um EUR 17.385 über dem Budget, aber nur wegen einer einzigen Notfalllieferung; ohne sie fehlen EUR 84.726.
-Zur Zahl: Die Notfalllieferung vom 22.09.2026 bringt EUR 102.111 Deckungsbeitrag und war nicht budgetiert. Der Mengeneffekt von minus EUR 104.543 kommt daher, dass wir ohne Notfallservice 120.660 statt 201.760 Liter abgesetzt haben.
-Einschränkung: Die Einzelwerte hängen an der Reihenfolge Menge, Mix, Preis, Kosten, Währung, Notfall; eine andere Reihenfolge ergäbe andere Einzelwerte, aber dieselbe Gesamtabweichung. Die Währung macht nur EUR 170 aus. Warum die Menge unter Budget blieb, belegt keine Tabelle.
-Überleitung: Daraus leiten sich drei Beschlüsse ab.
+Kernsatz: Ohne den Notfallservice liegt der Deckungsbeitrag 14,6 % unter dem Budget; die Lücke ist eine Mengenlücke.
+Zur Zahl: Deckungsbeitrag = Nettoumsatz minus Herstellkosten minus Fracht. Ist ohne Notfallservice EUR 297.939 gegen Budget EUR 348.764, also minus EUR 50.825. Mit der Notfalllieferung liegt der Ist-Deckungsbeitrag bei EUR 391.186, plus EUR 42.422.
+Einschränkung: Das Budget ist zu Plankursen gerechnet, das Ist zu Ist-Monatskursen; der Währungseffekt ist mit plus EUR 1.395 getrennt ausgewiesen. Die Reihenfolge der Effekte bestimmt die Einzelwerte, die Summe ist fest. Falls das externe Mitglied fragt, ob etwas geschönt ist: Ohne Notfallservice liegt die DB-Marge mit 39,3 % genau auf Budgetniveau (39,3 %); die Notfalllieferung hat 57,9 % Marge (EUR 93.247 von EUR 160.963 Umsatz) und steht deshalb als eigener Balken, nicht im Durchschnitt versteckt. Die Marge ist nach Herstellkosten und Fracht, nicht nach Gemeinkosten.
+Überleitung: Eine zweite Frage hinter dem Wachstum ist, wie abhängig wir von den größten Kunden sind.
 Zeit: 4 Minuten
     </aside>
   </section>
 
+  <section class="folie" data-baustein="tabelle">
+    <div class="eyebrow">Geschäftsjahr 2026 · Frage 1: Abhängigkeit von großen Kunden</div>
+    <h2>Die fünf größten Kunden tragen 2026 63,5&nbsp;% des Umsatzes, 2025 waren es 50,8&nbsp;%</h2>
+    <div class="meta"><b>Anteil der fünf größten Kunden am Nettoumsatz</b><span class="dot">·</span>2025 und 2026<span class="dot">·</span>Händler zählt als ein Kunde</div>
+    <div class="inhalt">
+      <div>
+        <div class="einheitzeile">Nettoumsatz in EUR zum Konzernkurs des Lieferjahres</div>
+        <table class="tabelle">
+          <thead><tr><th>Jahr</th><th class="z">Fünf größte Kunden</th><th class="z">Gesamtumsatz</th><th class="z">Anteil</th><th class="z">Gegen 2025</th></tr></thead>
+          <tbody>
+            <tr><td>2025 (keine Notfalllieferung)</td><td class="z">428.676</td><td class="z">843.090</td><td class="z">50,8&nbsp;%</td><td class="z">–</td></tr>
+            <tr class="betont"><td>2026 mit Notfalllieferung</td><td class="z">584.560</td><td class="z">920.035</td><td class="z">63,5&nbsp;%</td><td class="z">+12,7&nbsp;Prozentpunkte</td></tr>
+            <tr><td>2026 ohne Notfalllieferung</td><td class="z">423.596</td><td class="z">759.072</td><td class="z">55,8&nbsp;%</td><td class="z">+5,0&nbsp;Prozentpunkte</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="quelle"><span class="qk">Quelle</span>Auftragstabelle und Kundenstamm, Übungsausschnitt (32 Kunden), Stichtag 28.02.2027. Nettoumsatz netto nach Gutschriften und Retouren, ohne Muster, in EUR zum Konzernkurs des Lieferjahres (2026: CHF 1,071 · GBP 1,168 · NOK 0,0849). Kunde nach Kundennummer; Anteil aus Summen gerechnet.</div>
+    <aside class="notizen">
+Kernsatz: Die fünf größten Kunden tragen 2026 63,5 % des Umsatzes, 2025 waren es 50,8 %; ohne die Notfalllieferung sind es 55,8 %.
+Zur Zahl: Anteil = Nettoumsatz der fünf umsatzstärksten Kunden geteilt durch den gesamten Nettoumsatz des Jahres; ein Händler zählt als ein Kunde. Zu Kunden, die wir verlieren: Nach unserer Definition (letzte Lieferung) sind am 28.02.2027 von 32 Kunden 29 aktiv, 3 ruhend und keiner verloren.
+Einschränkung: Übungsausschnitt mit 32 Kunden, nicht alle Kunden des Unternehmens; eine andere Zählweise von Kunden ergäbe andere Zahlen.
+Überleitung: Daraus folgen drei Punkte, über die wir heute entscheiden möchten.
+Zeit: 3 Minuten
+    </aside>
+  </section>
+
   <section class="folie" data-baustein="entscheidung">
-    <div class="eyebrow">Umstellungsprogramm · Entscheidungsbedarf</div>
-    <h2>Der Beirat soll drei Beschlüsse fassen, damit die stationären Anlagen 2027 aufholen</h2>
-    <div class="meta"><b>3 Beschlüsse</b><span class="dot">·</span>Grundlage: Zahlen per 28.02.2027, Übungsausschnitt</div>
+    <div class="eyebrow">Geschäftsjahr 2026 · Entscheidungsbedarf</div>
+    <h2>Der Beirat soll 2027 aufs Nachfüllgeschäft setzen und den Notfall getrennt führen</h2>
+    <div class="meta"><b>3 Beschlüsse</b><span class="dot">·</span>Grundlage: Folien 2 bis 4</div>
     <div class="inhalt">
       <div>
         <div class="beschluss">
           <span class="num navy">1</span>
-          <div class="stichwort">Datenaufnahme</div>
-          <div class="satz">Die Geschäftsführung legt bis zur nächsten Sitzung einen Plan mit der Kapazität der Anwendungstechnik vor, um bei den übrigen stationären Anlagen die Daten vor Ort aufzunehmen.</div>
-          <div class="zahl tnum">26 von 37<small>Anlagen ohne Datenaufnahme</small></div>
+          <div class="stichwort">Planungskern</div>
+          <div class="satz">Der Beirat bestätigt das Nachfüllgeschäft als Kern der Planung 2027.</div>
+          <div class="zahl tnum">88,6&nbsp;%<small>Anteil Nachfüllung am Absatz 2026</small></div>
         </div>
         <div class="beschluss">
           <span class="num navy">2</span>
-          <div class="stichwort">Ziel 2027</div>
-          <div class="satz">Der Beirat bewertet das Ziel von 80&nbsp;% für 2027 in der nächsten Sitzung neu.</div>
-          <div class="zahl tnum">34,6&nbsp;%<small>Ist 2026, Ziel 60&nbsp;%</small></div>
+          <div class="stichwort">Notfallservice</div>
+          <div class="satz">Der Beirat verlangt den Notfallservice als eigene Zeile in Budget und Bericht.</div>
+          <div class="zahl tnum">EUR&nbsp;93.247<small>Deckungsbeitrag 2026, eine Lieferung</small></div>
         </div>
         <div class="beschluss">
           <span class="num navy">3</span>
-          <div class="stichwort">Berichtspflicht</div>
-          <div class="satz">Die Geschäftsführung berichtet quartalsweise den Ist-Deckungsbeitrag gegen das Budget, mit und ohne Notfallservice.</div>
-          <div class="zahl tnum">−EUR&nbsp;84.726<small>Ist 2026 ohne Notfallservice</small></div>
+          <div class="stichwort">Großkunden</div>
+          <div class="satz">Der Beirat verlangt einen Quartalsbericht zum Anteil der fünf größten Kunden.</div>
+          <div class="zahl tnum">55,8&nbsp;%<small>Anteil 2026 ohne Notfalllieferung</small></div>
         </div>
       </div>
     </div>
     <div class="fazit">
-      <div><div class="k">Fazit</div><div class="h">Mit diesen Beschlüssen hat der Beirat Plan, Maßstab und Zahlen für 2027 in der Hand.</div></div>
-      <div class="rechts"><div class="k">Nächster Schritt</div><div class="h">Geschäftsführung: Plan zur Datenaufnahme, bis zur nächsten Sitzung</div></div>
+      <div><div class="k">Fazit</div><div class="h">Der Beirat setzt 2027 auf das, was verlässlich wächst, und trennt, was sich nicht planen lässt.</div></div>
+      <div class="rechts"><div class="k">Nächster Schritt</div><div class="h">Controlling legt das Budget 2027 mit Notfallzeile vor</div></div>
     </div>
-    <div class="quelle"><span class="qk">Quelle</span>Lieferstellen- und Auftragstabelle, Stichtag 28.02.2027, Übungsausschnitt: Anlagen ohne Datenaufnahme, Fluorfrei-Anteil 2026 (Ist), Ist-Deckungsbeitrag 2026 gegen Budget ohne Notfallservice (Definitionen im Anhang).</div>
+    <div class="quelle"><span class="qk">Quelle</span>Management-Summary und Finanzkommentar 2026, Übungsausschnitt, Stichtag 28.02.2027. Nachfüllung 199.860&nbsp;l von 225.660&nbsp;l Gesamtabsatz 2026; Deckungsbeitrag der Notfalllieferung vom 22.09.2026 zu Ist-Monatskursen; Top-5-Anteil am Nettoumsatz 2026 ohne diese Lieferung.</div>
     <aside class="notizen">
-Kernsatz: Ich bitte den Beirat um drei Beschlüsse: Plan zur Datenaufnahme, Neubewertung des Ziels von 80 % für 2027 und eine quartalsweise Berichtspflicht zum Deckungsbeitrag.
-Zur Zahl: 26 von 37 stationären Anlagen haben keine Datenaufnahme vor Ort; 34,6 % ist der Ist-Anteil 2026; minus EUR 84.726 ist die Abweichung des Ist-Deckungsbeitrags ohne Notfallservice gegen das Budget.
-Einschränkung: Offen bleibt, welche Kapazität die Anwendungstechnik für die Datenaufnahme hat; das soll der Plan aus Beschluss 1 zeigen. Zur EU-Beschränkung gibt es heute keine Aussage.
-Überleitung: Welchen der drei Beschlüsse können wir heute fassen, und was fehlt Ihnen dafür?
+Kernsatz: Wir bitten den Beirat, 2027 auf das Nachfüllgeschäft zu setzen, den Notfallservice getrennt zu führen und die Abhängigkeit von den größten Kunden zu beobachten.
+Zur Zahl: 88,6 % = Nachfüllung 199.860 Liter von 225.660 Litern Gesamtabsatz 2026; EUR 93.247 = Deckungsbeitrag der einen Notfalllieferung; 55,8 % = Anteil der fünf größten Kunden 2026 ohne diese Lieferung.
+Einschränkung: Offen bleiben die Ursachen der Margen je Vertriebsweg und der Rückgang der Erstbefüllungen; dafür belegen die Tabellen keine Gründe.
+Überleitung: Welche der drei Punkte sollen wir heute beschließen, und welche brauchen mehr Zeit?
 Zeit: 4 Minuten
     </aside>
   </section>
@@ -378,24 +374,24 @@ Zeit: 4 Minuten
   <section class="folie" data-baustein="anhang">
     <div class="eyebrow">Anhang</div>
     <h2>Quellen und Definitionen</h2>
-    <div class="meta"><b>Datenstand 28.02.2027</b><span class="dot">·</span>alle Zahlen aus dem Übungsausschnitt (32 Kunden), keine Zahlen des Gesamtunternehmens</div>
+    <div class="meta"><b>Datenstand 28.02.2027</b><span class="dot">·</span>Zahlen des Übungsausschnitts (32 Kunden), nicht des Gesamtunternehmens</div>
     <div class="inhalt">
       <table class="tabelle klein">
         <thead><tr><th style="width:20%">Kennzahl</th><th style="width:44%">Definition</th><th style="width:24%">Quelle</th><th style="width:12%">Stand</th></tr></thead>
         <tbody>
-          <tr><td>Fluorfrei-Anteil</td><td>Liter der fluorfreien Produktlinie ÷ alle gelieferten Liter im Kalenderjahr nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte einmal; Gebinde in Liter (IBC 1.000, Fass 200, Kanister 20)</td><td>Auftragstabelle, Produkttabelle (Produktlinie)</td><td>28.02.2027</td></tr>
-          <tr><td>Datenaufnahme vor Ort</td><td>Stationäre Anlagen mit Datum der Datenaufnahme durch die Anwendungstechnik: 11 von 37</td><td>Lieferstellentabelle</td><td>28.02.2027</td></tr>
-          <tr><td>DB-Marge</td><td>(Nettoumsatz − Herstellkosten − Fracht) ÷ Nettoumsatz, aus Summen; Fracht je Auftrag nach Litern verteilt; Fremdwährung zum Konzernkurs 2026 (CHF 1,071 · GBP 1,168 · NOK 0,0849)</td><td>Auftrags-, Herstellkosten-, Frachttabelle</td><td>28.02.2027</td></tr>
-          <tr><td>Brücke Budget → Ist</td><td>Deckungsbeitrag je Zelle Produktlinie × Segment; Ist zum Ist-Monatskurs, Budget zum Plankurs; Notfallservice als eigener Balken, weil nicht budgetiert</td><td>Budget 2026, Kurstabelle, Auftragstabelle</td><td>28.02.2027</td></tr>
+          <tr><td>Absatz</td><td>Liter im Kalenderjahr nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte einmal; Gebinde IBC 1.000, Fass 200, Kanister 20 Liter</td><td>Auftragstabelle</td><td>28.02.2027</td></tr>
+          <tr><td>Nettoumsatz, Top-5-Anteil</td><td>Summe der Nettobeträge in EUR zum Konzernkurs des Lieferjahres; Anteil der fünf umsatzstärksten Kunden am Gesamtumsatz, Händler als ein Kunde</td><td>Auftragstabelle, Kundenstamm</td><td>28.02.2027</td></tr>
+          <tr><td>Deckungsbeitrag (Ist, Budget)</td><td>Nettoumsatz minus Herstellkosten minus Fracht; Ist zu Ist-Monatskursen, Budget zu Plankursen; Notfallservice nicht budgetiert</td><td>Finanzkommentar 2026</td><td>28.02.2027</td></tr>
+          <tr><td>Kundenstatus</td><td>nach letzter Lieferung am Stichtag: aktiv bis 12 Monate, ruhend 12 bis 24 Monate, verloren darüber; 29 aktiv, 3 ruhend, 0 verloren von 32</td><td>Auftragstabelle, Kundenstamm</td><td>28.02.2027</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="quelle"><span class="qk">Quelle</span>siehe Tabelle</div>
+    <div class="quelle"><span class="qk">Quelle</span>siehe Tabelle; Jan.–Feb. 2027 ist Teiljahr und nirgends mit ganzen Jahren verglichen.</div>
     <aside class="notizen">
 Kernsatz: Anhang, nur bei Rückfragen zeigen.
-Zur Zahl: Definitionen und Quellen aller Kennzahlen stehen in der Tabelle.
-Einschränkung: Alle Zahlen aus dem Übungsausschnitt mit 32 Kunden, nicht aus dem Gesamtunternehmen.
-Überleitung: Zurück zur Entscheidungsfolie.
+Zur Zahl: –
+Einschränkung: –
+Überleitung: –
 Zeit: 0 Minuten
     </aside>
   </section>
@@ -427,9 +423,9 @@ Zeit: 0 Minuten
 const DIAGRAMME = {
  "verlauf": {
   "art": "linie",
-  "titel": "Fluorfrei-Anteil",
-  "zusatz": "gesamt und stationäre Anlagen, 2021 bis 2026",
-  "einheit": "in %",
+  "titel": "Absatz",
+  "zusatz": "Gesamt und ohne Notfalllieferung, 2021–2026",
+  "einheit": "in Tsd. Litern",
   "stellen": 1,
   "x": [
    "2021",
@@ -439,81 +435,29 @@ const DIAGRAMME = {
    "2025",
    "2026"
   ],
-  "ziel": {
-   "wert": 60,
-   "text": "Ziel 2026"
-  },
+  "teiljahr": false,
   "reihen": [
    {
-    "name": "Stationär",
+    "name": "Gesamt",
     "betont": true,
     "werte": [
-     {
-      "wert": 5.8,
-      "zaehler": 1400.0,
-      "nenner": 24340.0
-     },
-     {
-      "wert": 4.9,
-      "zaehler": 2400.0,
-      "nenner": 49140.0
-     },
-     {
-      "wert": 16.5,
-      "zaehler": 4600.0,
-      "nenner": 27820.0
-     },
-     {
-      "wert": 11.7,
-      "zaehler": 5980.0,
-      "nenner": 51060.0
-     },
-     {
-      "wert": 14.8,
-      "zaehler": 4260.0,
-      "nenner": 28780.0
-     },
-     {
-      "wert": 3.0,
-      "zaehler": 1200.0,
-      "nenner": 40600.0
-     }
+     182.8,
+     208.3,
+     194.7,
+     226.2,
+     224.4,
+     225.7
     ]
    },
    {
-    "name": "Gesamt",
-    "grau": true,
+    "name": "o. Notfall",
     "werte": [
-     {
-      "wert": 7.6,
-      "zaehler": 15900.0,
-      "nenner": 209080.0
-     },
-     {
-      "wert": 14.2,
-      "zaehler": 34440.0,
-      "nenner": 243120.0
-     },
-     {
-      "wert": 20.5,
-      "zaehler": 46160.0,
-      "nenner": 225580.0
-     },
-     {
-      "wert": 24.8,
-      "zaehler": 60280.0,
-      "nenner": 243360.0
-     },
-     {
-      "wert": 32.4,
-      "zaehler": 62580.0,
-      "nenner": 192920.0
-     },
-     {
-      "wert": 34.6,
-      "zaehler": 50040.0,
-      "nenner": 144660.0
-     }
+     182.8,
+     190.3,
+     194.7,
+     206.2,
+     224.4,
+     201.7
     ]
    }
   ]
@@ -521,42 +465,47 @@ const DIAGRAMME = {
  "bruecke": {
   "art": "wasserfall",
   "titel": "Deckungsbeitrag",
-  "zusatz": "Budget → Ist, 2026",
-  "einheit": "in EUR",
-  "stellen": 0,
+  "zusatz": "Budget → Ist 2026",
+  "einheit": "in Tsd. EUR",
+  "stellen": 1,
   "schritte": [
    {
     "name": "Budget",
-    "wert": 260080.73,
+    "wert": 348.764,
     "summe": true
    },
    {
     "name": "Menge",
-    "wert": -104542.76
+    "wert": -51.592
    },
    {
     "name": "Mix",
-    "wert": 14804.41
+    "wert": -10.163
    },
    {
     "name": "Preis",
-    "wert": 9278.57
+    "wert": 15.859
    },
    {
     "name": "Kosten",
-    "wert": -4436.43
+    "wert": -6.325
    },
    {
     "name": "Währung",
-    "wert": 169.75
+    "wert": 1.395
+   },
+   {
+    "name": "Ist ohne Notfall",
+    "wert": 297.939,
+    "summe": true
    },
    {
     "name": "Notfall",
-    "wert": 102111.11
+    "wert": 93.247
    },
    {
     "name": "Ist",
-    "wert": 277465.38,
+    "wert": 391.186,
     "summe": true
    }
   ]
@@ -834,7 +783,11 @@ function pruefeLayout() {
     if (ph) meldungen.push("DIAGRAMM-DATEN «" + name + "»: Platzhalter in eckigen Klammern");
     if (D.art === "wasserfall" && D.schritte && D.schritte.length > 1) {
       const S = D.schritte, a = S[0].wert, e = S[S.length - 1].wert;
-      const summe = a + S.slice(1, -1).reduce((x, s) => x + s.wert, 0);
+      let summe = a;
+      S.slice(1, -1).forEach(s => {   /* Zwischensumme (summe: true) muss dem Lauf entsprechen und zählt nicht mit */
+        if (s.summe) { if (Math.abs(summe - s.wert) > 1.01 * Math.pow(10, -(D.stellen || 0))) meldungen.push("DIAGRAMM-DATEN «" + name + "»: Zwischensumme «" + s.name + "» passt nicht zu den Schritten davor"); }
+        else summe += s.wert;
+      });
       /* erlaubt: eine Einheit der letzten Stelle (Rundung) */
       if (Math.abs(summe - e) > 1.01 * Math.pow(10, -(D.stellen || 0)))
         meldungen.push("DIAGRAMM-DATEN «" + name + "»: Wasserfall geht nicht auf (Anfang + Schritte = " + fmt(summe, D.stellen || 0) + ", Ende = " + fmt(e, D.stellen || 0) + ")");

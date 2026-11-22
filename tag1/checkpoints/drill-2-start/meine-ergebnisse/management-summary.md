@@ -1,29 +1,31 @@
-# Management-Summary: Wo steht die Umstellung auf fluorfreie Schaumlöschmittel?
+# Management-Summary: Wo wachsen wir, wo verlieren wir?
 
-An: Beirat · Von: Dr. Henrike Vossberg, Programmleiterin Fluorfrei-Umstellung
+An: Beirat · Von: Dr. Henrike Vossberg, Leiterin Unternehmensentwicklung
 
-Stichtag 28.02.2027 · Datenbasis: Übungsausschnitt (32 ausgewählte Kunden, nicht das Gesamtunternehmen). Fluorfrei-Anteil = Liter der fluorfreien Produktlinie ÷ alle gelieferten Liter im Kalenderjahr nach Lieferdatum, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte nur einmal.
+Stichtag 28.02.2027 · Datenbasis: Übungsausschnitt (32 Kunden), nicht das Gesamtunternehmen. Absatz = Liter nach Lieferdatum im Kalenderjahr, netto nach Gutschriften und Retouren, ohne Muster, Doppelimporte nur einmal. Nettoumsatz in EUR zum Konzernkurs des Lieferjahres (2026: CHF 1,071, GBP 1,168, NOK 0,0849). Vergleich nur ganze Jahre, 2026 gegen 2025.
 
 ## Drei Kernaussagen
 
-1. **Das Ziel von 60 % für 2026 ist klar verfehlt, der Beirat sollte das Ziel von 80 % für 2027 deshalb neu bewerten.**
-   Beleg: Fluorfrei-Anteil 2026 im Übungsausschnitt 34,6 % (50.040 von 144.660 Litern), 25,4 Prozentpunkte unter dem Ziel; 2025 waren es 32,4 %. (Auftragstabelle, Produkttabelle, Produktlinie)
+1. **Das Nachfüllgeschäft wächst stetig und trägt den Absatz: Der Beirat kann es als Kern der Planung 2027 behandeln.**
+   Beleg: Absatz Nachfüllung 199.860 l (2026) gegen 195.520 l (2025), +2,2 %; Nettoumsatz Nachfüllung EUR 753.294 gegen EUR 715.086, +5,3 %. Quelle: Auftragstabelle, Auftragsart Nachfüllung, Gutschriften und Retouren zur Nachfüllung abgezogen.
 
-2. **Der Rückstand liegt bei den stationären Anlagen, deshalb sollte die Umstellung dort zuerst vorangetrieben werden.**
-   Beleg: Fluorfrei-Anteil der stationären Anlagen 2026 nur 3,0 % (1.200 von 40.600 Litern, 24 Positionen), in allen übrigen Anwendungen zusammen 46,9 % (48.840 von 104.060 Litern); 2025 lagen die stationären Anlagen bei 14,8 %. Eine einzelne Notfalllieferung vom 22.09.2026 (24.000 Liter fluorhaltig) trägt den niedrigen Wert mit; ohne sie sind es 7,2 % (1.200 von 16.600 Litern, 23 Positionen), also weiterhin weit unter den übrigen Anwendungen. (Auftragstabelle, Anwendung „stationäre Anlage“)
+2. **Das Projektgeschäft ist 2026 weggebrochen: Der Beirat sollte wissen, dass die Erstbefüllungen nicht planbar sind und 2027 ohne neue Projekte fehlen.**
+   Beleg: Absatz Erstbefüllung 1.800 l (1 Position) 2026 gegen 28.900 l (8 Positionen) 2025, −27.100 l. Kleine Basis (unter 20 Positionen): Es sind Summen weniger großer Lieferungen, keine Quote. Quelle: Auftragstabelle, Auftragsart Erstbefüllung.
 
-3. **Bei nur 11 von 37 stationären Anlagen liegt eine Datenaufnahme vor Ort vor; der Beirat sollte nach Plan und Kapazität für die übrigen 26 fragen.**
-   Beleg: 11 von 37 stationären Anlagen (29,7 %) im Lieferstellenstamm haben ein Datum der Datenaufnahme durch die Anwendungstechnik; bei den 17 stationären Anlagen mit Lieferung 2026 sind es 4. (Lieferstellentabelle, Anwendung „stationäre Anlage“, Datum der Datenaufnahme)
+3. **Das Wachstum von +0,6 % ist kein Trend: Der Beirat sollte es nicht als Erfolg lesen, denn es beruht auf einer einzigen Notfalllieferung.**
+   Beleg: Gesamtabsatz 225.660 l (2026) gegen 224.420 l (2025), +0,6 %; ohne die Notfalllieferung vom 22.09.2026 (24.000 l, Industrie) 201.660 l, −10,1 %. Notfalllieferungen gab es auch 2022 und 2024, 2025 keine, sie sind nicht planbar. Quelle: Auftragstabelle, Auftragsart Notfall.
 
-## Anhang: Fluorfrei-Anteil 2021 bis 2026 (Liter netto)
+## Anhang: Absatz in Litern, netto
 
-| Jahr | Gesamt: fluorfrei / alle Liter | Anteil | Stationäre Anlagen: fluorfrei / alle Liter | Anteil |
-|---|---|---|---|---|
-| 2021 | 15.900 / 209.080 | 7,6 % | 1.400 / 24.340 | 5,8 % |
-| 2022 | 34.440 / 243.120 | 14,2 % | 2.400 / 49.140 | 4,9 % |
-| 2023 | 46.160 / 225.580 | 20,5 % | 4.600 / 27.820 | 16,5 % |
-| 2024 | 60.280 / 243.360 | 24,8 % | 5.980 / 51.060 | 11,7 % |
-| 2025 | 62.580 / 192.920 | 32,4 % | 4.260 / 28.780 | 14,8 % |
-| 2026 | 50.040 / 144.660 | 34,6 % | 1.200 / 40.600 | 3,0 % |
+| Gruppe | 2025 | 2026 | Veränderung |
+|---|---:|---:|---:|
+| Nachfüllung | 195.520 | 199.860 | +4.340 |
+| Erstbefüllung | 28.900 | 1.800 | −27.100 |
+| Notfall | 0 | 24.000 | +24.000 |
+| Vertriebsweg direkt | 115.640 | 86.480 | −29.160 |
+| Vertriebsweg Händler | 62.600 | 70.000 | +7.400 |
+| Vertriebsweg Rahmenvertrag | 46.180 | 45.180 | −1.000 |
+| Vertriebsweg Notfallservice | 0 | 24.000 | +24.000 |
+| **Gesamt** | **224.420** | **225.660** | **+1.240** |
 
-Jan.–Feb. 2027 (Teiljahr) ist hier nicht enthalten, weil es nicht mit ganzen Jahren vergleichbar ist. Die Werte der stationären Anlagen schwanken von Jahr zu Jahr (2023 höher als 2024, 2026 niedriger als 2021); ein durchgehender Trend lässt sich daraus nicht ablesen.
+Auftragsarten und Vertriebswege sind zwei Schnitte desselben Absatzes; beide ergeben je die Gesamtzeile. Quelle: Auftragstabelle, Lieferdatum, Auftragsart, Vertriebsweg.

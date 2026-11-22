@@ -14,8 +14,8 @@ tags: [person, team, reklamationen]
 - Ziele: [[Zielvereinbarung 2026 Anke Wiebusch]]
 
 ## Was ich an ihr schätze (laut meinen Notizen)
-- hat nach der Raffinerie die Textbausteine für die neue Richtlinie in drei Wochen gebaut
-- behält jede Frist im Blick
+- hat nach dem Start des neuen Kundenportals die Textbausteine für die Standardfälle in drei Wochen gebaut
+- behält jede Frist im Blick (Lieferverzug Kunde Süd: Antwort fristgerecht, s. [[Reklamation Lieferverzug]])
 - sagt deutlich, wenn das Portal Unsinn macht
 
 ## Entwicklungswünsche

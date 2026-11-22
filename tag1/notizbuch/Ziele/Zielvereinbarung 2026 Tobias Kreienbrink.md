@@ -13,11 +13,11 @@ Bewertung zum Jahresende im Jahresgespräch 2027.
 | Nr. | Ziel | Messgröße | Termin |
 |---|---|---|---|
 | 1 | Prüfzeit Rückstellmuster Labor | ≤ 5 Arbeitstage im Mittel | 31.12.2026 |
-| 2 | Methodenblatt Tankprobe (Fremdschaum-Anteil) | freigegeben | 31.10.2026 |
+| 2 | Arbeitsanweisung neues Analysegerät (Einweisung, Prüfablauf) | freigegeben | 31.10.2026 |
 | 3 | Rückstellmuster digital in der Labor-Datenbank | Schnittstelle in Betrieb | 31.12.2026 |
 
 ## Unterjährig notiert
-- Ziel 2 im Juni nach der Raffinerie vorgezogen
+- Ziel 2 im Juni vorgezogen (Gerät kommt schon im August)
 
 ---
 

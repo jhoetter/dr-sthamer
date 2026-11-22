@@ -18,8 +18,8 @@ quelle: Vergabeplattform des Zweckverbands, abgelegt durch den Vertriebsinnendie
 
 Hallo Mathis, die Ausschreibung ist heute auf der Vergabeplattform eingegangen, Unterlagen unten
 zusammengefasst. Die Referenzliste aus 2024 liegt bei. Der Angebotsassistent hat schon einen Entwurf
-gerechnet: FreeFoam 3 % in IBC und Kanistern, 10 % Mengenrabatt (über 20.000 l) plus 8 %
-Rahmenvertragsrabatt, also 18 %. Damit wären wir nach seiner Rechnung «sehr wettbewerbsfähig».
+gerechnet: CAFS-Mix Plus 0,5 % (P-111) in IBC und Kanistern, 10 % Mengenrabatt (über 20.000 l) plus
+8 % Rahmenvertragsrabatt, also 18 %. Damit wären wir nach seiner Rechnung «sehr wettbewerbsfähig».
 Soll ich den Entwurf so hochladen? Viele Grüße, Lina
 
 ## Auszug aus den Vergabeunterlagen
@@ -28,18 +28,21 @@ Soll ich den Entwurf so hochladen? Viele Grüße, Lina
 <vergabe@zv-lindenmoor.example.com>. Der Zweckverband beschafft für 14 Gerätehäuser der
 Mitgliedsgemeinden und ein Zentrallager.
 
-**Gegenstand:** Rahmenvertrag über die Lieferung von fluorfreiem Schaummittel, Schwerschaum,
-Brandklasse B, Zumischrate 3 %, für Feuerwehrfahrzeuge und tragbare Zumischer.
+**Gegenstand:** Rahmenvertrag über die Lieferung von Schaummittel für Druckluftschaum (CAFS),
+Brandklassen A und B, Zumischrate 0,5 %, für Feuerwehrfahrzeuge mit Druckluftschaumanlage.
 
 **Laufzeit:** 01.07.2027 bis 30.06.2030 (drei Jahre), ohne Verlängerungsoption.
 
-**Geschätzte Menge** (nicht verbindlich, Abrufe nach Bedarf):
+**Abnahmemenge:** Der Auftraggeber verpflichtet sich zur Abnahme von **genau 12.000 l je
+Vertragsjahr** (feste Abnahmemenge, verbindlich, zusammen 36.000 l über die Laufzeit). Abgerufen wird
+in Teilmengen; die je Vertragsjahr nicht abgerufene Menge wird zum Ende des Vertragsjahres geliefert
+und berechnet.
 
-| Gebinde | Menge je Jahr | Lieferort |
+| Gebinde | Menge je Vertragsjahr | Lieferort |
 |---|---|---|
-| IBC 1.000 l | 18.000 l | Zentrallager |
-| Kanister 20 l | 6.000 l (300 Kanister) | 14 Gerätehäuser |
-| zusammen | 24.000 l je Jahr | |
+| IBC 1.000 l | 9.000 l (9 IBC) | Zentrallager |
+| Kanister 20 l | 3.000 l (150 Kanister) | 14 Gerätehäuser |
+| zusammen | 12.000 l je Vertragsjahr | |
 
 **Vertragsbedingungen des Auftraggebers (verbindlich, Abweichungen führen zum Ausschluss):**
 

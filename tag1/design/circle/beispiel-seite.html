@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Titel der Seite]</title>
+<!-- Circle Design – Gerüst für eine Seite zum Lesen (Übersicht, Bericht, Handout, Begleitseite), kein Dashboard.
+     Erst die Tokens, dann die Bausteine; Pfade relativ zu dieser Datei. Liegt die Seite in einem anderen Ordner,
+     den Pfad anpassen (etwa ../design/circle/circle.css) oder den Ordner mit circle.css, komponenten.css und fonts/
+     neben die Seite kopieren. Läuft offline aus der Datei, ohne Internet.
+     Regeln: nur Tokens (var(--…)), keine eigenen Farbwerte; eigene Regeln unten nur für die Anordnung. -->
+<link rel="stylesheet" href="circle.css">
+<link rel="stylesheet" href="komponenten.css">
+<style>
+  /* Nur Anordnung und Lesbarkeit, keine Farbwerte */
+  .seite--lesen { max-width: 980px; gap: var(--space-6); padding-top: var(--space-6); }
+  .einleitung { font-size: var(--font-size-lg); line-height: 1.6; color: var(--color-text-secondary); max-width: 68ch; }
+  .abschnitt { display: flex; flex-direction: column; gap: var(--space-4); }
+  .abschnitt__kopf { display: flex; flex-direction: column; gap: var(--space-1); }
+  .abschnitt p { max-width: 70ch; line-height: 1.6; }
+  .abschnitt p.quelle { max-width: none; line-height: var(--line-height); }
+  .karte__nr { font-family: var(--font-serif); font-size: 30px; line-height: 1; color: var(--color-headline-accent); }
+  .karte ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: var(--space-1); }
+  .zitat { margin: 0; padding: var(--space-2) 0 var(--space-2) var(--space-5); border-left: 2px solid var(--color-accent); }
+  .zitat p { font-family: var(--font-serif); font-size: 24px; line-height: 1.25; max-width: 40ch; }
+  .zitat footer { margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-muted); }
+  .fuss { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-4);
+          padding-top: var(--space-3); border-top: 1px solid var(--color-border-strong);
+          font-size: var(--font-size-sm); color: var(--color-text-muted); }
+  .kopf--lesen h1 { font-size: 46px; line-height: 1.02; }
+  @media (max-width: 720px) { .kopf--lesen h1 { font-size: 34px; } }
+</style>
+</head>
+<body>
+<div class="seite seite--lesen">
+
+  <!-- ===== Kopf: Etikett, Titel in Instrument Serif (ein Wort darf mit <em> betont sein), Meta ===== -->
+  <header class="kopf kopf--lesen">
+    <div class="kopf__titel">
+      <span class="etikett">[Bereich] · [Art der Seite]</span>
+      <h1>[Titel der Seite als Aussage] <em>[Akzentwort]</em></h1>
+    </div>
+    <div class="kopf__meta">
+      <span>Stand <span class="zahl">[TT.MM.JJJJ]</span></span>
+      <span class="umschalter" role="group" aria-label="Darstellung">
+        <button type="button" data-thema="system" aria-pressed="true">System</button>
+        <button type="button" data-thema="light" aria-pressed="false">Hell</button>
+        <button type="button" data-thema="dark" aria-pressed="false">Dunkel</button>
+      </span>
+    </div>
+  </header>
+
+  <!-- ===== Einleitung: zwei, drei Sätze, worum es geht und was die Leserin danach weiß ===== -->
+  <p class="einleitung">[Einleitung in zwei, drei Sätzen: Worum geht es, für wen ist die Seite, was weiß man nach dem
+    Lesen? Die wichtigste Aussage steht hier schon einmal in Worten.]</p>
+
+  <div class="hinweis hinweis--beispiel"><strong>Gerüst:</strong> Alle Texte und Werte sind Platzhalter. Diesen Hinweis
+    löschen, sobald echte Inhalte eingesetzt sind.</div>
+
+  <!-- ===== Kennzahlen (optional): drei bis fünf Kacheln, Wert einzeilig, Definition darunter ===== -->
+  <div class="kacheln">
+    <div class="kachel" data-tip="[Volle Definition mit Zähler und Nenner]">
+      <span class="kachel__name">[Kennzahl 1]</span>
+      <span class="kachel__wert">[1.234]<small>[Einheit]</small></span>
+      <span class="kachel__def">[Jahr, Zählweise]</span>
+      <span class="kachel__delta kachel__delta--auf">▲ [4,2]&nbsp;% zum Vorjahr</span>
+    </div>
+    <div class="kachel" data-tip="[Volle Definition]">
+      <span class="kachel__name">[Kennzahl 2]</span>
+      <span class="kachel__wert">[56,7]<small>%</small></span>
+      <span class="kachel__def">[Jahr, Zählweise]</span>
+      <span class="kachel__delta kachel__delta--ab">▼ [1,3] Prozentpunkte</span>
+    </div>
+    <div class="kachel" data-tip="[Volle Definition]">
+      <span class="kachel__name">[Kennzahl 3]</span>
+      <span class="kachel__wert">[89]</span>
+      <span class="kachel__def">[Jahr, Zählweise]</span>
+      <span class="kachel__delta leise">unverändert</span>
+    </div>
+  </div>
+
+  <!-- ===== Abschnitt mit Karten: so viele Karten, wie der Inhalt Teile hat (nicht immer drei) ===== -->
+  <section class="abschnitt">
+    <div class="abschnitt__kopf">
+      <span class="etikett">Abschnitt 1</span>
+      <h2>[Überschrift als Aussage in einem kurzen Satz]</h2>
+    </div>
+    <p>[Ein Absatz Fließtext: höchstens vier, fünf Sätze. Zahlen deutsch, zwischen Zahl und Einheit ein geschütztes
+      Leerzeichen, etwa 34,6&nbsp;% oder EUR&nbsp;1.240.]</p>
+    <div class="raster raster--3">
+      <article class="karte">
+        <span class="karte__nr">1</span>
+        <h3>[Kartentitel, ein bis drei Wörter]</h3>
+        <p>[Ein Satz mit der Aussage dieser Karte.]</p>
+      </article>
+      <article class="karte">
+        <span class="karte__nr">2</span>
+        <h3>[Kartentitel]</h3>
+        <ul><li>[Punkt, ein Satz]</li><li>[Punkt, ein Satz]</li></ul>
+      </article>
+      <article class="karte karte--flach">
+        <span class="karte__nr">3</span>
+        <h3>[Kartentitel, ruhiger Nebeninhalt]</h3>
+        <p>[Ein Satz.]</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Abschnitt mit Tabelle in einer Karte: Zahlen rechtsbündig, Summe im tfoot, Quelle darunter ===== -->
+  <section class="abschnitt">
+    <div class="abschnitt__kopf">
+      <span class="etikett">Abschnitt 2</span>
+      <h2>[Überschrift als Aussage]</h2>
+    </div>
+    <article class="karte">
+      <div class="karte__kopf"><h3>[Was die Tabelle zeigt, als Satz]</h3><span class="karte__unter">[Einheit, Jahr]</span></div>
+      <div class="tabelle-rahmen"><table class="tabelle">
+        <thead><tr><th>[Gruppe]</th><th class="zahl">[Jahr 1]</th><th class="zahl">[Jahr 2]</th><th class="zahl">Veränderung</th><th>Einordnung</th></tr></thead>
+        <tbody>
+          <tr><td>[Zeile A]</td><td class="zahl">[1.200]</td><td class="zahl">[1.310]</td><td class="zahl">+[9,2]&nbsp;%</td><td><span class="zustand zustand--ok">[Wachstum]</span></td></tr>
+          <tr><td>[Zeile B]</td><td class="zahl">[860]</td><td class="zahl">[845]</td><td class="zahl">−[1,7]&nbsp;%</td><td><span class="zustand zustand--warn">[stabil]</span></td></tr>
+          <tr><td>[Zeile C]</td><td class="zahl">[430]</td><td class="zahl">[372]</td><td class="zahl">−[13,5]&nbsp;%</td><td><span class="zustand zustand--crit">[Rückgang]</span></td></tr>
+          <tr><td>[Zeile D, kleine Basis]</td><td class="zahl">–</td><td class="zahl">–</td><td class="zahl">–</td><td><span class="zustand zustand--off">Lücke</span></td></tr>
+        </tbody>
+        <tfoot><tr><td>Gesamt</td><td class="zahl">[2.490]</td><td class="zahl">[2.527]</td><td class="zahl">+[1,5]&nbsp;%</td><td></td></tr></tfoot>
+      </table></div>
+      <p class="quelle">Quelle: [Tabelle oder Unterlage in Worten], Stichtag [TT.MM.JJJJ]. Definition: [was gezählt wird,
+        netto oder brutto, ohne was]. Einordnung: [Regel mit Schwellen].</p>
+    </article>
+  </section>
+
+  <!-- ===== Zitat, Hinweis, Kernaussage: je höchstens einmal auf der Seite ===== -->
+  <section class="abschnitt">
+    <div class="abschnitt__kopf">
+      <span class="etikett">Abschnitt 3</span>
+      <h2>[Überschrift als Aussage]</h2>
+    </div>
+    <blockquote class="zitat">
+      <p>„[Kurzes Zitat, das die Aussage trägt.]“</p>
+      <footer>[Rolle der Person], [Quelle in Worten, Datum]</footer>
+    </blockquote>
+    <div class="hinweis"><strong>Hinweis:</strong> [Eine Information, die man beim Lesen braucht, etwa eine
+      Einschränkung der Daten.]</div>
+    <div class="kernaussage">
+      <span class="etikett">Kernaussage</span>
+      <span class="kernaussage__satz">[Der eine Satz, der zählt: ganze Aussage mit Folgerung.]</span>
+    </div>
+  </section>
+
+  <!-- ===== Fußzeile ===== -->
+  <footer class="fuss">
+    <span>[Absender oder Bereich] · [Art der Seite]</span>
+    <span>Stand <span class="zahl">[TT.MM.JJJJ]</span></span>
+  </footer>
+</div>
+
+<script>
+  /* Hell / Dunkel / System (auch über ?thema=dark oder ?thema=light in der Adresse) */
+  function thema(t) {
+    if (t === "system") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", t);
+    document.querySelectorAll("[data-thema]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.thema === t)); });
+  }
+  document.querySelectorAll("[data-thema]").forEach(function (b) { b.addEventListener("click", function () { thema(b.dataset.thema); }); });
+  var q = new URLSearchParams(location.search).get("thema");
+  if (q === "dark" || q === "light") thema(q);
+</script>
+</body>
+</html>

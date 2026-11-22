@@ -37,7 +37,7 @@
   <!-- ===== Reiter: Überblick zuerst ===== -->
   <nav class="reiter" role="tablist" aria-label="Sichten">
     <button class="reiter__knopf" role="tab" data-reiter="ueberblick" aria-selected="true">Überblick</button>
-    <button class="reiter__knopf" role="tab" data-reiter="umstellung" aria-selected="false">Umstellung</button>
+    <button class="reiter__knopf" role="tab" data-reiter="wachstum" aria-selected="false">Wachstum</button>
     <button class="reiter__knopf" role="tab" data-reiter="finanzen" aria-selected="false">Finanzen</button>
     <button class="reiter__knopf" role="tab" data-reiter="angebote" aria-selected="false">Angebote</button>
   </nav>
@@ -79,11 +79,11 @@
         <span class="kachel__wert"><small>EUR</small> [n]</span>
         <span class="kachel__def">[Jahr, netto, Kurs]</span>
       </div>
-      <div class="kachel" data-tip="[Zähler / Nenner in Litern]">
-        <span class="kachel__name">Fluorfrei-Anteil</span>
+      <div class="kachel" data-tip="[Wert Jahr / Wert Vorjahr − 1, nur ganze Jahre]">
+        <span class="kachel__name">[Veränderung]</span>
         <span class="kachel__wert">[n]<small>%</small></span>
-        <span class="kachel__def">[Ziel: n %]</span>
-        <span class="kachel__delta kachel__delta--auf">▲ [n] Prozentpunkte zum Vorjahr</span>
+        <span class="kachel__def">[Maß, Jahr gegen Vorjahr]</span>
+        <span class="kachel__delta kachel__delta--auf">▲ [n] zum Vorjahr</span>
       </div>
     </div>
 
@@ -96,10 +96,10 @@
         <div class="diagramm" id="d-linie" role="img" aria-label="[Beschreibung der Zeitreihe]"></div>
         <div class="legende">
           <span class="legende__eintrag"><span class="legende__farbe"></span>[Gesamt]</span>
-          <span class="legende__eintrag"><span class="legende__strich"></span>[Ziel]</span>
+          <span class="legende__eintrag"><span class="legende__strich"></span>[Vergleichslinie]</span>
           <span class="legende__eintrag">gestrichelt: [Teiljahr]</span>
         </div>
-        <p class="quelle">Quelle: [Tabelle in Worten], Stichtag [TT.MM.JJJJ]. Definition: [Zähler / Nenner].</p>
+        <p class="quelle">Quelle: [Tabelle in Worten], Stichtag [TT.MM.JJJJ]. Definition: [was gezählt wird, netto, Einheit].</p>
       </article>
 
       <article class="karte">
@@ -113,37 +113,37 @@
     </div>
   </section>
 
-  <!-- ===================== Reiter Umstellung ===================== -->
-  <section class="reiterinhalt" id="reiter-umstellung" role="tabpanel" hidden>
+  <!-- ===================== Reiter Wachstum ===================== -->
+  <section class="reiterinhalt" id="reiter-wachstum" role="tabpanel" hidden>
     <div class="kernaussage">
       <span class="etikett">Kernaussage</span>
       <span class="kernaussage__satz">[Ein ganzer Satz mit Folgerung]</span>
     </div>
     <article class="karte">
       <div class="karte__kopf">
-        <h3>[Ampel: Segment × Land]</h3>
-        <span class="karte__unter">[Jahr, Definition]</span>
+        <h3>[Ampel: Veränderung je Gruppe]</h3>
+        <span class="karte__unter">[Jahr gegen Vorjahr, Definition]</span>
       </div>
       <div class="regel">
         <span>Regel:</span>
-        <span class="zustand zustand--crit">rot</span><span>[Bedingung]</span>
-        <span class="zustand zustand--warn">gelb</span><span>[Bedingung]</span>
-        <span class="zustand zustand--ok">grün</span><span>[Bedingung]</span>
+        <span class="zustand zustand--ok">[Wort gut]</span><span>[Bedingung]</span>
+        <span class="zustand zustand--warn">[Wort mittel]</span><span>[Bedingung]</span>
+        <span class="zustand zustand--crit">[Wort kritisch]</span><span>[Bedingung]</span>
         <span class="zustand zustand--off">Lücke</span><span>[unter n Positionen]</span>
       </div>
       <div class="tabelle-rahmen">
         <table class="tabelle">
-          <thead><tr><th>Segment</th><th>Land</th><th class="zahl">Positionen</th><th class="zahl">[Anteil]</th><th>Ampel</th></tr></thead>
+          <thead><tr><th>[Gruppe]</th><th class="zahl">[Wert Vorjahr]</th><th class="zahl">[Wert Jahr]</th><th class="zahl">Positionen</th><th class="zahl">[Veränderung]</th><th>Ampel</th></tr></thead>
           <tbody>
-            <tr><td>[Segment A]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--crit">rot</span></td></tr>
-            <tr><td>[Segment A]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--warn">gelb</span></td></tr>
-            <tr><td>[Segment B]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--ok">grün</span></td></tr>
-            <tr><td>[Segment C]</td><td>[Land]</td><td class="zahl">[n]</td><td class="zahl">–</td><td><span class="zustand zustand--off">Lücke</span></td></tr>
+            <tr><td>[Gruppe A]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--ok">[Wort gut]</span></td></tr>
+            <tr><td>[Gruppe B]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--warn">[Wort mittel]</span></td></tr>
+            <tr><td>[Gruppe C]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td><span class="zustand zustand--crit">[Wort kritisch]</span></td></tr>
+            <tr><td>[Gruppe D]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">–</td><td><span class="zustand zustand--off">Lücke</span></td></tr>
           </tbody>
-          <tfoot><tr><td>Gesamt</td><td></td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td></td></tr></tfoot>
+          <tfoot><tr><td>Gesamt</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n]</td><td class="zahl">[n %]</td><td></td></tr></tfoot>
         </table>
       </div>
-      <p class="quelle">Quelle: [Tabellen in Worten]. Anteile aus summierten Zählern und Nennern, nie gemittelt.</p>
+      <p class="quelle">Quelle: [Tabellen in Worten]. Veränderungen und Anteile aus Summen gerechnet, nie gemittelt.</p>
     </article>
   </section>
 
@@ -195,7 +195,7 @@
 <script>
 const DIAGRAMM_DATEN = {
   linie: {
-    einheit: "%", ziel: 60, max: 100,
+    einheit: "", ziel: 60, max: 100,
     punkte: [
       { name: "[J1]", wert: 10, zaehler: "[z]", nenner: "[n]" },
       { name: "[J2]", wert: 20, zaehler: "[z]", nenner: "[n]" },
@@ -231,7 +231,7 @@ const DIAGRAMM_DATEN = {
     return e;
   }
 
-  /* ---- Linie: Inline-SVG, Prozentachse in runden Schritten, Teiljahr gestrichelt ---- */
+  /* ---- Linie: Inline-SVG, Achse in runden Schritten, Teiljahr gestrichelt ---- */
   function linie(ziel, d) {
     var B = Math.max(320, ziel.clientWidth || 600), H = 230, l = 44, r = 56, o = 14, u = 28;
     var svg = el("svg", { viewBox: "0 0 " + B + " " + H });
@@ -239,10 +239,10 @@ const DIAGRAMM_DATEN = {
     var y = function (v) { return o + (H - o - u) * (1 - v / d.max); };
     for (var s = 0; s <= d.max; s += 25) {
       svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(s), y2: y(s), "class": "d-raster" }));
-      svg.appendChild(el("text", { x: l - 8, y: y(s) + 4, "text-anchor": "end" }, zahl.format(s) + " %"));
+      svg.appendChild(el("text", { x: l - 8, y: y(s) + 4, "text-anchor": "end" }, zahl.format(s) + (d.einheit ? " " + d.einheit : "")));
     }
     svg.appendChild(el("line", { x1: l, x2: B - r, y1: y(d.ziel), y2: y(d.ziel), "class": "d-ziel" }));
-    svg.appendChild(el("text", { x: l + 6, y: y(d.ziel) - 6, "class": "d-name" }, "Ziel " + zahl.format(d.ziel) + " %"));
+    svg.appendChild(el("text", { x: l + 6, y: y(d.ziel) - 6, "class": "d-name" }, "[Vergleichslinie] " + zahl.format(d.ziel)));
     var voll = d.punkte.filter(function (p) { return !p.teiljahr; });
     var pfad = voll.map(function (p, i) { return (i ? "L" : "M") + x(i) + " " + y(p.wert); }).join(" ");
     svg.appendChild(el("path", { d: pfad + " L" + x(voll.length - 1) + " " + y(0) + " L" + x(0) + " " + y(0) + " Z", "class": "d-flaeche" }));
@@ -258,7 +258,7 @@ const DIAGRAMM_DATEN = {
       svg.appendChild(c);
     });
     var last = d.punkte[n - 1];
-    svg.appendChild(el("text", { x: x(n - 1) + 8, y: y(last.wert) + 4, "class": "d-wert" }, zahl.format(last.wert) + " %"));
+    svg.appendChild(el("text", { x: x(n - 1) + 8, y: y(last.wert) + 4, "class": "d-wert" }, zahl.format(last.wert) + (d.einheit ? " " + d.einheit : "")));
     ziel.appendChild(svg);
   }
 
@@ -289,7 +289,7 @@ const DIAGRAMM_DATEN = {
   }
   window.addEventListener("resize", zeichne);
 
-  /* ---- Reiter (auch über die Adresse #umstellung usw.) ---- */
+  /* ---- Reiter (auch über die Adresse #wachstum usw.) ---- */
   function zeige(id) {
     document.querySelectorAll(".reiter__knopf").forEach(function (k) {
       k.setAttribute("aria-selected", String(k.dataset.reiter === id));
@@ -301,7 +301,7 @@ const DIAGRAMM_DATEN = {
   document.querySelectorAll(".reiter__knopf").forEach(function (k) {
     k.addEventListener("click", function () { history.replaceState(null, "", "#" + k.dataset.reiter); zeige(k.dataset.reiter); });
   });
-  /* Abschnitte heißen „reiter-…“, damit die Adresse #umstellung die Seite nicht zum Abschnitt springen lässt. */
+  /* Abschnitte heißen „reiter-…“, damit die Adresse #wachstum die Seite nicht zum Abschnitt springen lässt. */
   var start = location.hash.slice(1);
   zeige(document.getElementById("reiter-" + start) ? start : "ueberblick");
 

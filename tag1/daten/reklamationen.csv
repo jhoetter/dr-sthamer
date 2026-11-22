@@ -1,52 +1,49 @@
-﻿rekl_id,eingang,kunde_id,produkt_id,kategorie,auto_beantwortet,tage_bis_antwort,status
-R-2024-001,2024-01-11,K-1005,P-108,Dokumentation,nein,3,abgeschlossen (Kulanz)
-R-2024-002,2024-02-10,K-1027,P-113,Dokumentation,nein,9,abgeschlossen
-R-2024-003,2024-02-18,K-1015,P-112,Rechnung,nein,5,abgeschlossen (Kulanz)
-R-2024-004,2024-03-02,K-1025,P-107,Rechnung,nein,8,abgeschlossen (Kulanz)
-R-2024-005,2024-03-17,K-1021,P-106,Schaumqualität,nein,6,abgeschlossen
-R-2024-006,2024-03-20,K-1008,P-115,Schaumqualität,nein,6,abgeschlossen
-R-2024-007,2024-05-21,K-1025,P-107,Gebinde/Verpackung,nein,6,abgeschlossen
-R-2024-008,2024-06-11,K-1022,P-106,Schaumqualität,nein,2,abgeschlossen
-R-2024-009,2024-06-16,K-1012,P-111,Gebinde/Verpackung,nein,4,abgeschlossen
-R-2024-010,2024-06-17,K-1003,P-101,Gebinde/Verpackung,nein,4,abgeschlossen (Kulanz)
-R-2025-001,2025-01-09,K-1002,P-103,Lieferung/Menge,nein,2,abgeschlossen
-R-2025-002,2025-01-12,K-1001,P-112,Schaumqualität,nein,1,abgeschlossen (Kulanz)
-R-2025-003,2025-01-24,K-1027,P-113,Rechnung,nein,3,abgeschlossen
-R-2025-004,2025-01-27,K-1021,P-106,Schaumqualität,nein,6,abgeschlossen
-R-2025-005,2025-02-02,K-1027,P-112,Rechnung,nein,5,abgeschlossen
-R-2025-006,2025-02-18,K-1019,P-117,Dokumentation,nein,2,abgeschlossen
-R-2025-007,2025-04-17,K-1003,P-103,Schaumqualität,nein,5,abgeschlossen
-R-2025-008,2025-05-25,K-1027,P-113,Schaumqualität,nein,5,abgeschlossen
-R-2025-009,2025-06-19,K-1032,P-118,Lieferung/Menge,nein,4,abgeschlossen
-R-2025-010,2025-06-23,K-1014,P-204,Probeumstellung,nein,6,abgeschlossen
-R-2025-011,2025-06-24,K-1009,P-120,Gebinde/Verpackung,nein,4,abgeschlossen
-R-2025-012,2025-06-27,K-1001,P-112,Schaumqualität,nein,8,abgeschlossen
-R-2025-013,2025-07-14,K-1031,P-203,Probeumstellung,nein,8,abgeschlossen
-R-2025-014,2025-07-16,K-1011,P-101,Dokumentation,nein,5,abgeschlossen
-R-2025-015,2025-07-21,K-1011,P-201,Probeumstellung,nein,4,abgeschlossen
-R-2025-016,2025-08-13,K-1014,P-104,Rechnung,nein,4,abgeschlossen
-R-2025-017,2025-09-24,K-1001,P-103,Rechnung,nein,1,abgeschlossen
-R-2025-018,2025-10-27,K-1005,P-207,Rechnung,ja,0,abgelehnt
-R-2025-019,2025-10-27,K-1013,P-102,Lieferung/Menge,ja,0,abgeschlossen
-R-2025-020,2025-11-03,K-1005,P-207,Probeumstellung,ja,0,abgeschlossen
-R-2025-021,2025-11-07,K-1024,P-106,Gebinde/Verpackung,nein,1,abgeschlossen
-R-2025-022,2025-11-28,K-1007,P-108,Dokumentation,ja,0,abgeschlossen
-R-2026-001,2026-01-20,K-1005,P-207,Probeumstellung,nein,5,abgeschlossen
-R-2026-002,2026-02-01,K-1024,P-201,Dokumentation,ja,0,abgeschlossen
-R-2026-003,2026-02-08,K-1009,P-111,Schaumqualität,ja,0,abgeschlossen
-R-2026-004,2026-02-08,K-1023,P-115,Rechnung,ja,0,abgelehnt
-R-2026-005,2026-02-24,K-1015,P-205,Probeumstellung,ja,0,abgeschlossen
-R-2026-006,2026-03-10,K-1021,P-202,Probeumstellung,nein,7,abgeschlossen
-R-2026-007,2026-04-02,K-1002,P-201,Probeumstellung,ja,0,abgeschlossen
-R-2026-008,2026-05-08,K-1003,P-203,Probeumstellung,ja,0,abgeschlossen (Kulanz)
-R-2026-009,2026-05-19,K-1003,P-203,Probeumstellung,nein,10,abgeschlossen (Kulanz)
-R-2026-010,2026-05-27,K-1022,P-202,Probeumstellung,ja,0,abgeschlossen
-R-2026-011,2026-06-06,K-1015,P-105,Lieferung/Menge,ja,0,abgelehnt
-R-2026-012,2026-07-02,K-1020,P-202,Probeumstellung,nein,3,abgeschlossen
-R-2026-013,2026-07-08,K-1024,P-201,Probeumstellung,nein,4,abgeschlossen
-R-2026-014,2026-10-03,K-1011,P-102,Lieferung/Menge,nein,3,abgeschlossen
-R-2026-015,2026-10-14,K-1030,P-118,Dokumentation,nein,3,abgeschlossen
-R-2026-016,2026-12-09,K-1023,P-120,Gebinde/Verpackung,nein,4,abgeschlossen
-R-2027-001,2027-01-26,K-1017,P-204,Probeumstellung,nein,5,in Bearbeitung
-R-2027-002,2027-02-15,K-1019,P-204,Probeumstellung,nein,3,offen
-R-2027-003,2027-02-23,K-1010,P-112,Dokumentation,nein,5,offen
+﻿rekl_id,eingang,kunde_id,produkt_id,kategorie,tage_bis_antwort,status
+R-2024-001,2024-01-13,K-1026,P-111,Lieferverzug,3,abgeschlossen (Kulanz)
+R-2024-002,2024-02-05,K-1010,P-102,Beschädigte Ware,9,abgeschlossen
+R-2024-003,2024-02-17,K-1009,P-120,Beschädigte Ware,5,abgeschlossen (Kulanz)
+R-2024-004,2024-02-26,K-1028,P-113,Lieferung/Menge,8,abgeschlossen (Kulanz)
+R-2024-005,2024-03-12,K-1020,P-106,Dokumentation,6,abgeschlossen
+R-2024-006,2024-03-21,K-1001,P-101,Lieferverzug,6,abgeschlossen
+R-2024-007,2024-05-26,K-1020,P-106,Gebinde/Verpackung,6,abgeschlossen
+R-2024-008,2024-05-31,K-1024,P-201,Rechnung,2,abgeschlossen
+R-2024-009,2024-06-13,K-1024,P-102,Beschädigte Ware,4,abgeschlossen (Kulanz)
+R-2024-010,2024-06-16,K-1023,P-120,Lieferung/Menge,4,abgelehnt
+R-2025-001,2025-01-08,K-1021,P-106,Beschädigte Ware,2,abgeschlossen
+R-2025-002,2025-01-12,K-1001,P-112,Dokumentation,1,abgeschlossen (Kulanz)
+R-2025-003,2025-01-24,K-1027,P-113,Dokumentation,3,abgeschlossen
+R-2025-004,2025-01-26,K-1020,P-106,Lieferverzug,6,abgelehnt
+R-2025-005,2025-02-05,K-1017,P-117,Lieferung/Menge,5,abgeschlossen
+R-2025-006,2025-02-07,K-1026,P-111,Rechnung,2,abgelehnt
+R-2025-007,2025-03-31,K-1001,P-101,Rechnung,5,abgeschlossen
+R-2025-008,2025-05-18,K-1022,P-106,Beschädigte Ware,5,abgeschlossen
+R-2025-009,2025-05-28,K-1004,P-112,Dokumentation,4,abgeschlossen
+R-2025-010,2025-06-06,K-1014,P-104,Lieferung/Menge,4,abgelehnt
+R-2025-011,2025-06-11,K-1023,P-120,Gebinde/Verpackung,8,abgelehnt
+R-2025-012,2025-06-23,K-1015,P-105,Dokumentation,5,abgeschlossen
+R-2025-013,2025-08-01,K-1018,P-117,Rechnung,4,abgelehnt
+R-2025-014,2025-09-04,K-1023,P-120,Lieferung/Menge,1,abgeschlossen
+R-2025-015,2025-09-23,K-1007,P-108,Rechnung,1,abgeschlossen (Kulanz)
+R-2025-016,2025-09-28,K-1020,P-106,Lieferverzug,9,abgeschlossen
+R-2025-017,2025-10-12,K-1005,P-207,Dokumentation,1,abgelehnt
+R-2025-018,2025-10-29,K-1031,P-103,Dokumentation,1,abgeschlossen
+R-2025-019,2025-12-16,K-1001,P-103,Rechnung,4,abgeschlossen
+R-2026-001,2026-01-01,K-1027,P-113,Dokumentation,6,abgeschlossen
+R-2026-002,2026-01-29,K-1002,P-101,Lieferverzug,6,abgeschlossen
+R-2026-003,2026-01-30,K-1011,P-102,Dokumentation,6,abgeschlossen
+R-2026-004,2026-02-02,K-1010,P-112,Rechnung,8,abgeschlossen
+R-2026-005,2026-02-06,K-1009,P-111,Dokumentation,4,abgeschlossen
+R-2026-006,2026-03-08,K-1001,P-101,Lieferung/Menge,3,abgeschlossen
+R-2026-007,2026-04-24,K-1015,P-112,Gebinde/Verpackung,4,abgeschlossen (Kulanz)
+R-2026-008,2026-05-23,K-1022,P-106,Lieferverzug,4,abgeschlossen
+R-2026-009,2026-05-30,K-1018,P-104,Dokumentation,1,abgeschlossen
+R-2026-010,2026-06-19,K-1015,P-112,Lieferung/Menge,6,abgeschlossen
+R-2026-011,2026-08-01,K-1005,P-102,Rechnung,4,abgeschlossen
+R-2026-012,2026-08-25,K-1012,P-111,Lieferverzug,2,abgeschlossen
+R-2026-013,2026-09-24,K-1014,P-112,Gebinde/Verpackung,6,abgeschlossen
+R-2026-014,2026-10-14,K-1008,P-112,Beschädigte Ware,6,abgeschlossen (Kulanz)
+R-2026-015,2026-10-23,K-1022,P-106,Lieferverzug,9,abgeschlossen
+R-2027-001,2027-01-17,K-1022,P-106,Gebinde/Verpackung,6,abgeschlossen
+R-2027-002,2027-01-23,K-1014,P-104,Dokumentation,8,abgeschlossen
+R-2027-003,2027-02-06,K-1001,P-103,Rechnung,4,offen
+R-2027-004,2027-02-10,K-1004,P-108,Dokumentation,1,offen

@@ -2,13 +2,14 @@
 
 Circle Design ist das Design-Framework von Falk Uebernickel. Alle Dashboards dieses Tages (Drill 1 bis 3) sehen damit gleich aus: ruhig, warm, gut lesbar, hell und dunkel. Diese Fibel gilt für Teilnehmende und für Claude.
 
-**Drei Dateien, sonst nichts:**
+**Zwei Stylesheets und zwei Gerüste, sonst nichts:**
 
 | Datei | Wozu |
 |---|---|
 | `circle.css` | Tokens: alle Farben, Schriften, Abstände, Radien, Schatten. Die **einzige** Stelle mit Farbwerten. Nicht ändern. |
 | `komponenten.css` | Bausteine (Seite, Kopfzeile, Reiter, Filterleiste, Kachel, Karte, Diagramm, Tabelle, Zustands-Pille, Hinweis, Quelle). Nutzt nur Tokens. Nicht ändern. |
 | `beispiel-dashboard.html` | Gerüst mit allen Bausteinen und Platzhaltern in eckigen Klammern. Zum Anschauen und Abschreiben. |
+| `beispiel-seite.html` | Gerüst für jede andere HTML-Seite (Übersicht, Bericht, Handout, Begleitseite): Kopf, Einleitung, Abschnitte, Karten, Tabelle, Zitat, Hinweis, Kernaussage, Quelle, Fußzeile. |
 
 Schriften (Inter, Instrument Serif, Lizenz OFL) liegen in `fonts/`; alles läuft offline aus der Datei, ohne Internet.
 
@@ -71,7 +72,7 @@ Zahlen immer deutsch: 1.234,5 · 34,6 % · EUR 1.240,00 · 28.02.2027. Zwischen 
   <header class="kopf">
     <div class="kopf__titel">
       <span class="etikett">Dr. Sthamer · Übungsausschnitt</span>
-      <h1>Umstellung auf <em>fluorfrei</em></h1>
+      <h1>Geschäftsentwicklung <em>2026</em></h1>
     </div>
     <div class="kopf__meta"><span>Stichtag <span class="zahl">28.02.2027</span></span></div>
   </header>
@@ -84,13 +85,13 @@ Zahlen immer deutsch: 1.234,5 · 34,6 % · EUR 1.240,00 · 28.02.2027. Zwischen 
 ```html
 <nav class="reiter" role="tablist">
   <button class="reiter__knopf" role="tab" data-reiter="ueberblick" aria-selected="true">Überblick</button>
-  <button class="reiter__knopf" role="tab" data-reiter="umstellung" aria-selected="false">Umstellung</button>
+  <button class="reiter__knopf" role="tab" data-reiter="wachstum" aria-selected="false">Wachstum</button>
 </nav>
 <section class="reiterinhalt" id="reiter-ueberblick">…</section>
-<section class="reiterinhalt" id="reiter-umstellung" hidden>…</section>
+<section class="reiterinhalt" id="reiter-wachstum" hidden>…</section>
 ```
 
-Die Abschnitte heißen `reiter-…`, nicht wie der Reiter selbst: Sonst springt der Browser beim Öffnen mit `#umstellung`
+Die Abschnitte heißen `reiter-…`, nicht wie der Reiter selbst: Sonst springt der Browser beim Öffnen mit `#wachstum`
 zum Abschnitt, und Kopfzeile und Reiter sind aus dem Bild. Beim Reiterwechsel nach oben scrollen.
 
 **Filterleiste** und **Umschalter**
@@ -109,10 +110,10 @@ zum Abschnitt, und Kopfzeile und Reiter sind aus dem Bild. Beim Reiterwechsel na
 ```html
 <div class="kacheln">
   <div class="kachel" data-tip="Volle Definition mit Zähler und Nenner">
-    <span class="kachel__name">Fluorfrei-Anteil</span>
-    <span class="kachel__wert">[n]<small>%</small></span>
+    <span class="kachel__name">Absatz</span>
+    <span class="kachel__wert">[n]<small>l</small></span>
     <span class="kachel__def">2026, Liter netto</span>
-    <span class="kachel__delta kachel__delta--auf">▲ [n] Prozentpunkte zum Vorjahr</span>
+    <span class="kachel__delta kachel__delta--auf">▲ [n] % zum Vorjahr</span>
   </div>
 </div>
 ```
@@ -143,9 +144,9 @@ zum Abschnitt, und Kopfzeile und Reiter sind aus dem Bild. Beim Reiterwechsel na
 
 | Klasse | Form | Wort (Beispiel) |
 |---|---|---|
-| `zustand--ok` | Kreis, grün | grün, im Ziel |
-| `zustand--warn` | Dreieck, orange | gelb, beobachten |
-| `zustand--crit` | Raute, koralle | rot, Hier entscheidet ein Mensch |
+| `zustand--ok` | Kreis, grün | Wachstum, im Ziel |
+| `zustand--warn` | Dreieck, orange | stabil, beobachten |
+| `zustand--crit` | Raute, koralle | Rückgang, Hier entscheidet ein Mensch |
 | `zustand--off` | gestrichelter Ring | Lücke (zu kleine Basis) |
 | `zustand--neutral` | Quadrat, grau | offen |
 

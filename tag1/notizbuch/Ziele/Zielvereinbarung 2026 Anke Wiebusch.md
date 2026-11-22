@@ -12,12 +12,12 @@ Bewertung zum Jahresende im Jahresgespräch 2027.
 
 | Nr. | Ziel | Messgröße | Termin |
 |---|---|---|---|
-| 1 | Textbausteine zur neuen Reklamationsrichtlinie | im Einsatz | 16.06.2026 |
+| 1 | Textbausteine für Standardfälle im Kundenportal (Lieferverzug, Falschlieferung, Gutschrift) | im Einsatz | 16.06.2026 |
 | 2 | Portal-Einstufungen prüfen | wöchentliche Stichprobe, Liste an Teamleitung | ab 01.07.2026 |
 | 3 | Monatsstatistik Reklamationen | jeweils bis zum 5. des Folgemonats | laufend |
 
 ## Unterjährig notiert
-- Ziele 1 und 2 nach der Raffinerie im Juni ergänzt
+- Ziele 1 und 2 im Juni nach dem Start des neuen Kundenportals (Mai) ergänzt
 
 ---
 

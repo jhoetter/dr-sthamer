@@ -1,47 +1,47 @@
-# Drill 1 · Das Überblicks-Dashboard
+# Drill 1 · Überblicks-Dashboard: Wo wachsen wir, wo verlieren wir?
 
 Tag 1 „AI Augmentation“, Mittwoch, 25.11.2026. Zeitbox 75 Minuten: 10 Einführung · 55 Übung · 10 Auswertung.
 
 > **Du startest mit** der Notiz zur Kundenzahl aus Drill 0 (`meine-ergebnisse/notiz-kundenzahl.md`). Die Zählweise,
 > die du dort empfohlen hast, wird die Definition der Kunden-Kachel. Fehlt die Notiz, legst du die Zählweise in
-> Etappe 1 selbst fest.
+> Etappe 2 selbst fest.
 
 ## Deine Rolle
 
-Du bist Dr. Henrike Vossberg, Programmleiterin Fluorfrei-Umstellung bei Dr. Sthamer. Die Geschäftsführerin hat
-dir aufgetragen, dem Beirat am 09.03.2027 zu zeigen, wo das Umstellungsprogramm FreeFoam nach einem Jahr steht.
-Ihre Frage für den Beirat zieht sich durch den ganzen Tag: „Wo steht die Umstellung, rechnet sie sich, und was
-entscheiden wir?“ Heute legst du den ersten Teil: Wie weit sind wir mit den fluorfreien Produkten, gemessen am
-Ziel von 60 % für 2026, und wo hängen wir?
+Du bist Dr. Henrike Vossberg, Leiterin Unternehmensentwicklung bei Dr. Sthamer. Die Geschäftsführerin hat dir
+aufgetragen, dem Beirat am 09.03.2027 das Geschäftsjahr 2026 zu zeigen und Prioritäten für 2027 vorzuschlagen.
+Ihre Frage zieht sich durch den ganzen Tag: „Wo wachsen wir, wo verlieren wir – und was heißt das für 2027?“
+Heute legst du den ersten Teil: Wie haben sich Absatz und Umsatz entwickelt, nach Segment, Land und Vertriebsweg,
+und was davon ist laufendes Nachfüllgeschäft, was einmaliges Projektgeschäft?
 
 ## Lernziel
 
 Du lässt Claude eine unübersichtliche Datenlage erkunden und daraus ein Dashboard im Circle Design bauen, das du
-im Browser bedienst: erst den Überblick, dann die Analyse. Du lenkst Auswertungen in Geschäftssprache („nur stationäre Anlagen“, „getrennt nach Segment“),
-verlangst zu jeder Zahl die Definition und rechnest mindestens eine Zahl nach. Du hakst nach, bis du die Ursache
-eines Befunds kennst, und entscheidest, welche drei Aussagen vor den Beirat kommen.
+im Browser bedienst: erst den Überblick, dann die Analyse. Du lenkst Auswertungen in Geschäftssprache („nur
+Händler“, „ohne den Notfall“), verlangst zu jeder Zahl die Definition und rechnest mindestens eine Zahl nach. Du
+hakst nach, bis du die Ursache eines Befunds kennst, und entscheidest, welche drei Aussagen vor den Beirat kommen.
 
 ## Mission
 
 Verschaff dir zuerst einen Überblick: Baue dein Dashboard im Circle Design mit dem Reiter „Überblick“ –
-Kennzahl-Kacheln, der Bestand nach Segment, Land, Vertriebsweg und Anwendung, eine Filterleiste und Absatz und
-Fluorfrei-Anteil 2021 bis 2026 als Zeitreihe. Dann analysierst du im zweiten Reiter „Umstellung“, woran der
-Rückstand liegt: Fluorfrei-Anteil nach Anwendung und Segment, die große Einzellieferung, eine Ampel je Segment
-und Land. Zum Schluss schreibst du eine Management-Summary mit drei Kernaussagen. Sie ist die Grundlage für die
-Finanzanalyse in Drill 2 und für deine Präsentation am Ende des Tages.
+Kennzahl-Kacheln, der Bestand nach Segment, Land, Vertriebsweg und Anwendung, eine Filterleiste und der Absatz
+2021 bis 2026 als Zeitreihe. Dann analysierst du im zweiten Reiter „Wachstum“, wo wir 2026 gegenüber 2025 wachsen
+und wo wir verlieren: Nachfüll- gegen Projektgeschäft, Händler gegen direkt, die große Notfalllieferung, eine
+Wachstumsampel. Zum Schluss schreibst du eine Management-Summary mit drei Kernaussagen. Sie ist die Grundlage für
+die Finanzanalyse in Drill 2 und für deine Präsentation am Ende des Tages.
 
 ## Zeitbox
 
 | Teil | Dauer | Was passiert |
 |---|---|---|
-| Einführung | 10 Min. | Vorführung: vom Plan zum Dashboard im Browser, im Circle Design; erst Überblick, dann Analyse; was eine Definition ist und warum „fluorfrei“ mehrdeutig ist |
-| Übung | 55 Min. | Etappen 1 bis 4, allein oder mit deinem Peer. Richtwert: 10 · 17 · 16 · 12 Minuten. Die Rückfrage-Runde ist eine Zusatzaufgabe (unter „Für Schnelle“) |
+| Einführung | 10 Min. | Vorführung von Etappe 1: Claude erkundet die Tabellen und schlägt Kennzahlen mit Definitionen vor; Plan-Modus; das Circle Design |
+| Übung | 55 Min. | Etappen 2 bis 4, allein oder mit deinem Peer. Richtwert: 22 · 20 · 13 Minuten. Etappe 1 selbst stellen und die Rückfrage-Runde sind Zusatzaufgaben (unter „Für Schnelle“) |
 | Auswertung | 10 Min. | Welche Definition, welche Ursache, welche Kernaussagen, welche Zahl habt ihr nachgerechnet? |
 
 ## Vorher kurz einstellen
 
 Claude-App, Reiter **Code**, Modell **Sonnet**, Ordner **`tag1`**. Am besten eine neue Sitzung beginnen. Liegt
-deine Notiz aus Drill 0 in `meine-ergebnisse/`, liest Claude sie in Etappe 1 mit.
+deine Notiz aus Drill 0 in `meine-ergebnisse/`, liest Claude sie in Etappe 2 mit.
 
 Das Aussehen deines Dashboards gibt **Circle Design** vor, das Design-Framework von Falk Uebernickel für
 Dashboards. Es liegt im Ordner `design/circle/`: Stilfibel `CIRCLE.md`, Farben und Schriften, Bausteine und ein
@@ -64,18 +64,19 @@ weitergeht.
 
 | Etappe | Du schreibst Claude | Dann prüfst du |
 |---|---|---|
-| **1 · Überblick** | „Ich bin Programmleiterin Fluorfrei-Umstellung und soll dem Beirat zeigen, wo das Programm FreeFoam steht. Liegt in meinen Ergebnissen eine Notiz von Lina Osterkamp zur Kundenzahl, lies sie zuerst und sag mir in einem Satz, welche Zählweise sie empfiehlt und warum. Verschaff dir einen Überblick über alle Datentabellen mit Zeilenzahl und je einem Satz, wozu sie dient. Schlag mir dann fünf Kennzahlen zur Umstellung am Stichtag vor, je mit Wert und Definition, darunter den Fluorfrei-Anteil 2026 nach unserer verbindlichen Definition. Noch keine Webseite.“ | Prüfen: Stammen die Zahlen aus dem Übungsausschnitt (32 Kunden) und nicht aus dem Unternehmensprofil? Hat jede Kennzahl eine Definition? Zählt „fluorfrei“ nach der Produktlinie, nicht nach der Deklaration, und sind Gutschriften, Retouren, Muster und doppelt importierte Positionen richtig behandelt? Dann **entscheiden**, ob du Linas Empfehlung folgst, und Claude sagen, wie gezählt wird, zum Beispiel: „Fürs Dashboard gilt: Kunden zählen nach Linas Empfehlung. Umsatz heißt Nettoumsatz in EUR, Fremdwährung zum Konzernkurs des Jahres.“ |
-| **2 · Überblick im Dashboard** (zuerst im Plan-Modus) | „Lege mein Dashboard an, im Circle Design aus dem Ordner design/circle: Lies zuerst die Stilfibel und nimm das Beispiel-Dashboard als Gerüst. Der erste Reiter heißt ‚Überblick‘: oben Kacheln mit den Kennzahlen, die wir eben festgelegt haben – Kunden, Lieferstellen, Absatz 2026 in Litern, Nettoumsatz 2026 in EUR und Fluorfrei-Anteil 2026 gegen das Ziel –, jede mit ihrer Definition; darunter unser Bestand nach Segment, Land, Vertriebsweg und Anwendung, je mit Kunden, Lieferstellen und Litern 2026; dazu Absatz und Fluorfrei-Anteil insgesamt von 2021 bis 2026 als Zeitreihe, Januar und Februar 2027 sichtbar als Teiljahr abgesetzt. Eine Filterleiste für Segment, Land und Vertriebsweg soll auf alle Zahlen wirken. Öffne das Dashboard im Browser.“ | Zuerst den Plan lesen: Stehen die Definitionen aus Etappe 1 drin, rechnet Claude mit einem Skript, und bindet es Circle Design ein, ohne eigene Farben? Einen Punkt ändern oder freigeben. Dann im Browser: Sieht das Dashboard aus wie das Beispiel (Papierton, weiße Karten, ruhige Schrift)? Selbst klicken: Segment auf „Industrie“ stellen. Ändern sich Kacheln, Bestand und Zeitreihe? Eine Kachel mit Etappe 1 vergleichen. Siehst du Filter und alle Kacheln, ohne zu scrollen? Dann eine Verbesserung verlangen, die **du** willst, zum Beispiel: „Zeig neben dem Fluorfrei-Anteil den Abstand zum Ziel in Prozentpunkten.“ |
-| **3 · Wo hängen wir?** | „Berechne den Fluorfrei-Anteil für jedes Jahr von 2021 bis 2026 und für Januar bis Februar 2027 getrennt, insgesamt, nach Segment und nach Anwendung (zum Beispiel stationäre Anlage, Feuerwehrfahrzeug, Lager, Übung). Nenne zuerst deine Definition. Zeig es mir als Tabelle mit Zähler und Nenner, noch nichts ins Dashboard.“ | Definition prüfen: Was steht im Zähler, was im Nenner? Ist das Teiljahr 2027 abgesetzt? Sind Gruppen mit weniger als 20 Positionen eine Lücke statt einer Zahl? **Nachhaken:** „Liegt der Rückstand am Segment Industrie oder an den stationären Anlagen? Vergleiche in der Industrie die stationären Anlagen mit allen anderen Anwendungen, dazu die stationären Anlagen außerhalb der Industrie und alle stationären Anlagen zusammen, je mit der Zahl der Positionen.“ Ist eine Teilgruppe zu klein und damit eine Lücke, welche größere Gruppe trägt die Aussage trotzdem? Dann: „Gibt es 2026 einzelne sehr große Lieferungen, die eine Gruppe verzerren? Wie sieht der Anteil ohne sie aus?“ und „Wie viele unserer stationären Anlagen haben schon eine Datenaufnahme vor Ort?“ Halte in einem Satz fest, woran es liegt. Erst wenn du den Zahlen traust, freigeben: „Übernimm das in einen zweiten Reiter ‚Umstellung‘ hinter dem Überblick: den Fluorfrei-Anteil als Liniendiagramm mit Prozentachse, je einer Linie für das Gesamt und für die Anwendungen, dem Ziel 60 % als waagrechte Linie und dem Teiljahr 2027 sichtbar abgesetzt; einen Hinweis zur großen Einzellieferung mit dem Anteil mit und ohne sie; dazu eine Ampel je Segment und Land für 2026 nach unserer Ampelregel, mit den Zustandsfarben aus Circle Design als Pille mit Form und Wort, die Regel sichtbar darüber. Die Filter sollen auch hier wirken. Der Reiter ‚Überblick‘ bleibt unverändert.“ Erschrick nicht: Für 2026 sind die meisten Kombinationen aus Segment und Land kleiner als 20 Positionen und bleiben Lücken; nur wenige Zellen bekommen eine Farbe. Danach „Industrie“ wählen: Ändern sich Linie und Ampel, behält jede Linie ihre Farbe? Kannst du jede Zahl lesen? Funktioniert der Reiter „Überblick“ noch? |
-| **4 · Drei Kernaussagen** | „Schreib mir eine Management-Summary für den Beirat mit genau drei Kernaussagen zur Umstellung. Jede Kernaussage als ganzer Satz, der sagt, worauf der Beirat achten oder reagieren sollte, belegt mit einer Zahl samt Definition und Quelle in Worten. Hänge den Fluorfrei-Anteil 2021 bis 2026 insgesamt und für die stationären Anlagen als kleine Tabelle mit Zähler und Nenner an. Leg sie in meinen Ergebnissen ab und zeig sie mir hier.“ | Eine Zahl nachrechnen lassen: „Rechne mir den Fluorfrei-Anteil 2026 der stationären Anlagen vor: welche Liter im Zähler, welche im Nenner, was nicht mitzählt, je mit Menge.“ Dann **entscheiden**: Welche Aussage würdest du vor dem Beirat vertreten, welche nicht? Mindestens eine Kernaussage selbst umformulieren oder ersetzen lassen, zum Beispiel: „Ersetze die schwächste Aussage durch eine zur Datenaufnahme der stationären Anlagen.“ Danach prüfen lassen: „Belegt jede Zahl genau das, was ihr Satz behauptet, und zeigen die drei Aussagen drei verschiedene Dinge? Sag mir zuerst je Aussage, was hält und was nicht, dann korrigiere.“ |
+| **1 · Überblick** (Vorführung in der Einführung; selbst stellen ist eine Zusatzaufgabe) | „Ich leite die Unternehmensentwicklung und soll dem Beirat zeigen, wo wir wachsen und wo wir verlieren. Verschaff dir einen Überblick über alle Datentabellen mit Zeilenzahl und je einem Satz, wozu sie dient. Schlag mir dann fünf Kennzahlen für 2026 vor, je mit Wert und Definition, darunter Absatz und Nettoumsatz mit der Veränderung zum Vorjahr nach unseren verbindlichen Definitionen. Noch keine Webseite.“ | In der Vorführung mitprüfen: Stammen die Zahlen aus dem Übungsausschnitt (32 Kunden) und nicht aus dem Unternehmensprofil? Hat jede Kennzahl eine Definition? Sind Gutschriften, Retouren, Muster und doppelt importierte Positionen richtig behandelt, und ist die Fremdwährung umgerechnet? |
+| **2 · Überblick im Dashboard** (zuerst im Plan-Modus) | „Ich leite die Unternehmensentwicklung. Liegt in meinen Ergebnissen eine Notiz von Lina Osterkamp zur Kundenzahl, lies sie zuerst und nimm ihre Empfehlung als Zählweise für die Kunden. Lege dann mein Dashboard an, im Circle Design aus dem Ordner design/circle: Lies zuerst die Stilfibel und nimm das Beispiel-Dashboard als Gerüst. Der erste Reiter heißt ‚Überblick‘: oben Kacheln für Kunden, Lieferstellen, Absatz 2026 in Litern und Nettoumsatz 2026 in EUR, Absatz und Umsatz mit der Veränderung zum Vorjahr, jede Kachel mit ihrer Definition nach unseren Kennzahlen; darunter unser Bestand nach Segment, Land, Vertriebsweg und Anwendung, je mit Kunden, Lieferstellen und Litern 2026; dazu der Absatz von 2021 bis 2026 als Zeitreihe, Januar und Februar 2027 sichtbar als Teiljahr abgesetzt. Eine Filterleiste für Segment, Land und Vertriebsweg soll auf alle Zahlen wirken. Öffne das Dashboard im Browser.“ | Zuerst den Plan lesen: Steht die Zählweise aus Linas Notiz drin, sind Absatz und Umsatz so definiert wie in unseren Kennzahlen (netto, ohne Muster, Fremdwährung zum Konzernkurs), rechnet Claude mit einem Skript, und bindet es Circle Design ein, ohne eigene Farben? Einen Punkt ändern oder freigeben. **Entscheiden:** Folgst du Linas Empfehlung? Dann im Browser: Sieht das Dashboard aus wie das Beispiel (Papierton, weiße Karten, ruhige Schrift)? Selbst klicken: Vertriebsweg auf „Händler“ stellen. Ändern sich Kacheln, Bestand und Zeitreihe? Siehst du Filter und alle Kacheln, ohne zu scrollen? Dann eine Verbesserung verlangen, die **du** willst, zum Beispiel: „Zeig in der Zeitreihe den Wert am letzten vollen Jahr als Zahl.“ |
+| **3 · Wo wachsen wir, wo verlieren wir?** | „Vergleiche Absatz in Litern und Nettoumsatz 2026 mit 2025, insgesamt und getrennt nach Auftragsart (Nachfüllung, Erstbefüllung, Notfall) und nach Vertriebsweg. Nenne zuerst deine Definitionen. Zeig es mir als Tabelle mit beiden Jahren, der Veränderung und der Zahl der Positionen, noch nichts ins Dashboard.“ | Definition prüfen: Wie sind Gutschriften und Retouren der Auftragsart zugeordnet? Zählen Muster mit? **Nachhaken:** „Woher kommt der Rückgang der Liter? Vergleiche Nachfüllung und Erstbefüllung, und zeig mir die Erstbefüllungen 2025 und 2026 einzeln mit Kunde, Anlage und Litern.“ Dann: „Gibt es 2026 einzelne sehr große Lieferungen? Wie sehen Umsatz und Veränderung je Segment ohne sie aus?“ Halte in einem Satz fest, wo wir wachsen und wo wir verlieren. Erst wenn du den Zahlen traust, freigeben: „Übernimm das in einen zweiten Reiter ‚Wachstum‘ hinter dem Überblick: Absatz 2025 und 2026 nach Auftragsart und nach Vertriebsweg; Nachfüllung und Erstbefüllung 2021 bis 2026 als Zeitreihe in Litern; einen Hinweis zur großen Notfalllieferung mit den Werten mit und ohne sie; eine Kachel mit dem Anteil der fünf größten Kunden am Umsatz 2026; dazu eine Wachstumsampel je Segment und je Vertriebsweg nach unserer Regel, mit den Zustandsfarben aus Circle Design als Pille mit Form und Wort, die Regel sichtbar darüber. Die Filter sollen auch hier wirken. Der Reiter ‚Überblick‘ bleibt unverändert.“ | Erschrick nicht: Einige Gruppen haben weniger als 20 Positionen und bleiben in der Ampel eine Lücke, auch wenn dort viel passiert. Schau dir an, was die Ampel für das Segment Industrie sagt, und vergleiche mit deiner Rechnung ohne die Notfalllieferung: Hält die Farbe? Danach „Händler“ wählen: Ändern sich Kacheln und Zeitreihe, behält jede Linie ihre Farbe? Kannst du jede Zahl lesen? Funktioniert der Reiter „Überblick“ noch? |
+| **4 · Drei Kernaussagen** | „Schreib mir eine Management-Summary für den Beirat mit genau drei Kernaussagen zur Frage ‚Wo wachsen wir, wo verlieren wir?‘. Jede Kernaussage als ganzer Satz, der sagt, worauf der Beirat achten oder reagieren sollte, belegt mit einer Zahl samt Definition und Quelle in Worten. Hänge den Absatz 2025 und 2026 nach Auftragsart und Vertriebsweg als kleine Tabelle an. Leg sie in meinen Ergebnissen ab und zeig sie mir hier.“ | Eine Zahl nachrechnen lassen: „Rechne mir den Absatz 2026 im Nachfüllgeschäft vor: welche Positionen zählen, welche nicht, Gutschriften und Retouren je mit Menge.“ Dann **entscheiden**: Welche Aussage würdest du vor dem Beirat vertreten, welche nicht? Mindestens eine Kernaussage selbst umformulieren oder ersetzen lassen, zum Beispiel: „Ersetze die schwächste Aussage durch eine zur Notfalllieferung: Was bedeutet sie für den Vergleich mit 2025?“ Danach prüfen lassen: „Belegt jede Zahl genau das, was ihr Satz behauptet, und zeigen die drei Aussagen drei verschiedene Dinge? Sag mir zuerst je Aussage, was hält und was nicht, dann korrigiere.“ |
 
 ## Fertig, wenn
 
 - dein Dashboard im Circle Design im Browser öffnet, mit zwei Reitern: „Überblick“ mit Kacheln, Bestand,
-  Filterleiste und Zeitreihe, „Umstellung“ mit Fluorfrei-Anteil nach Anwendung, Ziellinie und Ampel,
-- der Filter „Industrie“ Kacheln **und** Zeitreihen verändert,
-- du die Definition des Fluorfrei-Anteils in eigenen Worten erklären kannst und weißt, woran der Rückstand liegt,
-- du eine Zahl selbst nachgerechnet oder dir hast vorrechnen lassen, mit Zähler und Nenner,
+  Filterleiste und Zeitreihe, „Wachstum“ mit Auftragsarten, Vertriebswegen, Notfall-Hinweis und Wachstumsampel,
+- der Filter „Händler“ Kacheln **und** Zeitreihen verändert,
+- du in eigenen Worten erklären kannst, wo wir 2026 wachsen, wo wir verlieren und welche Rolle die Notfalllieferung
+  spielt,
+- du eine Zahl selbst nachgerechnet oder dir hast vorrechnen lassen,
 - die Management-Summary mit drei Kernaussagen in deinen Ergebnissen liegt und mindestens eine Aussage deine
   eigene Entscheidung trägt.
 
@@ -87,27 +88,28 @@ Nimm den nächsten Hinweis erst, wenn du ihn brauchst.
    Dashboard im Browser.“ Bleiben die Diagramme leer: „Zeichne die Diagramme ohne externe Bibliotheken, damit das
    Dashboard auch ohne Internet läuft.“ Sieht es anders aus als `design/circle/beispiel-dashboard.html`: „Binde
    circle.css und komponenten.css aus design/circle relativ ein und nimm nur deren Bausteine und Farben.“
-2. **Die Filter wirken nicht auf den Fluorfrei-Anteil, oder der Anteil springt seltsam?** Frag: „Die Filter sollen
-   den Anteil neu berechnen: fluorfreie Liter und alle Liter getrennt zusammenzählen und erst dann teilen, nicht
-   Anteile mitteln.“
+2. **Die Filter wirken nicht, oder Veränderungen springen seltsam?** Frag: „Die Filter sollen alle Zahlen neu
+   berechnen: Werte je Jahr erst zusammenzählen und dann vergleichen, nicht Prozentwerte mitteln.“
 3. **Deine Zahlen weichen von denen deines Peers ab, oder der Reiter ist kaputt?** Frag: „Zeig mir deine Definition
    und rechne mir 2026 vor.“ Unterschiede kommen fast immer aus Gutschriften, Mustern, Doppelimporten, Gebinden ohne
-   Literangabe oder der Währung. Ist ein Reiter kaputt: „Baue den Reiter ‚Umstellung‘ neu, lass den Überblick
+   Literangabe oder der Währung. Ist ein Reiter kaputt: „Baue den Reiter ‚Wachstum‘ neu, lass den Überblick
    unverändert.“
 
 ## Für Schnelle
 
 **Zusatzaufgabe zuerst: die Rückfrage-Runde.** Stell Claude zwei oder drei Fragen, die der Beirat zu deiner
-Summary stellen würde, zum Beispiel: „Der Vorsitzende fragt, ob wir mit der Umstellung Kunden verlieren. Was
-sagen die Daten, nach meiner Zählweise der Kunden?“ Prüfe, ob jede Antwort mit einer Zahl aus unseren Tabellen
-belegt ist. Die Antworten bleiben im Chat; die Summary änderst du nur, wenn eine Aussage dadurch nicht mehr hält.
+Summary stellen würde, zum Beispiel: „Der Vorsitzende fragt, ob wir Kunden verlieren. Was sagen die Daten, nach
+unserer Definition aktiv, ruhend und verloren?“ Prüfe, ob jede Antwort mit einer Zahl aus unseren Tabellen belegt
+ist. Die Antworten bleiben im Chat; die Summary änderst du nur, wenn eine Aussage dadurch nicht mehr hält.
 
 Danach, wenn noch Zeit bleibt, **eines** von diesen:
 
-- **Vertiefen:** „Welche Lieferstellen haben schon ein fluorfreies Produkt bekommen und danach wieder ein
-  fluorhaltiges? Zeig sie mir mit Datum, ohne Wertung.“
-- **Vorausbauen (Drill 2):** „Was verdienen wir an einem Liter fluorfrei im Vergleich zu fluorhaltig? Lies dazu nur
-  die Definition des Deckungsbeitrags und sag mir, welche Tabellen du dafür brauchst. Noch nichts rechnen.“
+- **Etappe 1 selbst stellen:** Schick den Prompt aus Etappe 1 und vergleiche die vorgeschlagenen Kennzahlen mit
+  deinen Kacheln.
+- **Vertiefen:** „Wie abhängig sind wir von unseren größten Kunden? Zeig mir den Anteil der fünf größten Kunden am
+  Nettoumsatz 2025 und 2026, einmal mit und einmal ohne die Notfalllieferung.“
+- **Vorausbauen (Drill 2):** „Wo verdienen wir mehr, im Händlergeschäft oder direkt? Lies dazu nur die Definition
+  des Deckungsbeitrags und sag mir, welche Tabellen du dafür brauchst. Noch nichts rechnen.“
 
 ## Drei Arbeitsweisen
 
@@ -122,8 +124,9 @@ Danach, wenn noch Zeit bleibt, **eines** von diesen:
 Kommst du später dazu oder fehlt dir die Notiz aus Drill 0? Sag „Ich möchte mit Drill 1 weitermachen“. Claude
 bietet dir dann einen Zwischenstand mit einer Notiz zur Kundenzahl an.
 
-> **Das brauchst du in Drill 2:** dein Dashboard mit „Überblick“ und „Umstellung“ und deine Summary. Der Reiter
-> „Finanzen“ kommt in dasselbe Dashboard, im selben Circle Design. Die Liter und der Fluorfrei-Anteil erklären dort Menge und Mix gegen das Budget, und die große
-> Einzellieferung, die du in Etappe 3 gefunden hast, spielt im Deckungsbeitrag eine Hauptrolle.
+> **Das brauchst du in Drill 2:** dein Dashboard mit „Überblick“ und „Wachstum“ und deine Summary. Der Reiter
+> „Finanzen“ kommt in dasselbe Dashboard, im selben Circle Design. Die fehlenden Liter aus dem Projektgeschäft
+> erklären dort den Mengeneffekt gegen das Budget, und die große Notfalllieferung, die du in Etappe 3 gefunden
+> hast, spielt im Deckungsbeitrag eine Hauptrolle.
 
 Alle Personen, Firmen und Zahlen bei Dr. Sthamer sind erfunden. Verwende keine echten Kundendaten.

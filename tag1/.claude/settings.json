@@ -49,7 +49,6 @@
       "Edit(./CLAUDE.md)",
       "Edit(./.claude/settings.json)",
       "Edit(./daten/**)",
-      "Edit(./akten/**)",
       "Edit(./regelwerke/**)",
       "Edit(./angebotseingang/**)",
       "Edit(./praesentation/**)",

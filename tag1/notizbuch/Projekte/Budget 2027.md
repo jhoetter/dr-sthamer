@@ -26,14 +26,14 @@ Budget **EUR 9.500**
 | Jannik – Führungsgrundlagen | 2.400 |
 | Anke – Seminar Kundenkommunikation | 900 |
 | Hauke – Disponentenschulung | 1.100 |
-| Team – Inhouse Zumischtechnik fluorfrei | 3.000 |
+| Team – Inhouse-Schulung Anlagentechnik | 3.000 |
 | Reserve | 2.100 |
 | **Summe** | **9.500** |
 
 ## Entscheid 17.12.
 - Weiterbildung wie beantragt
 - keine neue Stelle; Rufbereitschaft Süd „mit Nord überbrücken“
-- GF erwartet Checkliste Datenaufnahme im Q1
+- GF erwartet Servicekatalog im Q1 (für Henrike)
 
 ---
 

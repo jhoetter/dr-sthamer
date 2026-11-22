@@ -7,7 +7,7 @@ tags: [person, team, aussendienst]
 
 # Jannik Thormählen
 
-- **Rolle:** Außendienst-Anwendungstechnik Region Nord (Industrie, Häfen), Kundenschulungen Umstellung
+- **Rolle:** Außendienst-Anwendungstechnik Region Nord (Industrie, Häfen), Kundenschulungen
 - **seit:** 2019
 - **Kontakt:** jannik.thormaehlen@sthamer-uebung.example.com
 - 1:1 Do
@@ -16,16 +16,16 @@ tags: [person, team, aussendienst]
 ## Was ich an ihm schätze (laut meinen Notizen)
 - stark beim Kunden, Schulungen kommen sehr gut an
 - denkt mit, bringt Ideen ins JF
-- bei Konflikten schnell in Verteidigung (Raffinerie), siehe [[Fall Raffinerie Küstenmark]]
+- bei Konflikten schnell in Verteidigung (Prüfauftrag), siehe [[Prüfauftrag Werkfeuerwehr Nord]]
 
 ## Entwicklungswünsche
 - **Führung:** „in zwei, drei Jahren Teamleitung“, fragt nach eigener Teamleitung Außendienst
 - Führungsgrundlagen-Programm 2027 ([[Weiterbildungswünsche 2027]])
-- will Checkliste Datenaufnahme als eigenes Projekt führen (Jan.)
+- will den Servicekatalog als eigenes Projekt führen (Jan.)
 
 ## Wv.
 - Jahresgespräch Do 11.03.2027
-- Termin Datenaufnahme Verladestation Raffinerie – offen
+- Messe Brandschutztage Nord April 2027 – Standdienst
 
 ---
 

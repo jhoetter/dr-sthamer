@@ -1,0 +1,67 @@
+{
+  "id": "A-01",
+  "kunde": "Reederei Ostsee Linien AG (K-1018)",
+  "thema": "Rückfrage zum Angebot vom Juli 2026, Bestellwunsch zum alten Preis",
+  "datum": "01.03.2027",
+  "auftragswert_eur": 9342.62,
+  "auftragswert_hinweis": "neues Angebot, Preisliste 2026, ohne Fracht; altes Angebot des Assistenten: EUR 8.368,03",
+  "klasse": "C",
+  "punkte": 2,
+  "empfehlung_kurz": "Neues Angebot zur Preisliste 2026, technische Bestätigung erst nach Anlagenprüfung",
+  "entscheid": "neues Angebot statt alten Preis halten; Freigabe Klasse C bleibt bei der Leitung Angebotsmanagement, technische Zusage bei der Anwendungstechnik",
+  "vorlage": "entscheidungsvorlage-a-01.md",
+  "pfad": [
+    {
+      "schritt": "Preisliste und Richtlinie",
+      "angabe": "Neues Angebot mit Angebotsdatum 01.03.2027 (das Angebot vom 14.07.2026 ist seit 12.09.2026 abgelaufen)",
+      "paragraf": "RL-ANG-2026 § 6 Nr. 1 und 3",
+      "ergebnis": "Preisliste 2026 und RL-ANG-2026; der Assistent hatte mit der Preisliste 2025 (Anfragedatum) gerechnet",
+      "mensch": false
+    },
+    {
+      "schritt": "Prüfumfang nach Auftragswert",
+      "angabe": "Auftragswert EUR 9.342,62 (Nettowarenwert nach Rabatten, ohne Fracht)",
+      "paragraf": "RL-ANG-2026 § 2 Nr. 1 und 3",
+      "ergebnis": "bis EUR 25.000: Preisliste, Rabatt nach Staffel, Kundenstatus, Zahlungsziel; Bestandskunde, keine Bonitätsprüfung nötig",
+      "mensch": false
+    },
+    {
+      "schritt": "Rabatt",
+      "angabe": "2.200 l Hafenschaum FFFP 3 %, davon 1.600 l Befüllung zweier Anlagen und 600 l Reserve",
+      "paragraf": "RL-ANG-2026 § 3 Nr. 1, 2 und 5",
+      "ergebnis": "Mengenrabatt 3 % auf alles, Projektrabatt 5 % einmal und nur auf die Befüllung; Liste EUR 10.003,20, netto EUR 9.342,62",
+      "mensch": false
+    },
+    {
+      "schritt": "Anlagenprüfung",
+      "angabe": "Neubefüllung stationärer Anlagen; der Kunde verlangt eine schriftliche Bestätigung „ohne Reinigung und ohne Anpassung“",
+      "paragraf": "RL-ANG-2026 § 2 Nr. 4, § 5 Nr. 2 und 3; KO-2026 § 4",
+      "ergebnis": "Anlagenprüfung ist Pflicht; bis dahin nur Produktdaten nach Datenblatt, Anlagenprüfung als erster Schritt",
+      "mensch": true,
+      "stelle": "Anwendungstechnik"
+    },
+    {
+      "schritt": "Angebotsklasse",
+      "angabe": "2 Punkte (Technik 2, alle anderen Merkmale 0) = Klasse B; Mindestklasse C wegen verlangter technischer Zusage",
+      "paragraf": "RL-ANG-2026 § 8 Nr. 2 bis 4",
+      "ergebnis": "Klasse C (der Assistent hatte Klasse A vergeben)",
+      "mensch": false
+    },
+    {
+      "schritt": "Kompetenz",
+      "angabe": "Klasse C bis EUR 150.000; der Assistent darf nur Klasse A bis EUR 25.000 selbst versenden",
+      "paragraf": "RL-ANG-2026 § 9 Nr. 1 und 2; KO-2026 § 2",
+      "ergebnis": "Freigabe durch die Leitung Angebotsmanagement (Tender Desk); der Assistent legt nur einen Entwurf vor",
+      "mensch": true,
+      "stelle": "Leitung Angebotsmanagement"
+    },
+    {
+      "schritt": "Wahl: neues Angebot oder alter Preis",
+      "angabe": "Das Angebot vom 14.07.2026 ist abgelaufen; den alten Preis EUR 8.368,03 weiter gelten zu lassen wäre ein Rabatt über der Staffel",
+      "paragraf": "RL-ANG-2026 § 3 Nr. 6, § 6 Nr. 3, § 10 Nr. 3",
+      "ergebnis": "Entschieden durch mich: neues Angebot (EUR 9.342,62), nicht den alten Preis halten",
+      "mensch": true,
+      "stelle": "Leitung Angebotsmanagement"
+    }
+  ]
+}

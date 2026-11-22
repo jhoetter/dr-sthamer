@@ -1,85 +1,109 @@
-# Reiter „Überblick“: erzeugt dashboard-daten/ueberblick.js
-# Definitionen: siehe kennzahlen.json (Fluorfrei-Anteil, aktiver Kunde); Kunden nach Notiz Drill 0
+# -*- coding: utf-8 -*-
+"""Reiter „Überblick“: rechnet aus den Tabellen und schreibt dashboard-daten/ueberblick.js.
+
+Aufruf: python meine-ergebnisse/skripte/ueberblick.py
+
+Der Browser rechnet bei jedem Filter neu aus den hier geschriebenen Zeilen (Summen und Zähler,
+nie gemittelte Quoten). Zahlen hier = Kontrolle für den Chat.
+"""
 import json
 import os
 import sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kern import lese_csv, lade_positionen, absatz, BASIS
+import gemeinsam as g
 
-pos, stat = lade_positionen()
-kunden = {r["id"]: r for r in lese_csv("kunden.csv")}
-lieferstellen = lese_csv("lieferstellen.csv")
+pos, stat = g.positionen()
+kd = g.kunden()
+ls = g.lieferstellen()
 
+LAENDER = {"DE": "Deutschland", "AT": "Österreich", "NL": "Niederlande", "PL": "Polen",
+           "NO": "Norwegen", "GB": "Großbritannien", "CH": "Schweiz"}
+ANWENDUNGEN = {"stationaere_anlage": "stationäre Anlage", "feuerwehrfahrzeug": "Feuerwehrfahrzeug",
+               "lager_bestand": "Lagerbestand", "uebung_training": "Übung und Training",
+               "tragbarer_feuerloescher": "tragbarer Feuerlöscher", "fahrbarer_feuerloescher": "fahrbarer Feuerlöscher"}
+WEGE = ["direkt", "Händler", "Rahmenvertrag", "Notfallservice"]
 
-def periode(p):
-    return "2027T" if p["jahr"] == 2027 else str(p["jahr"])
+kunden_ids = sorted(kd)
+kidx = {k: i for i, k in enumerate(kunden_ids)}
+segmente = sorted(set(v["segment"] for v in kd.values()))
+laender = sorted(set(v["land"] for v in kd.values()), key=lambda c: LAENDER[c])
+anw_codes = list(ANWENDUNGEN)
+ls_ids = sorted(ls)
+lidx = {k: i for i, k in enumerate(ls_ids)}
 
-
-# Zellen: Zeitraum x Segment x Land x Vertriebsweg x Anwendung (ohne Muster)
-zellen = defaultdict(lambda: {"l": 0.0, "ff": 0.0, "fh": 0.0, "u": 0.0, "n": 0})
+# ---- Zeilen: Jahr x Kunde x Lieferstelle x Vertriebsweg (ohne Muster) ----
+zeilen = defaultdict(lambda: [0.0, 0.0, 0])
 for p in pos:
-    if not absatz(p):
+    if p["muster"]:
         continue
-    k = (periode(p), p["segment"], p["land"], p["vertriebsweg"], p["anwendung"])
-    z = zellen[k]
-    z["l"] += p["liter"]
-    if p["linie"] == "fluorfrei":
-        z["ff"] += p["liter"]
-    elif p["linie"] == "fluorhaltig":
-        z["fh"] += p["liter"]
-    z["u"] += p["umsatz_eur"]
-    z["n"] += 1
+    key = (p["jahr"], kidx[p["kunde"]], lidx[p["ls"]], WEGE.index(p["vw"]))
+    z = zeilen[key]
+    z[0] += p["liter"]
+    z[1] += p["eur"]
+    z[2] += 1
+zeilen_liste = [[k[0], k[1], k[2], k[3], round(v[0], 1), round(v[1], 4), v[2]] for k, v in sorted(zeilen.items())]
 
-zellen_liste = []
-for k, z in sorted(zellen.items()):
-    zellen_liste.append({"j": k[0], "seg": k[1], "land": k[2], "weg": k[3], "anw": k[4],
-                         "l": round(z["l"], 2), "ff": round(z["ff"], 2), "fh": round(z["fh"], 2),
-                         "u": round(z["u"], 2), "n": z["n"]})
-
-# Kunden: aktiv nach Definition (Lieferung ab 01.03.2025); Vertriebswege dieser Lieferungen
-wege = defaultdict(set)
+# ---- aktiver Kunde (24 Monate): Tripel Kunde x Lieferstelle x Vertriebsweg mit Lieferung ----
+aktiv = set()
 for p in pos:
-    if p["art"] == "Lieferung" and p["datum"] >= "2025-03-01":
-        wege[p["kunde_id"]].add(p["vertriebsweg"])
-anw_kunde = defaultdict(set)
-for r in lieferstellen:
-    anw_kunde[r["kunde_id"]].add(r["anwendung"])
-kunden_liste = []
-for kid in sorted(wege):
-    k = kunden[kid]
-    kunden_liste.append({"id": kid, "seg": k["segment"], "land": k["land"],
-                         "wege": sorted(wege[kid]), "anw": sorted(anw_kunde[kid])})
+    if p["art"] == "Lieferung" and not p["muster"] and p["ld"] >= g.FENSTER_24M_AB and p["ld"] <= g.STICHTAG:
+        aktiv.add((kidx[p["kunde"]], lidx[p["ls"]], WEGE.index(p["vw"])))
+aktiv_liste = sorted([list(t) for t in aktiv])
 
-# Lieferstellen (Stamm); Vertriebswege = Wege aller bisherigen Lieferungen an die Lieferstelle
-ls_wege = defaultdict(set)
+# ---- Lieferstelle x Vertriebsweg (je mindestens eine Lieferung seit 2021) ----
+ls_weg = set()
 for p in pos:
-    if p["art"] == "Lieferung":
-        ls_wege[p["lieferstelle_id"]].add(p["vertriebsweg"])
-ls_liste = []
-for r in lieferstellen:
-    k = kunden[r["kunde_id"]]
-    ls_liste.append({"seg": k["segment"], "land": k["land"], "anw": r["anwendung"],
-                     "wege": sorted(ls_wege[r["lieferstelle_id"]])})
+    if p["art"] == "Lieferung" and not p["muster"]:
+        ls_weg.add((lidx[p["ls"]], WEGE.index(p["vw"])))
+ls_weg_liste = sorted([list(t) for t in ls_weg])
 
 daten = {
     "stichtag": "28.02.2027",
-    "ziel": 60,
-    "zellen": zellen_liste,
-    "kunden": kunden_liste,
-    "lieferstellen": ls_liste,
-    "segmente": sorted(set(k["segment"] for k in kunden.values())),
-    "laender": sorted(set(k["land"] for k in kunden.values())),
-    "wege": ["direkt", "Händler", "Rahmenvertrag", "Notfallservice"],
-    "anwendungen": sorted(set(r["anwendung"] for r in lieferstellen)),
-    "statistik": stat,
+    "jahre": [2021, 2022, 2023, 2024, 2025, 2026],
+    "teiljahr": 2027,
+    "fenster24": "01.03.2025 bis 28.02.2027",
+    "segmente": segmente,
+    "laender": [{"code": c, "name": LAENDER[c]} for c in laender],
+    "wege": WEGE,
+    "anwendungen": [{"code": c, "name": ANWENDUNGEN[c]} for c in anw_codes],
+    "kunden": [{"id": k, "segment": kd[k]["segment"], "land": kd[k]["land"]} for k in kunden_ids],
+    "lieferstellen": [{"id": s, "kunde": kidx[ls[s]["kunde_id"]], "anwendung": anw_codes.index(ls[s]["anwendung"])} for s in ls_ids],
+    "zeilen": zeilen_liste,
+    "aktiv24": aktiv_liste,
+    "ls_weg": ls_weg_liste,
 }
 
-ziel = os.path.join(BASIS, "meine-ergebnisse", "dashboard-daten")
+ziel = os.path.join(g.BASIS, "meine-ergebnisse", "dashboard-daten")
 os.makedirs(ziel, exist_ok=True)
 with open(os.path.join(ziel, "ueberblick.js"), "w", encoding="utf-8") as f:
-    f.write("const UEBERBLICK = " + json.dumps(daten, ensure_ascii=False) + ";\n")
-print("Zellen:", len(zellen_liste), "Kunden:", len(kunden_liste), "Lieferstellen:", len(ls_liste))
-print("Segmente:", daten["segmente"])
-print("Länder:", daten["laender"])
+    f.write("/* erzeugt von skripte/ueberblick.py, nicht von Hand ändern */\n")
+    f.write("const UEBERBLICK_DATEN = " + json.dumps(daten, ensure_ascii=False, separators=(",", ":")) + ";\n")
+
+# ---- Kontrollzahlen für den Chat ----
+print("Bereinigung:", stat)
+print("Kunden (aktiver Kunde, 24 Monate):", len(set(t[0] for t in aktiv)))
+print("Lieferstellen (Tabelle):", len(ls_ids), " davon mit Lieferung seit 2021:", len(set(t[0] for t in ls_weg)))
+je_jahr = defaultdict(lambda: [0.0, 0.0, 0])
+for z in zeilen_liste:
+    je_jahr[z[0]][0] += z[4]
+    je_jahr[z[0]][1] += z[5]
+    je_jahr[z[0]][2] += z[6]
+for j in sorted(je_jahr):
+    l, e, n = je_jahr[j]
+    print(j, "Absatz l:", g.de(l), " Nettoumsatz EUR:", g.de(e, 2), " Positionen:", n)
+l25, e25, _ = je_jahr[2025]
+l26, e26, _ = je_jahr[2026]
+print("Veränderung 2026 gegen 2025: Absatz {:+.1f} %, Nettoumsatz {:+.1f} %".format((l26 / l25 - 1) * 100, (e26 / e25 - 1) * 100))
+print("Konzernkurse 2026:", g.kurse()["2026"])
+print("Zeilen in ueberblick.js:", len(zeilen_liste))
+# Händler-Kontrolle
+h = defaultdict(lambda: [0.0, 0.0, 0])
+for z in zeilen_liste:
+    if WEGE[z[3]] == "Händler":
+        h[z[0]][0] += z[4]
+        h[z[0]][1] += z[5]
+        h[z[0]][2] += z[6]
+print("Händler je Jahr (Liter, EUR, Positionen):", {j: (round(v[0]), round(v[1]), v[2]) for j, v in sorted(h.items())})
+print("Kunden mit Händler-Lieferung 24 Monate:", len(set(t[0] for t in aktiv if t[2] == 1)))

@@ -1,9 +1,9 @@
 # Checkpoint tag1-ende
 
 Arbeitsstand nach Drill 0 bis 5 für „Ich möchte mit Drill … weitermachen“ bzw. „Lade den Stand nach Drill …“.
-Erzeugt am 21.11.2026 aus einer Simulation mit Claude Code (Sonnet) im Ordner tag1.
+Erzeugt am 22.11.2026 aus einer Simulation mit Claude Code (Sonnet) im Ordner tag1.
 
-Enthält dazu die Präsentation an den Beirat im Exhibit-Stil (praesentation.html und PDF).
+Enthält dazu die Präsentation an den Beirat „Geschäftsjahr 2026 und Prioritäten 2027“ im Exhibit-Stil (praesentation.html mit Sprechernotizen und praesentation.pdf, fünf Folien und Anhang).
 
 Claude kopiert den Inhalt dieses Ordners in den Ordner tag1 (meine-ergebnisse/, gegebenenfalls
 notizbuch/Vorbereitung/ und .claude/skills/). Eigene Ergebnisse wandern vorher nach

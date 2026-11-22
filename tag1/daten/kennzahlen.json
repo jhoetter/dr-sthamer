@@ -43,37 +43,63 @@
     }
   },
   "ziele": {
-    "fluorfrei_anteil": {
-      "2026": 0.6,
-      "2027": 0.8
+    "hinweis": "Ziele der Geschäftsführung für 2026 = Budget 2026 (budget_2026.csv), zum Plankurs, ohne Notfallservice; für 2027 noch nicht beschlossen",
+    "2026": {
+      "nettoumsatz_eur": 886798.9,
+      "absatz_l": 236670,
+      "deckungsbeitrag_eur": 348764.44,
+      "db_marge": 0.3933
     }
   },
   "definitionen": {
-    "fluorfrei_anteil": {
-      "formel": "Liter der fluorfreien Produktlinie / alle gelieferten Liter im Kalenderjahr",
-      "zaehler": "Positionen mit produkte.produktlinie = 'fluorfrei'",
-      "nenner": "alle Positionen (alle Produktlinien)",
-      "jahr": "nach Lieferdatum (Kalenderjahr)",
-      "netto": "Gutschriften und Retouren mit ihren negativen Mengen abziehen",
-      "ohne": [
-        "Muster (art = 'Muster')",
-        "Doppelimporte (gleiche auftrag_id und position nur einmal zählen)"
-      ],
-      "liter": "menge_l; fehlt es, menge x Gebindegröße (umrechnung_gebinde)",
-      "hinweis": "Die Deklaration (produkte.fluorfrei_deklariert) ist nicht die Grundlage der Kennzahl."
+    "bereinigung": {
+      "doppelimporte": "gleiche auftrag_id und position nur einmal zählen",
+      "jahr": "nach Lieferdatum (Kalenderjahr); Jan.-Feb. 2027 ist ein Teiljahr"
     },
-    "aktiver_kunde": "mindestens ein Auftrag (art = 'Lieferung') in den 24 Monaten vor dem Stichtag",
     "umrechnung_gebinde": {
       "IBC": 1000,
       "Fass": 200,
       "Kanister": 20,
       "l": 1
     },
+    "absatz_l": {
+      "formel": "Summe Liter aller Positionen, netto (Gutschriften und Retouren mit ihren negativen Mengen abziehen), ohne Muster",
+      "liter": "menge_l; fehlt es, menge x Gebindegröße (umrechnung_gebinde)"
+    },
+    "nettoumsatz": "Summe nettobetrag aller Positionen (Lieferungen, Gutschriften und Retouren negativ, Muster 0), Fremdwährung zum Konzernkurs des Lieferjahres in EUR",
+    "wachstum": {
+      "formel": "Wert 2026 / Wert 2025 - 1, für Absatz (Liter) oder Nettoumsatz (EUR)",
+      "hinweis": "nur ganze Jahre vergleichen; Teiljahr 2027 nie gegen ganze Jahre stellen"
+    },
+    "auftragsart": {
+      "Nachfüllung": "wiederkehrender Bedarf einer bestehenden Lieferstelle (Ersatz nach Einsatz, Übung, Ablauf, Lagerumschlag)",
+      "Erstbefüllung": "erste Befüllung einer neuen Anlage, eines neuen Fahrzeugs oder Lagers (einmaliges Projektgeschäft)",
+      "Notfall": "Lieferung des Notfallservice nach einem Einsatz (nicht planbar, nicht budgetiert)",
+      "Muster": "Musterlieferung, 0 EUR, zählt nicht zum Absatz"
+    },
+    "nachfuell_anteil": {
+      "formel": "Absatz (Liter) mit auftragsart = 'Nachfüllung' / gesamter Absatz (Liter) im Kalenderjahr",
+      "projektanteil": "Absatz mit auftragsart = 'Erstbefüllung' / gesamter Absatz",
+      "hinweis": "Gutschriften und Retouren zählen zu der Auftragsart der ursprünglichen Lieferung"
+    },
+    "top5_anteil": {
+      "formel": "Nettoumsatz der fünf umsatzstärksten Kunden / gesamter Nettoumsatz im Kalenderjahr",
+      "kunde": "Kunde nach kunde_id (Händler zählen als ein Kunde, ihre Endkunden nicht einzeln)"
+    },
+    "aktiver_kunde": "mindestens ein Auftrag (art = 'Lieferung') in den 24 Monaten vor dem Stichtag",
+    "kundenstatus": {
+      "grundlage": "Lieferdatum der letzten Lieferung (art = 'Lieferung') je Kunde, gemessen am Stichtag",
+      "aktiv": "letzte Lieferung höchstens 12 Monate vor dem Stichtag (ab 01.03.2026)",
+      "ruhend": "letzte Lieferung 12 bis 24 Monate vor dem Stichtag (01.03.2025 bis 28.02.2026)",
+      "verloren": "letzte Lieferung mehr als 24 Monate vor dem Stichtag (vor 01.03.2025) oder nie",
+      "hinweis": "aktiv + ruhend = aktiver Kunde (24 Monate); das Feld status im Kundenstamm ist etwas anderes"
+    },
     "deckungsbeitrag": {
       "formel": "Deckungsbeitrag = Nettoumsatz - Herstellkosten - Fracht; DB-Marge = Deckungsbeitrag / Nettoumsatz",
       "nettoumsatz": "Summe nettobetrag aller Positionen (Lieferungen, Gutschriften und Retouren negativ, Muster 0) in EUR, ohne Doppelimporte, Jahr nach Lieferdatum",
       "herstellkosten": "Liter x (rohstoff_eur_l + fertigung_eur_l) aus herstellkosten.csv für Produkt und Lieferjahr; für Lieferungen und Muster, Retouren mindern (Ware kommt zurück); Gutschriften ohne Herstellkosten (Ware bleibt beim Kunden)",
       "fracht": "fracht.csv je Auftrag; auf die Positionen des Auftrags nach Litern verteilt, Jahr nach Lieferdatum der Position",
+      "produktgruppe": "Schaumart aus produkte.csv",
       "hinweis": "Margen und Quoten aus den Summen bilden, nie Prozentwerte mitteln."
     },
     "umrechnung_fremdwaehrung": {
@@ -89,8 +115,9 @@
       "jahre": "nur 2025 und 2026 (für frühere Jahre gibt es keine Preisliste im Ausschnitt)"
     },
     "plan_ist_bruecke": {
-      "zellen": "Produktlinie x Segment, Kalenderjahr 2026",
-      "ist": "netto Liter wie fluorfrei_anteil; Umsatz und Kosten wie deckungsbeitrag; Notfallservice nicht in den Zellen, sondern als eigener Balken (nicht budgetiert)",
+      "zellen": "Segment x Vertriebsweg, Kalenderjahr 2026",
+      "ist": "netto Liter wie absatz_l; Umsatz und Kosten wie deckungsbeitrag; Notfallservice nicht in den Zellen, sondern als eigener Balken (nicht budgetiert)",
+      "reihenfolge": "Menge, Mix, Preis, (beim Deckungsbeitrag) Kosten, Fremdwährung, Notfallservice",
       "mengeneffekt": "(Ist-Liter gesamt - Plan-Liter gesamt) x Plan-Durchschnitt je Liter",
       "mixeffekt": "Summe je Zelle (Ist-Liter x Plan-Wert je Liter) - Ist-Liter gesamt x Plan-Durchschnitt je Liter",
       "preiseffekt": "Summe je Zelle (Ist-Umsatz zum Plankurs - Ist-Liter x Plan-Preis je Liter)",
@@ -99,11 +126,11 @@
       "wert_je_liter": "Umsatzbrücke: Umsatz je Liter; DB-Brücke: Deckungsbeitrag je Liter"
     }
   },
-  "ampel_regel": {
-    "grundlage": "Anteil fluorhaltiger Liter (produktlinie = 'fluorhaltig') je Segment und Land, Kalenderjahr",
-    "rot": "> 0.50",
-    "gelb": "0.20 bis 0.50 (beide Grenzen eingeschlossen)",
-    "gruen": "< 0.20",
-    "luecke": "weniger als 20 Positionen: keine Ampel, als Lücke zeigen"
+  "ampel_wachstum": {
+    "grundlage": "Veränderung des Nettoumsatzes 2026 gegen 2025 je Gruppe (Konzernkurs), aus Summen gerechnet",
+    "wachstum": "> +0.05",
+    "stabil": "-0.05 bis +0.05 (beide Grenzen eingeschlossen)",
+    "rueckgang": "< -0.05",
+    "luecke": "weniger als 20 Positionen 2026 oder 2025: keine Ampel, als Lücke zeigen"
   }
 }

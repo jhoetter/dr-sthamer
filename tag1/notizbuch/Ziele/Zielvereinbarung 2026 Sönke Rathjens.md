@@ -13,7 +13,7 @@ Bewertung zum Jahresende im Jahresgespräch 2027.
 | Nr. | Ziel | Messgröße | Termin |
 |---|---|---|---|
 | 1 | Reaktionszeit Notfalleinsätze Region Süd | ≤ 4 h vom Anruf bis vor Ort in ≥ 95 % der Einsätze | 31.12.2026 |
-| 2 | Umstellungen begleiten | 2 Umstellungsbegleitungen bei Feuerwehren Region Süd | 31.12.2026 |
+| 2 | Kundenschulungen Region Süd | 2 Schulungen für Gerätewarte bei Feuerwehren Region Süd | 31.12.2026 |
 | 3 | Vertretung Rufbereitschaft Süd | zweite Person eingearbeitet (mit Hauke) | 30.09.2026 |
 | 4 | Zeitkonto | ≤ 40 h zum Jahresende | 31.12.2026 |
 

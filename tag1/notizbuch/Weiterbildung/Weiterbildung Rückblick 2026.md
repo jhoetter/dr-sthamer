@@ -11,11 +11,11 @@ Für die Jahresgespräche.
 
 | Wer | 2026 besucht |
 |---|---|
-| [[Jannik Thormählen]] | Produktschulung fluorfrei (intern, März) |
+| [[Jannik Thormählen]] | Produktschulung Sortiment 2026 (intern, März) |
 | [[Sönke Rathjens]] | – (Termin Mai wegen Notfall abgesagt) |
 | [[Merle Ostendorp]] | – |
 | [[Tobias Kreienbrink]] | Fachtagung Labor (Sept.) |
-| [[Anke Wiebusch]] | Einführung neue Reklamationsrichtlinie (intern, Juni) |
+| [[Anke Wiebusch]] | Einführung neues Kundenportal (intern, Mai) |
 | [[Hauke Brodersen]] | – |
 
 Budget 2026 Weiterbildung: 6.000 EUR, ausgegeben ca. 2.300 EUR.

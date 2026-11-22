@@ -37,13 +37,14 @@ Ab Sept. alles hier statt Kladde. Nur für mich – nicht weitergeben.
 Dazu 8 Kolleginnen und Kollegen in Labor, Reklamationen und Notfallservice (über Tobias, Anke, Hauke).
 
 ## Drumherum
-- [[Henrike Vossberg]] – Programmleitung Fluorfrei-Umstellung
+- [[Henrike Vossberg]] – Leiterin Unternehmensentwicklung (berichtet an die GF)
 - Geschäftsführerin – Runde Teamleitungen Do 08:30
-- Leitung Regulatory Affairs – alles zu EU-Themen dorthin, keine Aussagen an Kunden
+- Vertriebsinnendienst – Angebote, Rahmenverträge, Liefertermine (Mathis Grevenbroich)
 
 ## Projekte
-- [[Fall Raffinerie Küstenmark]]
-- [[Checkliste Datenaufnahme]]
+- [[Prüfauftrag Werkfeuerwehr Nord]]
+- [[Reklamation Lieferverzug]]
+- [[Servicekatalog 2027]]
 - [[Budget 2027]]
 
 ## Jahresgespräche 2027

@@ -2,17 +2,18 @@
 datum: 2027-02-22
 typ: person
 person: Henrike Vossberg
-tags: [person, programmleitung]
+tags: [person, unternehmensentwicklung]
 ---
 
 # Dr. Henrike Vossberg
 
-- **Rolle:** Programmleiterin Fluorfrei-Umstellung (Produktmanagement & Daten), berichtet an GF und Beirat
+- **Rolle:** Leiterin Unternehmensentwicklung, berichtet an die Geschäftsführung, bereitet die Beiratssitzungen vor
 - **Kontakt:** henrike.vossberg@sthamer-uebung.example.com
 
 ## Notizen
-- will von uns: Umstellungen sauber vorbereiten, keine zweite Raffinerie
-- Memo 05.06. (Lehren Raffinerie) → Checkliste Datenaufnahme liegt bei uns ([[Checkliste Datenaufnahme]])
+- will von uns: klares Bild, was der Service bringt und was die Kunden wollen
+- Anfrage Juni → Servicekatalog liegt bei uns ([[Servicekatalog 2027]])
+- JF 08.02. zu Gast (Prioritäten 2027, s. [[2027-02-08 Jour fixe]])
 - Beiratssitzung März 2027: braucht kurzen Beitrag Anwendungstechnik (s. [[2027-02-22 Jour fixe]])
 
 ---

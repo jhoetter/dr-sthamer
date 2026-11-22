@@ -15,7 +15,7 @@ tags: [person, team, labor]
 
 ## Was ich an ihm schätze (laut meinen Notizen)
 - fachlich die Instanz im Haus, Laborberichte wasserdicht
-- Raffinerie: Ursache sauber belegt (Laborbericht 03.06.)
+- Prüfauftrag Werkfeuerwehr Nord: Ablauf lückenlos im Laborbuch belegt
 - kann knapp wirken, Außendienst empfindet ihn als „Bremser“
 
 ## Entwicklungswünsche

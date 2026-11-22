@@ -1,0 +1,236 @@
+/*
+ * Circle Design – Bausteine für Dashboards (Falk Uebernickel).
+ * Nutzt NUR Tokens aus circle.css – hier steht kein einziger Farbwert.
+ * Einbinden nach circle.css:
+ *   <link rel="stylesheet" href="../design/circle/circle.css">
+ *   <link rel="stylesheet" href="../design/circle/komponenten.css">
+ * Regeln und Beispiele: CIRCLE.md · Gerüst: beispiel-dashboard.html
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+
+/* ---------- Seite: Papierton mit drei weichen Farbverläufen ---------- */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background:
+    radial-gradient(60vw 50vh at 0% 0%, var(--wash-1), transparent 70%),
+    radial-gradient(55vw 45vh at 100% 0%, var(--wash-2), transparent 70%),
+    radial-gradient(70vw 50vh at 50% 110%, var(--wash-3), transparent 70%),
+    var(--color-bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* ---------- Typografie ---------- */
+h1, h2, h3 {
+  margin: 0; font-family: var(--font-serif); font-weight: 400;
+  line-height: 1.08; letter-spacing: -0.01em; color: var(--color-text);
+}
+h1 { font-size: 34px; }
+h2 { font-size: 24px; }
+h3 { font-size: 19px; }
+h1 em, h2 em, h3 em { color: var(--color-headline-accent); font-style: italic; }
+p { margin: 0; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-sm); }
+.etikett {
+  font-size: var(--font-size-xs); font-weight: var(--font-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--label-tracking); color: var(--color-text-muted);
+}
+.leise { color: var(--color-text-muted); }
+.zahl { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- Seite und Raster ---------- */
+.seite {
+  max-width: var(--content-max-width); margin: 0 auto;
+  padding: var(--space-4) var(--space-5) var(--space-7);
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+.raster { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.raster--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.stapel { display: flex; flex-direction: column; gap: var(--space-4); }
+
+/* ---------- Kopfzeile ---------- */
+.kopf { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: flex-end; justify-content: space-between; }
+.kopf__titel { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.kopf__meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: center; font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.kopf__meta .zahl { color: var(--color-text-secondary); }
+
+/* ---------- Reiter ---------- */
+.reiter { display: flex; gap: var(--space-1); border-bottom: 1px solid var(--color-border-strong); overflow-x: auto; scrollbar-width: none; }
+.reiter__knopf {
+  font: inherit; font-size: var(--font-size-md); color: var(--color-text-secondary);
+  background: transparent; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  padding: var(--space-2) var(--space-3); cursor: pointer; white-space: nowrap;
+}
+.reiter__knopf:hover { color: var(--color-text); background: var(--color-hover); }
+.reiter__knopf[aria-selected="true"] { color: var(--color-text); font-weight: var(--font-weight-medium); border-bottom-color: var(--color-accent); }
+.reiter__knopf .leise { margin-left: var(--space-1); font-size: var(--font-size-sm); }
+.reiterinhalt { display: flex; flex-direction: column; gap: var(--space-4); }
+.reiterinhalt[hidden] { display: none; }
+
+/* ---------- Filterleiste ---------- */
+.filter {
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: center;
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-md);
+  background: var(--color-surface-muted); border: 1px solid var(--color-border);
+}
+.filter__feld { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.filter select, .filter input {
+  font: inherit; font-size: var(--font-size-sm); color: var(--color-text);
+  height: var(--control-height); padding: 0 var(--space-2); border-radius: var(--r-input);
+  border: 1px solid var(--color-border-strong); background: var(--color-surface);
+}
+.filter__ende { margin-left: auto; }
+
+/* Segment-Umschalter (z. B. Liter / Umsatz, Diagramm / Tabelle) */
+.umschalter { display: inline-flex; gap: 2px; padding: 2px; background: var(--color-selected); border-radius: 8px; }
+.umschalter button {
+  font: inherit; font-size: var(--font-size-sm); height: 24px; padding: 0 10px; border: 0; border-radius: 6px;
+  background: transparent; color: var(--color-text-secondary); cursor: pointer;
+}
+.umschalter button[aria-pressed="true"] {
+  background: var(--color-surface); color: var(--color-text); font-weight: 600;
+  box-shadow: 0 0 0 .5px var(--color-border-strong);
+}
+
+/* Knopf */
+.knopf {
+  font: inherit; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); cursor: pointer;
+  min-height: var(--control-height); padding: 0 var(--space-3); border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong); background: var(--color-surface); color: var(--color-text);
+}
+.knopf:hover { background: var(--color-surface-muted); }
+.knopf--primaer { background: var(--color-accent); color: var(--color-accent-contrast); border-color: transparent; }
+.knopf--primaer:hover { background: var(--color-accent-hover); }
+
+/* ---------- Kennzahl-Kacheln ---------- */
+.kacheln { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.kachel {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card);
+  padding: var(--space-3) var(--space-4);
+  display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.kachel__name { font-size: 11.5px; color: var(--color-text-muted); }
+.kachel__wert { font-size: 26px; font-weight: 650; line-height: 1.15; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kachel__wert small { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-left: 3px; }
+.kachel__def { font-size: var(--font-size-sm); color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kachel__delta { font-size: var(--font-size-sm); font-variant-numeric: tabular-nums; }
+.kachel__delta--auf { color: var(--chart-delta-up); }
+.kachel__delta--ab { color: var(--chart-delta-down); }
+
+/* ---------- Karte und Diagrammkarte ---------- */
+.karte {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card);
+  padding: var(--space-4) var(--space-5); min-width: 0;
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+.karte--flach { box-shadow: none; background: var(--color-surface-muted); }
+.karte__kopf { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: baseline; justify-content: space-between; }
+.karte__kopf h2, .karte__kopf h3 { flex: 1 1 240px; }
+.karte__unter { font-size: 12.5px; color: var(--color-text-muted); }
+
+.diagramm { min-width: 0; }
+.diagramm svg { display: block; width: 100%; height: auto; overflow: visible; }
+.diagramm text { font-family: var(--font-sans); font-size: 12px; fill: var(--chart-axis-text); font-variant-numeric: tabular-nums; }
+.diagramm .d-raster { stroke: var(--chart-grid); stroke-width: 1; }
+.diagramm .d-achse { stroke: var(--color-border-strong); stroke-width: 1; }
+.diagramm .d-linie { fill: none; stroke: var(--chart-series); stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
+.diagramm .d-linie--2 { stroke: var(--chart-series-2); }
+.diagramm .d-linie--vergleich { stroke: var(--chart-benchmark); stroke-dasharray: 4 3; stroke-width: 1.5; }
+.diagramm .d-linie--teil { stroke-dasharray: 3 4; }
+.diagramm .d-flaeche { fill: var(--chart-area); stroke: none; }
+.diagramm .d-punkt { fill: var(--color-surface); stroke: var(--chart-series); stroke-width: 2; }
+.diagramm .d-balken { fill: var(--chart-series); }
+.diagramm .d-balken--2 { fill: var(--chart-series-2); }
+.diagramm .d-spur { fill: var(--chart-track); }
+.diagramm .d-ziel { stroke: var(--chart-marker); stroke-width: 1.25; stroke-dasharray: 5 4; }
+.diagramm .d-band { fill: var(--chart-band); }
+.diagramm .d-wert { fill: var(--chart-label); font-weight: 600; }
+.diagramm .d-name { fill: var(--chart-sub); }
+.legende { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.legende__eintrag { display: inline-flex; align-items: center; gap: 6px; }
+.legende__farbe { width: 10px; height: 10px; border-radius: 3px; background: var(--chart-series); }
+.legende__farbe--2 { background: var(--chart-series-2); }
+.legende__strich { width: 16px; border-top: 2px dashed var(--chart-marker); }
+
+/* ---------- Tabelle ---------- */
+.tabelle-rahmen { overflow-x: auto; margin: 0 calc(-1 * var(--space-5)); }
+.tabelle { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tabelle th, .tabelle td { text-align: left; padding: 8px var(--space-2); border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+.tabelle th:first-child, .tabelle td:first-child { padding-left: var(--space-5); }
+.tabelle th:last-child, .tabelle td:last-child { padding-right: var(--space-5); }
+.tabelle th {
+  background: var(--color-surface-muted); font-size: var(--font-size-xs); font-weight: var(--font-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--label-tracking); color: var(--color-text-muted);
+}
+.tabelle td.zahl, .tabelle th.zahl { text-align: right; }
+.tabelle tbody tr:hover { background: var(--color-hover); }
+.tabelle tbody tr:last-child td { border-bottom: 0; }
+.tabelle tfoot td { font-weight: 600; border-top: 1px solid var(--color-border-strong); border-bottom: 0; }
+
+/* ---------- Zustands-Pille: immer Form + Wort, nie nur Farbe ---------- */
+.zustand {
+  display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 var(--space-2);
+  border-radius: var(--radius-pill); font-size: 11.5px; font-weight: 600; white-space: nowrap;
+  background: var(--state-unknown-bg); color: var(--state-unknown-text);
+}
+.zustand::before { content: ""; width: 10px; height: 10px; flex: none; background: currentColor; }
+.zustand--ok   { background: var(--state-ok-bg);   color: var(--state-ok-text); }
+.zustand--ok::before   { border-radius: 50%; background: var(--state-ok); }                                 /* Kreis */
+.zustand--warn { background: var(--state-warn-bg); color: var(--state-warn-text); }
+.zustand--warn::before { clip-path: polygon(50% 0, 100% 100%, 0 100%); background: var(--state-warn); }     /* Dreieck */
+.zustand--crit { background: var(--state-crit-bg); color: var(--state-crit-text); }
+.zustand--crit::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); background: var(--state-crit); } /* Raute */
+.zustand--off  { background: var(--state-off-bg); color: var(--state-off-text); box-shadow: inset 0 0 0 1px var(--color-border-strong); }
+.zustand--off::before  { border-radius: 50%; background: transparent; border: 1.5px dashed var(--state-off); } /* Ring gestrichelt = Lücke */
+.zustand--neutral::before { border-radius: 2px; background: var(--state-unknown); }                         /* Quadrat */
+
+/* Regel zur Ampel, sichtbar über der Tabelle */
+.regel { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: center; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+
+/* ---------- Hinweis und Quelle ---------- */
+.hinweis {
+  display: flex; gap: var(--space-3); align-items: flex-start;
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+  background: var(--color-accent-soft); color: var(--color-text); font-size: 13px;
+}
+.hinweis--warnung { background: var(--color-warning-bg); color: var(--color-warning-text); }
+.hinweis--beispiel { background: var(--color-demo-bg); color: var(--color-demo-text); }
+.hinweis strong { font-weight: 600; }
+.kernaussage {
+  background: var(--color-ai-bg); border: 1px solid var(--color-ai-border); border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5); display: flex; flex-direction: column; gap: var(--space-1);
+}
+.kernaussage__satz { font-family: var(--font-serif); font-size: 21px; line-height: 1.2; }
+.quelle { font-size: var(--font-size-sm); color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: var(--space-2); }
+
+/* ---------- Tooltip (beim Überfahren: Zähler und Nenner) ---------- */
+.tooltip {
+  position: fixed; z-index: 50; pointer-events: none; max-width: 280px;
+  background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border-strong);
+  border-radius: 8px; box-shadow: var(--shadow-card); padding: 6px 10px; font-size: var(--font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+.tooltip[hidden] { display: none; }
+
+/* ---------- Kleine Bildschirme und Druck ---------- */
+@media (max-width: 720px) {
+  .seite { padding: var(--space-3) var(--space-4) var(--space-6); }
+  h1 { font-size: 27px; }
+  .filter__ende { margin-left: 0; }
+}
+@media print {
+  body { background: var(--color-surface); }
+  .filter, .reiter { display: none; }
+  .reiterinhalt[hidden] { display: flex; }
+  .karte, .kachel { box-shadow: none; break-inside: avoid; }
+}

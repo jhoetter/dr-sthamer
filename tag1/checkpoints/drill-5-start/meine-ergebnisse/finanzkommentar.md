@@ -1,41 +1,41 @@
-# Finanzkommentar 2026: Rechnet sich die Umstellung?
+# Finanzkommentar 2026: Wo verdienen wir Geld?
 
 An: Geschäftsführerin · Von: Jasper Dierksmeyer, Leiter Controlling
 
-Stichtag 28.02.2027 · Datenbasis: Übungsausschnitt (32 ausgewählte Kunden, nicht das Gesamtunternehmen). Alle Beträge netto in EUR, Ist 2026 zum Konzernkurs 2026 (CHF 1,071 · GBP 1,168 · NOK 0,0849); in der Plan-Ist-Brücke das Ist zum Ist-Monatskurs, das Budget zum Plankurs. Deckungsbeitrag (DB) = Nettoumsatz − Herstellkosten − Fracht („nach Herstellkosten und Fracht“); DB-Marge = DB ÷ Nettoumsatz, aus Summen gerechnet.
+Stichtag 28.02.2027 · Datenbasis: Übungsausschnitt (32 Kunden), nicht das Gesamtunternehmen. Deckungsbeitrag (DB) = Nettoumsatz − Herstellkosten − Fracht, EUR, netto nach Gutschriften und Retouren, ohne Muster im Absatz, Doppelimporte nur einmal; DB-Marge = DB / Nettoumsatz, aus Summen gerechnet. Ist, Budget und Kurs stehen bei jeder Zahl.
 
 ## Drei Kernaussagen
 
-1. **Der Ist-Deckungsbeitrag 2026 liegt nur wegen einer einzigen, nicht budgetierten Notfalllieferung über dem Budget; ohne sie fehlen ihm 32,6 %. Den Vergleich mit dem Budget sollten wir deshalb immer mit und ohne Notfallservice zeigen.**
-   Beleg: Ist-DB EUR 277.465 gegen Budget EUR 260.081 = +EUR 17.385 (+6,7 %). Die Lieferung vom 22.09.2026 (24.000 Liter, fluorhaltig) bringt EUR 102.111; ohne sie liegt der Ist-DB bei EUR 175.354, das sind −EUR 84.726 (−32,6 %). (Auftragstabelle, Budget 2026, Ist-Monatskurse)
+1. **Der Deckungsbeitrag 2026 liegt nur wegen des nicht budgetierten Notfallservice über dem Budget: Ohne die eine Notfalllieferung vom 22.09.2026 fehlen EUR 50.825 (−14,6 %).**
+   Beleg: Ist-DB ohne Notfallservice EUR 297.938,99 gegen Budget-DB EUR 348.764,44 = −EUR 50.825,45; mit Notfalllieferung (24.000 l, DB EUR 93.247,22) Ist-DB EUR 391.186,21 = +EUR 42.421,77 (+12,2 %). Ist zum Ist-Monatskurs des Liefermonats, Budget zum Plankurs (CHF 1,04 · GBP 1,19 · NOK 0,09).
 
-2. **Fluorfreie Produkte erzielen 2026 weniger als die Hälfte der DB-Marge der fluorhaltigen; jeder Liter, der von fluorhaltig auf fluorfrei wechselt, senkt die Gesamtmarge, solange die Marge der fluorfreien nicht steigt.**
-   Beleg: DB-Marge 2026 fluorfrei 23,0 % (DB EUR 43.035 auf Nettoumsatz EUR 187.401; 104 Positionen), fluorhaltig ohne Notfallservice 48,3 % (EUR 125.758 auf EUR 260.525; 154 Positionen), mit Notfallservice 54,1 %; 2025: 26,8 % und 48,2 %. Ist, Konzernkurs 2026. Beobachtung; eine Ursache belegt keine Tabelle.
+2. **Die DB-Marge liegt ohne Notfallservice auf Budgetniveau; die Lücke zum Budget ist eine Mengenlücke, keine Margenlücke.**
+   Beleg: DB-Marge Ist ohne Notfallservice 39,3 % (EUR 297.938,99 / EUR 759.024,38, Ist-Monatskurse), Budget 39,3 % (EUR 348.764,44 / EUR 886.798,90, Plankurs); mit Notfalllieferung Ist 42,5 % (EUR 391.186,21 / EUR 919.987,58). Absatz Ist ohne Notfallservice 201.660 l gegen Budget 236.670 l (−35.010 l, −14,8 %); der Mengeneffekt (−EUR 51.591,85) ist der größte negative Posten der Brücke.
 
-3. **Die Listenpreiserhöhung 2026 zeigt sich bei Direktkunden fast vollständig im Preis, bei Händlern steigt dagegen die Rabattquote; bei Rahmenverträgen lässt sich 2026 nichts sagen.**
-   Beleg: Listenpreise 2026 auf dem Korb der Lieferungen 2026 um 4,0 % höher als 2025. Rabattquote (1 − Nettobetrag ÷ Listenwert, ohne Notfallservice): direkt 0,0 % (2025, 398 Positionen) auf 1,5 % (2026, 203), Händler 18,0 % (63) auf 20,1 % (45); Rahmenverträge 2026 nur 15 Positionen, Lücke. (Auftragstabelle, Preislisten 2025 und 2026)
+3. **Die Marge hängt stark vom Vertriebsweg ab: Für Konditionen und Angebote zählt die Marge des jeweiligen Wegs, nicht die Gesamtmarge, und die Rahmenverträge haben 2026 an Marge verloren.**
+   Beleg (Ist, Konzernkurs 2026: CHF 1,071 · GBP 1,168 · NOK 0,0849): DB-Marge direkt 44,3 % (EUR 170.372 / EUR 384.211), Rahmenvertrag 37,5 % (EUR 61.190 / EUR 163.082), Händler 31,4 % (EUR 66.424 / EUR 211.779); Vorjahr 2025: 42,7 % · 40,4 % · 32,5 %. Rahmenvertrag −2,9 Punkte. Beobachtung, keine Ursache belegt.
 
-## Brücke Budget → Ist 2026, Deckungsbeitrag (EUR)
+## Brücke Budget-DB → Ist-DB 2026 (EUR)
 
 | Schritt | EUR |
-|---|---|
-| Budget (Plankurs) | 260.080,73 |
-| Mengeneffekt | −104.542,76 |
-| Mixeffekt | +14.804,41 |
-| Preiseffekt | +9.278,57 |
-| Kosteneffekt (Herstellkosten und Fracht) | −4.436,43 |
-| Fremdwährungseffekt | +169,75 |
-| Notfallservice (nicht budgetiert, eigener Balken) | +102.111,11 |
-| **Ist (Ist-Monatskurse)** | **277.465,38** |
+|---|---:|
+| Budget-DB 2026 (Budget, Plankurs, ohne Notfallservice) | 348.764,44 |
+| Mengeneffekt | −51.591,85 |
+| Mixeffekt | −10.163,08 |
+| Preiseffekt | +15.859,08 |
+| Kosteneffekt | −6.324,90 |
+| Fremdwährungseffekt | +1.395,30 |
+| Notfallservice (eigener Balken, nicht budgetiert) | +93.247,22 |
+| **Ist-DB 2026 (Ist-Monatskurse)** | **391.186,21** |
 
-Abgleich: Summe der Effekte +17.384,65 = Gesamtabweichung Ist − Budget +17.384,65; Differenz 0,00.
-Methode: Reihenfolge Menge → Mix → Preis → Kosten → Fremdwährung → Notfallservice, je Zelle Produktlinie × Segment; Menge zum Plan-Durchschnitt je Liter (EUR 1,29 DB), Mix zu Plan-Werten je Zelle, Preis mit Ist-Umsatz zum Plankurs gegen Ist-Liter × Plan-Preis, Kosten gegen Plan-Kosten je Liter, Fremdwährung als Ist-Betrag × (Ist-Monatskurs − Plankurs). Eine andere Reihenfolge ergäbe andere Einzeleffekte, nicht die Gesamtabweichung. Ein zweiter, unabhängiger Rechenweg (Subagent) ergab für Budget-DB, Ist-DB und Notfallservice dieselben Beträge auf den Cent.
+Methode: Deckungsbeitrag-Brücke in der Reihenfolge Menge, Mix, Preis, Kosten, Fremdwährung, Notfallservice je Zelle Segment × Vertriebsweg; Menge mit dem Plan-Durchschnitt je Liter, Mix und Preis mit Plan-Werten je Zelle (Preis mit dem Ist-Umsatz zum Plankurs), Kosten mit den Plan-Kosten je Liter gegen die Ist-Kosten aus Herstellkosten und Fracht, Fremdwährung = Ist-Betrag × (Ist-Monatskurs − Plankurs), Notfallservice mit seinem ganzen DB; eine andere Reihenfolge ergäbe andere Einzeleffekte.
+Abgleich: Summe der Effekte EUR 42.421,77 = Gesamtabweichung EUR 42.421,77 (EUR 391.186,21 − EUR 348.764,44); Differenz EUR 0,00. Ein zweiter, unabhängiger Rechenweg (Subagent) ergab Budget-DB, Ist-DB und Notfallservice-DB auf den Cent gleich.
 
 ## Einschränkungen
 
-- Übungsausschnitt: 32 Kunden, Zahlen gelten nicht für das Gesamtunternehmen; Jan.–Feb. 2027 (Teiljahr) ist nicht enthalten.
-- Ausreißer: Eine Notfalllieferung (24.000 Liter, EUR 160.963 Nettoumsatz) prägt Aussage 1 und die Marge fluorhaltig mit Notfallservice; ohne sie sind 2026 nur 120.660 Liter gegen 201.760 Liter im Budget abgesetzt.
-- Kurse: Fremdwährung machte 2026 nur 23 Positionen aus; der Fremdwährungseffekt ist mit EUR 170 klein. Nettoumsatz 2026 zum Konzernkurs EUR 624.011, zum Ist-Monatskurs der Brücke EUR 624.003 (Kursbasis).
-- Kleine Basis: Viele Zellen Produktlinie × Segment haben 2026 weniger als 20 Positionen (Lücke); der Mixeffekt hängt von dieser Gliederung ab. Rahmenverträge 2026: Lücke.
-- Muster haben keinen Umsatz, tragen aber Herstellkosten (EUR 3.054) und Fracht (EUR 84); sie stehen im Kosteneffekt.
-- Keine Ursachen: Warum Mengen unter Budget blieben oder Händler höhere Rabatte hatten, belegt keine Tabelle.
+- **Übungsausschnitt:** 32 Kunden, nicht das Gesamtunternehmen; Aussagen gelten für diese Tabellen.
+- **Teiljahr:** Jan.–Feb. 2027 ist nicht eingerechnet; alle Zahlen sind ganze Jahre 2025 und 2026.
+- **Kurse:** Plan-Ist-Vergleich mit Ist-Monatskursen gegen Plankurse; die Kacheln im Dashboard und Aussage 3 rechnen mit dem Konzernkurs 2026. Der Ist-DB weicht dadurch um EUR 47,78 ab (EUR 391.186,21 gegen EUR 391.233,99).
+- **Ausreißer:** Der Notfallservice 2026 besteht aus einer Lieferung (1 Position); Aussage 1 und die Marge mit Notfall (42,5 %) hängen allein an ihr. Notfalllieferungen gab es auch 2022 und 2024.
+- **Kleine Gruppen:** Schaumarten Netzwasser (18 Positionen), Mittelschaum (10) und Retardant (9) haben 2026 weniger als 20 Positionen und stehen im Dashboard als Lücke.
+- **Ursachen:** Das Budget plant nicht nach Auftragsart; der Mengeneffekt lässt sich daher nicht einer Auftragsart zuordnen. Gründe für die Margen der Vertriebswege belegt keine Tabelle.

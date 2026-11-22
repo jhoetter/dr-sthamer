@@ -1,20 +1,20 @@
-# Notiz: Wie viele Kunden in Deutschland und im Ausland?
+# Notiz: Wie viele Kunden haben wir?
 
-An: Dr. Henrike Vossberg, Programmleiterin · Von: Lina Osterkamp, Trainee Vertriebsinnendienst
+An: Dr. Henrike Vossberg, Leiterin Unternehmensentwicklung · Von: Lina Osterkamp, Trainee Vertriebsinnendienst
 
-Stichtag 28.02.2027 · Datenbasis: Übungsausschnitt (32 ausgewählte Kunden, nicht das Gesamtunternehmen mit „rund 1.400 Kunden“)
+Stichtag 28.02.2027 · Datenbasis: Übungsausschnitt (32 Kunden im Kundenstamm); die Firmenzahl „rund 1.400 Kunden“ gilt für das Gesamtunternehmen und lässt sich hier nicht nachzählen.
 
-| Zählweise | Deutschland | Ausland | Definition und Quelle |
+| Zählweise | Deutschland / Ausland | Gesamt | Definition und Quelle |
 |---|---|---|---|
-| Kundenstamm | 20 | 12 | Alle Kunden im Kundenstamm (32), Land laut Kundenstamm |
-| Status „aktiv“ | 19 | 12 | Kunden mit Status „aktiv“ im Kundenstamm (31); ein Kunde steht auf „ruhend“ (K-1029) |
-| Aktiver Kunde nach Definition | 20 | 12 | Mindestens eine Lieferung in den 24 Monaten vor dem Stichtag, also ab 01.03.2025 (Definition in den Kennzahlen; Auftragstabelle, Lieferdatum, ohne Doppelimporte) |
-| Ohne Händler (Endkunden im Stamm) | 19 | 11 | Kundenstamm ohne die zwei Händler (einer in Deutschland, einer in den Niederlanden) |
-| Über Händler beliefert | 3 | 2 | Fünf Kunden, die laut Kundenstamm über einen Händler beliefert werden; in den Aufträgen werden sie direkt beliefert |
-| Lieferstellen | 91 | 45 | 136 Lieferstellen, Land des zugehörigen Kunden (Lieferstellentabelle) |
+| Kundenstamm | 20 / 12 | 32 | alle Zeilen der Kundentabelle; Land laut Kundenstamm |
+| Status „aktiv“ im Kundenstamm | 19 / 12 | 31 | Feld Status im Kundenstamm (nur Altstoff-Verwertung Rheintal, K-1029, steht auf „ruhend“); sagt nichts über die letzte Bestellung |
+| Aktiver Kunde (Auftrag in 24 Monaten) | 20 / 12 | 32 | mindestens eine Lieferung 01.03.2025 bis 28.02.2027, Auftragstabelle, ohne Doppelimporte, Händler als ein Kunde |
+| davon aktiv (letzte Lieferung ab 01.03.2026) | 19 / 10 | 29 | Kundenstatus nach letzter Lieferung (Definition in den Kennzahlen); ruhend: 1 / 2; verloren: 0 |
+| Lieferstellen | 91 / 45 | 136 | Lieferstellentabelle, Land des Kunden; keine Kundenzahl |
+| Über Händler belieferte Endkunden | 3 / 2 | 5 | Händlerangabe im Kundenstamm (zwei Händler); alle fünf haben auch eigene Direktaufträge und stehen schon im Kundenstamm |
 
-Hinweis: Jede andere Zählweise gibt eine andere Zahl. Der „ruhende“ Kunde K-1029 hat zuletzt am 31.07.2025 bestellt und zählt deshalb nach Definition noch als aktiv.
+Hinweis: Eine andere Zählweise ergibt eine andere Zahl. Kundenstamm und „Auftrag in 24 Monaten“ sind hier gleich (32), weil im Übungsausschnitt kein Kunde länger als 24 Monate ohne Lieferung ist.
 
-Empfehlung: Ich empfehle „aktiver Kunde nach Definition“ (20 Deutschland, 12 Ausland, zusammen 32), weil es die verbindliche Definition des Unternehmens ist und sie nicht vom Pflegestand des Status im Kundenstamm abhängt. Händler zähle ich mit, weil sie selbst bestellen.
+Empfehlung: Ich empfehle „aktiver Kunde“ (Auftrag in den letzten 24 Monaten): 32 Kunden, davon 20 in Deutschland und 12 im Ausland, Händler als ein Kunde. Begründung: Sie ist die verbindliche Definition in den Kennzahlen, und sie zählt nur, wer wirklich bestellt hat – der Status im Kundenstamm tut das nicht (zwei Kunden stehen dort auf „aktiv“, haben aber seit über 12 Monaten nicht bestellt).
 
 Entscheid: offen, liegt bei Dr. Henrike Vossberg

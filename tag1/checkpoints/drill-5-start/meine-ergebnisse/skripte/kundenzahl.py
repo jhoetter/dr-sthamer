@@ -1,6 +1,8 @@
+"""Kundenzahl nach verschiedenen Zählweisen (Drill 0). Nur Lesen, nichts in daten/ ändern."""
 import csv
-import datetime
+import json
 from collections import defaultdict, Counter
+from datetime import date
 
 
 def lies(pfad):
@@ -9,114 +11,104 @@ def lies(pfad):
 
 
 kunden = lies("daten/kunden.csv")
-ls = lies("daten/lieferstellen.csv")
-auf = lies("daten/auftraege.csv")
-
-stichtag = datetime.date(2027, 2, 28)
-# 24 Monate vor dem Stichtag: ab 01.03.2025 (Variante: ab 28.02.2025)
-grenze = datetime.date(2025, 3, 1)
-grenze_alt = datetime.date(2025, 2, 28)
+lst = lies("daten/lieferstellen.csv")
+auftr = lies("daten/auftraege.csv")
+stichtag = date(2027, 2, 28)
+grenze24 = date(2025, 3, 1)
+grenze12 = date(2026, 3, 1)
 
 
-def de(code):
-    return "Deutschland" if code == "DE" else "Ausland"
+def region(k):
+    return "Deutschland" if k["land"] == "DE" else "Ausland"
 
 
 def zaehle(ids):
-    c = Counter()
-    for k in kunden:
-        if k["id"] in ids:
-            c[de(k["land"])] += 1
-    return c
+    c = Counter(region(k) for k in kunden if k["id"] in ids)
+    return c["Deutschland"], c["Ausland"], len(ids)
 
 
-alle = set(k["id"] for k in kunden)
-print("Kundenstamm", len(alle), zaehle(alle))
+alle = {k["id"] for k in kunden}
+print("A Kundenstamm gesamt:", zaehle(alle))
+print("   Länder:", dict(Counter(k["land"] for k in kunden)))
 
-aktiv_status = set(k["id"] for k in kunden if k["status"] == "aktiv")
-print("Status aktiv", len(aktiv_status), zaehle(aktiv_status))
-print("ruhend:", [(k["id"], k["name"]) for k in kunden if k["status"] != "aktiv"])
+aktiv_status = {k["id"] for k in kunden if k["status"] == "aktiv"}
+print("B Status aktiv im Kundenstamm:", zaehle(aktiv_status))
+print("   ruhend im Stamm:", [k["id"] for k in kunden if k["status"] == "ruhend"])
 
-# Doppelimporte entfernen
+# Lieferungen, ohne Doppelimporte
 gesehen = set()
-pos = []
-dopp = 0
-for r in auf:
-    key = (r["auftrag_id"], r["position"])
-    if key in gesehen:
-        dopp += 1
-        continue
-    gesehen.add(key)
-    pos.append(r)
-print("Positionen", len(auf), "Doppelimporte", dopp, "bereinigt", len(pos))
-
 letzte = {}
-for r in pos:
-    if r["art"] != "Lieferung":
+art_je_kunde = defaultdict(Counter)
+for r in auftr:
+    key = (r["auftrag_id"], r["position"])
+    doppel = key in gesehen
+    gesehen.add(key)
+    if doppel:
         continue
-    d = datetime.date.fromisoformat(r["lieferdatum"])
-    if d > stichtag:
-        continue
-    if r["kunde_id"] not in letzte or d > letzte[r["kunde_id"]]:
-        letzte[r["kunde_id"]] = d
+    art_je_kunde[r["kunde_id"]][r["art"]] += 1
+    if r["art"] == "Lieferung":
+        d = date.fromisoformat(r["lieferdatum"])
+        if r["kunde_id"] not in letzte or d > letzte[r["kunde_id"]]:
+            letzte[r["kunde_id"]] = d
 
-akt24 = set(k for k, d in letzte.items() if d >= grenze)
-akt24_alt = set(k for k, d in letzte.items() if d >= grenze_alt)
-print("Aktiv nach 24 Monaten (ab 01.03.2025)", len(akt24), zaehle(akt24))
-print("Variante ab 28.02.2025", len(akt24_alt), zaehle(akt24_alt))
-print("Nicht aktiv nach Definition:")
+print("   Doppelimporte (Positionen):", len(auftr) - len(gesehen))
+
+aktiv24 = {k for k, d in letzte.items() if grenze24 <= d <= stichtag}
+print("C Auftrag (Lieferung) in 24 Monaten:", zaehle(aktiv24))
+status = {}
 for k in kunden:
-    if k["id"] not in akt24:
-        print("  ", k["id"], k["name"], k["land"], k["status"], k["ist_haendler"],
-              "letzte Lieferung", letzte.get(k["id"]))
+    d = letzte.get(k["id"])
+    if d is None or d < grenze24:
+        status[k["id"]] = "verloren"
+    elif d < grenze12:
+        status[k["id"]] = "ruhend"
+    else:
+        status[k["id"]] = "aktiv"
+print("   Kundenstatus nach letzter Lieferung:", Counter(status.values()))
+for s in ("aktiv", "ruhend", "verloren"):
+    print("   ", s, zaehle({i for i, v in status.items() if v == s}))
+for k in kunden:
+    if status[k["id"]] != "aktiv" or k["status"] != "aktiv":
+        print("   Abweichung:", k["id"], k["name"], k["land"], "Stamm:", k["status"],
+              "letzte Lieferung:", letzte.get(k["id"]), "->", status[k["id"]])
 
-# Aktiv nach Definition, aber Status ruhend / umgekehrt
-print("Status aktiv, aber ohne Lieferung in 24 Mon.:", sorted(aktiv_status - akt24))
-print("Status ruhend, aber mit Lieferung in 24 Mon.:", sorted(akt24 - aktiv_status))
+# Kunden ohne Händler
+haendler = {k["id"] for k in kunden if k["ist_haendler"] == "ja"}
+print("   Händler:", sorted(haendler))
+print("D Aktive Kunden (24 Mon.) ohne Händler:", zaehle(aktiv24 - haendler))
+print("   Händler mit Lieferung in 24 Monaten:", sorted(haendler & aktiv24))
 
-# ohne Haendler
-haendler = set(k["id"] for k in kunden if k["ist_haendler"] == "ja")
-print("Haendler", sorted(haendler))
-ohne_h = alle - haendler
-print("Kundenstamm ohne Haendler", len(ohne_h), zaehle(ohne_h))
-print("Aktiv 24 Mon. ohne Haendler", len(akt24 - haendler), zaehle(akt24 - haendler))
-
-# Endkunden ueber Haendler
+# Endkunden über Händler
 end = set()
 for k in kunden:
     if k["beliefert_endkunden"]:
         for e in k["beliefert_endkunden"].split(";"):
             end.add(e)
-print("Endkunden ueber Haendler", sorted(end))
-land = dict((k["id"], k["land"]) for k in kunden)
-direkt_gelief = set(r["kunde_id"] for r in pos if r["art"] == "Lieferung" and r["vertriebsweg"] != "Händler")
-print("Vertriebswege je Kunde (direkt beliefert, nicht Haendlerweg):", len(direkt_gelief))
-for e in sorted(end):
-    print("  ", e, land[e], "direkt beliefert:", e in direkt_gelief,
-          "Haendlerweg:", any(r["kunde_id"] == e and r["vertriebsweg"] == "Händler" for r in pos))
-print("Vertriebsweg Haendler in Auftraegen, Kunden:",
-      sorted(set(r["kunde_id"] for r in pos if r["vertriebsweg"] == "Händler")))
+print("E Über Händler belieferte Endkunden:", sorted(end), zaehle(end))
+# Kunden, die direkt keine Aufträge haben, nur über Händler?
+auftr_ids = set(art_je_kunde.keys())
+print("   Kunden ohne eigene Aufträge:", sorted(alle - auftr_ids))
+print("   Endkunden mit eigenen Aufträgen:", sorted(end & auftr_ids))
+# Aufträge von Endkunden nach Vertriebsweg
+vw = defaultdict(Counter)
+for r in auftr:
+    if r["kunde_id"] in end:
+        vw[r["kunde_id"]][r["vertriebsweg"]] += 1
+print("   Vertriebswege der Endkunden:", {k: dict(v) for k, v in vw.items()})
+# Kunden mit Muster/Notfall nur
+for k in kunden:
+    c = art_je_kunde.get(k["id"], Counter())
+    if c.get("Lieferung", 0) == 0:
+        print("   keine Lieferung:", k["id"], dict(c))
 
 # Lieferstellen
-lsz = Counter()
-ls_je_kunde = Counter()
-for r in ls:
-    lsz[de(land[r["kunde_id"]])] += 1
-    ls_je_kunde[r["kunde_id"]] += 1
-print("Lieferstellen", len(ls), lsz)
-ls_ids = set(r["kunde_id"] for r in ls)
-print("Kunden ohne Lieferstelle:", sorted(alle - ls_ids))
-print("Lieferstellen je Kunde:", dict(sorted(ls_je_kunde.items())))
-
-# Lieferstellen mit Lieferung in 24 Monaten
-lsl = Counter()
-for r in ls:
-    if r["letzte_lieferung"] and datetime.date.fromisoformat(r["letzte_lieferung"]) >= grenze:
-        lsl[de(land[r["kunde_id"]])] += 1
-print("Lieferstellen mit letzter Lieferung ab 01.03.2025", sum(lsl.values()), lsl)
-
-# Lieferungen an Lieferstellen von Kunden: Kunde der Lieferstelle == Kunde des Auftrags?
-lsk = dict((r["lieferstelle_id"], r["kunde_id"]) for r in ls)
-abw = [(r["auftrag_id"], r["position"], r["kunde_id"], r["lieferstelle_id"]) for r in pos
-       if r["lieferstelle_id"] in lsk and lsk[r["lieferstelle_id"]] != r["kunde_id"]]
-print("Auftraege, bei denen Lieferstelle zu anderem Kunden gehoert:", len(abw), abw[:5])
+lstd = {k["id"]: region(k) for k in kunden}
+c = Counter(lstd[r["kunde_id"]] for r in lst)
+print("F Lieferstellen gesamt:", dict(c), len(lst))
+lst_akt = [r for r in lst if date.fromisoformat(r["letzte_lieferung"]) >= grenze24]
+c2 = Counter(lstd[r["kunde_id"]] for r in lst_akt)
+print("   Lieferstellen mit Lieferung in 24 Monaten:", dict(c2), len(lst_akt))
+print("   Lieferstellen je Kunde (Spanne):",
+      min(Counter(r["kunde_id"] for r in lst).values()),
+      max(Counter(r["kunde_id"] for r in lst).values()))
+print("   Kunden ohne Lieferstelle:", sorted(alle - {r["kunde_id"] for r in lst}))

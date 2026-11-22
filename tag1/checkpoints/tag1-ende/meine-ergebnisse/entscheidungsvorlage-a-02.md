@@ -1,151 +1,120 @@
-# Entscheidungsvorlage A-02 · K-9001 Zweckverband Feuerwehrbedarf Lindenmoor
+# Entscheidungsvorlage A-02 · Zweckverband Feuerwehrbedarf Lindenmoor (Interessent K-9001)
 
-*Stichtag der Daten 28.02.2027 · Stand der Vorlage Montag, 01.03.2027 · Datenbasis: Übungsausschnitt (Stammdaten, Preislisten, Herstellkosten; Beträge netto in EUR) · Regeln: RL-ANG-2026 und KO-2026*
-
-**Ausschreibung Rahmenvertrag 2027 bis 2030** · Auftragswert EUR 329.702,40 · Angebotsklasse E · entscheidet: Geschäftsführung
+An: Mathis Grevenbroich, Leiter Angebotsmanagement (Tender Desk) · Stichtag 01.03.2027 · Datenbasis: Angebotseingang A-02, Richtlinie RL-ANG-2026, Kompetenzordnung KO-2026, Preisliste 2026, Herstellkosten je Liter, Finanzkommentar 2026 (Übungsausschnitt, fiktive Daten). Alle Beträge EUR, netto ohne Umsatzsteuer.
 
 ## 1 Vorgang in Kürze
 
-Der Zweckverband Feuerwehrbedarf Lindenmoor (K-9001, Interessent, öffentlicher Auftraggeber) schreibt einen Rahmenvertrag über fluorfreies Schwerschaum-Mittel 3 % für 14 Gerätehäuser und ein Zentrallager aus: 01.07.2027 bis 30.06.2030, geschätzt 24.000 l je Jahr (18.000 l IBC, 6.000 l Kanister, 300 Stück), Menge nicht verbindlich, keine Verlängerungsoption. Abgabe bis Montag, 22.03.2027, 12:00 Uhr; Bieterfragen bis 08.03.2027. Der Angebotsassistent hat einen Entwurf gerechnet (10 % Mengenrabatt plus 8 % Rahmenvertragsrabatt = 18 %); Lina Osterkamp fragt, ob sie ihn so hochladen soll.
-
-Produkt: Die Ausschreibung nennt kein Produkt; angenommen wird FreeFoam 3 % (P-201), wie im Entwurf des Assistenten.
+Öffentliche Ausschreibung eines Rahmenvertrags für Druckluftschaum-Schaummittel (CAFS, Brandklassen A und B, Zumischrate 0,5 %) für 14 Gerätehäuser und ein Zentrallager, Laufzeit 01.07.2027 bis 30.06.2030 (drei Jahre, keine Verlängerungsoption), feste Abnahme von genau 12.000 l je Vertragsjahr (9 IBC im Zentrallager, 150 Kanister in den Gerätehäusern), zusammen 36.000 l. Angebotsabgabe bis 22.03.2027, 12:00 Uhr über die Vergabeplattform; Bieterfragen bis 08.03.2027. Der Angebotsassistent hat einen Entwurf mit CAFS-Mix Plus 0,5 % (P-111) gerechnet: 10 % Mengenrabatt plus 8 % Rahmenvertragsrabatt = 18 %. Lina Osterkamp (Trainee Vertriebsinnendienst) fragt, ob sie ihn so hochladen soll. **Nein:** Der Entwurf verstößt gegen die Richtlinie (siehe Abschnitt 4).
 
 ## 2 Stand-Datum, Preisliste und Richtlinie
 
-- **Stand:** Montag, 01.03.2027. Angebotsdatum ist der Tag der Abgabe, spätestens 22.03.2027.
-- **Preisliste 2026** (RL § 6 Nr. 1): Sie gilt bis zur Preisliste 2027, angekündigt für April 2027; Abgabe liegt davor. Die Preise im Vertrag sind für das erste Vertragsjahr fest, danach nach Vorgabe des Kunden.
-- **RL-ANG-2026** und **KO-2026** (Angebotsdatum ab 01.01.2026). Für Rahmenverträge zählt die Menge über die ganze Laufzeit ohne Preisgleitung (RL § 2 Nr. 1).
-- Währung EUR.
+- Stand der Vorlage: 01.03.2027. Das Angebot wird bis 22.03.2027 abgegeben: Angebotsdatum nach dem 01.01.2026 → **RL-ANG-2026** und **Preisliste 2026** (§ 6 Nr. 1; die Preisliste 2027 ist für April 2027 angekündigt, also nach der Abgabe).
+- Der Interessent K-9001 steht nicht im Kundenstamm; er gilt als Neukunde bzw. Interessent (§ 4 Nr. 3).
 
-## 3 Vorliegende und nur erwähnte Unterlagen
+## 3 Unterlagen
 
-**Liegt im Angebotseingang vor:**
-
-- Auszug aus den Vergabeunterlagen (Gegenstand, Laufzeit, Menge, Bedingungen, einzureichende Unterlagen, Zuschlagskriterien: Preis 70 %, Lieferfähigkeit und Logistik 20 %, Referenzen 10 %)
-- Interne Begleitnotiz von Lina Osterkamp vom 15.02.2027
-- Stammdaten: Preisliste 2026, Herstellkosten P-201 2026
-
-**Nur erwähnt, liegt nicht bei:**
-
-- Referenzliste aus 2024: Linas Notiz sagt „liegt bei“, im Angebotseingang liegt keine Referenzliste. Verlangt sind mindestens drei Referenzen öffentlicher Feuerwehren aus den letzten drei Jahren; ob die Liste aus 2024 dafür taugt und freigegeben ist, ist nicht belegt (RL § 2 Nr. 3 und 5)
-- Entwurf des Angebotsassistenten mit 18 %: nur in Linas Notiz beschrieben, keine Datei
-- Anlage 1 (Preisblatt), Anlage 3 (Referenzen), Eigenerklärung zur Lieferfähigkeit, Technisches Datenblatt und Sicherheitsdatenblatt, Muster 20 l: vom Kunden verlangt, bei uns nicht erstellt
+| Unterlage | Status |
+|---|---|
+| Ausschreibung (Auszug der Vergabeunterlagen) mit interner Begleitnotiz vom 15.02.2027 | liegt vor |
+| Entwurf des Angebotsassistenten (P-111, 18 %) | erwähnt in der Begleitnotiz, Entwurf selbst liegt nicht bei |
+| Referenzliste aus 2024 | erwähnt in der Begleitnotiz („liegt bei“), liegt im Angebotseingang nicht bei; ob sie freigegeben ist, ist nicht belegt |
+| Preisblatt (Anlage 1) und Referenzformular (Anlage 3) der Ausschreibung | erwähnt, liegen nicht bei |
+| Technisches Datenblatt und Sicherheitsdatenblatt P-111 | von der Ausschreibung verlangt, liegen nicht bei |
+| Eigenerklärung zur Lieferfähigkeit, Muster 20 l | von der Ausschreibung verlangt, nicht vorbereitet |
+| Land der Lieferorte (Gerätehäuser, Zentrallager) | nicht genannt |
 
 ## 4 Preisrechnung Schritt für Schritt
 
-**Listenpreise 2026 für P-201:** IBC 1.000 l EUR 4.876,00, Kanister 20 l EUR 114,48.
+1. **Preisliste 2026, CAFS-Mix Plus 0,5 % (P-111):** IBC EUR 6.348,00; Kanister EUR 149,04.
+2. **Je Vertragsjahr:** 9 IBC = EUR 57.132,00; 150 Kanister = EUR 22.356,00; zusammen **EUR 79.488,00** Listenwert (12.000 l, EUR 6,62 je Liter).
+3. **Über drei Jahre:** 3 × EUR 79.488,00 = **EUR 238.464,00** Listenwert, ohne Preisgleitung (§ 2 Nr. 1).
+4. **Rabatt, was zusammenkommt und was nicht (§ 3):**
+   - Es gilt der **Rahmenvertragsrabatt bis 8 %** (§ 3 Nr. 3): feste, verbindliche Abnahmemenge (12.000 l je Vertragsjahr) und Laufzeit von 36 Monaten (mindestens 12 Monate) sind erfüllt.
+   - Er **ersetzt den Mengenrabatt**; ein Mengenrabatt (hier 10 % ab 20.000 l) wird nie zusätzlich gegeben (§ 3 Nr. 1 und 3).
+   - Projektrabatt (§ 3 Nr. 2) und Händlerkondition (§ 3 Nr. 4) entfallen: keine Anlagenbefüllung, kein Händler.
+   - Der Entwurf mit 18 % liegt **über der Staffel** (§ 3 Nr. 6) und ist nie automatisch zulässig; er erhöht die Angebotsklasse.
+5. **Satz zwischen 0 und 8 %:** legt die zuständige Stelle fest (§ 3 Nr. 3, § 9), bei Klasse E die Geschäftsführung.
 
-| Schritt | Rechnung | EUR |
-|---|---|---|
-| IBC je Jahr | 18 × 4.876,00 | 87.768,00 |
-| Kanister je Jahr | 300 × 114,48 | 34.344,00 |
-| Listenwert je Jahr | 24.000 l | 122.112,00 |
-| Listenwert drei Jahre | × 3, ohne Preisgleitung (§ 2 Nr. 1) | 366.336,00 |
+| Rahmenvertragsrabatt | Auftragswert 3 Jahre EUR | Auftragswert je Vertragsjahr EUR |
+|---:|---:|---:|
+| 0 % | 238.464,00 | 79.488,00 |
+| 5 % | 226.540,80 | 75.513,60 |
+| 6 % | 224.156,16 | 74.718,72 |
+| 8 % | 219.386,88 | 73.128,96 |
+| 18 % (Entwurf, unzulässig) | 195.540,48 | 65.180,16 |
 
-| Rabatt auf Liste | Nettoumsatz je Jahr EUR | Auftragswert 3 Jahre EUR | Paragraf | Ergebnis |
-|---|---|---|---|---|
-| 0 % (Liste 2026) | 122.112,00 | 366.336,00 | § 6 Nr. 1 | Ausgangspunkt |
-| 10 % Mengenrabatt | 109.900,80 | 329.702,40 | § 3 Nr. 1 | nach Staffel |
-| bis 8 % Rahmenvertragsrabatt | 112.343,04 | 337.029,12 | § 3 Nr. 3 | nach Staffel, aber nur mit fester Abnahmemenge |
-| 18 % (Entwurf des Assistenten: 10 % + 8 %) | 100.131,84 | 300.395,52 | § 3 Nr. 3 und 6 | **unzulässig**: Rahmenrabatt ersetzt den Mengenrabatt, kein Zusammenzählen |
+**Auftragswert (§ 2 Nr. 1, Rahmenvertrag: Wert über die ganze Laufzeit, ohne Fracht, ohne Preisgleitung): zwischen EUR 219.386,88 und EUR 238.464,00 bei zulässigen Sätzen, also in jedem Fall über EUR 150.000.** Selbst der unzulässige Entwurf (EUR 195.540,48) läge darüber; unter EUR 150.000 käme man erst mit rund 37 % Rabatt.
 
-Der Rabatt des Entwurfs ist nicht zulässig. Der Auftragswert über die Laufzeit liegt bei jedem zulässigen Rabatt über 150.000 (mit 10 %: EUR 329.702,40). Fracht frei Verwendungsstelle und Zuschläge zählen nicht zum Auftragswert (§ 2 Nr. 1, § 6 Nr. 5). Muster 20 l sind kostenlos (§ 3 Nr. 7).
+**Rabattsatz:** zulässig sind 0 bis 8 %. **Entschieden durch mich (Mathis Grevenbroich, 01.03.2027): Ich gebe 6 % als Vorschlag an die Geschäftsführung.** Begründung: Der Preis zählt nach den Zuschlagskriterien mit 70 %, 2 Prozentpunkte Spielraum bis zur Obergrenze bleiben, und die Marge des Weges Rahmenvertrag ist 2026 gesunken (siehe unten). Auftragswert bei 6 %: EUR 224.156,16. Den endgültigen Satz legt die Geschäftsführung fest (§ 3 Nr. 3).
 
-## 5 Prüfumfang und Datenaufnahme
+**DB-Marge des Angebots gegen die Marge des Vertriebswegs Rahmenvertrag:**
 
-**Prüfumfang:** Auftragswert über 150.000: zusätzlich zu Preisliste, Staffel, Kundenstatus und Zahlungsziel auch Deckungsbeitrag, Bonität, Lieferfähigkeit (Stufe 25.000,01 bis 150.000) sowie Vertragsprüfung, Liefer- und Rohstoffplanung und Referenzen nur aus der freigegebenen Referenzliste (§ 2 Nr. 3). Bonität: Interessent über 10.000 wäre zu prüfen; öffentliche Auftraggeber werden ohne Prüfung zu ihren Zahlungsbedingungen beliefert, wenn diese 30 Tage nicht überschreiten (§ 4 Nr. 2 und 4). Der Kunde zahlt 30 Tage nach Rechnungseingang; ob das „30 Tage nicht überschreitet“, sagt die Richtlinie nicht (siehe Klasse).
+- Herstellkosten P-111 je Liter (Herstellkostentabelle, Jahr 2027, Rohstoff EUR 2,190 + Fertigung EUR 0,548): **EUR 2,738**; für 12.000 l je Vertragsjahr EUR 32.856,00.
+- DB **vor Fracht** = Nettoumsatz − Herstellkosten; Marge = DB / Nettoumsatz, je Vertragsjahr:
 
-**Datenaufnahme:** nicht erforderlich. Es geht um Lieferung für Feuerwehrfahrzeuge und tragbare Zumischer, nicht um Erstbefüllung oder Umstellung einer stationären Löschanlage (§ 2 Nr. 4). Eine technische Zusage über das Datenblatt hinaus ist nicht verlangt.
+| Rabatt | Nettoumsatz EUR | Herstellkosten EUR | DB vor Fracht EUR | DB-Marge vor Fracht |
+|---:|---:|---:|---:|---:|
+| 0 % | 79.488,00 | 32.856,00 | 46.632,00 | 58,7 % |
+| 5 % | 75.513,60 | 32.856,00 | 42.657,60 | 56,5 % |
+| 6 % (mein Vorschlag) | 74.718,72 | 32.856,00 | 41.862,72 | 56,0 % |
+| 8 % | 73.128,96 | 32.856,00 | 40.272,96 | 55,1 % |
+| 18 % (Entwurf) | 65.180,16 | 32.856,00 | 32.324,16 | 49,6 % |
 
-### Deckungsbeitrag: Trägt die Marge den Rabatt?
+- **Vergleichswert aus dem Finanzkommentar 2026:** DB-Marge Vertriebsweg Rahmenvertrag 37,5 % (EUR 61.190 / EUR 163.082; Ist 2026, nach Herstellkosten **und Fracht**, Konzernkurs 2026), Vorjahr 40,4 %.
+- **Was dabei fehlt, daher nicht direkt vergleichbar:** (1) die Fracht: Lieferung frei Verwendungsstelle an 14 Gerätehäuser und das Zentrallager, keine Frachtdaten dafür; die Vergleichsmarge enthält Fracht, die Angebotsmarge nicht; (2) Herstellkosten für 2028 bis 2030: die Tabelle endet 2027, 2027 ist als Näherung angesetzt; (3) die Preisgleitung nach dem Erzeugerpreisindex (höchstens +3 % je Jahr, Senkungen in voller Höhe weitergegeben) und die Vertragsstrafe (bis 5 % des Abrufwerts); (4) das Muster 20 l; (5) die Vergleichsmarge gilt für alle Produkte der Rahmenverträge, nicht für P-111. Beobachtung, keine Ursache: Selbst bei 8 % liegt die DB-Marge vor Fracht mit 55,1 % um 17,6 Punkte über der Rahmenvertragsmarge 2026 mit Fracht. Ob das reicht, lässt sich ohne Fracht und Kostenentwicklung nicht sagen.
 
-Vergleichswert: DB-Marge fluorfreie Produkte 2026 im Übungsausschnitt 23,0 % (Finanzkommentar: Deckungsbeitrag nach Herstellkosten und Fracht ÷ Nettoumsatz, 104 Positionen, Ist, Konzernkurs 2026). Das ist ein Durchschnitt, keine Mindestmarge; die Richtlinie nennt keine.
+## 5 Prüfumfang und Anlagenprüfung
 
-| Rabatt | Nettoumsatz je Jahr | Herstellkosten je Jahr | DB vor Fracht | Marge vor Fracht | Fracht je Jahr (geschätzt) | Marge nach geschätzter Fracht | gegen 23,0 % fluorfrei 2026 |
-|---|---|---|---|---|---|---|---|
-| 8 % | 112.343,04 | 71.424,00 | 40.919,04 | 36,4 % | 7.231,26 | 30,0 % | darüber |
-| 10 % | 109.900,80 | 71.424,00 | 38.476,80 | 35,0 % | 7.231,26 | 28,4 % | darüber |
-| 18 % (Entwurf) | 100.131,84 | 71.424,00 | 28.707,84 | 28,7 % | 7.231,26 | 21,4 % | darunter |
+- Prüfumfang über EUR 150.000 (§ 2 Nr. 3): Preisliste, Rabatt nach Staffel, Kundenstatus, Zahlungsziel; Deckungsbeitrag, Bonität, Lieferfähigkeit; **zusätzlich Vertragsprüfung, Liefer- und Rohstoffplanung, Referenzen nur aus der freigegebenen Referenzliste.** Fehlende Unterlagen werden nicht ergänzt, sondern stehen als Rückfrage (§ 2 Nr. 5).
+- Bonität: Öffentlicher Auftraggeber (Zweckverband) mit 30 Tagen Zahlungsziel: ohne Bonitätsprüfung (§ 4 Nr. 4).
+- **Anlagenprüfung: nicht Pflicht.** Es geht um Schaummittel für Fahrzeuge mit Druckluftschaumanlagen im Allgemeinen, nicht um die Erst- oder Neubefüllung einer bestimmten stationären Anlage (§ 2 Nr. 4). Verlangt die Vergabestelle später die Eignung für bestimmte Fahrzeuge oder Zumischer, ist das eine technische Zusage (§ 5): nur die Anwendungstechnik, nach Prüfung.
+- Lieferzeit 5 Arbeitstage nach Abruf liegt unter dem Standard von 10 Arbeitstagen (§ 6 Nr. 4): Zusage nur durch die Leitung Vertrieb.
 
-Rechnung: Herstellkosten P-201 2026 EUR 2,976 je Liter (Rohstoff und Fertigung) × 24.000 l. Fracht geschätzt aus dem Übungsausschnitt: IBC als Stückgut zu EUR 0,215 je Liter, Kanister als Paket zu EUR 0,560 je Liter (alle Sendungen, ohne Zielort); das ist **eine Annahme, nicht belegt**.
+## 6 Angebotsklasse mit Punkten (§ 8)
 
-**Ergebnis:** Der Entwurf mit 18 % trägt nicht: Marge nach geschätzter Fracht 21,4 % gegen 23,0 %. Mit 10 % sind es 28,4 %, mit 8 % 30,0 %. Die Marge von 23,0 % bleibt bis zu einem Rabatt von 16,3 % erhalten (nach geschätzter Fracht; vor Fracht 24,0 %).
+| Merkmal | Wert | Punkte | Paragraf |
+|---|---|---:|---|
+| Auftragswert | über EUR 150.000 (EUR 219.386,88 bis 238.464,00) | 4 | § 2 Nr. 1, § 8 Nr. 2 |
+| Rabatt | Rahmenvertragsrabatt bis 8 % = nach Staffel (Entwurf mit 18 %: über Staffel, 2 Punkte) | 0 | § 3 Nr. 3 und 6 |
+| Technik | nur Produktdaten nach Datenblatt, keine bestimmte stationäre Anlage | 0 | § 2 Nr. 4, § 5 |
+| Vertrag | Laufzeit über 12 Monate, Preisgleitung nach Erzeugerpreisindex (nicht unsere Standardklausel), Vertragsstrafe, AGB des Auftraggebers | 2 | § 5 Nr. 4, § 6 Nr. 6 |
+| Zahlung | 30 Tage nach Rechnungseingang, öffentlicher Auftraggeber, Bonität nicht erforderlich | 0 (Spanne, siehe unten) | § 4 Nr. 1 und 4 |
+| Kundenstatus | Interessent, kein Kunde | 1 | § 4 Nr. 3 |
+| Währung und Lieferort | EUR; Land der Lieferorte nicht genannt, angenommen EU (nicht belegt, offene Rückfrage) | 0 | § 7 Nr. 3 |
+| **Summe** | | **7 → Klasse E** | § 8 Nr. 3 |
 
-**Was fehlt:**
+**Spanne bei Zahlung, Wahl offen:** „30 Tage nach Rechnungseingang“ ist später als „30 Tage ab Rechnungsdatum“ (§ 4 Nr. 1). Möglichkeit 1: 0 Punkte, weil § 4 Nr. 4 öffentliche Auftraggeber zu ihren Bedingungen beliefert, wenn diese 30 Tage nicht überschreiten (Vorschlag). Möglichkeit 2: 1 Punkt (Zahlungsziel über 30 Tage). Die Klasse ändert sich nicht (Summe 7 oder 8: Klasse E).
 
-- Tatsächliche Fracht: Lieferung frei Verwendungsstelle an 14 Gerätehäuser und ein Zentrallager innerhalb von 5 Arbeitstagen; die Frachttabelle kennt weder diese Orte noch Mengen je Abruf
-- Herstellkosten 2027 bis 2030: es gibt nur 2026; der Kunde lässt ab Jahr 2 Preise nach seinem Index gleiten (höchstens +3 % je Jahr, Senkungen voll weitergeben)
-- Kosten der Vertragsstrafe (0,5 % des Abrufwerts je Arbeitstag, höchstens 5 %) und der Lager- und Kapitalbindung bei 5 Arbeitstagen Lieferzeit
-- Kosten für Muster 20 l, Ausschreibungsaufwand, Zahlungsziel ab Rechnungseingang
-- Eine Marge des Produkts P-201 selbst: 2026 nur 8 Positionen im Übungsausschnitt, unter 20 Positionen ist das eine Lücke
-
-## 6 Angebotsklasse mit Punkten
-
-| Merkmal (§ 8 Nr. 2) | Punkte | Begründung |
-|---|---|---|
-| Auftragswert (§ 2 Nr. 1) | 4 | EUR 329.702,40 über Laufzeit, über 150.000 |
-| Rabatt (§ 3) | 0 | 10 % genau nach Staffel (§ 3 Nr. 1); mit dem Entwurf von 18 % wären es 2 (§ 3 Nr. 6) |
-| Technik (§ 2 Nr. 4, § 5) | 0 | nur Produktdaten nach Datenblatt, keine stationäre Anlage |
-| Vertrag (§ 5 Nr. 4, § 6 Nr. 6) | 2 | Laufzeit 3 Jahre, Preisgleitung nach Index des Kunden (nicht unsere Standardklausel), Vertragsstrafe, Bedingungen des Kunden |
-| Zahlung (§ 4) | 1 (**Wahl offen**: 0 oder 1) | 30 Tage nach Rechnungseingang statt ab Rechnungsdatum; Bonität bei öffentlichem Auftraggeber nicht erforderlich (§ 4 Nr. 4) |
-| Kundenstatus (§ 4 Nr. 3) | 1 | Interessent, kein Kunde (K-9001) |
-| Währung und Lieferort (§ 7 Nr. 3) | 0 | EUR; Lieferorte nicht genannt, Annahme in der EU (Rückfrage) |
-| **Summe** | **8** (bei Zahlung 0: 7) | 7 und mehr = Klasse E |
-| Mindestklassen (§ 8 Nr. 4) | D und E | öffentliche Ausschreibung: mindestens D; Auftragswert über 150.000: mindestens E |
-| **Ergebnis** | **Klasse E** | in beiden Fällen E |
+Mindestklassen (§ 8 Nr. 4): **D** wegen öffentlicher Ausschreibung, **E** weil der Auftragswert über EUR 150.000 liegt. **Ergebnis: Klasse E.**
 
 ## 7 Wer entscheidet: System oder Mensch
 
-| Frage | Wer entscheidet | Regel |
-|---|---|---|
-| Teilnahme an der Ausschreibung oder Absage | **Hier entscheidet ein Mensch:** Geschäftsführung | § 9 Nr. 3, KO § 2 |
-| Freigabe Klasse E und Rahmenvertrag über 150.000 | **Hier entscheidet ein Mensch:** Geschäftsführung, Unterschrift durch zwei Personen | § 9 Nr. 1, KO § 2 und § 6 |
-| Vertragsstrafe, Haftungsübernahme | **Hier entscheidet ein Mensch:** Geschäftsführung | § 5 Nr. 4, KO § 2 |
-| Lieferzeit 5 Arbeitstage (Standard 10 Arbeitstage) | **Hier entscheidet ein Mensch:** Leitung Vertrieb | § 6 Nr. 4, KO § 2 |
-| Zahlungsziel, wenn über 30 Tage gerechnet | **Hier entscheidet ein Mensch:** Leitung Vertrieb | § 4 Nr. 1, KO § 2 |
-| Hochladen des Entwurfs des Assistenten | System darf nicht versenden; Entwurf nur zur Vorlage | § 9 Nr. 2 |
+Ein Mensch, nicht das System. Der Angebotsassistent erzeugt Rabatte über der Staffel, abweichende Bedingungen und Entscheidungen über Ausschreibungen nie (§ 9 Nr. 2 und 3).
+
+- **Hier entscheidet ein Mensch: Geschäftsführung.** Klasse E, Rahmenvertrag über EUR 150.000, Vertragsstrafe, **Teilnahme an der Ausschreibung** und Absage (RL § 9 Nr. 1 und 3, KO-2026 § 2). Dazu gehört der endgültige Rabattsatz zwischen 0 und 8 % (RL § 3 Nr. 3).
+- **Hier entscheidet ein Mensch: Leitung Vertrieb** für die Lieferzeit von 5 Arbeitstagen unter Standard (KO-2026 § 2).
+- Das Angebot müssen zwei Personen zeichnen, darunter die Geschäftsführung (KO-2026 § 6).
+- Fragen zur Auslegung der Vergabebedingungen (etwa Haftung, Vertragsstrafe) beantwortet nur die Abteilung Recht und Compliance (KO-2026 § 3).
+- Mathis Grevenbroich bereitet vor und gibt einen Vorschlag ab; eine Freigabe hat er für Klasse E nicht.
 
 ## 8 Empfehlung
 
-**Wahl offen, bis entschieden ist: Rabatt in der Ausschreibung.** Die Richtlinie lässt eine Spanne (Rahmenvertragsrabatt „bis 8 %“), und sie sagt nicht, was bei unverbindlicher Menge gilt.
-
-| Möglichkeit | Folge |
-|---|---|
-| a) 10 % Mengenrabatt nach Staffel | Auftragswert EUR 329.702,40; schon die Jahresmenge 24.000 l erreicht die Stufe ab 20.000 l; Marge nach geschätzter Fracht 28,4 %; Rahmenrabatt entfällt, weil die Menge nicht fest ist (§ 3 Nr. 3) |
-| b) Rahmenvertragsrabatt bis 8 % | nur mit fester Abnahmemenge; die Unterlagen nennen die Menge „nicht verbindlich“; ersetzt den Mengenrabatt; EUR 337.029,12 bei 8 % |
-| c) 18 % wie im Entwurf | unzulässig (§ 3 Nr. 3), Rabatt über der Staffel (§ 3 Nr. 6), trägt die Marge nicht |
-
-**Vorschlag: a).** Begründung: Er folgt der Staffel ohne Auslegung der Abnahmemenge, ist für den Preis (70 % der Zuschlagskriterien) günstiger als b), und die Marge nach geschätzter Fracht liegt über dem Wert aus dem Finanzkommentar. Offen bleibt, ob bei fester Abnahmemenge der Rahmenrabatt (bis 8 %) an die Stelle des höheren Mengenrabatts treten muss; das regelt die Richtlinie nicht. Die Bieterfrage bis 08.03.2027 klärt, ob die Menge verbindlich ist.
-
-**Wahl offen: Punkt für das Zahlungsziel** (0 oder 1, Klasse E in beiden Fällen). Vorschlag: 1 Punkt, weil die Frist erst mit Rechnungseingang beginnt und das länger ist als der Standard ab Rechnungsdatum.
-
-**Schritte:**
-
-- Lina Osterkamp antworten: Entwurf **nicht hochladen** (18 % nicht zulässig, System darf nichts versenden, § 3 Nr. 3, § 9 Nr. 2).
-- Der Geschäftsführung die Teilnahme vorlegen, mit Kalkulation nach Vorschlag a), den Vertragsbedingungen des Kunden (Index, Vertragsstrafe, 5 Arbeitstage) und diesen Rückfragen; Entscheidung vor dem 08.03.2027, damit Bieterfragen noch möglich sind.
-- Bieterfragen bis 08.03.2027: Ist die Menge verbindlich? Lieferland der Gerätehäuser? Beginn der Zahlungsfrist? Anforderung an die Referenzen?
-- Referenzen: freigegebene Referenzliste beschaffen und gegen die Drei-Jahres-Anforderung prüfen; ohne sie keine Abgabe (§ 2 Nr. 3).
-- Lieferfähigkeit und Rohstoffplanung für 24.000 l je Jahr mit Lager und Einkauf klären (§ 2 Nr. 3).
+An die Geschäftsführung: Teilnahme prüfen; **den Entwurf des Angebotsassistenten nicht hochladen**; falls teilgenommen wird, ein Angebot mit Rahmenvertragsrabatt von 6 % (Auftragswert EUR 224.156,16, DB-Marge vor Fracht 56,0 %), ohne Mengenrabatt. **Rabattsatz-Vorschlag 6 %: entschieden durch mich.** Die Entscheidung über die Teilnahme und den endgültigen Satz liegt weiter bei der Geschäftsführung (Abschnitt 7).
 
 ## 9 Offene Rückfragen
 
-- Geschäftsführung: Teilnahme ja oder nein; Vertragsstrafe und Index-Klausel akzeptabel?
-- Leitung Vertrieb: Lieferzeit 5 Arbeitstage und Zahlungsziel ab Rechnungseingang.
-- Vertrieb: freigegebene Referenzliste (Stand und Eignung) liegt nicht bei.
-- Kunde (Bieterfragen bis 08.03.2027): Mindestabnahme, Lieferländer, Zahlungsfrist, Preisgleitung.
-- Logistik: Frachtangebot für 14 Gerätehäuser und Zentrallager; Lagerbestand und Rohstoffplanung.
-- Controlling: Herstellkosten 2027 bis 2030.
-- Rabatt und Zahlungsziel-Punkt (siehe Empfehlung).
+1. Zahlungs-Punkt (Abschnitt 6); der endgültige Rabattsatz ist von der Geschäftsführung festzulegen.
+2. Referenzliste: Liegt die Liste aus 2024 vor, ist sie freigegeben, und sind drei Referenzen über öffentliche Feuerwehren der letzten drei Jahre belegt? (§ 2 Nr. 3)
+3. Bieterfrage bis **08.03.2027**: Land der Lieferorte; ob die Preisgleitung nach Erzeugerpreisindex, die Vertragsstrafe und die 5-Tage-Lieferung verhandelbar sind; Auslegung der Bedingungen über Recht und Compliance.
+4. Fracht zu den 14 Gerätehäusern und dem Zentrallager (Frachtpauschale EUR 180 unter EUR 2.500 Warenwert je Lieferung, § 6 Nr. 5) und Herstellkosten 2028 bis 2030 für eine vollständige DB-Rechnung.
+5. Datenblatt und Sicherheitsdatenblatt P-111, Muster 20 l, Eigenerklärung zur Lieferfähigkeit und Liefer- und Rohstoffplanung für 12.000 l je Jahr (§ 2 Nr. 3).
+6. Antwort an Lina Osterkamp: Entwurf nicht hochladen; Abgabefrist ist 22.03.2027, 12:00 Uhr, nur über die Vergabeplattform.
 
 ## 10 Was nicht in die Entscheidung einfließen darf
 
-- Die Aussage des Assistenten, der Entwurf sei „sehr wettbewerbsfähig“: er hat Rabatte zusammengezählt, die nicht zusammengehören (§ 3 Nr. 3).
-- Ein Zusammenzählen von Mengenrabatt und Rahmenvertragsrabatt (§ 3 Nr. 3 und 5).
-- Referenzen, die nicht aus der freigegebenen Liste stammen, oder Referenzen älter als drei Jahre (§ 2 Nr. 3).
-- Fracht, Muster und Zuschläge im Auftragswert (§ 2 Nr. 1).
-- Die Preisgleitung des Kunden als „unsere Standardklausel“ (§ 6 Nr. 6).
-- Sitzland oder Art des Auftraggebers als Ersatz für Preis oder Rabatt (§ 1 Nr. 2); der öffentliche Auftraggeber erhält keinen Sonderpreis.
-- Marge und Klasse in jedem Schreiben an den Kunden oder in den Vergabeunterlagen (§ 10 Nr. 2).
-
-
-Entscheid durch: offen, Datum: offen
+- Der **Mengenrabatt zusätzlich** zum Rahmenvertragsrabatt (§ 3 Nr. 3).
+- Die Aussage „sehr wettbewerbsfähig“ des Angebotsassistenten als Grund für Rabatt über 8 %; das Zuschlagskriterium Preis (70 %) ist kein Grund für einen Rabatt über der Staffel (§ 3 Nr. 6).
+- Eine Referenzliste, die nicht freigegeben oder nicht belegt ist (§ 2 Nr. 3).
+- Annahmen zum Land der Lieferorte, zu Fracht und zu Kosten nach 2027.
+- Herkunft oder Rechtsform des Auftraggebers als Grund für Preis oder Klasse (§ 1 Nr. 2).
+- Im Schreiben an den Auftraggeber: Angebotsklasse, Marge, Bonitätseinstufung, interne Kompetenzen (§ 10 Nr. 2) und jede Rechtsaussage (§ 1 Nr. 4).

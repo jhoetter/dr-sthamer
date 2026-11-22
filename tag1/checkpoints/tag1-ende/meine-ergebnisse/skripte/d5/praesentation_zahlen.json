@@ -1,0 +1,143 @@
+{
+ "zeitreihe": {
+  "2021": {
+   "gesamt_l": 182800.0,
+   "gesamt_pos": 528,
+   "notfall_l": 0.0,
+   "notfall_pos": 0,
+   "ohne_notfall_l": 182800.0,
+   "ohne_notfall_pos": 528,
+   "nachfuell_l": 177400.0,
+   "nachfuell_pos": 525,
+   "erst_l": 5400.0,
+   "erst_pos": 3,
+   "gesamt_eur": 575129.98,
+   "nachfuell_eur": 554137.56
+  },
+  "2022": {
+   "gesamt_l": 208347.0,
+   "gesamt_pos": 564,
+   "notfall_l": 18000.0,
+   "notfall_pos": 1,
+   "ohne_notfall_l": 190347.0,
+   "ohne_notfall_pos": 563,
+   "nachfuell_l": 182520.0,
+   "nachfuell_pos": 555,
+   "erst_l": 7827.0,
+   "erst_pos": 8,
+   "gesamt_eur": 708684.13,
+   "nachfuell_eur": 601165.36
+  },
+  "2023": {
+   "gesamt_l": 194660.0,
+   "gesamt_pos": 568,
+   "notfall_l": 0.0,
+   "notfall_pos": 0,
+   "ohne_notfall_l": 194660.0,
+   "ohne_notfall_pos": 568,
+   "nachfuell_l": 186000.0,
+   "nachfuell_pos": 561,
+   "erst_l": 8660.0,
+   "erst_pos": 7,
+   "gesamt_eur": 688276.12,
+   "nachfuell_eur": 652711.13
+  },
+  "2024": {
+   "gesamt_l": 226180.0,
+   "gesamt_pos": 605,
+   "notfall_l": 20000.0,
+   "notfall_pos": 1,
+   "ohne_notfall_l": 206180.0,
+   "ohne_notfall_pos": 604,
+   "nachfuell_l": 192980.0,
+   "nachfuell_pos": 597,
+   "erst_l": 13200.0,
+   "erst_pos": 7,
+   "gesamt_eur": 883952.79,
+   "nachfuell_eur": 710540.61
+  },
+  "2025": {
+   "gesamt_l": 224420.0,
+   "gesamt_pos": 584,
+   "notfall_l": 0.0,
+   "notfall_pos": 0,
+   "ohne_notfall_l": 224420.0,
+   "ohne_notfall_pos": 584,
+   "nachfuell_l": 195520.0,
+   "nachfuell_pos": 576,
+   "erst_l": 28900.0,
+   "erst_pos": 8,
+   "gesamt_eur": 843089.65,
+   "nachfuell_eur": 715086.21
+  },
+  "2026": {
+   "gesamt_l": 225660.0,
+   "gesamt_pos": 575,
+   "notfall_l": 24000.0,
+   "notfall_pos": 1,
+   "ohne_notfall_l": 201660.0,
+   "ohne_notfall_pos": 574,
+   "nachfuell_l": 199860.0,
+   "nachfuell_pos": 573,
+   "erst_l": 1800.0,
+   "erst_pos": 1,
+   "gesamt_eur": 920035.36,
+   "nachfuell_eur": 753294.16
+  }
+ },
+ "kundenstatus": {
+  "aktiv": 29,
+  "ruhend": 3,
+  "verloren": 0
+ },
+ "top5": {
+  "2025 mit Notfall": {
+   "zaehler": 428675.82,
+   "nenner": 843089.65,
+   "anteil": 50.85,
+   "kunden": [
+    "K-1023",
+    "K-1015",
+    "K-1031",
+    "K-1024",
+    "K-1020"
+   ]
+  },
+  "2025 ohne Notfall": {
+   "zaehler": 428675.82,
+   "nenner": 843089.65,
+   "anteil": 50.85,
+   "kunden": [
+    "K-1023",
+    "K-1015",
+    "K-1031",
+    "K-1024",
+    "K-1020"
+   ]
+  },
+  "2026 mit Notfall": {
+   "zaehler": 584559.66,
+   "nenner": 920035.36,
+   "anteil": 63.54,
+   "kunden": [
+    "K-1031",
+    "K-1023",
+    "K-1022",
+    "K-1024",
+    "K-1003"
+   ]
+  },
+  "2026 ohne Notfall": {
+   "zaehler": 423596.46,
+   "nenner": 759072.16,
+   "anteil": 55.8,
+   "kunden": [
+    "K-1023",
+    "K-1022",
+    "K-1031",
+    "K-1024",
+    "K-1003"
+   ]
+  }
+ }
+}

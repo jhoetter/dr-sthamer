@@ -1,0 +1,58 @@
+{
+  "id": "A-04",
+  "kunde": "Löschgeräte Norddeutschland GmbH (K-1020)",
+  "thema": "Nachbestellung Serie LG-6, P-106, Expresslieferung bis 05.03.2027",
+  "datum": "01.03.2027",
+  "auftragswert_eur": 24953.72,
+  "auftragswert_hinweis": "7.360 l P-106, Preisliste 2026, 6 % Mengenrabatt, ohne Express (450,00) und Fracht; EUR 46,28 unter der Grenze 25.000; ohne Rabatt EUR 26.546,52",
+  "klasse": "A",
+  "punkte": 0,
+  "empfehlung_kurz": "Zur Preisliste 2026 mit 6 % Mengenrabatt anbieten; vor Versand Lagerbestand und Rahmenvertragsabgrenzung klären",
+  "entscheid": "offen",
+  "vorlage": "entscheidungsvorlage-a-04.md",
+  "pfad": [
+    {
+      "schritt": "Preisliste und Richtlinie",
+      "angabe": "Angebotsdatum 01.03.2027, Preisliste 2026 (Angebot 60 Tage gültig bis 30.04.2027)",
+      "paragraf": "RL-ANG-2026 § 6 Nr. 1 und 3",
+      "ergebnis": "Preisliste 2026 und RL-ANG-2026; Antwortfrist läuft am 01.03.2027 ab",
+      "mensch": false
+    },
+    {
+      "schritt": "Prüfumfang nach Auftragswert",
+      "angabe": "Auftragswert EUR 24.953,72 (nach Rabatt, ohne Express und Fracht), Abstand zu 25.000: EUR 46,28",
+      "paragraf": "RL-ANG-2026 § 2 Nr. 1 und 3",
+      "ergebnis": "bis EUR 25.000: Preisliste, Rabatt nach Staffel, Kundenstatus, Zahlungsziel; Bestandskunde, keine Bonitätsprüfung, keine Marge",
+      "mensch": false
+    },
+    {
+      "schritt": "Rabatt",
+      "angabe": "7.360 l P-106 (7 IBC, 1 Fass, 8 Kanister), Einzelbestellung, kein Händler, keine stationäre Anlage",
+      "paragraf": "RL-ANG-2026 § 3 Nr. 1 bis 5",
+      "ergebnis": "Mengenrabatt 6 % (ab 5.000 l), kein Projekt-, Rahmenvertrags- oder Händlerrabatt; Liste EUR 26.546,52, netto EUR 24.953,72",
+      "mensch": false
+    },
+    {
+      "schritt": "Anlagenprüfung",
+      "angabe": "Befüllung tragbarer 6-l-Löscher in der Produktion des Kunden, keine Aussage zu einer Anlage",
+      "paragraf": "RL-ANG-2026 § 2 Nr. 4, § 5",
+      "ergebnis": "nicht erforderlich; nur Produktdaten nach TDB",
+      "mensch": false
+    },
+    {
+      "schritt": "Angebotsklasse",
+      "angabe": "0 Punkte in allen sieben Merkmalen, keine Mindestklasse",
+      "paragraf": "RL-ANG-2026 § 8 Nr. 2 bis 4",
+      "ergebnis": "Klasse A",
+      "mensch": false
+    },
+    {
+      "schritt": "Kompetenz",
+      "angabe": "Klasse A bis EUR 25.000; Lieferzeit unter Standard wäre Sache der Leitung Vertrieb",
+      "paragraf": "RL-ANG-2026 § 9 Nr. 1 und 2, § 6 Nr. 4; KO-2026 § 2",
+      "ergebnis": "Angebotsassistent darf selbst versenden, sobald Lagerbestand und Rahmenvertrag geklärt sind; Lieferzusage vor dem 3-Arbeitstage-Express nur durch die Leitung Vertrieb",
+      "mensch": true,
+      "stelle": "Leitung Vertrieb (nur für Lieferzeit unter Standard)"
+    }
+  ]
+}
