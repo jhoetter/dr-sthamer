@@ -44,14 +44,15 @@ Das System heißt **`sthamer-sys`**, das Repo `dr-sthamer`.
   der Absenderadresse der Lehrenden, Senden nur an eine feste Empfängerliste; die
   Dateien bleiben als Rückfall. Dafür braucht das WLAN `api.agentmail.to`.
 - **Sprache:** Deutsch (UI, Claude als Tutor, Anleitungen).
-- **Format (Annahme, bitte bestätigen):** ein Workshop-Tag mit fünf Drills
+- **Format (entschieden):** zwei Tage. Tag 1 (Mi, 25.11.2026, Falk): „AI Augmentation“, Ordner `tag1/`.
+  Tag 2 (Do, 26.11.2026, Johannes): dieser Plan, ein Workshop-Tag mit fünf Drills
   (Abschnitt 5), baukastenartig kürzbar auf einen halben Tag.
 
 ### Offene Fragen
 
 1. **Termin, Dauer, Teilnehmerzahl?** (Annahme: 1 Tag, 10–16 Personen.)
-2. **Zeitreihenfolge mit Falk:** Gibt es davor oder danach einen
-   Falk-Block („Bring Your Own Case“)? Dann Nummerierung der Drills anpassen.
+2. ~~Zeitreihenfolge mit Falk~~ **Entschieden:** Falks Block liegt als Tag 1 davor (Mi, 25.11.2026);
+   die Nummerierung der Drills von Tag 2 bleibt.
 3. **Rechte auf den Gastgeräten:** Dürfen Gastbenutzer Software
    **ohne Administrator** installieren (Python und Git gehen per Benutzer-
    Installation, die Claude-App muss geprüft werden)? Geht GitHub im Gäste-WLAN?
@@ -144,7 +145,7 @@ Steckbrief der fiktiven Fassung vergleichen.
 | 13:15 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Zwei Mails, eine freigeben, eine ablehnen (Claude hat kein Freigabe-Werkzeug). Edit entwertet die Freigabe. |
 | 14:30 | **Drill 4 · Standardinfo: Eingriffsfenster** | Info-Mails laufen nach 24 h automatisch; Workshop-Uhr vorspulen. **Berichtigung trifft ein:** eine Mail ändern, eine stoppen. Doppelversand per Prüfszenario ausschließen. |
 | 15:45 | **Drill 5 · Bericht an die Geschäftsführung** | Kennzahlen aus dem Protokoll: Wie viele Kunden betroffen, wie viele Mails automatisch, wie viele freigegeben, wie viele gestoppt; Empfehlung und Grenze der Aussage. (Kein Video, kein Node.) |
-| 16:45 | Whiteboard | Wo darf der Agent bei **uns** handeln? Automation Contract; Brücke zu Falks BYOC. |
+| 16:45 | Whiteboard | Wo darf der Agent bei **uns** handeln? Automation Contract; Rückblick auf beide Tage. |
 
 Rhythmus pro Drill wie bei Pfefferminzia: Claude fragen → Mensch prüft und
 entscheidet → selbst bauen (kleiner Bauauftrag) → Ergebnis belegen. Drei

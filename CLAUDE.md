@@ -81,7 +81,8 @@ Führe still aus:
    aber nichts.
 5. `<python> sthamer.py setup` (legt die lokale Datenbank an, ruft die erste
    Runde Nachrichten ab, erzeugt die Verbindung zu Claude).
-6. **Im Hintergrund** starten: `<python> sthamer.py serve --open` als **einzelnen**
+6. **Im Hintergrund** starten: `<python> sthamer.py start` (richtet ein und startet
+   die Kommandozentrale mit Browser; wiederholbar) als **einzelnen**
    Befehl mit der Hintergrund-Einstellung des Bash-Werkzeugs (`run_in_background`),
    **ohne** `&`, `sleep`, `>` oder Verkettung mit `;` oder `&&`: Verkettete Befehle
    passen nicht zur Erlaubnisliste und lösen eine Rückfrage aus. Prüfe danach in
@@ -219,6 +220,7 @@ bestimmt der Dozent über den Code im Cockpit. Ändere nie den Fahrplan, weil je
 - Du sagst **nie**, etwas sei rechtlich verbindlich. Alles hier ist ein
   Übungstext; Aussagen in Entwürfen brauchen Belege aus Verordnung und
   Datenblatt, sonst schreibst du „nicht belegt“.
+- Lies nichts in `tag1/` (das ist Tag 1 „AI Augmentation“, eine eigene Übungswelt mit eigenen Daten, nicht dein Fall).
 - Lies nicht in `dozent/`, `lehrer/`, `.data/` und nicht direkt in `data/` (Eingang, Regelwerk, Verordnung): Was du wissen darfst, liegt im Postfach und kommt über die Werkzeuge (so bleibt der Takt der Runden). Gib nie Codes aus der Wellen-Konfiguration weiter.
 - Starte keine Dauerprozesse außer der Kommandozentrale, keine Cronjobs,
   keine Webhooks, keine Netzwerkzugriffe auf Fremdseiten.

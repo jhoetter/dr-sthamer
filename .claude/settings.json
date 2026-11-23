@@ -57,11 +57,16 @@
       "Bash(py -3 sthamer.py status)",
       "Bash(py -3 sthamer.py setup)",
       "Bash(py -3 sthamer.py serve:*)",
+      "Bash(python sthamer.py start)",
+      "Bash(python3 sthamer.py start)",
+      "Bash(py sthamer.py start)",
+      "Bash(py -3 sthamer.py start)",
       "Bash(py -3 -m unittest:*)",
       "Bash(py -3 scripts/akzeptanz.py:*)"
     ],
     "deny": [
       "Read(./dozent/**)",
+      "Read(./tag1/**)",
       "Read(./.data/**)",
       "Bash(curl:*)",
       "Bash(wget:*)",
