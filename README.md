@@ -93,6 +93,7 @@ jemandem dazu („Buddy-Modus“).
 | `lehrer/` | nur für Lehrende: Referenzlösungen und Absicherungstest (für Claude gesperrt) |
 | `docs/` | Anleitungen, Plan und Datenmodell: [PLAN](docs/PLAN.md), [Agenda](docs/WORKSHOP_AGENDA.md), [Drill-Karten](docs/DRILL_CARDS.md), [Runbook](docs/WORKSHOP_RUNBOOK.md), [Probelauf](docs/PROBELAUF_2026-11-12.md), [DATENMODELL](docs/DATENMODELL.md), [IT-Kurzfassung](docs/IT_CHECKLISTE.md), [IT-Details](docs/IT_VORAB.md), [Offline-Paket](docs/OFFLINE_PAKET.md) |
 | `tag1/` | Tag 1 „AI Augmentation“ (Falk): eigenständiger Arbeitsstand, siehe [tag1/README.md](tag1/README.md); gehört nicht zu Tag 2 |
+| `folien/` | Workshop-Folien ITMP × Dr. Sthamer (eine HTML-Datei, läuft offline), siehe [folien/README.md](folien/README.md) |
 | `CLAUDE.md` | Leitfaden für Claude als Tutor |
 
 Es wird **nichts installiert**: keine Pakete, kein `pip`, kein Node. Die
