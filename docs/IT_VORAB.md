@@ -1,8 +1,9 @@
 # Für die IT von Dr. Sthamer: Vorbereitung der Gastgeräte
 
 Dieses Dokument richtet sich an die IT. Die Kurzfassung auf einer Seite steht in [IT_CHECKLISTE.md](IT_CHECKLISTE.md). Es beschreibt, was die Gastgeräte und
-das Gäste-WLAN für den Workshop **„Agentische Systeme“** (ITMP SG, Veranstalter
-mit Dr. Sthamer als Kunde) brauchen. Es ist bewusst kurz und enthält eine
+das Gäste-WLAN für den zweitägigen Workshop (ITMP SG, Veranstalter mit Dr. Sthamer als Kunde) brauchen:
+Tag 1 „AI Augmentation“ (Mi 25.11.2026) und Tag 2 **„Agentische Systeme“** (Do 26.11.2026). Beide Tage nutzen dieselben Geräte, dieselbe Software
+und denselben Ordner `dr-sthamer`; das Profil muss also über Nacht erhalten bleiben. Es ist bewusst kurz und enthält eine
 Checkliste zum Abhaken.
 
 **Worum es geht:** Alle Teilnehmenden arbeiten an einem Sthamer-Arbeitsgerät mit
@@ -25,7 +26,7 @@ und keinen Mailversand.
 | **Programme aus dem Benutzerprofil ausführen** (`%LocalAppData%\Programs\...`) | Die Benutzer-Installation legt Python und Git dorthin | Bei **AppLocker/WDAC**-Regeln, die nur `Program Files` erlauben, läuft eine Benutzer-Installation **nicht**. Dann vorab für alle installieren (siehe oben). |
 | **Schreibrecht im Benutzerprofil** | Der Ordner `dr-sthamer` liegt unter `C:\Users\<Gast>\dr-sthamer`, dazu eine lokale Datenbank | – |
 | **Skripte (Python, `.py`) dürfen laufen** | check.py und die Anwendung sind Python-Skripte | Freigabe oder Vorab-Installation |
-| **Lokaler Webserver auf 127.0.0.1** (Port 3005, bei Belegung ein anderer) | Die Kommandozentrale ist eine Webseite auf dem eigenen Gerät | Lokale Firewall darf Loopback nicht blockieren. Es wird **nichts** im Netz geöffnet. |
+| **Lokaler Webserver auf 127.0.0.1** (Port 3005, bei Belegung ein anderer; an Tag 1 zusätzlich Port 8137 für die Ergebnisseiten) | Die Kommandozentrale und die Dashboards von Tag 1 sind Webseiten auf dem eigenen Gerät | Lokale Firewall darf Loopback nicht blockieren. Es wird **nichts** im Netz geöffnet. |
 | **Ein Profil, das den Tag über bestehen bleibt** | Temporäre Gast- oder „TEMP“-Profile löschen beim Abmelden alles | Während des Workshops nicht abmelden/neu starten. Nach einem Neustart müssen die Teilnehmenden sich neu in Claude anmelden. |
 
 **Nicht nötig:** `pip`, PyPI, Node.js, npm, Docker, Administratorrechte zur

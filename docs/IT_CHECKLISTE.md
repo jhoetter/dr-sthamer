@@ -8,7 +8,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 
 | | |
 | --- | --- |
-| Termin | ______________ |
+| Termin | **Zwei Tage:** Tag 1 „AI Augmentation“ Mi 25.11.2026 (Falk Uebernickel), Tag 2 „Agentische Systeme“ Do 26.11.2026 (Johannes Hötter, Datum bitte bestätigen) |
 | Teilnehmende | ____ (geplant 10 bis 16), dazu **2 Reservegeräte** |
 | Ansprechperson ITMP SG | Johannes Hötter, ______________ |
 | Ansprechperson IT Sthamer (am Tag erreichbar) | ______________ |
@@ -17,7 +17,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 
 **1. Geräte und Gastbenutzer**
 - Ein Gastbenutzer pro Teilnehmendem. Ein Gerät ist ein Mac, alle anderen Windows (10 oder 11).
-- Das Profil **bleibt den ganzen Tag bestehen** (kein Löschen beim Abmelden, kein Neustart zwischendurch).
+- Das Profil **bleibt beide Tage bestehen**, auch über Nacht (kein Löschen beim Abmelden, kein Neustart zwischendurch): Am Donnerstag arbeiten alle im Ordner weiter, den sie am Mittwoch angelegt haben.
 - Der Benutzerordner liegt **nicht in OneDrive** und ist nicht umgeleitet; der Gast darf in sein Profil schreiben.
 
 **2. Software, bitte vorab auf allen Geräten installieren**
@@ -27,7 +27,8 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 | **Claude-App** (Desktop, Bereich „Code“) | Download über `claude.ai/download`. Sie muss im **Gastprofil nutzbar** sein: für alle Benutzer installieren, falls die App das kann (siehe „Offen“). |
 | **Git** | Windows: „Git for Windows“ (`git-scm.com`). Mac: Befehlszeilentools oder Git von git-scm.com, **bitte vorab** (die Apple-Befehlszeilentools brauchen in der Regel Administratorrechte). |
 | **Python 3** | **Version 3.12** (3.13 prüft Zertifikate strenger und macht hinter einer TLS-Inspektion eher Probleme). Windows: „Add python.exe to PATH“ aktivieren, **nicht** nur den Platzhalter aus dem Microsoft Store. Am Mac reicht das Python der Apple-Befehlszeilentools (3.9, kommt mit Git zusammen, also ebenfalls vorab). |
-| Ein aktueller **Browser** (Chrome oder Edge) | Die Übungs-Software öffnet sich im Browser auf dem eigenen Gerät. |
+| Ein aktueller **Browser** (Chrome oder Edge) | Die Übungs-Software öffnet sich im Browser auf dem eigenen Gerät. An Tag 1 erzeugt Claude außerdem PDFs mit dem vorhandenen Edge oder Chrome im Hintergrund (nichts zu installieren). |
+| **Obsidian** (optional, nur Tag 1) | Ansicht für ein Notizbuch; ohne Obsidian gibt es eine Browser-Ansicht. Nichts Pflichtiges. |
 
 Sind die Programme vorinstalliert, entfällt der Installationsteil für die Teilnehmenden. Ist das nicht möglich, müssen
 Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5).
@@ -49,7 +50,7 @@ Benutzer-Installationen **ohne Administratorrechte** erlaubt sein (siehe Punkt 5
 
 **5. Rechte und Sicherheitssoftware**
 - **Python-Skripte** aus dem Benutzerprofil dürfen laufen (bei AppLocker oder WDAC prüfen), ebenso ein **lokaler Webserver auf
-  127.0.0.1** (Port 3005). Es wird nichts im Netz geöffnet und kein eingehender Port gebraucht.
+  127.0.0.1** (Port 3005 an Tag 2, Port 8137 an Tag 1). Es wird nichts im Netz geöffnet und kein eingehender Port gebraucht.
 - Virenschutz und EDR: Ein Ausschluss ist nicht nötig, aber bitte **im Probelauf** auf Warnungen achten.
 
 **6. Probelauf am Vortag (eine Stunde, bitte unbedingt)**
