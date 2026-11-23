@@ -29,9 +29,9 @@ python sthamer.py start
 
 **Einmal neu öffnen:** Die Werkzeuge für Claude (MCP) werden beim Start einer Sitzung geladen. Eine Sitzung, die außerhalb des Ordners begonnen hat, kennt sie noch nicht. Danach eine **neue Sitzung im Ordner `dr-sthamer`** öffnen und „weiter mit Drill 1“ schreiben; dort gelten der Leitfaden `CLAUDE.md` und die Freigaben. Fragen zur Vertrauensabfrage („Ordner“, „Werkzeuge von Sthamer“) mit Ja beantworten.
 
-## Zwei Tage, zwei Ordner
+## Drei Tage, zwei Ordner
 
-Der Workshop hat zwei Tage. **Dieser Ordner (Wurzel) ist Tag 2, „Agentische Systeme“** (Donnerstag, 26.11.2026). **Tag 1, „AI Augmentation“** (Mittwoch, 25.11.2026, Falk Uebernickel) liegt eigenständig im Ordner [`tag1/`](tag1/README.md) mit eigenen Daten, eigenem Leitfaden und eigenen Einstellungen; er arbeitet mit anderen Beispielfällen (Geschäftsentwicklung statt Verordnung). Beide Tage nutzen dasselbe Repository und denselben Zielordner `dr-sthamer`; wer Tag 1 schon geklont hat, aktualisiert am Donnerstag mit `git pull` (der Leitfaden macht das selbst). Für Tag 2 liest Claude **nichts** in `tag1/`.
+Der Workshop läuft **Mittwoch bis Freitag (25.–27.11.2026)**. **Dieser Ordner (Wurzel) ist Tag 2, „Agentische Systeme“** (Donnerstag, 26.11.2026, Johannes Hötter). **Tag 1, „AI Augmentation“** (Mittwoch, 25.11.2026, Falk Uebernickel) liegt eigenständig im Ordner [`tag1/`](tag1/README.md) mit eigenen Daten, eigenem Leitfaden und eigenen Einstellungen; er arbeitet mit anderen Beispielfällen (Geschäftsentwicklung statt Verordnung). **Tag 3** (Freitag, 27.11.2026) ist der eigene Fall der Teilnehmenden („Bring Your Own Case“, Ablauf und Leitung noch offen). Alle Tage nutzen dasselbe Repository und denselben Zielordner `dr-sthamer`; wer Tag 1 schon geklont hat, aktualisiert am Donnerstag mit `git pull` (der Leitfaden macht das selbst). Für Tag 2 liest Claude **nichts** in `tag1/`. Die Folien aller drei Tage (Überblick, Agenda, Tag 2) liegen in [`folien/`](folien/README.md).
 
 ## Start für Teilnehmende
 

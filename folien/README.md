@@ -2,7 +2,7 @@
 
 `ITMP × Dr. Sthamer — Workshop-Folien.html` im Browser öffnen: eigenständige Datei (reveal.js, Schriften und Logos eingebettet), läuft ohne Internet. Pfeiltasten blättern, **F** Vollbild, **ESC** alle Folien, `?print-pdf` an die Adresse hängen für PDF (Drucken, Hintergrundgrafiken an).
 
-Elf Folien für den zweitägigen Workshop: Titel, Team, Agenda (zwei Tage, Tag 1, Tag 2), Fallstudie Dr. Sthamer, These, Kontrollen, Prompt-Muster, Drill 1 von Tag 2, Schluss.
+Elf Folien für den dreitägigen Workshop (Mi 25. bis Fr 27.11.2026). Titel, Team und Agenda (drei Tage, Tag 1 Mittwoch, Tag 2 Donnerstag) geben den Überblick. Die übrigen Folien sind Donnerstag (Tag 2) und tragen die Uhrzeit aus der Agenda: 09:00 Fallstudie, 09:15 These und Kontrollen, 10:05 Drill 1, 11:20 Prompt-Muster für Drill 2, 16:30 Schluss mit Ausblick auf Freitag.
 
 ## Herkunft
 
