@@ -90,6 +90,15 @@ def cmd_serve(args: argparse.Namespace) -> int:
     return starten(args.port, args.open)
 
 
+def cmd_start(args: argparse.Namespace) -> int:
+    """Alles in einem Befehl: einrichten (idempotent), dann die Kommandozentrale starten und den Browser öffnen."""
+    rc = cmd_setup(args)
+    if rc != 0:
+        return rc
+    print("Starte die Kommandozentrale ...")
+    return cmd_serve(args)
+
+
 def cmd_mcp(args: argparse.Namespace) -> int:
     from .mcp_server import lauf
     bereit_machen()
@@ -149,6 +158,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     s.add_argument("--port", type=int, default=DEFAULT_PORT)
     s.add_argument("--open", action="store_true", help="Browser öffnen")
     s.set_defaults(fn=cmd_serve)
+    st = sub.add_parser("start", help="einrichten und die Kommandozentrale im Browser starten (ein Befehl)")
+    st.add_argument("--port", type=int, default=DEFAULT_PORT)
+    st.set_defaults(fn=cmd_start, open=True)
     sub.add_parser("mcp", help="MCP-Server über stdio (von Claude gestartet)").set_defaults(fn=cmd_mcp)
     sub.add_parser("status", help="Stand anzeigen").set_defaults(fn=cmd_status)
     w = sub.add_parser("welle", help="nächste Runde Nachrichten abrufen (Code vom Dozenten)")

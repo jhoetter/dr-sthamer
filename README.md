@@ -13,6 +13,26 @@ bei Standardinformationen.
 > Es werden **keine echten Mails** versendet: „Senden“ legt nur eine Datei im
 > Postausgang ab.
 
+## Schnellstart in einem Satz
+
+Auf jedem Gerät mit **Python 3**, **Git** und Claude Code genügt in einer neuen Sitzung (in einem beliebigen Ordner, am besten im Benutzerordner):
+
+> Clone das Repo jhoetter/dr-sthamer und starte die Anwendung.
+
+Claude klont nach `dr-sthamer`, findet den passenden Python-Befehl und führt **einen** Befehl im Hintergrund aus:
+
+```
+python sthamer.py start
+```
+
+(Mac/Linux: `python3 sthamer.py start`, Windows ggf. `py -3 sthamer.py start`.) Der Befehl richtet alles ein (lokale Datenbank, Verbindung zu Claude, Git-Vorbereitung) und öffnet die Kommandozentrale im Browser (<http://127.0.0.1:3005>). Er ist wiederholbar: Läuft sie schon, wird sie nur geöffnet.
+
+**Einmal neu öffnen:** Die Werkzeuge für Claude (MCP) werden beim Start einer Sitzung geladen. Eine Sitzung, die außerhalb des Ordners begonnen hat, kennt sie noch nicht. Danach eine **neue Sitzung im Ordner `dr-sthamer`** öffnen und „weiter mit Drill 1“ schreiben; dort gelten der Leitfaden `CLAUDE.md` und die Freigaben. Fragen zur Vertrauensabfrage („Ordner“, „Werkzeuge von Sthamer“) mit Ja beantworten.
+
+## Zwei Tage, zwei Ordner
+
+Der Workshop hat zwei Tage. **Dieser Ordner (Wurzel) ist Tag 2, „Agentische Systeme“** (Donnerstag, 26.11.2026). **Tag 1, „AI Augmentation“** (Mittwoch, 25.11.2026, Falk Uebernickel) liegt eigenständig im Ordner [`tag1/`](tag1/README.md) mit eigenen Daten, eigenem Leitfaden und eigenen Einstellungen; er arbeitet mit anderen Beispielfällen (Geschäftsentwicklung statt Verordnung). Beide Tage nutzen dasselbe Repository und denselben Zielordner `dr-sthamer`; wer Tag 1 schon geklont hat, aktualisiert am Donnerstag mit `git pull` (der Leitfaden macht das selbst). Für Tag 2 liest Claude **nichts** in `tag1/`.
+
 ## Start für Teilnehmende
 
 Du brauchst nur **Python 3**, **Git** und die **Claude-App** (Claude Pro). Die
@@ -53,9 +73,12 @@ jemandem dazu („Buddy-Modus“).
 
 > **Für Claude Code – Einrichtung:** Lies `CLAUDE.md` und folge dem Abschnitt
 > „Erststart“. Kurz: passenden Python-Befehl finden (`python`, `python3` oder
-> `py -3`), `check.py` ausführen, `sthamer.py setup`, dann
-> `sthamer.py serve --open` im Hintergrund. Die Person bedient kein Terminal und
-> hört keinen Fachjargon.
+> `py -3`), dann **einen** Befehl im Hintergrund (`run_in_background`, ohne
+> Verkettung): `<python> sthamer.py start` (richtet ein und startet die
+> Kommandozentrale), danach in einem eigenen Aufruf `<python> sthamer.py status`.
+> `check.py` nur bei Problemen. Die Person bedient kein Terminal und
+> hört keinen Fachjargon. Die Werkzeuge (MCP) fehlen in dieser ersten Sitzung:
+> bitte eine neue Sitzung im Ordner öffnen lassen. Nichts in `tag1/` lesen.
 
 ## Was in diesem Repo liegt
 
@@ -69,6 +92,7 @@ jemandem dazu („Buddy-Modus“).
 | `scripts/` | `akzeptanz.py` prüft die Bauaufträge der Drills, `make_data.py` erzeugt die Übungsdaten |
 | `lehrer/` | nur für Lehrende: Referenzlösungen und Absicherungstest (für Claude gesperrt) |
 | `docs/` | Anleitungen, Plan und Datenmodell: [PLAN](docs/PLAN.md), [Agenda](docs/WORKSHOP_AGENDA.md), [Drill-Karten](docs/DRILL_CARDS.md), [Runbook](docs/WORKSHOP_RUNBOOK.md), [Probelauf](docs/PROBELAUF_2026-11-12.md), [DATENMODELL](docs/DATENMODELL.md), [IT-Kurzfassung](docs/IT_CHECKLISTE.md), [IT-Details](docs/IT_VORAB.md), [Offline-Paket](docs/OFFLINE_PAKET.md) |
+| `tag1/` | Tag 1 „AI Augmentation“ (Falk): eigenständiger Arbeitsstand, siehe [tag1/README.md](tag1/README.md); gehört nicht zu Tag 2 |
 | `CLAUDE.md` | Leitfaden für Claude als Tutor |
 
 Es wird **nichts installiert**: keine Pakete, kein `pip`, kein Node. Die
