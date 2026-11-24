@@ -1,8 +1,8 @@
 # Für die IT von Dr. Sthamer: Vorbereitung der Gastgeräte
 
 Dieses Dokument richtet sich an die IT. Die Kurzfassung auf einer Seite steht in [IT_CHECKLISTE.md](IT_CHECKLISTE.md). Es beschreibt, was die Gastgeräte und
-das Gäste-WLAN für den zweitägigen Workshop (ITMP SG, Veranstalter mit Dr. Sthamer als Kunde) brauchen:
-Tag 1 „AI Augmentation“ (Mi 25.11.2026) und Tag 2 **„Agentische Systeme“** (Do 26.11.2026). Beide Tage nutzen dieselben Geräte, dieselbe Software
+das Gäste-WLAN für den dreitägigen Workshop (Mi–Fr) (ITMP SG, Veranstalter mit Dr. Sthamer als Kunde) brauchen:
+Tag 1 „AI Augmentation“ (Mi 25.11.2026), Tag 2 **„Agentische Systeme“** (Do 26.11.2026) und Tag 3 (Fr 27.11.2026, eigener Fall). Alle Tage nutzen dieselben Geräte, dieselbe Software
 und denselben Ordner `dr-sthamer`; das Profil muss also über Nacht erhalten bleiben. Es ist bewusst kurz und enthält eine
 Checkliste zum Abhaken.
 

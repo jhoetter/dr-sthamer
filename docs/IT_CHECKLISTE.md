@@ -8,7 +8,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 
 | | |
 | --- | --- |
-| Termin | **Zwei Tage:** Tag 1 „AI Augmentation“ Mi 25.11.2026 (Falk Uebernickel), Tag 2 „Agentische Systeme“ Do 26.11.2026 (Johannes Hötter, Datum bitte bestätigen) |
+| Termin | **Drei Tage, Mi–Fr:** Tag 1 „AI Augmentation“ Mi 25.11.2026 (Falk Uebernickel), Tag 2 „Agentische Systeme“ Do 26.11.2026 (Johannes Hötter), Tag 3 Fr 27.11.2026 (Dr. Marc Kohler, eigener Fall, Ablauf offen) |
 | Teilnehmende | ____ (geplant 10 bis 16), dazu **2 Reservegeräte** |
 | Ansprechperson ITMP SG | Johannes Hötter, ______________ |
 | Ansprechperson IT Sthamer (am Tag erreichbar) | ______________ |
@@ -17,7 +17,7 @@ Kurzfassung für die IT-Leitung. Alle Details, Domainlisten und die Fehlersuche 
 
 **1. Geräte und Gastbenutzer**
 - Ein Gastbenutzer pro Teilnehmendem. Ein Gerät ist ein Mac, alle anderen Windows (10 oder 11).
-- Das Profil **bleibt beide Tage bestehen**, auch über Nacht (kein Löschen beim Abmelden, kein Neustart zwischendurch): Am Donnerstag arbeiten alle im Ordner weiter, den sie am Mittwoch angelegt haben.
+- Das Profil **bleibt alle drei Tage bestehen**, auch über Nacht (kein Löschen beim Abmelden, kein Neustart zwischendurch): Am Donnerstag und Freitag arbeiten alle im Ordner weiter, den sie am Mittwoch angelegt haben.
 - Der Benutzerordner liegt **nicht in OneDrive** und ist nicht umgeleitet; der Gast darf in sein Profil schreiben.
 
 **2. Software, bitte vorab auf allen Geräten installieren**

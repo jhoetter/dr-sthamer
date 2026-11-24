@@ -44,7 +44,7 @@ Das System heißt **`sthamer-sys`**, das Repo `dr-sthamer`.
   der Absenderadresse der Lehrenden, Senden nur an eine feste Empfängerliste; die
   Dateien bleiben als Rückfall. Dafür braucht das WLAN `api.agentmail.to`.
 - **Sprache:** Deutsch (UI, Claude als Tutor, Anleitungen).
-- **Format (entschieden):** zwei Tage. Tag 1 (Mi, 25.11.2026, Falk): „AI Augmentation“, Ordner `tag1/`.
+- **Format (entschieden):** drei Tage, Mi–Fr 25.–27.11.2026 (Tag 3: eigener Fall, „Bring Your Own Case“, Leitung Dr. Marc Kohler, Ablauf offen). Tag 1 (Mi, 25.11.2026, Falk): „AI Augmentation“, Ordner `tag1/`.
   Tag 2 (Do, 26.11.2026, Johannes): dieser Plan, ein Workshop-Tag mit fünf Drills
   (Abschnitt 5), baukastenartig kürzbar auf einen halben Tag.
 
@@ -145,7 +145,7 @@ Steckbrief der fiktiven Fassung vergleichen.
 | 13:15 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Zwei Mails, eine freigeben, eine ablehnen (Claude hat kein Freigabe-Werkzeug). Edit entwertet die Freigabe. |
 | 14:30 | **Drill 4 · Standardinfo: Eingriffsfenster** | Info-Mails laufen nach 24 h automatisch; Workshop-Uhr vorspulen. **Berichtigung trifft ein:** eine Mail ändern, eine stoppen. Doppelversand per Prüfszenario ausschließen. |
 | 15:45 | **Drill 5 · Bericht an die Geschäftsführung** | Kennzahlen aus dem Protokoll: Wie viele Kunden betroffen, wie viele Mails automatisch, wie viele freigegeben, wie viele gestoppt; Empfehlung und Grenze der Aussage. (Kein Video, kein Node.) |
-| 16:45 | Whiteboard | Wo darf der Agent bei **uns** handeln? Automation Contract; Rückblick auf beide Tage. |
+| 16:45 | Whiteboard | Wo darf der Agent bei **uns** handeln? Automation Contract; Ausblick auf Freitag („Bring Your Own Case“). |
 
 Rhythmus pro Drill wie bei Pfefferminzia: Claude fragen → Mensch prüft und
 entscheidet → selbst bauen (kleiner Bauauftrag) → Ergebnis belegen. Drei

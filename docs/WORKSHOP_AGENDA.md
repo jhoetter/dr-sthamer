@@ -2,8 +2,9 @@
 
 > **Status:** Entwurf zur Abstimmung zwischen Johannes, Falk und Marc. Gespielt
 > wurde der Tag am 12.11.2026 mit simulierten Teilnehmenden (siehe
-> `docs/PROBELAUF_2026-11-12.md`). Zeiten sind Vorschläge für **einen Tag**: Das ist **Tag 2** (Donnerstag, 26.11.2026,
-> Johannes). **Tag 1** „AI Augmentation“ (Mittwoch, 25.11.2026, Falk) liegt eigenständig in `tag1/`.
+> `docs/PROBELAUF_2026-11-12.md`). Zeiten sind Vorschläge für **einen Tag**. Der Workshop läuft **Mittwoch bis Freitag (25.–27.11.2026)**; das hier ist **Tag 2**
+> (Donnerstag, 26.11.2026, Johannes). **Tag 1** „AI Augmentation“ (Mittwoch, Falk) liegt eigenständig in `tag1/`, **Tag 3** (Freitag) ist der
+> eigene Fall der Teilnehmenden („Bring Your Own Case“, Leitung Dr. Marc Kohler, Ablauf offen). Die Folien liegen in `folien/`.
 
 Alle Übungen nutzen die erfundene Übungswelt von `sthamer-sys`: Kunden,
 Produkte, Lieferungen, Mails und die Verordnung „EU 2026/9001 (fiktiv)“. Echte
@@ -39,7 +40,7 @@ zum Senden oder Freigeben.
 | 15:30 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Falk | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
 | 16:15 | Pause | | |
 | 16:30 | Whiteboard: Wo darf der Agent bei uns handeln? | Falk, Johannes | Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf eigene Fälle übertragen, Automation Contract. |
-| 17:15 | Ausblick und Abschluss | Falk | Rückblick auf beide Tage, Rückmeldungen. |
+| 17:15 | Ausblick und Abschluss | Falk | Ausblick auf Freitag („Bring Your Own Case“), Rückmeldungen. |
 
 ## Drills im Überblick
 
