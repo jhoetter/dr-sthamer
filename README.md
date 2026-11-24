@@ -31,7 +31,7 @@ python sthamer.py start
 
 ## Drei Tage, zwei Ordner
 
-Der Workshop läuft **Mittwoch bis Freitag (25.–27.11.2026)**. **Dieser Ordner (Wurzel) ist Tag 2, „Agentische Systeme“** (Donnerstag, 26.11.2026, Johannes Hötter). **Tag 1, „AI Augmentation“** (Mittwoch, 25.11.2026, Falk Uebernickel) liegt eigenständig im Ordner [`tag1/`](tag1/README.md) mit eigenen Daten, eigenem Leitfaden und eigenen Einstellungen; er arbeitet mit anderen Beispielfällen (Geschäftsentwicklung statt Verordnung). **Tag 3** (Freitag, 27.11.2026) ist der eigene Fall der Teilnehmenden („Bring Your Own Case“, Ablauf und Leitung noch offen). Alle Tage nutzen dasselbe Repository und denselben Zielordner `dr-sthamer`; wer Tag 1 schon geklont hat, aktualisiert am Donnerstag mit `git pull` (der Leitfaden macht das selbst). Für Tag 2 liest Claude **nichts** in `tag1/`. Die Folien aller drei Tage (Überblick, Agenda, Tag 2) liegen in [`folien/`](folien/README.md).
+Der Workshop läuft **Mittwoch bis Freitag (25.–27.11.2026)**. **Dieser Ordner (Wurzel) ist Tag 2, „Agentische Systeme“** (Donnerstag, 26.11.2026, Johannes Hötter). **Tag 1, „AI Augmentation“** (Mittwoch, 25.11.2026, Falk Uebernickel) liegt eigenständig im Ordner [`tag1/`](tag1/README.md) mit eigenen Daten, eigenem Leitfaden und eigenen Einstellungen; er arbeitet mit anderen Beispielfällen (Geschäftsentwicklung statt Verordnung). **Tag 3** (Freitag, 27.11.2026, Dr. Marc Kohler, ITMP SG) ist der eigene Fall der Teilnehmenden („Bring Your Own Case“, Ablauf noch offen). Der Vortrag zu Tag 2 liegt in [`tag2/`](tag2/README.md). Alle Tage nutzen dasselbe Repository und denselben Zielordner `dr-sthamer`; wer Tag 1 schon geklont hat, aktualisiert am Donnerstag mit `git pull` (der Leitfaden macht das selbst). Für Tag 2 liest Claude **nichts** in `tag1/`. Die Folien aller drei Tage (Überblick, Agenda, Tag 2) liegen in [`folien/`](folien/README.md).
 
 ## Start für Teilnehmende
 
@@ -93,6 +93,7 @@ jemandem dazu („Buddy-Modus“).
 | `lehrer/` | nur für Lehrende: Referenzlösungen und Absicherungstest (für Claude gesperrt) |
 | `docs/` | Anleitungen, Plan und Datenmodell: [PLAN](docs/PLAN.md), [Agenda](docs/WORKSHOP_AGENDA.md), [Drill-Karten](docs/DRILL_CARDS.md), [Runbook](docs/WORKSHOP_RUNBOOK.md), [Probelauf](docs/PROBELAUF_2026-11-12.md), [DATENMODELL](docs/DATENMODELL.md), [IT-Kurzfassung](docs/IT_CHECKLISTE.md), [IT-Details](docs/IT_VORAB.md), [Offline-Paket](docs/OFFLINE_PAKET.md) |
 | `tag1/` | Tag 1 „AI Augmentation“ (Falk): eigenständiger Arbeitsstand, siehe [tag1/README.md](tag1/README.md); gehört nicht zu Tag 2 |
+| `tag2/` | Material zu Tag 2: Vortrag «Jede Aufgabe zuerst agentisch» (Johannes), siehe [tag2/README.md](tag2/README.md); die Anwendung selbst liegt an der Wurzel |
 | `folien/` | Workshop-Folien ITMP × Dr. Sthamer (eine HTML-Datei, läuft offline), siehe [folien/README.md](folien/README.md) |
 | `CLAUDE.md` | Leitfaden für Claude als Tutor |
 

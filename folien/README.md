@@ -10,6 +10,6 @@ Die Gestaltung stammt aus der Vorlage von Falk Uebernickel (`github.com/falkue/a
 
 ## Noch zu prüfen
 
-Alles, was in der Datei in eckigen Klammern steht: Ort, Zeiten, Datum. Das ITMP-Logo liegt nur als kleines Bild (200 × 200 Pixel) vor; ein SVG oder größeres PNG wäre schärfer. Die Comicfigur von Falk auf der Folie «Kontrollen» stammt aus der Vorlage.
+Alles, was in der Datei in eckigen Klammern steht: Ort, Zeiten und der Ablauf von Freitag (Tag 3, Leitung Dr. Marc Kohler). Der Vortrag von Johannes liegt separat in `../tag2/impuls/`. Das ITMP-Logo liegt nur als kleines Bild (200 × 200 Pixel) vor; ein SVG oder größeres PNG wäre schärfer. Die Comicfigur von Falk auf der Folie «Kontrollen» stammt aus der Vorlage.
 
 reveal.js 5.2.0 (MIT). Schriften Bangers, Barlow und JetBrains Mono (SIL Open Font License 1.1), eingebettet. Das Logo von Dr. Sthamer stammt aus `web/logo-sthamer.png`.
