@@ -142,10 +142,10 @@ Steckbrief der fiktiven Fassung vergleichen.
 | 10:00 | **Drill 1 · Die Verordnung kommt** | Verordnung im Eingang. Claude erstellt den Steckbrief, Mensch prüft Fristen, Claude entwirft *eine* Kundenmail, Mensch sendet (Postausgang). Bauauftrag: Aufgabe erledigt sich beim Senden. |
 | 11:15 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Betroffenheit Produkte und Kunden mit Artikel- und Datenblattbeleg. Bauauftrag: Belegprüfung beim Speichern (Zitate müssen existieren, Fristen müssen stimmen). |
 | 12:15 | Mittag | |
-| 13:15 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Zwei Mails, eine freigeben, eine ablehnen (Claude hat kein Freigabe-Werkzeug). Edit entwertet die Freigabe. |
-| 14:30 | **Drill 4 · Standardinfo: Eingriffsfenster** | Info-Mails laufen nach 24 h automatisch; Workshop-Uhr vorspulen. **Berichtigung trifft ein:** eine Mail ändern, eine stoppen. Doppelversand per Prüfszenario ausschließen. |
-| 15:45 | **Drill 5 · Bericht an die Geschäftsführung** | Kennzahlen aus dem Protokoll: Wie viele Kunden betroffen, wie viele Mails automatisch, wie viele freigegeben, wie viele gestoppt; Empfehlung und Grenze der Aussage. (Kein Video, kein Node.) |
-| 16:45 | Whiteboard | Wo darf der Agent bei **uns** handeln? Automation Contract; Ausblick auf Freitag („Bring Your Own Case“). |
+| 13:00 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Zwei Mails, eine freigeben, eine ablehnen (Claude hat kein Freigabe-Werkzeug). Edit entwertet die Freigabe. |
+| 14:15 | **Drill 4 · Standardinfo: Eingriffsfenster** | Info-Mails laufen nach 24 h automatisch; Workshop-Uhr vorspulen. **Berichtigung trifft ein:** eine Mail ändern, eine stoppen. Doppelversand per Prüfszenario ausschließen. |
+| 15:25 | **Drill 5 · Bericht an die Geschäftsführung** | Kennzahlen aus dem Protokoll: Wie viele Kunden betroffen, wie viele Mails automatisch, wie viele freigegeben, wie viele gestoppt; Empfehlung und Grenze der Aussage. (Kein Video, kein Node.) |
+| 16:10 | Resümee | Was haben wir gebaut, was nehmen wir mit? Danach bis 17:00 Ausblick auf Freitag („Bring Your Own Case“) und Rückmeldungen. |
 
 Rhythmus pro Drill wie bei Pfefferminzia: Claude fragen → Mensch prüft und
 entscheidet → selbst bauen (kleiner Bauauftrag) → Ergebnis belegen. Drei

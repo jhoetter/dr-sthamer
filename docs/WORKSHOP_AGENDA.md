@@ -16,7 +16,7 @@ Kunden- oder Produktdaten kommen nicht vor. Es ist kein Rechtsrat.
 | --- | --- | --- |
 | Vormittag | Wie wird aus einer Verordnung ein prüfbarer Prozess, in dem Claude vorbereitet und wir entscheiden? | Alle haben eine eigene Kommandozentrale, einen belegten Entwurf, eine Einschätzung mit Belegen und eine gebaute Kontrolle (Drill 1 und 2). |
 | Nachmittag | Wann darf eine Mail das Haus nur mit Freigabe verlassen, wann automatisch nach Verzögerung? | Pflichtfreigabe und Eingriffsfenster am eigenen System erlebt und gebaut; ein Bericht an die Geschäftsführung (Drill 3 bis 5). |
-| Abschluss | Wo darf der Agent bei **uns** handeln? | Ein Automation Contract für einen eigenen Fall; Übergabe an Freitag („Bring Your Own Case“, Marc). |
+| Abschluss | Was haben wir gebaut, was nehmen wir mit, wo wirken Kontrollen bei **uns**? | Ein Resümee der fünf Drills; Übergabe an Freitag („Bring Your Own Case“, Marc). |
 
 Die sechs Bausteine jedes agentischen Systems: **Eingänge, Wissen,
 Werkzeuge, Kontrollen, Oberfläche, Protokoll**. Jeder Drill rückt einige in den
@@ -27,20 +27,19 @@ zum Senden oder Freigeben.
 
 | Zeit | Block | Wer | Inhalt |
 | --- | --- | --- | --- |
-| 08:30 | Ankommen, Technikcheck | Marc, IT von Sthamer | Geräte an, Gäste-WLAN, `python check.py`, Claude-Anmeldung. Vorab erledigt (siehe `VOR_DEM_WORKSHOP.md`), hier nur Nacharbeit. Zweiergruppen („Buddys“) bilden. |
-| 09:00 | Begrüßung | Marc, Sthamer | Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. |
-| 09:15 | Input: Vom Assistenten zum Agenten | Johannes | Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Dann der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
-| 10:05 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
-| 11:05 | Pause | | |
-| 11:20 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
-| 12:20 | Mittag | | **Runde 2** vorbereiten (Code bereithalten). |
-| 13:10 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes, Marc | Fünf Anfragen, Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
-| 14:10 | Pause | | |
-| 14:25 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes, Marc | Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein.** Bau: Änderung bricht den Termin ab, nie doppelt senden. |
-| 15:30 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
-| 16:15 | Pause | | |
-| 16:30 | Whiteboard: Wo darf der Agent bei uns handeln? | Johannes, Marc | Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf eigene Fälle übertragen, Automation Contract. |
-| 17:15 | Ausblick und Abschluss | Marc | Ausblick auf Freitag („Bring Your Own Case“), Rückmeldungen. |
+| ab 08:30 | Einlass, Technikcheck (freiwillig) | Marc, IT von Sthamer | Wer will, kommt früher: Geräte an, Gäste-WLAN, `python check.py`, Claude-Anmeldung. Vorab erledigt (siehe `VOR_DEM_WORKSHOP.md`), hier nur Nacharbeit. Zweiergruppen („Buddys“). |
+| 09:00 | **Impuls (60 Min.): Jede Aufgabe zuerst agentisch** | Johannes (Marc begrüßt in den ersten Minuten und geht später rum) | Marc: Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann Johannes, etwa 09:05 bis 09:40: der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:40: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
+| 10:00 | **Drill 1 · Die Verordnung kommt** | Johannes, Marc | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
+| 11:00 | Pause (15 Min.) | | |
+| 11:15 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes, Marc | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
+| 12:15 | Mittag (45 Min.) | | **Runde 2** vorbereiten (Code bereithalten). |
+| 13:00 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes, Marc | Zehn Minuten Impuls, dann fünf Anfragen: Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
+| 14:00 | Pause (15 Min.) | | |
+| 14:15 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes, Marc | Zehn Minuten Impuls, dann: Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein** (etwa 40 Minuten nach Beginn). Bau: Änderung bricht den Termin ab, nie doppelt senden. |
+| 15:15 | Pause (10 Min.) | | |
+| 15:25 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes, Marc | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
+| 16:10 | Resümee: Was haben wir gebaut, was nehmen wir mit? | Johannes, Marc | Ohne Rechner. Rückblick auf die fünf Drills, die Bausteine und die zwei Kontrollen; was hat überrascht; welche Kontrolle würde bei uns zuerst wirken. |
+| 16:50 | Ausblick auf Freitag, Rückmeldungen | Marc | Übergabe an „Bring Your Own Case“. Ende 17:00. |
 
 ## Drills im Überblick
 
@@ -59,7 +58,7 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
 ## Dozenten-Choreografie
 
 - **Runden-Codes** stehen in `dozent/WELLEN.md` (nur lokal bei den Lehrenden).
-  Runde 2 um 13:10 ansagen, Runde 3 um 14:25, Runde 4 etwa 45 Minuten später
+  Runde 2 um 13:00 ansagen, Runde 3 um 14:15, Runde 4 etwa 40 Minuten später
   („Die Berichtigung ist da“) mitten im Drill 4, **bevor** die Teilnehmenden die Übungsuhr
   vorspulen (sonst sind die Mails im Fenster schon raus und es gibt nichts zu korrigieren). Die Codes werden laut gesagt
   oder an die Tafel geschrieben; Teilnehmende tragen sie im Cockpit unter
@@ -101,7 +100,7 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
   Claude geben und den Steckbrief mit der fiktiven Fassung vergleichen. Kein
   Rechtsrat; das Ergebnis ist Diskussionsstoff.
 
-## Abschluss: Automation Contract (Vorlage)
+## Optional für Freitag: Automation Contract (Vorlage)
 
 Für den eigenen Fall in einem Satz je Zeile festhalten:
 
