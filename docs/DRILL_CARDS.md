@@ -314,4 +314,4 @@ Kennzahl steht darin, die Grenze der Aussage ist genannt. Stand speichern.
 Ohne Rechner (16:10, etwa 40 Minuten). Rückblick auf die fünf Drills, die sechs Bausteine und die zwei Kontrollen:
 Was haben wir gebaut, was hat funktioniert, was hat überrascht, und welche Kontrolle würde bei uns zuerst wirken?
 Wer mag, überträgt Pflichtfreigabe und Eingriffsfenster auf einen eigenen Fall (Automation Contract, Vorlage in
-`WORKSHOP_AGENDA.md`, freiwillig). Marc leitet zu „Bring Your Own Case“ (Freitag) über.
+`WORKSHOP_AGENDA.md`, freiwillig). Ausblick auf „Bring Your Own Case“ (Freitag, Dr. Marc Kohler).
