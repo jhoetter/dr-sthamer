@@ -7,7 +7,7 @@ Material für Tag 1 eines zweitägigen AI-Bootcamps an der Übungsfirma Dr. Stha
 ## So öffnen
 
 - Die Claude-App (Reiter „Code“) **im Ordner `tag1` selbst** öffnen, nicht im Repository darüber. Nur dann gelten `tag1/CLAUDE.md` und `tag1/.claude/settings.json`.
-- Laden (Drill 0, Etappe 1): Standard ist, dass Claude in einer Sitzung im Benutzerordner das Repository nach `%USERPROFILE%\dr-sthamer` klont („Klone [Repo-Adresse prüfen] in den Ordner dr-sthamer in meinem Benutzerordner und öffne den Ordner tag1“); Rückfall ohne Git: „Code → Download ZIP“ und nach `%USERPROFILE%\dr-sthamer` entpacken (nicht OneDrive, nicht Desktop). Danach eine neue Sitzung im Unterordner `tag1`. Repo-Adresse `[Repo-Adresse prüfen]`: Für den Kurstag setzen die Dozenten ein eigenes Repository auf; bis dahin liegt der Stand in `https://github.com/jhoetter/dr-sthamer`, Branch `tag1-augmentation` (privat, für Teilnehmende ohne Konto nicht klonbar).
+- Laden (Drill 0, Etappe 1): Standard ist, dass Claude in einer Sitzung im Benutzerordner das Repository nach `%USERPROFILE%\dr-sthamer` klont („Klone https://github.com/jhoetter/dr-sthamer in den Ordner dr-sthamer in meinem Benutzerordner und öffne den Ordner tag1“); Rückfall ohne Git: „Code → Download ZIP“ und nach `%USERPROFILE%\dr-sthamer` entpacken (nicht OneDrive, nicht Desktop). Danach eine neue Sitzung im Unterordner `tag1`. Das Repository ist öffentlich: `https://github.com/jhoetter/dr-sthamer` (Ordner `tag1` im Hauptzweig `main`); ein GitHub-Konto ist nicht nötig. Tag 2 nutzt dasselbe Repository im selben Zielordner `dr-sthamer`.
 - Voraussetzungen wie an Tag 2: Python ab 3.9 (nur Standardbibliothek), Edge oder Chrome für PDF, optional Obsidian. Kein pip, kein Node, kein Internet nötig.
 
 ## Aufbau
