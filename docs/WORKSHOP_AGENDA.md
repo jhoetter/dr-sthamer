@@ -27,7 +27,6 @@ zum Senden oder Freigeben.
 
 | Zeit | Block | Wer | Inhalt |
 | --- | --- | --- | --- |
-| ab 08:30 | Einlass, Technikcheck (freiwillig) | Marc, IT von Sthamer | Wer will, kommt früher: Geräte an, Gäste-WLAN, `python check.py`, Claude-Anmeldung. Vorab erledigt (siehe `VOR_DEM_WORKSHOP.md`), hier nur Nacharbeit. Zweiergruppen („Buddys“). |
 | 09:00 | **Impuls (60 Min.): Jede Aufgabe zuerst agentisch** | Johannes (Marc begrüßt in den ersten Minuten und geht später rum) | Marc: Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann Johannes, etwa 09:05 bis 09:40: der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:40: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
 | 10:00 | **Drill 1 · Die Verordnung kommt** | Johannes, Marc | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
 | 11:00 | Pause (15 Min.) | | |
