@@ -1,6 +1,6 @@
 # Runbook für die Lehrenden
 
-Das ist die operative Quelle für Johannes, Falk und Marc am Workshop-Tag. Lernbogen und Zeiten stehen in
+Das ist die operative Quelle für Johannes und Marc am Workshop-Tag (Donnerstag). Lernbogen und Zeiten stehen in
 [WORKSHOP_AGENDA.md](WORKSHOP_AGENDA.md), die Etappen und Szenarien je Drill in [DRILL_CARDS.md](DRILL_CARDS.md),
 die Installation für Teilnehmende in [INSTALL_WINDOWS.md](INSTALL_WINDOWS.md) und [INSTALL_MAC.md](INSTALL_MAC.md),
 das, was die IT von Sthamer vorbereiten muss, in [IT_VORAB.md](IT_VORAB.md).

@@ -119,7 +119,7 @@ Kunden mit Ausnahme, eine **Berichtigung**, die am Nachmittag eine Frist
 | H | **Schulungs- und Notfalldienst-Hinweise:** Notfallservice und Schulungen für neue Kennzeichnung ankündigen | Verordnung | Eingriffsfenster | Cross-Selling mit Augenmaß |
 | I | **Horizon Scanning:** wöchentlich neue Verordnungen und ECHA-Konsultationen sichten | Zeit | nur lesen | Grenze: Agent darf beobachten, nicht handeln |
 
-Für Mittwoch/BYOC (Falk): Sthamer-Teams bringen eigene Fälle mit, etwa
+Für Freitag/BYOC (Marc): Sthamer-Teams bringen eigene Fälle mit, etwa
 Wirksamkeits- und Einzelnachweise, Schaumanalyse-Aufträge, Reklamationen,
 Ausschreibungsunterlagen, Zertifikate und Zulassungen.
 

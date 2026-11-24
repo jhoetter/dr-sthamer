@@ -1,6 +1,6 @@
 # Workshop-Agenda: Agentische Systeme bei Dr. Sthamer
 
-> **Status:** Entwurf zur Abstimmung zwischen Johannes, Falk und Marc. Gespielt
+> **Status:** Entwurf zur Abstimmung zwischen Johannes und Marc (Falk ist nur an Tag 1 dabei). Gespielt
 > wurde der Tag am 12.11.2026 mit simulierten Teilnehmenden (siehe
 > `docs/PROBELAUF_2026-11-12.md`). Zeiten sind Vorschläge für **einen Tag**. Der Workshop läuft **Mittwoch bis Freitag (25.–27.11.2026)**; das hier ist **Tag 2**
 > (Donnerstag, 26.11.2026, Johannes). **Tag 1** „AI Augmentation“ (Mittwoch, Falk) liegt eigenständig in `tag1/`, **Tag 3** (Freitag) ist der
@@ -16,7 +16,7 @@ Kunden- oder Produktdaten kommen nicht vor. Es ist kein Rechtsrat.
 | --- | --- | --- |
 | Vormittag | Wie wird aus einer Verordnung ein prüfbarer Prozess, in dem Claude vorbereitet und wir entscheiden? | Alle haben eine eigene Kommandozentrale, einen belegten Entwurf, eine Einschätzung mit Belegen und eine gebaute Kontrolle (Drill 1 und 2). |
 | Nachmittag | Wann darf eine Mail das Haus nur mit Freigabe verlassen, wann automatisch nach Verzögerung? | Pflichtfreigabe und Eingriffsfenster am eigenen System erlebt und gebaut; ein Bericht an die Geschäftsführung (Drill 3 bis 5). |
-| Abschluss | Wo darf der Agent bei **uns** handeln? | Ein Automation Contract für einen eigenen Fall; Übergabe an Falks „Bring Your Own Case“. |
+| Abschluss | Wo darf der Agent bei **uns** handeln? | Ein Automation Contract für einen eigenen Fall; Übergabe an Freitag („Bring Your Own Case“, Marc). |
 
 Die sechs Bausteine jedes agentischen Systems: **Eingänge, Wissen,
 Werkzeuge, Kontrollen, Oberfläche, Protokoll**. Jeder Drill rückt einige in den
@@ -28,19 +28,19 @@ zum Senden oder Freigeben.
 | Zeit | Block | Wer | Inhalt |
 | --- | --- | --- | --- |
 | 08:30 | Ankommen, Technikcheck | Marc, IT von Sthamer | Geräte an, Gäste-WLAN, `python check.py`, Claude-Anmeldung. Vorab erledigt (siehe `VOR_DEM_WORKSHOP.md`), hier nur Nacharbeit. Zweiergruppen („Buddys“) bilden. |
-| 09:00 | Begrüßung | Falk, Sthamer | Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. |
+| 09:00 | Begrüßung | Marc, Sthamer | Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. |
 | 09:15 | Input: Vom Assistenten zum Agenten | Johannes | Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Dann der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
 | 10:05 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
 | 11:05 | Pause | | |
 | 11:20 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
 | 12:20 | Mittag | | **Runde 2** vorbereiten (Code bereithalten). |
-| 13:10 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes, Falk | Fünf Anfragen, Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
+| 13:10 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes, Marc | Fünf Anfragen, Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
 | 14:10 | Pause | | |
 | 14:25 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes, Marc | Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein.** Bau: Änderung bricht den Termin ab, nie doppelt senden. |
-| 15:30 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Falk | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
+| 15:30 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
 | 16:15 | Pause | | |
-| 16:30 | Whiteboard: Wo darf der Agent bei uns handeln? | Falk, Johannes | Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf eigene Fälle übertragen, Automation Contract. |
-| 17:15 | Ausblick und Abschluss | Falk | Ausblick auf Freitag („Bring Your Own Case“), Rückmeldungen. |
+| 16:30 | Whiteboard: Wo darf der Agent bei uns handeln? | Johannes, Marc | Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf eigene Fälle übertragen, Automation Contract. |
+| 17:15 | Ausblick und Abschluss | Marc | Ausblick auf Freitag („Bring Your Own Case“), Rückmeldungen. |
 
 ## Drills im Überblick
 

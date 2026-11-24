@@ -312,4 +312,4 @@ Kennzahl steht darin, die Grenze der Aussage ist genannt. Stand speichern.
 ## Whiteboard: Wo darf der Agent bei uns handeln?
 
 Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf einen **eigenen** Fall übertragen: Automation
-Contract (Vorlage in `WORKSHOP_AGENDA.md`). Falk leitet zu „Bring Your Own Case“ über.
+Contract (Vorlage in `WORKSHOP_AGENDA.md`). Marc leitet zu „Bring Your Own Case“ (Freitag) über.
