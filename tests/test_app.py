@@ -60,6 +60,11 @@ class AppTest(WeltTest):
         self.assertIn(self.srv.token.encode(), d)
         self.assertNotIn(b"{{TOKEN}}", d)
 
+    def test_email_bereich_ist_ohne_eingerichtetes_postfach_aus(self):
+        s, d = self.anfrage("GET", "/api/status")
+        self.assertEqual(s, 200)
+        self.assertIs(json.loads(d)["faehigkeiten"]["email"], False)
+
     def test_fiktive_verordnung_gibt_es_als_pdf(self):
         s, d = self.anfrage("GET", "/verordnung-eu-2026-9001-fiktiv.pdf")
         self.assertEqual(s, 200)

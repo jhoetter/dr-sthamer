@@ -355,6 +355,14 @@ class PostfachTest(WeltTest):
         self.assertTrue(s["email"]["verbunden"])
         self.assertNotIn(SCHLUESSEL, json.dumps(s))
 
+    def test_werkzeuge_und_bereich_nur_wenn_eingerichtet(self):
+        namen = lambda: [t["name"] for t in mcp_server.verarbeite({"jsonrpc": "2.0", "id": 1, "method": "tools/list"})["result"]["tools"]]
+        self.assertEqual([n for n in namen() if n.startswith("send")], ["send_email"])  # eingerichtet: genau ein Sende-Werkzeug
+        self.assertTrue(set(mcp_server.EMAIL_WERKZEUGE) <= set(namen()))
+        os.remove(str(self.data / "agentmail.enc"))
+        self.assertFalse(set(mcp_server.EMAIL_WERKZEUGE) & set(namen()))
+        self.assertIn("create_draft", namen())
+
     def test_claude_kann_die_uebungsmails_weiterhin_nicht_senden(self):
         namen = [t["name"] for t in mcp_server.TOOLS]
         for n in ("send_draft", "approve_draft", "send", "release_draft"):

@@ -294,7 +294,7 @@ const NAV = [
   ["Arbeitskorb", [
     ["eingang", "Eingang", "inbox", s => s.ungelesen, true], ["faelle", "To-dos", "cases", s => s.offene_aufgaben],
     ["freigaben", "Freigaben", "shield", s => s.zur_freigabe, true, "freigabe"], ["geplant", "Geplant", "clock", s => s.geplant, false, "fenster"],
-    ["postausgang", "Postausgang", "send", s => s.gesendet], ["email", "E-Mail", "mail"]]],
+    ["postausgang", "Postausgang", "send", s => s.gesendet], ["email", "E-Mail", "mail", null, false, "email"]]],
   ["Wissen", [["regelwerk", "Regelwerk", "book"], ["produkte", "Produkte", "flask", s => s.produkte], ["kunden", "Kunden", "users", s => s.kunden]]],
   ["Nachweis", [["protokoll", "Protokoll", "list"], ["bericht", "Bericht", "chart", null, false, "bericht"]]],
 ];

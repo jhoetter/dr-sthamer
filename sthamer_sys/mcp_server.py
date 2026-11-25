@@ -261,6 +261,16 @@ TOOLS: List[Dict[str, Any]] = [
           {}, [], t_report, True),
 ]
 _BY_NAME = {t["name"]: t for t in TOOLS}
+EMAIL_WERKZEUGE = ("connect_mailbox", "fetch_new_emails", "send_email", "list_sent_emails")
+
+
+def sichtbare_werkzeuge() -> List[Dict[str, Any]]:
+    """Die E-Mail-Werkzeuge gibt es nur, wenn für den Workshop ein echtes Postfach eingerichtet ist."""
+    try:
+        email = _postfach().verfuegbar()
+    except Exception:
+        email = False
+    return [t for t in TOOLS if email or t["name"] not in EMAIL_WERKZEUGE]
 
 
 def _typ_ok(wert: Any, typ: str) -> bool:
@@ -340,7 +350,7 @@ def verarbeite(msg: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if methode == "ping":
         return ok({})
     if methode == "tools/list":
-        return ok({"tools": [{k: t[k] for k in ("name", "description", "inputSchema")} for t in TOOLS]})
+        return ok({"tools": [{k: t[k] for k in ("name", "description", "inputSchema")} for t in sichtbare_werkzeuge()]})
     if methode == "tools/call":
         return ok(aufrufen(params.get("name", ""), params.get("arguments")))
     if methode in ("resources/list", "prompts/list"):

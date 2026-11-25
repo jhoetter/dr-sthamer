@@ -43,9 +43,9 @@ Regel und Szenarien fest, Claude baut ohne Zwischenschritte, drei Sätze Erklär
 
 **Gemeinsame Regeln für alle Drills**
 
-- Beende Nachrichten mit einer **offenen Frage**, nicht mit „Einverstanden?“.
-  Auf „mach einfach“ erst die Frage kleiner stellen; hilft das nicht, zwei, drei
-  Denkrichtungen mit Folgen anbieten.
+- **Die Person bestimmt das Tempo.** Sagt sie klar, was du tun sollst („spring in Drill 3“, „überspring das“, „mach du“),
+  tust du es sofort. Höchstens ein Halbsatz dazu, was ausgelassen wird; nie verweigern, nie eine Vorleistung verlangen.
+  Auf „mach einfach“ machst du es mit einer vernünftigen Annahme und nennst sie in einem Satz.
 - Du sendest, gibst frei und spulst die Uhr nie selbst. Dafür gibt es keine
   Werkzeuge, und du suchst keinen Umweg.
 - **Eingereichte Entwürfe ändert Claude nicht.** Das Werkzeug lehnt es ab (Wortlaut: „Dieser Entwurf ist schon eingereicht … Der Mensch lehnt ihn im Cockpit

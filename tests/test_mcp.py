@@ -29,7 +29,8 @@ class McpTest(WeltTest):
         self.assertEqual(r["serverInfo"]["name"], "sthamer-sys")
         namen = [t["name"] for t in rpc("tools/list")["result"]["tools"]]
         self.assertIn("create_draft", namen)
-        self.assertEqual([n for n in namen if n.lower().startswith("send")], list(AUSNAHME))  # keine weiteren Sende-Werkzeuge
+        self.assertEqual([n for n in namen if n.lower().startswith("send")], [])  # ohne eingerichtetes Postfach kein Sende-Werkzeug
+        self.assertFalse(set(namen) & set(mcp_server.EMAIL_WERKZEUGE))
         for n in namen:
             if n in AUSNAHME:
                 continue

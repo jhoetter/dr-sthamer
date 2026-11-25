@@ -130,7 +130,10 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"ok": True, "service": SERVICE, "root": str(ROOT), "pid": os.getpid(),
                                "code_geladen": nachladen.geladen(), "code_fehler": nachladen.fehler()})
         if k == "status":
-            return self._json(domain.status())
+            from . import postfach  # spät importieren (siehe unten)
+            s = domain.status()
+            s["faehigkeiten"] = dict(s.get("faehigkeiten") or {}, email=postfach.verfuegbar())
+            return self._json(s)
         if k == "nachrichten":
             return self._json(domain.eingang())
         if k == "nachricht" and arg:

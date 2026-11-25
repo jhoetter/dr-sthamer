@@ -1,9 +1,0 @@
-{
-  "v": 1,
-  "postfach": "sthamer@agentmail.to",
-  "iterationen": 200000,
-  "salt": "VhF0Y7Fzg4zE4onGNxrgwg==",
-  "nonce": "qdrfAq8vAyb4deUyMPBntg==",
-  "ct": "CWj0BhrCCTnStUgXzfpXxT59RH9OSwzF5V/tWXwfXud2k3YDwT69w1d5DcBKV1Rj4gOeVrkJBElppzr+wpXLX3WOHkwN1RR3v26bRQ==",
-  "tag": "Dng3PPEL93HGKrOIpeTkkflpBqWadnk7dPi64qwPXhA="
-}

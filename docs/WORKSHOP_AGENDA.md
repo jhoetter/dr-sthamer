@@ -20,14 +20,14 @@ Kunden- oder Produktdaten kommen nicht vor. Es ist kein Rechtsrat.
 
 Die sechs Bausteine jedes agentischen Systems: **Eingänge, Wissen,
 Werkzeuge, Kontrollen, Oberfläche, Protokoll**. Jeder Drill rückt einige in den
-Fokus. Ein Werkzeug, das fehlt, ist eine Kontrolle (bei den Übungsmails; echte E-Mails sendet Claude nur nach deiner Bestätigung in der App): Claude hat kein Werkzeug
+Fokus. Ein Werkzeug, das fehlt, ist eine Kontrolle: Claude hat kein Werkzeug
 zum Senden oder Freigeben.
 
 ## Tagesablauf
 
 | Zeit | Block | Wer | Inhalt |
 | --- | --- | --- | --- |
-| 09:00 | **Input (45 Min., darf länger gehen): Jede Aufgabe zuerst agentisch** | Johannes | Begrüßung, Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann bis etwa 09:25 der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:25: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. Dann das Passwort für das E-Mail-Postfach an die Tafel; jede Person verbindet es im Cockpit unter „E-Mail“ und holt deine erste Rundmail ab (ca. 5 Minuten, freiwillig, der Tag läuft auch ohne). |
+| 09:00 | **Input (45 Min., darf länger gehen): Jede Aufgabe zuerst agentisch** | Johannes | Begrüßung, Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann bis etwa 09:25 der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:25: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
 | 09:45 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
 | 10:45 | Pause (15 Min.) | | |
 | 11:00 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |

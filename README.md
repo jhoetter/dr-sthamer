@@ -111,7 +111,7 @@ Anwendung nutzt nur die Standardbibliothek von Python (ab Version 3.9).
 - Die Kommandozentrale läuft nur auf deinem Gerät (`127.0.0.1`) und ist aus dem
   Netz nicht erreichbar.
 - Es gibt kein Werkzeug, mit dem Claude die Übungsmails (Entwürfe an die Kundschaft) sendet oder freigibt. Das ist die
-  wichtigste Kontrolle des Tages: **Claude bereitet vor, du entscheidest.** Für den optionalen E-Mail-Bereich (echtes
-  Postfach) kann Claude Mails abholen und senden; die App fragt vor jeder Sendung nach.
+  wichtigste Kontrolle des Tages: **Claude bereitet vor, du entscheidest.** Echte E-Mails gibt es im Workshop nicht: Alle Mails
+  sind Übungsmails in der Kommandozentrale (ein echtes Postfach lässt sich für Lehrende zuschalten, siehe Runbook).
 - Die Software zeigt, wie man einen **prüfbaren Prozess** baut, nicht, was
   rechtlich gilt.

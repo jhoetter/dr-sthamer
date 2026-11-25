@@ -1628,7 +1628,6 @@ html, body, .reveal-viewport, .reveal .backgrounds { background: #F6EBD0; }
 
 
 </script>
-<script src="./passwort.js" onerror="this.remove()"></script>
 <script>
 /* Faithful, visual-first remake of Johannes' 35-page June 2026 talk. No build step. */
 (() => {
@@ -1638,7 +1637,6 @@ html, body, .reveal-viewport, .reveal .backgrounds { background: #F6EBD0; }
     notes: `${caption}. Aus Johannes’ PDF (Juni 2026); für Details das Originalbild öffnen.`
   });
 
-  const postfachPasswort = String(window.POSTFACH_PASSWORT || '').replace(/[<>&"']/g, '');
   const hle = [
     ['GPT-4o<br>Nov 24', 2.7], ['Gemini 2.5 Pro<br>Jun 25', 21.6], ['Gemini 3 Pro<br>Nov 25', 37.5],
     ['Gemini 3.1 Pro<br>Anfang 26', 46.4], ['Claude Fable 5.2<br>Nov 26', 74.2]
@@ -1843,17 +1841,6 @@ html, body, .reveal-viewport, .reveal .backgrounds { background: #F6EBD0; }
       subtitle: 'Und danach: Welchen Beleg brauche ich? Wer darf wirken?',
       body: `<div class="day-hero-line">Wo darf der Agent handeln?</div>`,
       notes: 'Originalfolie 35 mit dem Call to Action. Für diesen Workshop: direkt zur Regulatorik-Werkstatt und den zwei Kontrollen (Pflichtfreigabe, Eingriffsfenster) überleiten. Kontakt laut Original-PDF: Johannes Hötter, LinkedIn und E-Mail.'
-    },
-    {
-      id: 'PostfachPasswort', type: 'Schluss', eyebrow: 'Jetzt seid ihr dran',
-      title: 'Das E-Mail-Postfach verbinden.',
-      subtitle: 'Sagt Claude: „Verbinde das Postfach, das Passwort ist …“ oder gebt es im Cockpit unter „E-Mail“ ein.',
-      body: `<div class="day-hero-line" style="flex-direction:column;gap:16px;padding:20px 40px;text-align:center">
-        <div style="font:36px/1 Bangers,Impact,sans-serif;color:#D62828">Passwort</div>
-        <div style="font:800 ${postfachPasswort ? 78 : 44}px/1.1 'JetBrains Mono',monospace;letter-spacing:.01em;word-break:break-all">${postfachPasswort || 'steht an der Tafel'}</div>
-        <div style="font:600 24px/1.3 Barlow,sans-serif">Danach: „Hole neue Mails ab.“ · „Schick Johannes eine kurze Mail.“</div>
-      </div>`,
-      notes: 'Das Passwort kommt aus der lokalen Datei passwort.js (erzeugt aus .env, nie im Repository). Fehlt die Datei, steht hier „steht an der Tafel“. Danach ein paar Minuten freiwillig: Postfach verbinden, die erste Rundmail abholen, eine kurze Mail zurückschicken. Der Tag läuft auch ohne. Jede Sendung einer echten E-Mail bestätigt die Person in der App.'
     }
   ];
 })();
