@@ -19,7 +19,10 @@ Auf jedem Gerät mit **Python 3**, **Git** und Claude Code genügt in einer neue
 
 > Clone das Repo jhoetter/dr-sthamer und starte die Anwendung.
 
-Claude klont nach `dr-sthamer`, findet den passenden Python-Befehl und führt **einen** Befehl im Hintergrund aus:
+Claude klont nach `dr-sthamer`, findet den passenden Python-Befehl und führt **einen** Befehl aus.
+**Gibt es den Ordner `dr-sthamer` schon** (zum Beispiel von Tag 1), wird **nicht neu geklont**: Claude holt dort nur den
+neuesten Stand (`git pull`) und startet dann. Wichtig: Diese erste Sitzung läuft **außerhalb** des Ordners (zum Beispiel im
+Benutzerordner), damit die Claude-App keine Nebenkopie (Worktree) anlegen kann.
 
 ```
 python sthamer.py start
@@ -27,7 +30,8 @@ python sthamer.py start
 
 (Mac/Linux: `python3 sthamer.py start`, Windows ggf. `py -3 sthamer.py start`.) Der Befehl richtet alles ein (lokale Datenbank, Verbindung zu Claude, Git-Vorbereitung) und öffnet die Kommandozentrale im Browser (<http://127.0.0.1:3005>). Er ist wiederholbar: Läuft sie schon, wird sie nur geöffnet.
 
-**Einmal neu öffnen:** Die Werkzeuge für Claude (MCP) werden beim Start einer Sitzung geladen. Eine Sitzung, die außerhalb des Ordners begonnen hat, kennt sie noch nicht. Danach eine **neue Sitzung im Ordner `dr-sthamer`** öffnen und „weiter mit Drill 1“ schreiben; dort gelten der Leitfaden `CLAUDE.md` und die Freigaben. Fragen zur Vertrauensabfrage („Ordner“, „Werkzeuge von Sthamer“) mit Ja beantworten.
+**Einmal neu öffnen:** Die Werkzeuge für Claude (MCP) werden beim Start einer Sitzung geladen. Eine Sitzung, die außerhalb des Ordners begonnen hat, kennt sie noch nicht. Danach eine **neue Sitzung im Ordner `dr-sthamer`** öffnen, **vor der ersten Nachricht den Schalter „Worktree“ unter dem
+Eingabefeld ausschalten** (sonst arbeitet die Sitzung in einer Nebenkopie ohne Werkzeuge) und „weiter mit Drill 1“ schreiben; dort gelten der Leitfaden `CLAUDE.md` und die Freigaben. Fragen zur Vertrauensabfrage („Ordner“, „Werkzeuge von Sthamer“) mit Ja beantworten.
 
 ## Drei Tage, zwei Ordner
 

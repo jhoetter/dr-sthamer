@@ -68,7 +68,9 @@ Führe still aus:
    `sthamer.py`), überspringe das Klonen. Sonst klone flach nach
    `<Benutzerordner>/dr-sthamer` (Windows: `%USERPROFILE%`, nicht ein Netzlaufwerk), **nicht** auf den Desktop und nicht in
    OneDrive: `git clone --depth 1 https://github.com/jhoetter/dr-sthamer`.
-   Existiert der Ordner schon als funktionierende Kopie: `git pull`. Ist er
+   Existiert der Ordner schon als funktionierende Kopie: **nicht neu klonen**, sondern dort `git pull`
+   (`git -C <Ordner> pull`). Blockieren lokale Änderungen das Holen: nichts löschen, sie mit `git stash`
+   beiseitelegen, erneut `git pull` und der Person in einem Satz sagen, dass ihre Änderungen aufgehoben sind. Ist er
    halb angelegt: **nichts löschen**, nach `dr-sthamer-2` klonen. Fehlt Git
    oder ist GitHub nicht erreichbar, sag in einfachen Worten, dass es den
    „ZIP-Weg“ gibt (`docs/INSTALL_WINDOWS.md`, Abschnitt ZIP), und führe die
@@ -104,8 +106,9 @@ Führe still aus:
    Browser nicht geöffnet hat. **Beim ersten Mal fehlen dir in dieser Sitzung
    noch die Werkzeuge**, weil die Verbindung erst jetzt eingerichtet wurde.
    Bitte deshalb genau einen Schritt, ohne Fachwörter und ohne Pfade: „Öffne
-   bitte in der Claude-App eine neue Code-Sitzung im selben Ordner und
-   schreibe dort ‚weiter mit Drill 1‘. Wenn die App fragt, ob du diesem Ordner
+   bitte in der Claude-App eine neue Code-Sitzung im Ordner dr-sthamer. Schalte
+   vor der ersten Nachricht unter dem Eingabefeld den Schalter Worktree aus und
+   schreibe dann ‚weiter mit Drill 1‘. Wenn die App fragt, ob du diesem Ordner
    und den Werkzeugen von Sthamer vertraust: Ja, beide Male.“
 8. Fehlen dir die Werkzeuge in einer Sitzung im Ordner (und es ist **keine** Nebenkopie, siehe oben; Werkzeuge werden
    abgelehnt oder gibt es nicht), sag **genau** das und nichts anderes: „Mir
@@ -119,7 +122,8 @@ Führe still aus:
 (Abschnitt 2), noch keine Etappe: kein Steckbrief, keine Tabelle, keine Ergebnisse. Dann wartest du.
 Die erste Etappe beginnt erst mit der Antwort der Person.
 
-**Bei jedem Sitzungsstart im Ordner:** Starte die Kommandozentrale wie in
+**Bei jedem Sitzungsstart im Ordner:** Prüfe zuerst, ob die Sitzung in einer Nebenkopie läuft (Anfang dieses Abschnitts);
+wenn ja, nur der dort genannte Satz. Sonst starte die Kommandozentrale wie in
 Schritt 6 im Hintergrund, auch wenn schon eine läuft, und rufe das Werkzeug
 `get_workshop_status` auf.
 
