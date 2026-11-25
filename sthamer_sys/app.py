@@ -159,6 +159,9 @@ class Handler(BaseHTTPRequestHandler):
             datei = ROOT / "bericht.md"
             text = datei.read_text(encoding="utf-8") if datei.is_file() else None
             return self._json({"zahlen": domain.bericht(), "text": text})
+        if k == "postfach":
+            from . import postfach  # spät importieren: lädt sich nach Programmänderungen frisch
+            return self._json(dict(postfach.status(), gesendet_liste=postfach.gesendet_liste()))
         if k == "postausgang":
             return self._json(domain.postausgang())
         if k == "protokoll":
@@ -192,6 +195,16 @@ class Handler(BaseHTTPRequestHandler):
             self._fehler(500, "Interner Fehler (siehe Konsole).")
 
     def _post_api(self, pfad: str, body: Dict[str, Any]) -> Any:
+        if pfad.startswith("/api/postfach/"):
+            from . import postfach  # spät importieren (siehe oben)
+            aktion = pfad[len("/api/postfach/"):]
+            if aktion == "verbinden":
+                return postfach.verbinden(body.get("passwort"))
+            if aktion == "abholen":
+                return postfach.abholen()
+            if aktion == "senden":
+                return postfach.senden(body.get("an"), body.get("betreff"), body.get("text"))
+            raise domain.FachFehler("Unbekannte Aktion.")
         m = re.fullmatch(r"/api/(welle|fall|notiz|entwurf|senden|freigeben|ablehnen|stoppen|uhr)(?:/(\d+))?", pfad)
         if not m:
             raise domain.FachFehler("Unbekannte Aktion.")

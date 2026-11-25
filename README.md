@@ -89,7 +89,7 @@ jemandem dazu („Buddy-Modus“).
 | `web/` | die Oberfläche der Kommandozentrale |
 | `data/` | erfundene Stammdaten: Produkte, Kunden, Lieferungen, Verordnung, Nachrichten |
 | `tests/` | Prüfszenarien (`python -m unittest discover -s tests`) |
-| `scripts/` | `akzeptanz.py` prüft die Bauaufträge der Drills, `make_data.py` erzeugt die Übungsdaten |
+| `scripts/` | `akzeptanz.py` prüft die Bauaufträge der Drills, `make_data.py` erzeugt die Übungsdaten, `postfach_verschluesseln.py` verschlüsselt den E-Mail-Schlüssel (nur Lehrende) |
 | `lehrer/` | nur für Lehrende: Referenzlösungen und Absicherungstest (für Claude gesperrt) |
 | `docs/` | Anleitungen, Plan und Datenmodell: [PLAN](docs/PLAN.md), [Agenda](docs/WORKSHOP_AGENDA.md), [Drill-Karten](docs/DRILL_CARDS.md), [Runbook](docs/WORKSHOP_RUNBOOK.md), [Probelauf](docs/PROBELAUF_2026-11-12.md), [DATENMODELL](docs/DATENMODELL.md), [IT-Kurzfassung](docs/IT_CHECKLISTE.md), [IT-Details](docs/IT_VORAB.md), [Offline-Paket](docs/OFFLINE_PAKET.md) |
 | `tag1/` | Tag 1 „AI Augmentation“ (Falk): eigenständiger Arbeitsstand, siehe [tag1/README.md](tag1/README.md); gehört nicht zu Tag 2 |

@@ -11,6 +11,7 @@ const ICONS = {
   inbox: '<path d="M3 13h4l2 3h6l2-3h4M5 5h14l2 8v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/>',
   cases: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/>',
   send: '<path d="m21 3-9 18-2.5-7.5L3 11z"/><path d="m21 3-11.5 10.5"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
   book: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/>',
   flask: '<path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3M7.5 15h9"/>',
   users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.2a3 3 0 0 1 0 5.6M18 14.8c1.9.7 3 2.4 3 5.2"/>',
@@ -75,7 +76,7 @@ const plural = (n, one, many) => n + " " + (n === 1 ? one : many);
 
 const TYPEN = {
   aufgabe: ["Aufgabe", "dot-blue"], kundenanfrage: ["Kundenanfrage", "dot-green"], verordnung: ["Verordnung", "dot-orange"],
-  berichtigung: ["Berichtigung", "dot-red"], intern: ["Intern", "dot-grey"],
+  berichtigung: ["Berichtigung", "dot-red"], intern: ["Intern", "dot-grey"], email: ["E-Mail", "dot-blue"],
 };
 const FALL_STATUS = { neu: ["Neu", ""], in_bearbeitung: ["In Bearbeitung", "progress"], gesendet: ["Gesendet", "done"] };
 const ANWENDUNGEN = {
@@ -88,6 +89,7 @@ const EREIGNISSE = {
   entwurf_geaendert: "Entwurf geändert", gesendet: "Gesendet", notiz: "Notiz",
   zur_freigabe: "Zur Freigabe eingereicht", geplant: "Eingeplant", freigegeben: "Freigegeben", abgelehnt: "Abgelehnt",
   versand_gestoppt: "Versand gestoppt", uhr_vorgespult: "Übungsuhr vorgespult", einschaetzung: "Einschätzung festgehalten",
+  postfach_verbunden: "E-Mail-Postfach verbunden", echte_mail_gesendet: "E-Mail gesendet", echte_mail_abgeholt: "E-Mails abgeholt",
 };
 const STUFEN = { pflichtfreigabe: "Pflichtfreigabe", eingriffsfenster: "Eingriffsfenster" };
 const ES_LABEL = {
@@ -291,7 +293,7 @@ const NAV = [
   ["Arbeitskorb", [
     ["eingang", "Eingang", "inbox", s => s.ungelesen, true], ["faelle", "Fälle", "cases", s => s.faelle_offen],
     ["freigaben", "Freigaben", "shield", s => s.zur_freigabe, true, "freigabe"], ["geplant", "Geplant", "clock", s => s.geplant, false, "fenster"],
-    ["postausgang", "Postausgang", "send", s => s.gesendet]]],
+    ["postausgang", "Postausgang", "send", s => s.gesendet], ["email", "E-Mail", "mail"]]],
   ["Wissen", [["regelwerk", "Regelwerk", "book"], ["produkte", "Produkte", "flask", s => s.produkte], ["kunden", "Kunden", "users", s => s.kunden]]],
   ["Nachweis", [["protokoll", "Protokoll", "list"], ["bericht", "Bericht", "chart", null, false, "bericht"]]],
 ];
@@ -593,6 +595,60 @@ async function viewPostausgang(r) {
   return col(topbar(["Arbeitskorb", "Postausgang"]), splitView(list, detail, "send", "Wähle links eine gesendete Mail."));
 }
 
+/* ---------- E-Mail (echtes Postfach, optional) ---------- */
+async function viewEmail() {
+  const p = await api("postfach");
+  const body = [];
+  body.push(h("h1", {}, "E-Mail"));
+  if (!p.verbunden) {
+    body.push(h("p", { class: "lead" }, "Das gemeinsame Workshop-Postfach ist für echte E-Mails da: Du kannst an jede Adresse schreiben, und Mails vom Dozenten kommen in deinen Eingang. Alles andere im Cockpit funktioniert auch ohne."));
+    if (!p.verfuegbar) {
+      body.push(h("p", { class: "muted" }, "Für diesen Workshop ist kein Postfach eingerichtet."));
+    } else {
+      const pw = h("input", { type: "password", placeholder: "Passwort vom Dozenten", autocomplete: "off", "aria-label": "Passwort vom Dozenten" });
+      const err = h("div", { class: "err" });
+      const run = async () => {
+        try { await api("postfach/verbinden", { passwort: pw.value }); toast("Postfach verbunden."); await render(true); }
+        catch (e) { err.textContent = e.message; }
+      };
+      pw.addEventListener("keydown", ev => { if (ev.key === "Enter") run(); });
+      body.push(h("div", { class: "mailform" }, h("label", {}, "Passwort"), pw, err,
+        h("div", { class: "actions" }, h("button", { class: "btn primary", onclick: run }, "Verbinden"))));
+      setTimeout(() => pw.focus(), 30);
+    }
+  } else {
+    body.push(h("p", { class: "lead" }, "Verbunden mit ", h("strong", {}, p.postfach), ". Es ist ein gemeinsames Postfach: Du siehst hier nur deine eigenen Mails und die neuen vom Dozenten."));
+    const abholen = h("button", { class: "btn", onclick: async () => {
+      try {
+        const res = await api("postfach/abholen", {});
+        toast(res.neu ? plural(res.neu, "neue Mail", "neue Mails") + " im Eingang." : "Keine neuen Mails.");
+        await render(true);
+      } catch (e) { toast(e.message, true); }
+    } }, icon("sync"), "Neue E-Mails abholen");
+    body.push(h("div", { class: "actions-row" }, abholen, h("a", { class: "btn ghost", href: "#/eingang" }, "Zum Eingang")));
+    const an = h("input", { placeholder: "name@firma.de", autocomplete: "off", "aria-label": "An" });
+    const betreff = h("input", { placeholder: "Betreff", autocomplete: "off", "aria-label": "Betreff" });
+    const text = h("textarea", { "aria-label": "Text", rows: 7 });
+    const err = h("div", { class: "err" });
+    const senden = h("button", { class: "btn primary", onclick: async () => {
+      err.textContent = "";
+      senden.disabled = true;
+      try { await api("postfach/senden", { an: an.value, betreff: betreff.value, text: text.value }); toast("E-Mail an " + an.value.trim() + " gesendet."); await render(true); }
+      catch (e) { err.textContent = e.message; senden.disabled = false; }
+    } }, icon("send"), "Senden");
+    body.push(h("h2", {}, "Neue E-Mail"),
+      h("div", { class: "mailform" }, h("label", {}, "An"), an, h("label", {}, "Betreff"), betreff, h("label", {}, "Text"), text, err,
+        h("div", { class: "actions" }, senden)));
+    body.push(h("h2", {}, "Von dir gesendet"));
+    body.push(p.gesendet_liste.length
+      ? h("div", { class: "mailsent" }, p.gesendet_liste.map(m => h("div", { class: "mailsent-row" },
+        h("div", {}, h("strong", {}, m.betreff), h("span", { class: "muted small" }, " · an " + m.an + " · " + fmtTime(m.gesendet))),
+        h("div", { class: "message-text" }, m.text))))
+      : h("p", { class: "muted" }, "Noch nichts gesendet."));
+  }
+  return col(topbar(["Arbeitskorb", "E-Mail"]), h("div", { class: "detail" }, h("div", { class: "thread" }, body)));
+}
+
 async function viewRegelwerk(r) {
   const d = await api("regelwerk");
   if (!d.verfuegbar.length) return col(topbar(["Wissen", "Regelwerk"]), emptyState("book", "Noch keine Verordnung im Postfach. Rufe das Postfach ab.", h("button", { class: "btn primary", onclick: openPostfach }, icon("sync"), "Postfach abrufen")));
@@ -725,7 +781,7 @@ async function viewBericht() {
 }
 
 const VIEWS = {
-  eingang: viewEingang, faelle: viewFaelle, freigaben: r => viewQueue(r, "freigaben"), geplant: r => viewQueue(r, "geplant"), postausgang: viewPostausgang,
+  email: viewEmail, eingang: viewEingang, faelle: viewFaelle, freigaben: r => viewQueue(r, "freigaben"), geplant: r => viewQueue(r, "geplant"), postausgang: viewPostausgang,
   regelwerk: viewRegelwerk, produkte: viewProdukte, kunden: viewKunden, protokoll: viewProtokoll, bericht: viewBericht,
 };
 /* Was erst mit einer späteren Runde freigeschaltet wird */

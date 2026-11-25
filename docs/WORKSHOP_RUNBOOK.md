@@ -26,6 +26,13 @@ das, was die IT von Sthamer vorbereiten muss, in [IT_VORAB.md](IT_VORAB.md).
    sthamer erlauben“ gesehen ([VOR_DEM_WORKSHOP.md](VOR_DEM_WORKSHOP.md)).
 4. Tests laufen lassen: `python -m unittest discover -s tests` und `python -m unittest discover -s lehrer` (beides muss grün sein).
 5. Das ITMP-SG-Logo als `web/logo-itmp.svg` ablegen (erscheint dann links unten im Cockpit).
+6. **E-Mail-Postfach (optional, AgentMail):** Ein gemeinsames Postfach und ein Schlüssel für alle (nur Lese- und Senderecht für dieses
+   eine Postfach). Neuen Schlüssel in AgentMail anlegen (nicht einen, der in einem Chat stand), dann einmal verschlüsseln:
+   `AGENTMAIL_API_KEY=am_… AGENTMAIL_INBOX_ID=adresse@agentmail.to POSTFACH_PASSWORT=drei-zufaellige-woerter-42 python3 scripts/postfach_verschluesseln.py`.
+   Danach `data/agentmail.enc` committen und pushen (nur diese verschlüsselte Datei, nie den Schlüssel). Das Passwort erst am Workshop-Tag an
+   die Tafel schreiben. Eigene Mails an das Postfach schickst du mit dem Schlüssel deines Dozenten-Postfachs; Teilnehmende sehen sie nach
+   „Neue E-Mails abholen“ im Eingang. Ohne diese Datei zeigt das Cockpit „kein Postfach eingerichtet“, der Rest läuft unverändert. Nach dem
+   Workshop den Schlüssel bei AgentMail löschen. Im Free-Plan gelten 100 Mails pro Tag.
 
 ## Am Tag
 

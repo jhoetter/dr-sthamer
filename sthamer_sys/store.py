@@ -38,6 +38,12 @@ CREATE TABLE IF NOT EXISTS postausgang (
   id INTEGER PRIMARY KEY AUTOINCREMENT, entwurf_id INTEGER NOT NULL UNIQUE, an TEXT NOT NULL,
   betreff TEXT NOT NULL, text TEXT NOT NULL, gesendet TEXT NOT NULL, datei TEXT
 );
+CREATE TABLE IF NOT EXISTS echtmail_gesendet (
+  message_id TEXT PRIMARY KEY, thread_id TEXT, an TEXT NOT NULL, betreff TEXT NOT NULL, text TEXT NOT NULL, gesendet TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS echtmail_eingang (
+  message_id TEXT PRIMARY KEY, nachricht_id TEXT, sichtbar INTEGER NOT NULL, grund TEXT, gesehen TEXT NOT NULL
+);
 CREATE TABLE IF NOT EXISTS ereignisse (
   id INTEGER PRIMARY KEY AUTOINCREMENT, zeit TEXT NOT NULL, akteur TEXT NOT NULL, art TEXT NOT NULL,
   fall_id INTEGER, details TEXT NOT NULL DEFAULT '{}'
