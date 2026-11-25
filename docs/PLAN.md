@@ -73,7 +73,7 @@ Kontrollen, Oberfläche und Protokoll** (wie bei Pfefferminzia).
 | --- | --- |
 | Eingänge | Verordnung (Text/PDF), Berichtigung, Kundenanfragen, Fristen-Wecker |
 | Wissen | Produktkatalog mit Fluorgehalt und Datenblatt-Stand, Kundenstamm, Lieferungen/Anlagen, Verordnungstext |
-| Werkzeuge | MCP-Werkzeuge: lesen, Entwurf anlegen, Notiz, Betroffenheit belegen. **Es gibt absichtlich kein Werkzeug zum Senden oder Freigeben.** |
+| Werkzeuge | MCP-Werkzeuge: lesen, Entwurf anlegen, Notiz, Betroffenheit belegen. **Es gibt absichtlich kein Werkzeug zum Senden oder Freigeben der Übungsmails.** Ausnahme: der optionale E-Mail-Bereich (echtes Postfach, `send_email`), jede Sendung bestätigt die Person in der App. |
 | Kontrollen | Pflichtfreigabe (Mensch, Vier-Augen) und Eingriffsfenster (automatisch nach Verzögerung, Mensch kann stoppen) |
 | Oberfläche | Cockpit im Browser: Eingang, Fälle, Regelwerk, Produkte, Kunden, Freigaben, Postausgang, Protokoll |
 | Protokoll | Jeder Schritt (Entwurf, Änderung, Freigabe, Stopp, Versand) mit Belegen |

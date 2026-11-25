@@ -20,7 +20,7 @@ Kunden- oder Produktdaten kommen nicht vor. Es ist kein Rechtsrat.
 
 Die sechs Bausteine jedes agentischen Systems: **Eingänge, Wissen,
 Werkzeuge, Kontrollen, Oberfläche, Protokoll**. Jeder Drill rückt einige in den
-Fokus. Ein Werkzeug, das fehlt, ist eine Kontrolle: Claude hat kein Werkzeug
+Fokus. Ein Werkzeug, das fehlt, ist eine Kontrolle (bei den Übungsmails; echte E-Mails sendet Claude nur nach deiner Bestätigung in der App): Claude hat kein Werkzeug
 zum Senden oder Freigeben.
 
 ## Tagesablauf

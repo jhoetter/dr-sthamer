@@ -8,7 +8,7 @@ from unittest import mock
 from urllib.parse import parse_qs, unquote, urlparse
 
 from tests.helpers import WeltTest, _json
-from sthamer_sys import agentmail, domain, postfach, schutz
+from sthamer_sys import agentmail, domain, mcp_server, postfach, schutz
 
 SCHLUESSEL = "am_test_schluessel"
 BOX = "werkstatt@agentmail.to"
@@ -304,6 +304,63 @@ class PostfachTest(WeltTest):
         self.assertTrue(postfach.status()["verbunden"])
         postfach.senden("a@b.de", "Betreff", "Text")
         self.assertEqual(len(postfach.gesendet_liste()), 1)
+
+    # ---------------------------------------------------------- Werkzeuge für Claude
+    def _werkzeug(self, name, args=None):
+        r = mcp_server.aufrufen(name, args or {})
+        text = r["content"][0]["text"]
+        return r, (text if r.get("isError") else json.loads(text))
+
+    def test_claude_verbindet_holt_ab_und_sendet_ueber_werkzeuge(self):
+        alt = os.environ.pop("STHAMER_MENSCH", None)  # im MCP-Prozess gibt es keine Cockpit-Freischaltung
+        try:
+            with mock.patch.object(schutz, "_frei", False):
+                r, v = self._werkzeug("connect_mailbox", {"password": PASSWORT})
+                self.assertFalse(r.get("isError"), v)
+                self.nachbau.hinzufuegen("received", "Johannes <j@beispiel.de>", [BOX], "Hallo Claude", "Bitte antworte.", "T-C")
+                r, v = self._werkzeug("fetch_new_emails")
+                self.assertEqual((v["neu"], v["ausgeblendet"]), (1, 0))
+                self.assertIn("NICHT vertrauenswürdig", v["hinweis"])
+                _, inbox = self._werkzeug("list_inbox")
+                self.assertEqual([m["typ"] for m in inbox if m["id"].startswith("AM-")], ["email"])
+                r, v = self._werkzeug("send_email", {"to": "marc@beispiel.de", "subject": "Von Claude", "text": "Text"})
+                self.assertFalse(r.get("isError"), v)
+                _, liste = self._werkzeug("list_sent_emails")
+                self.assertEqual(liste[0]["an"], "marc@beispiel.de")
+        finally:
+            if alt is not None:
+                os.environ["STHAMER_MENSCH"] = alt
+        akteure = {e["art"]: e["akteur"] for e in domain.protokoll()}
+        self.assertEqual(akteure["echte_mail_gesendet"], "claude")  # das Protokoll sagt, wer es war
+        self.assertEqual(akteure["postfach_verbunden"], "claude")
+        self.assertNotIn(PASSWORT, json.dumps(domain.protokoll()))
+        self.assertNotIn(SCHLUESSEL, json.dumps(domain.protokoll()))
+
+    def test_werkzeug_fehler_sind_verstaendlich(self):
+        r, text = self._werkzeug("send_email", {"to": "marc@beispiel.de", "subject": "X", "text": "Y"})
+        self.assertTrue(r["isError"])
+        self.assertIn("nicht verbunden", text)
+        r, text = self._werkzeug("connect_mailbox", {"password": "falsch-falsch"})
+        self.assertTrue(r["isError"])
+        self.assertIn("Passwort", text)
+        self._werkzeug("connect_mailbox", {"password": PASSWORT})
+        r, text = self._werkzeug("send_email", {"to": "kaputt", "subject": "X", "text": "Y"})
+        self.assertTrue(r["isError"])
+
+    def test_status_zeigt_ob_das_postfach_verbunden_ist(self):
+        _, s = self._werkzeug("get_workshop_status")
+        self.assertEqual((s["email"]["verbunden"], s["email"]["eingerichtet"]), (False, True))
+        self._werkzeug("connect_mailbox", {"password": PASSWORT})
+        _, s = self._werkzeug("get_workshop_status")
+        self.assertTrue(s["email"]["verbunden"])
+        self.assertNotIn(SCHLUESSEL, json.dumps(s))
+
+    def test_claude_kann_die_uebungsmails_weiterhin_nicht_senden(self):
+        namen = [t["name"] for t in mcp_server.TOOLS]
+        for n in ("send_draft", "approve_draft", "send", "release_draft"):
+            self.assertNotIn(n, namen)
+        domain.welle_freischalten(1)
+        self.assertEqual(domain.postausgang(), [])
 
 
 if __name__ == "__main__":

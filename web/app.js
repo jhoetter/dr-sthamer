@@ -617,7 +617,7 @@ async function viewEmail() {
       setTimeout(() => pw.focus(), 30);
     }
   } else {
-    body.push(h("p", { class: "lead" }, "Verbunden mit ", h("strong", {}, p.postfach), ". Es ist ein gemeinsames Postfach: Du siehst hier nur deine eigenen Mails und die neuen vom Dozenten."));
+    body.push(h("p", { class: "lead" }, "Verbunden mit ", h("strong", {}, p.postfach), ". Es ist ein gemeinsames Postfach: Du siehst hier nur deine eigenen Mails und die neuen vom Dozenten. Du kannst Claude auch bitten, Mails abzuholen oder zu senden (jede Sendung bestätigst du in der App)."));
     const abholen = h("button", { class: "btn", onclick: async () => {
       try {
         const res = await api("postfach/abholen", {});

@@ -11,6 +11,7 @@ from sthamer_sys import domain, mcp_server
 ROOT = Path(__file__).resolve().parent.parent
 VERBOTEN_ANFANG = ("send", "approve", "release", "reject", "advance", "set_clock", "freigeb", "ablehn")  # beschleunigen darf Claude nie
 VERBOTEN_TEIL = ("sql", "exec", "shell", "delete", "clock")  # Bremsen (stop_scheduled_send) ist erlaubt
+AUSNAHME = ("send_email",)  # echtes Postfach (optional): die Person bestätigt jede Sendung in der App; Übungsmails sendet nur der Mensch
 
 
 def rpc(methode, params=None, mid=1):
@@ -28,7 +29,10 @@ class McpTest(WeltTest):
         self.assertEqual(r["serverInfo"]["name"], "sthamer-sys")
         namen = [t["name"] for t in rpc("tools/list")["result"]["tools"]]
         self.assertIn("create_draft", namen)
+        self.assertEqual([n for n in namen if n.lower().startswith("send")], list(AUSNAHME))  # keine weiteren Sende-Werkzeuge
         for n in namen:
+            if n in AUSNAHME:
+                continue
             self.assertFalse(n.lower().startswith(VERBOTEN_ANFANG), "Werkzeug %s sieht nach einer Kontrolle aus, die Claude nicht haben darf" % n)
             for v in VERBOTEN_TEIL:
                 self.assertNotIn(v, n.lower(), "Werkzeug %s darf es nicht geben" % n)

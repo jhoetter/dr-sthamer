@@ -64,6 +64,9 @@
       "Bash(py -3 -m unittest:*)",
       "Bash(py -3 scripts/akzeptanz.py:*)"
     ],
+    "ask": [
+      "mcp__sthamer__send_email"
+    ],
     "deny": []
   }
 }

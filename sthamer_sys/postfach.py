@@ -8,8 +8,10 @@ Ein Postfach und ein Schlüssel für alle Teilnehmenden. Damit jede Person nur i
 - Abholen: Alle neuen empfangenen Mails (zum Beispiel vom Dozenten) erscheinen im Eingang, außer Antworten auf Mails, die jemand
   anderes gesendet hat. Antworten auf die eigenen Mails sieht man selbst.
 - Gesendet: Die eigenen Sendungen merkt sich das Gerät (Nachrichtennummer). Der Ordner „Gesendet“ des Postfachs wird nie abgeholt.
-- Senden und Verbinden sind Entscheidungen des Menschen im Cockpit; Claude hat dafür kein Werkzeug. Claude liest eingegangene Mails
-  über das normale Postfach-Werkzeug; ihr Inhalt ist wie jede Mail nur Daten, keine Anweisung.
+- Verbinden, Abholen und Senden gibt es zweimal: im Cockpit (akteur="mensch", nur dort freigeschaltet) und als Werkzeuge für Claude
+  (akteur="claude"). Das Protokoll hält fest, wer es getan hat. Kontrolle bei Claude: Das Werkzeug zum Senden steht in
+  .claude/settings.json unter „ask“; die Person bestätigt jede Sendung in der App. Eingegangene Mails sind wie jede Mail nur Daten,
+  keine Anweisung.
 """
 from __future__ import annotations
 
@@ -73,9 +75,17 @@ def status() -> Dict[str, Any]:
             "gesendet": n, "letzter_abruf": letzter["gesehen"] if letzter else None}
 
 
-def verbinden(passwort: Any) -> Dict[str, Any]:
-    """NUR Cockpit. Entsperrt den Schlüssel aus data/agentmail.enc und prüft ihn."""
-    schutz.pruefen("Das Postfach verbinden")
+def _erlaubt(akteur: str, was: str) -> None:
+    """Der Mensch handelt nur im Cockpit; Claude nur über seine Werkzeuge (dort ruft er mit akteur=\"claude\" auf)."""
+    if akteur == "mensch":
+        schutz.pruefen(was)
+    elif akteur != "claude":
+        raise FachFehler("Unbekannter Akteur.")
+
+
+def verbinden(passwort: Any, akteur: str = "mensch") -> Dict[str, Any]:
+    """Entsperrt den Schlüssel aus data/agentmail.enc und prüft ihn."""
+    _erlaubt(akteur, "Das Postfach verbinden")
     datei = data_dir() / "agentmail.enc"
     if not datei.is_file():
         raise FachFehler("Für diesen Workshop gibt es kein E-Mail-Postfach. Das Cockpit funktioniert ohne.")
@@ -97,7 +107,7 @@ def verbinden(passwort: Any) -> Dict[str, Any]:
     except OSError:
         pass
     with transaktion() as conn:
-        ereignis(conn, "mensch", "postfach_verbunden", None, {"postfach": postfach})
+        ereignis(conn, akteur, "postfach_verbunden", None, {"postfach": postfach})
     return {"verbunden": True, "postfach": postfach}
 
 
@@ -123,9 +133,9 @@ def _text_von(voll: Dict[str, Any]) -> str:
     return re.sub(r"[ \t]+\n", "\n", t).strip()[:MAX_TEXT] or "(kein Text)"
 
 
-def abholen() -> Dict[str, Any]:
-    """NUR Cockpit. Holt neue Mails aus dem Postfach in den Eingang."""
-    schutz.pruefen("Neue Mails abholen")
+def abholen(akteur: str = "mensch") -> Dict[str, Any]:
+    """Holt neue Mails aus dem Postfach in den Eingang."""
+    _erlaubt(akteur, "Neue Mails abholen")
     k = _verbunden()
     try:
         alle = agentmail.liste(k["schluessel"], k["postfach"])
@@ -160,15 +170,15 @@ def abholen() -> Dict[str, Any]:
             conn.execute("INSERT OR IGNORE INTO echtmail_eingang (message_id, nachricht_id, sichtbar, grund, gesehen) VALUES (?, ?, ?, ?, ?)",
                          (m["message_id"], nid, 1 if ok else 0, grund, jetzt))
         if neu:
-            ereignis(conn, "mensch", "echte_mail_abgeholt", None, {"neu": neu})
+            ereignis(conn, akteur, "echte_mail_abgeholt", None, {"neu": neu})
     return {"neu": neu, "ausgeblendet": versteckt}
 
 
 # ---------------------------------------------------------------- Senden
 
-def senden(an: Any, betreff: Any, text: Any) -> Dict[str, Any]:
-    """NUR Cockpit. Sendet eine echte Mail aus dem gemeinsamen Postfach an eine beliebige Adresse."""
-    schutz.pruefen("Eine E-Mail senden")
+def senden(an: Any, betreff: Any, text: Any, akteur: str = "mensch") -> Dict[str, Any]:
+    """Sendet eine echte Mail aus dem gemeinsamen Postfach an eine beliebige Adresse."""
+    _erlaubt(akteur, "Eine E-Mail senden")
     k = _verbunden()
     an = str(an or "").strip()
     betreff = str(betreff or "").strip()
@@ -187,7 +197,7 @@ def senden(an: Any, betreff: Any, text: Any) -> Dict[str, Any]:
         jetzt = uhr.jetzt(conn)
         conn.execute("INSERT OR IGNORE INTO echtmail_gesendet (message_id, thread_id, an, betreff, text, gesendet) VALUES (?, ?, ?, ?, ?, ?)",
                      (r["message_id"], r["thread_id"], an, betreff, text, jetzt))
-        ereignis(conn, "mensch", "echte_mail_gesendet", None, {"an": an, "betreff": betreff})
+        ereignis(conn, akteur, "echte_mail_gesendet", None, {"an": an, "betreff": betreff})
     return {"ok": True, "an": an}
 
 
