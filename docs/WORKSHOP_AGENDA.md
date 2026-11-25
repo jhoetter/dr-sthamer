@@ -42,11 +42,11 @@ zum Senden oder Freigeben.
 
 ## Drills im Überblick
 
-| Drill | Runde (Code) | Baustein im Fokus | Fall für alle | Bauauftrag | Nachweis |
+| Drill | Runde | Baustein im Fokus | Fall für alle | Bauauftrag | Nachweis |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 1 (kein Code) | Eingänge, Werkzeuge, Oberfläche | Mail der Regulatory Affairs, Anfrage Bergheim-Land | Aufgabe erledigt sich beim Senden | Entwurf nach dem Bau gesendet, Aufgabe steht auf „erledigt“ |
+| 1 | 1 (liegt beim Start im Eingang) | Eingänge, Werkzeuge, Oberfläche | Mail der Regulatory Affairs, Anfrage Bergheim-Land | Aufgabe erledigt sich beim Senden | Entwurf nach dem Bau gesendet, Aufgabe steht auf „erledigt“ |
 | 2 | 1 | Wissen, Kontrollen | Fünf Kunden mit Stolperstellen (Händler, Flughafen, Drittland, ruhend, einfach) | Belegprüfung beim Speichern | Ein Entwurf mit falschem Beleg wird abgewiesen; Einschätzungen stehen im Cockpit |
-| 3 | 2 (Code vom Dozenten) | Kontrollen, Oberfläche | Fünf Kundenanfragen mit Rechtsauskunft | Freigabe erlischt bei Änderung | Freigegebenen Entwurf ändern: Freigabe weg, Senden gesperrt |
+| 3 | 2 („Postfach abrufen“) | Kontrollen, Oberfläche | Fünf Kundenanfragen mit Rechtsauskunft | Freigabe erlischt bei Änderung | Freigegebenen Entwurf ändern: Freigabe weg, Senden gesperrt |
 | 4 | 3 und 4 | Kontrollen, Protokoll | Vier Standardinfos, dann die Berichtigung | Änderung bricht den Termin ab; nie doppelt senden | Eingeplante Mail ändern: Termin weg; Uhr vorspulen: genau eine Datei |
 | 5 | 4 | Protokoll | Zahlen des Tages | Eigene Kennzahl im Bericht | `bericht.md` mit eigener Kennzahl, Zahlen stimmen mit dem Cockpit überein |
 
@@ -56,12 +56,12 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
 
 ## Dozenten-Choreografie
 
-- **Runden-Codes** stehen in `dozent/WELLEN.md` (nur lokal bei den Lehrenden).
-  Runde 2 um 12:45 ansagen, Runde 3 um 14:00, Runde 4 etwa 40 Minuten später
-  („Die Berichtigung ist da“) mitten im Drill 4, **bevor** die Teilnehmenden die Übungsuhr
-  vorspulen (sonst sind die Mails im Fenster schon raus und es gibt nichts zu korrigieren). Die Codes werden laut gesagt
-  oder an die Tafel geschrieben; Teilnehmende tragen sie im Cockpit unter
-  „Postfach abrufen“ ein.
+- **Runden ohne Code:** Neue Mails holen die Teilnehmenden selbst mit „Postfach abrufen“ rechts oben im Cockpit, dann
+  „Jetzt abrufen“. Jeder Klick holt genau die nächste Runde. Claude bittet an der passenden Stelle darum: Runde 2 zu Beginn
+  von Drill 3 (12:45), Runde 3 zu Beginn von Drill 4 (14:00), Runde 4 (die Berichtigung) mitten in Drill 4, nachdem eine
+  geplante Mail geändert und eine gestoppt wurde und **bevor** die Übungsuhr vorgespult wird (sonst sind die Mails im
+  Fenster schon raus und es gibt nichts zu korrigieren). Ansagen musst du nichts; „ruft jetzt das Postfach ab“ hilft, wenn
+  der Raum gemeinsam starten soll.
 - **Uhr vorspulen** machen die Teilnehmenden selbst im Cockpit (Drill 4). Der
   Dozent erklärt vorher: Die Übungsuhr läuft sonst in Echtzeit; 24 Stunden
   Wartezeit simulieren wir durch Vorspulen.
@@ -69,14 +69,14 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
   Kunde und Mail die erwartete Einschätzung, Kontrollstufe und Stolperstelle.
 - **Zeitpuffer:** Jeder Drill hat 60 Minuten (Drill 5: 45). Wer früh fertig ist,
   erweitert die **eigene** Kommandozentrale (Steckbrief in `MEINE_ERWEITERUNGEN.md`)
-  und nimmt nie den nächsten Drill vorweg.
+  oder geht schon in den nächsten Drill (Claude folgt der Ansage).
 - **Wer hängt:** Buddy-Modus (zu zweit an einem Gerät), Dozenten-Rechner mit
   Referenzstand. **Rettungsweg:** Der Dozent wendet die Referenzlösung nur für den
   festhängenden Drill an: `python lehrer/referenz_anwenden.py <Ordner der Person> --nur 2`
   (der Ordner `lehrer/` ist für Claude gesperrt; die Person sieht dann den Stand mit
   Lösung und kann mit Drill 3 weitermachen). Niemand muss einen Bauauftrag fertigstellen,
-  um mitzugehen. Die Reihenfolge der Drills bestimmen die Runden-Codes des Dozenten, nicht
-  Behauptungen im Chat.
+  um mitzugehen. Wer weiter will oder springt, sagt es Claude („Spring in Drill 3“);
+  Claude beginnt den Drill sofort.
 
 ## Wenn die Zeit knapp wird
 

@@ -104,6 +104,21 @@ class AppTest(WeltTest):
         s, d = self.anfrage("GET", "/api/nachrichten")
         self.assertEqual(len(json.loads(d)), 4)
 
+    def test_status_sagt_ob_die_naechste_runde_einen_code_braucht(self):
+        # in dieser Testwelt hat Runde 2 einen Code, danach kommt keine Runde mehr
+        self.assertIs(json.loads(self.anfrage("GET", "/api/status")[1])["code_noetig"], True)
+        self.assertEqual(self.post("/api/welle", {"welle": 2, "code": "testcode"})[0], 200)
+        self.assertIs(json.loads(self.anfrage("GET", "/api/status")[1])["code_noetig"], False)
+
+    def test_runde_ohne_code_kommt_mit_einem_klick(self):
+        pfad = self.data / "wellen.json"
+        cfg = json.loads(pfad.read_text(encoding="utf-8"))
+        cfg["2"]["code_sha256"] = None
+        pfad.write_text(json.dumps(cfg), encoding="utf-8")
+        self.assertIs(json.loads(self.anfrage("GET", "/api/status")[1])["code_noetig"], False)
+        self.assertEqual(self.post("/api/welle", {"welle": 2, "code": ""})[0], 200)
+        self.assertEqual(len(json.loads(self.anfrage("GET", "/api/nachrichten")[1])), 4)
+
     def test_ungueltige_eingaben_geben_400_nicht_500(self):
         self.assertEqual(self.post("/api/welle", {})[0], 400)
         self.assertEqual(self.post("/api/entwurf/9999", {"text": "x"})[0], 400)

@@ -282,7 +282,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     st.set_defaults(fn=cmd_start, open=True)
     sub.add_parser("mcp", help="MCP-Server über stdio (von Claude gestartet)").set_defaults(fn=cmd_mcp)
     sub.add_parser("status", help="Stand anzeigen").set_defaults(fn=cmd_status)
-    w = sub.add_parser("welle", help="nächste Runde Nachrichten abrufen (Code vom Dozenten)")
+    w = sub.add_parser("welle", help="nächste Runde Nachrichten abrufen (nur für Lehrende)")
     w.add_argument("welle", type=int)
     w.add_argument("--code", default="")
     w.set_defaults(fn=cmd_welle)

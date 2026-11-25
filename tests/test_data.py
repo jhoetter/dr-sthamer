@@ -496,6 +496,14 @@ class Eingang(unittest.TestCase):
         zeiten = [(int(m["welle"]), m["empfangen"]) for m in self.m]
         self.assertEqual(zeiten, sorted(zeiten), "Eingangszeiten müssen mit den Wellen wachsen")
 
+    def test_runden_brauchen_keinen_code(self):
+        """Seit dem 26.11.2026: Neue Mails kommen mit einem Klick auf „Postfach abrufen“, ohne Code vom Dozenten."""
+        with open(DATA / "wellen.json", encoding="utf-8") as fh:
+            cfg = json.load(fh)
+        self.assertEqual(set(cfg), {"1", "2", "3", "4"})
+        for nr, eintrag in cfg.items():
+            self.assertIsNone(eintrag.get("code_sha256"), "Runde %s verlangt einen Code" % nr)
+
     def test_anhaenge_existieren(self):
         for m in self.m:
             for a in [x.strip() for x in m["anhaenge"].split(",") if x.strip()]:

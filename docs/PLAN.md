@@ -206,7 +206,7 @@ Offline-Paket.
 | 0 | Repo, Plan, Datenmodell | **fertig** |
 | 1 | Anleitungen Windows/Mac, IT-Vorab, Vorab-Checkliste, Offline-Paket (Checkliste), `check.py`, CI (Windows, macOS, Linux) | **fertig**, auf Windows noch nicht real getestet |
 | 1 | Datensatz: 27 Produkte, 32 Kunden, 149 Lieferungen, fiktive Verordnung mit Berichtigung, 15 Mails in 4 Runden, Lösungsschlüssel | **fertig** |
-| 1 | Kern: Speicher, Cockpit im Sthamer-Branding, MCP über stdio, Runden mit Code, Code lädt sich selbst nach | **fertig** |
+| 1 | Kern: Speicher, Cockpit im Sthamer-Branding, MCP über stdio, Runden (seit 26.11.2026 ohne Code), Code lädt sich selbst nach | **fertig** |
 | 2 | Pflichtfreigabe, Eingriffsfenster, Übungsuhr, Einschätzungen, Bericht, Protokoll; Schutz der Menschen-Aktionen | **fertig** |
 | 2 | Agenda, Drill-Karten, Akzeptanzprüfung je Bauauftrag, Referenzlösungen und Rettungsweg (`lehrer/`), Runbook | **fertig** |
 | 2 | **Probelauf** mit simulierten Teilnehmenden, ganzer Tag ([PROBELAUF_2026-11-12.md](PROBELAUF_2026-11-12.md)) | **fertig** |

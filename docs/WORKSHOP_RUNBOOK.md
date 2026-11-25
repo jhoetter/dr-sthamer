@@ -9,12 +9,12 @@ das, was die IT von Sthamer vorbereiten muss, in [IT_VORAB.md](IT_VORAB.md).
 
 | Datei | Inhalt |
 | --- | --- |
-| `dozent/WELLEN.md` | Codes für Runde 2 bis 4 (Taktgeber, kein Geheimnis: die Codes sind kurze Wörter) |
 | `dozent/LOESUNG.md`, `dozent/loesung.json` | Lösungsschlüssel: je Produkt, Kunde und Mail die erwartete Einschätzung, Kontrollstufe und Stolperstelle |
 | `lehrer/` (liegt im Repo, ist für Claude gesperrt) | Referenzlösungen, Simulation von Cockpit-Klicks, Absicherungstest |
 
-`dozent/` ist Git-ignoriert und entsteht mit `python scripts/make_data.py --loesung` neu. Codes ändern: Hash in `data/wellen.json`
-(SHA-256 des Codes in Kleinbuchstaben) und `dozent/WELLEN.md` anpassen.
+`dozent/` ist Git-ignoriert und entsteht mit `python scripts/make_data.py --loesung` neu. Die Runden brauchen seit dem
+26.11.2026 keinen Code mehr. Soll eine Runde wieder einen Code verlangen: in `data/wellen.json` bei `code_sha256` den
+SHA-256 des Codes in Kleinbuchstaben eintragen; das Cockpit fragt dann von selbst danach.
 
 ## Vor dem Tag
 
@@ -37,7 +37,7 @@ das, was die IT von Sthamer vorbereiten muss, in [IT_VORAB.md](IT_VORAB.md).
 
 ## Am Tag
 
-- **Runden abrufen:** Die Teilnehmenden tragen den Code im Cockpit ein („Postfach abrufen“). Runde 2 zu Drill 3, Runde 3 zu Drill 4.
+- **Runden abrufen:** Die Teilnehmenden klicken im Cockpit rechts oben auf „Postfach abrufen“ und dann auf „Jetzt abrufen“ (kein Code). Runde 2 zu Drill 3, Runde 3 zu Drill 4.
   **Runde 4 (Berichtigung) in Drill 4, nachdem die Teilnehmenden Mails im Fenster geändert und gestoppt haben, aber bevor sie
   die Übungsuhr vorspulen.** Sonst sind die Mails schon raus und es gibt nichts zu korrigieren.
 - **Wer festhängt:** Buddy-Modus. **Rettungsweg:** die Referenzlösung nur für den hängenden Drill auf die Kopie der Person anwenden:

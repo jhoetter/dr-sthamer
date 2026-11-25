@@ -231,7 +231,7 @@ Freigabe in Drill 3 vor.
 
 ## Drill 3 · Rechtsaussagen: Pflichtfreigabe
 
-**Runde:** 2 (Code vom Dozenten, Postfach abrufen). **Fokus:** Kontrollen, Oberfläche.
+**Runde:** 2 (die Person klickt rechts oben „Postfach abrufen“, ohne Code). **Fokus:** Kontrollen, Oberfläche.
 
 **Mission:** Fünf Kundenanfragen mit Rechtsauskunft (Nachfüllen, Frist mit
 Rechtsgrundlage, Händlerkette, Kunde in GB, Flughafen-Ausnahme). Claude bereitet Antworten
@@ -250,8 +250,8 @@ Person die Kontrolle jeder Mail fest.)
 **Gesprächsfaden (sinngemäß, ein Schritt pro Nachricht):**
 
 1. **Begrüßung.** „Willkommen in Drill 3. Die fiktive Verordnung hat sich herumgesprochen: Mehrere Kunden haben
-   geschrieben. Der Dozent nennt dir dafür einen Code. Trag ihn rechts oben ein und klick auf ‚Postfach abrufen‘, dann
-   erscheinen die neuen Mails im Eingang. Sagst du mir Bescheid, wenn sie da sind?“
+   geschrieben. Klick bitte rechts oben auf ‚Postfach abrufen‘ und dann auf ‚Jetzt abrufen‘, dann erscheinen die neuen
+   Mails im Eingang. Sagst du mir Bescheid, wenn sie da sind?“
 2. **Warum Freigabe.** „Fünf Anfragen, und alle wollen eine Auskunft, auf die sie sich verlassen können. Das ist heikel.
    Deshalb gilt ab jetzt: Ich bereite die Antworten vor, aber raus gehen sie erst, wenn du sie ausdrücklich freigegeben
    hast. Soll ich aus den fünf Mails To-dos machen und die Antworten vorbereiten?“
@@ -295,7 +295,7 @@ weg, Senden gesperrt, das Protokoll nennt den Grund. Stand speichern.
 
 ## Drill 4 · Standardinfo: Eingriffsfenster
 
-**Runde:** 3 (Code vom Dozenten); **Runde 4** (Berichtigung) in Etappe 2, vor dem Vorspulen der Uhr. **Fokus:** Kontrollen, Protokoll.
+**Runde:** 3 („Postfach abrufen“, ohne Code); **Runde 4** (Berichtigung, noch einmal „Postfach abrufen“) in Etappe 2, vor dem Vorspulen der Uhr. **Fokus:** Kontrollen, Protokoll.
 
 **Mission:** Standardinformationen (nur feste Fristen aus der Verordnung oder „nicht betroffen“)
 gehen **24 Stunden nach Planung automatisch** raus; bis dahin kann jede Person ändern oder
@@ -316,14 +316,15 @@ eingreifen muss.
 **Gesprächsfaden (sinngemäß, ein Schritt pro Nachricht):**
 
 1. **Begrüßung.** „Willkommen in Drill 4. Die Freigabe ist sicher, aber sie kostet Zeit, auch für ein einfaches ‚Sie sind
-   nicht betroffen‘. Die Leitung hat dafür eine neue Regel geschrieben. Trag bitte den nächsten Code vom Dozenten ein und
-   ruf das Postfach ab; ihre Mail liegt dann im Eingang. Magst du sie lesen, oder soll ich dir die Regel in zwei Sätzen sagen?“
+   nicht betroffen‘. Die Leitung hat dafür eine neue Regel geschrieben. Klick bitte rechts oben auf ‚Postfach abrufen‘
+   und dann auf ‚Jetzt abrufen‘; ihre Mail liegt dann im Eingang. Magst du sie lesen, oder soll ich dir die Regel in zwei Sätzen sagen?“
 2. **Kontrolle festlegen.** „Ich habe Antworten vorbereitet. Bevor ich sie einreiche, entscheidest du für jede: reine
    Standardauskunft, die nach 24 Stunden von selbst rausgeht, oder mehr, dann braucht sie deine Freigabe.“ (Tabelle.)
    „Stimmt meine Einschätzung, oder siehst du eine anders?“ Die versteckte Anweisung meldest du hier.
 3. **Im Fenster eingreifen.** „Die Mails warten rechts unter ‚Geplant‘. Probier beides aus: Ändere eine, und stoppe eine.
    Was fällt dir beim Termin der geänderten auf?“
-4. **Die Berichtigung.** Nach dem Code des Dozenten: „Es gibt Neuigkeiten: Eine Frist in der fiktiven Verordnung wurde
+4. **Die Berichtigung.** Erst wenn die Person eine geplante Mail geändert und eine gestoppt hat: „Inzwischen ist noch
+   eine Mail gekommen. Rufst du bitte noch einmal das Postfach ab?“ Danach: „Eine Frist in der fiktiven Verordnung wurde
    berichtigt. Eine geplante Mail nennt noch die alte. Stoppen, ändern oder laufen lassen und später korrigieren?“
 5. **Die Lücke, dann der Bau.** Uhr vorspulen lassen: Die geänderte Mail ist trotzdem rausgegangen. „Wollen wir das schließen?“
 6. **Beweis.** Ändern: Termin weg. Uhr vorspulen: genau eine Mail je Kunde im Postausgang.
@@ -338,7 +339,7 @@ für einen Antrag oder Behördenvorgang braucht, bekommt eine Rechtsauskunft und
 *Entscheidungsfrage:* „Welche dieser Mails ist eine Standardinformation, und woran erkennst du das?“
 
 **Etappe 2 · Mensch entscheidet.** Im Cockpit unter **Geplant**: Restzeit lesen; **eine Mail ändern** (Wirkung auf den
-Termin beobachten: heute bleibt er) und **eine stoppen**. **Dann trifft die Berichtigung ein** (der Dozent ruft Runde 4 ab,
+Termin beobachten: heute bleibt er) und **eine stoppen**. **Dann trifft die Berichtigung ein** (die Person ruft auf Claudes Bitte noch einmal das Postfach ab,
 **solange die Mails noch im Fenster liegen und bevor jemand die Uhr vorspult**): Die Frist für stationäre Anlagen ändert sich
 von 2029-03-01 auf 2030-03-01. Claude prüft mit `list_queue`, welche geplanten Mails die alte Frist nennen (die Antwort an den
 Recycling-Park MSG-3-03 gehört dazu), stoppt sie, die Person lehnt freigegebene im Cockpit ab, Claude korrigiert und reicht neu

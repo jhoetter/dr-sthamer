@@ -884,6 +884,18 @@ function openPostfach() {
   if (!next) {
     body = h("div", { class: "dialog" }, h("h2", {}, "Postfach abrufen"), h("p", {}, "Alle Nachrichten sind abgerufen. Es kommt nichts mehr nach."),
       h("div", { class: "actions" }, h("button", { class: "btn", onclick: closeDialog }, "Schließen")));
+  } else if (!S.code_noetig) {
+    const hinweis = { 2: "Die nächsten Mails gehören zu Drill 3. Ruf sie ab, sobald ihr dort seid.",
+      3: "Die nächsten Mails gehören zu Drill 4. Ruf sie ab, sobald ihr dort seid.",
+      4: "Die nächste Mail kommt mitten in Drill 4. Ruf sie erst ab, wenn Claude dich darum bittet." }[next] || "Es liegen neue Mails bereit.";
+    const err = h("div", { class: "err" });
+    const run = async () => {
+      try { const res = await api("welle", { welle: next, code: "" }); closeDialog(); toast(plural(res.neue_nachrichten, "neue Mail", "neue Mails") + " im Eingang."); go("eingang"); await render(true); }
+      catch (e) { err.textContent = e.message; }
+    };
+    body = h("div", { class: "dialog" }, h("h2", {}, "Neue Mails abrufen"),
+      h("p", {}, hinweis), err,
+      h("div", { class: "actions" }, h("button", { class: "btn ghost", onclick: closeDialog }, "Noch nicht"), h("button", { class: "btn primary", onclick: run }, "Jetzt abrufen")));
   } else {
     const code = h("input", { placeholder: "Code", autocomplete: "off", "aria-label": "Code vom Dozenten" });
     const err = h("div", { class: "err" });

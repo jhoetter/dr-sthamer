@@ -133,6 +133,8 @@ class Handler(BaseHTTPRequestHandler):
             from . import postfach  # spät importieren (siehe unten)
             s = domain.status()
             s["faehigkeiten"] = dict(s.get("faehigkeiten") or {}, email=postfach.verfuegbar())
+            naechste = s.get("naechste_welle")  # braucht die nächste Runde einen Code? (sonst genügt der Knopf)
+            s["code_noetig"] = bool(naechste and (daten.wellen().get(str(naechste)) or {}).get("code_sha256"))
             return self._json(s)
         if k == "nachrichten":
             return self._json(domain.eingang())

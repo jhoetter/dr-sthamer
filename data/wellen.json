@@ -5,14 +5,14 @@
   },
   "2": {
     "titel": "Kundenanfragen mit Rechtsaussage (Drill 3)",
-    "code_sha256": "c1dfc4691b2888dea4b682604aa6d1e952a1377b2f899932394216e2e8bffbda"
+    "code_sha256": null
   },
   "3": {
     "titel": "Standardfälle und eine versteckte Anweisung (Drill 4)",
-    "code_sha256": "30e4c4ac156e7e9b7188ca617cf4ff8923aa10ca503c9f1a35c95dc40bb4a72a"
+    "code_sha256": null
   },
   "4": {
     "titel": "Die Berichtigung trifft ein (Drill 4, später)",
-    "code_sha256": "e5202d7ce67dbad5e1721b69c546b27949fcfbf12bb700fd90e3589896d1f28f"
+    "code_sha256": null
   }
 }
