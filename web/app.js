@@ -71,11 +71,11 @@ const hhmm = s => (s ? parseIso(s).toLocaleTimeString("de-DE", { hour: "2-digit"
 const senderName = v => (v || "").replace(/<.*>/, "").trim() || v || "";
 const senderMail = v => ((v || "").match(/<(.*)>/) || [, ""])[1];
 const initials = v => senderName(v).split(/[\s.@-]+/).filter(Boolean).slice(0, 2).map(p => p[0].toUpperCase()).join("") || "?";
-const fallNr = id => "F-" + String(id).padStart(4, "0");
+const fallNr = id => "#" + id; // Nummer eines To-dos (intern: Fall)
 const plural = (n, one, many) => n + " " + (n === 1 ? one : many);
 
 const TYPEN = {
-  aufgabe: ["Aufgabe", "dot-blue"], kundenanfrage: ["Kundenanfrage", "dot-green"], verordnung: ["Verordnung", "dot-orange"],
+  aufgabe: ["Interner Auftrag", "dot-blue"], kundenanfrage: ["Kundenanfrage", "dot-green"], verordnung: ["Verordnung", "dot-orange"],
   berichtigung: ["Berichtigung", "dot-red"], intern: ["Intern", "dot-grey"], email: ["E-Mail", "dot-blue"],
 };
 const FALL_STATUS = { neu: ["Neu", ""], in_bearbeitung: ["In Bearbeitung", "progress"], gesendet: ["Gesendet", "done"] };
@@ -85,7 +85,7 @@ const ANWENDUNGEN = {
   uebung_training: "Übung und Training", lager_bestand: "Lagerbestand",
 };
 const EREIGNISSE = {
-  postfach_abgerufen: "Postfach abgerufen", belegpruefung_abgewiesen: "Belegprüfung abgewiesen", fall_angelegt: "Fall angelegt", entwurf_angelegt: "Entwurf angelegt",
+  postfach_abgerufen: "Postfach abgerufen", belegpruefung_abgewiesen: "Belegprüfung abgewiesen", fall_angelegt: "To-do angelegt", entwurf_angelegt: "Entwurf angelegt",
   entwurf_geaendert: "Entwurf geändert", gesendet: "Gesendet", notiz: "Notiz",
   zur_freigabe: "Zur Freigabe eingereicht", geplant: "Eingeplant", freigegeben: "Freigegeben", abgelehnt: "Abgelehnt",
   versand_gestoppt: "Versand gestoppt", uhr_vorgespult: "Übungsuhr vorgespult", einschaetzung: "Einschätzung festgehalten",
@@ -263,7 +263,8 @@ function messageBlock(m) {
       mailText(m.text)));
 }
 
-const attachLink = a => h("a", { class: "attach", href: href("regelwerk", null, { text: a.split("/").pop() }) }, icon("clip", 14), a.split("/").pop());
+const anhangName = a => (/berichtigung/i.test(a) ? "Berichtigung zur Verordnung (fiktiv)" : "Verordnung (EU) 2026/9001 (fiktiv)");
+const attachLink = a => h("a", { class: "attach", href: href("verordnung", null, { text: a.split("/").pop() }), title: "Im Wortlaut lesen" }, icon("clip", 14), anhangName(a));
 
 /* Sehr kleiner Markdown-Leser für den Verordnungstext (nur Text, nie HTML). */
 function inline(text) {
@@ -291,7 +292,7 @@ function markdown(text) {
 /* ---------- Gerüst ---------- */
 const NAV = [
   ["Arbeitskorb", [
-    ["eingang", "Eingang", "inbox", s => s.ungelesen, true], ["faelle", "Fälle", "cases", s => s.faelle_offen],
+    ["eingang", "Eingang", "inbox", s => s.ungelesen, true], ["faelle", "To-dos", "cases", s => s.offene_aufgaben],
     ["freigaben", "Freigaben", "shield", s => s.zur_freigabe, true, "freigabe"], ["geplant", "Geplant", "clock", s => s.geplant, false, "fenster"],
     ["postausgang", "Postausgang", "send", s => s.gesendet], ["email", "E-Mail", "mail"]]],
   ["Wissen", [["regelwerk", "Regelwerk", "book"], ["produkte", "Produkte", "flask", s => s.produkte], ["kunden", "Kunden", "users", s => s.kunden]]],
@@ -355,21 +356,21 @@ async function viewEingang(r) {
   let action = null;
   if (m) {
     action = m.fall_id
-      ? h("a", { class: "btn", href: href("faelle", m.fall_id) }, icon("cases"), "Fall öffnen")
+      ? h("a", { class: "btn", href: href("faelle", m.fall_id) }, icon("cases"), "To-do öffnen")
       : h("button", { class: "btn primary", onclick: async () => {
-        try { const res = await api("fall", { nachricht_id: m.id }); toast("Fall " + fallNr(res.fall_id) + " angelegt."); go("faelle", res.fall_id); }
+        try { const res = await api("fall", { nachricht_id: m.id }); toast("To-do " + fallNr(res.fall_id) + " angelegt."); go("faelle", res.fall_id); }
         catch (e) { toast(e.message, true); }
-      } }, icon("cases"), "Fall anlegen");
+      } }, icon("cases"), "To-do anlegen");
     detail = h("div", { class: "detail" }, h("div", { class: "detail-grid" },
       h("div", { class: "thread" },
         h("h1", {}, m.betreff),
         h("div", { class: "chips", style: "margin: 10px 0 24px" }, typChip(m.typ), chip("Runde " + m.welle)),
-        messageBlock(m),
-        m.anhaenge.length ? h("div", { class: "attachments" }, m.anhaenge.map(attachLink)) : null),
+        m.anhaenge.length ? h("div", { class: "attachments", style: "margin: 0 0 18px" }, h("span", { class: "muted small", style: "align-self: center" }, "Anhang:"), m.anhaenge.map(attachLink)) : null,
+        messageBlock(m)),
       h("aside", { class: "props" },
         h("div", { class: "prop-group", style: "margin-top: 0" }, "Eigenschaften"),
         prop("Typ", typChip(m.typ)), prop("Runde", String(m.welle)), prop("Von", senderName(m.von)), prop("Empfangen", fmtTime(m.empfangen)),
-        prop("Kunde", kundeLink(m.kunde_id)), prop("Fall", m.fall_id ? h("a", { href: href("faelle", m.fall_id) }, fallNr(m.fall_id)) : "noch keiner"))));
+        prop("Kunde", kundeLink(m.kunde_id)), prop("To-do", m.fall_id ? h("a", { href: href("faelle", m.fall_id) }, "To-do " + fallNr(m.fall_id)) : "noch keins"))));
   }
   const list = msgs.length ? rows : [emptyState("inbox", "Noch keine Nachrichten. Rufe das Postfach ab.", h("button", { class: "btn primary", onclick: openPostfach }, icon("sync"), "Postfach abrufen"))];
   return col(topbar(m ? ["Arbeitskorb", "Eingang", m.id] : ["Arbeitskorb", "Eingang"], action), splitView(list, detail, "inbox", "Wähle links eine Nachricht."));
@@ -377,22 +378,27 @@ async function viewEingang(r) {
 
 async function viewFaelle(r) {
   const [fs, prods, kunden] = await Promise.all([api("faelle"), api("produkte"), api("kunden")]);
-  const rows = [];
-  [["in_bearbeitung", "In Bearbeitung"], ["neu", "Neu"], ["gesendet", "Gesendet"]].forEach(([st, label]) => {
-    const items = fs.filter(f => f.status === st);
+  const rows = [h("div", { class: "list-hint" }, "Ein To-do entsteht aus einer Mail, auf die jemand reagieren muss. Es ist erledigt, wenn die Antwort raus ist.")];
+  const stand = f => {
+    if (!f.offene_aufgaben) return "erledigt";
+    if (f.status === "gesendet") return "Antwort ist raus, aber das To-do ist noch nicht abgehakt";
+    return f.entwuerfe ? plural(f.entwuerfe, "Entwurf liegt vor", "Entwürfe liegen vor") : "noch kein Entwurf";
+  };
+  [[f => f.offene_aufgaben > 0, "Offen"], [f => !f.offene_aufgaben, "Erledigt"]].forEach(([test, label]) => {
+    const items = fs.filter(test);
     if (!items.length) return;
-    rows.push(h("div", { class: "group" }, label));
-    items.forEach(f => rows.push(h("a", { class: "row" + (String(f.id) === r.id ? " active" : ""), href: href("faelle", f.id) },
-      statusIcon(f.status), h("span", { class: "row-id" }, fallNr(f.id)),
-      h("span", { class: "row-main" }, h("span", { class: "row-title" }, f.titel), h("span", { class: "row-sub" }, plural(f.offene_aufgaben, "offene Aufgabe", "offene Aufgaben") + " · " + plural(f.entwuerfe, "Entwurf", "Entwürfe"))))));
+    rows.push(h("div", { class: "group" }, label + " · " + items.length));
+    items.forEach(f => rows.push(h("a", { class: "row" + (String(f.id) === r.id ? " active" : "") + (f.offene_aufgaben ? "" : " row-done"), href: href("faelle", f.id) },
+      h("span", { class: "check" + (f.offene_aufgaben ? "" : " on") }), h("span", { class: "row-id" }, fallNr(f.id)),
+      h("span", { class: "row-main" }, h("span", { class: "row-title" }, f.titel), h("span", { class: "row-sub" }, stand(f))))));
   });
   let detail = null;
   if (r.id && /^\d+$/.test(r.id)) {
     const f = await api("fall/" + r.id).catch(() => null);
     if (f) detail = fallDetail(f, prods, kunden);
   }
-  const list = fs.length ? rows : [emptyState("cases", "Noch kein Fall. Lege im Eingang aus einer Nachricht einen an.", h("a", { class: "btn primary", href: "#/eingang" }, icon("inbox"), "Zum Eingang"))];
-  return col(topbar(detail ? ["Arbeitskorb", "Fälle", fallNr(r.id)] : ["Arbeitskorb", "Fälle"]), splitView(list, detail, "cases", "Wähle links einen Fall."));
+  const list = fs.length ? rows : [emptyState("cases", "Noch kein To-do. Ein To-do entsteht aus einer Mail im Eingang, auf die jemand reagieren muss: Claude legt es an, oder du mit dem Knopf „To-do anlegen“ in der Mail.", h("a", { class: "btn primary", href: "#/eingang" }, icon("inbox"), "Zum Eingang"))];
+  return col(topbar(detail ? ["Arbeitskorb", "To-dos", fallNr(r.id)] : ["Arbeitskorb", "To-dos"]), splitView(list, detail, "cases", "Wähle links ein To-do."));
 }
 
 function fallDetail(f, prods, kunden) {
@@ -400,14 +406,13 @@ function fallDetail(f, prods, kunden) {
   const offen = f.aufgaben.filter(a => a.status === "offen").length;
   const prodName = id => (prods.find(p => p.id === id) || {}).name;
   const kundeName = id => (kunden.find(k => k.id === id) || {}).name;
-  const st = FALL_STATUS[f.status] || [f.status, ""];
   const auto = new Set(f.protokoll.filter(e => e.art === "gesendet" && e.details && e.details.automatisch).map(e => e.details.entwurf_id));
   return h("div", { class: "detail" }, h("div", { class: "detail-grid" },
     h("div", { class: "thread" },
       h("h1", {}, f.titel),
-      h("p", { class: "lead" }, fallNr(f.id), m ? [" · aus Nachricht ", h("a", { href: href("eingang", m.id) }, m.id)] : null),
+      h("p", { class: "lead" }, "To-do " + fallNr(f.id), m ? [" · entstanden aus der ", h("a", { href: href("eingang", m.id) }, "Mail im Eingang")] : null),
       m ? messageBlock(m) : null,
-      h("div", { class: "section" }, h("div", { class: "section-head" }, "Aufgaben", h("span", { class: "meta" }, offen ? plural(offen, "offen", "offen") : "alle erledigt")),
+      h("div", { class: "section" }, h("div", { class: "section-head" }, "Was zu tun ist", h("span", { class: "meta" }, offen ? "offen" : "erledigt")),
         f.aufgaben.map(a => h("div", { class: "task" + (a.status === "erledigt" ? " done" : "") }, h("span", { class: "check" + (a.status === "erledigt" ? " on" : "") }), h("span", { class: "task-title" }, a.titel)))),
       h("div", { class: "section" }, h("div", { class: "section-head" }, "Entwürfe", h("span", { class: "meta" }, "Claude bereitet vor, du entscheidest")),
         f.entwuerfe.length ? f.entwuerfe.map(e => draftBlock(e, prodName, kundeName, { auto: auto.has(e.id) })) : h("p", { class: "muted" }, "Noch kein Entwurf. Bitte Claude in der Claude-App, einen vorzubereiten.")),
@@ -415,10 +420,10 @@ function fallDetail(f, prods, kunden) {
         f.protokoll.slice().reverse().map(eventRow))),
     h("aside", { class: "props" },
       h("div", { class: "prop-group", style: "margin-top: 0" }, "Eigenschaften"),
-      prop("Status", h("span", { class: "chips" }, statusIcon(f.status), st[0])),
+      prop("Status", h("span", { class: "chips" }, h("span", { class: "check" + (offen ? "" : " on") }), offen ? "Offen" : "Erledigt")),
+      prop("Antwort", f.status === "gesendet" ? "gesendet" : (f.entwuerfe.length ? "Entwurf liegt vor" : "noch kein Entwurf")),
       prop("Kunde", kundeLink(f.kunde_id, kundeName(f.kunde_id))),
       prop("Erstellt", fmtTime(f.erstellt)),
-      prop("Aufgaben", f.aufgaben.length - offen + " von " + f.aufgaben.length + " erledigt"),
       prop("Entwürfe", String(f.entwuerfe.length)),
       m && m.anhaenge.length ? [h("div", { class: "prop-group" }, "Anhang"), h("div", { class: "chips" }, m.anhaenge.map(attachLink))] : null)));
 }
@@ -549,7 +554,7 @@ function queueDetail(e, prods, kunden) {
       prop("Kontrolle", STUFEN[e.stufe] || "–"),
       prop("Rechtsaussage", e.rechtsaussage ? "ja" : "nein"),
       prop("Kunde", kundeLink(e.kunde_id, e.kunde_name)),
-      prop("Fall", h("a", { href: href("faelle", e.fall_id) }, fallNr(e.fall_id))),
+      prop("To-do", h("a", { href: href("faelle", e.fall_id) }, "To-do " + fallNr(e.fall_id))),
       e.status === "geplant" ? [prop("Versand", fmtTime(e.sende_am)), prop("Restzeit", restzeit(e.sende_am))] : null,
       e.freigabe_zeit && e.status === "freigegeben" ? prop("Freigabe", fmtTime(e.freigabe_zeit)) : null)));
 }
@@ -661,13 +666,12 @@ async function viewRegelwerk(r) {
     if (c) return h("span", { class: "changed" }, fmtDateShort(c.neu), h("span", { class: "chip solid-orange", title: "vorher " + c.alt }, "berichtigt"));
     return a[feld] ? fmtDateShort(a[feld]) : h("span", { class: "faint" }, "–");
   };
-  const sel = r.q.text && d.verfuegbar.includes(r.q.text) ? r.q.text : d.haupttext;
   const label = n => (n.toLowerCase().includes("berichtigung") ? "Berichtigung" : "Verordnung");
   const tbl = (heads, rows) => h("table", {}, h("thead", {}, h("tr", {}, heads.map(t => h("th", {}, t)))), h("tbody", {}, rows));
   return col(topbar(["Wissen", "Regelwerk"]), h("div", { class: "page" }, h("div", { class: "page-inner" },
     h("h1", {}, rw.titel || rw.id),
-    h("p", { class: "lead" }, "Fiktive Verordnung, für den Workshop erfunden, kein geltendes Recht. ",
-      h("a", { class: "btn", href: "verordnung-eu-2026-9001-fiktiv.pdf", target: "_blank", rel: "noopener" }, icon("book"), "Als PDF öffnen (Amtsblatt-Fassung)")),
+    h("p", { class: "lead" }, "Fiktive Verordnung, für den Workshop erfunden, kein geltendes Recht. Hier stehen die Fristen auf einen Blick."),
+    h("div", { class: "actions-row" }, d.verfuegbar.map(n => h("a", { class: "btn" + (n === d.haupttext ? " primary" : ""), href: href("verordnung", null, { text: n }) }, icon("book"), label(n) + " im Wortlaut lesen"))),
     h("div", { class: "facts" },
       fact("Grenzwert", rw.grenzwert_mg_l + " mg/l", String(rw.grenzwert_regel || "").replace(/_/g, " ")),
       fact("In Kraft ab", fmtDateShort(rw.inkrafttreten), "veröffentlicht " + fmtDateShort(rw.veroeffentlicht)),
@@ -683,8 +687,22 @@ async function viewRegelwerk(r) {
         h("td", {}, h("div", {}, x.beschreibung), h("div", { class: "faint small" }, x.artikel)),
         h("td", {}, (x.gilt_fuer_segmente || []).join(", ") + ((x.gilt_fuer_anwendungen || []).length ? " · " + x.gilt_fuer_anwendungen.map(anwendung).join(", ") : "")),
         h("td", { class: "mono" }, fmtDateShort(x.befristet_bis)), h("td", { class: "muted" }, x.bedingung || "–"))))) : null,
-    h("div", { class: "tabs" }, d.verfuegbar.map(n => h("a", { class: "tab" + (n === sel ? " on" : ""), href: href("regelwerk", null, { text: n }) }, label(n)))),
-    markdown(d.texte[sel] || ""))));
+  )));
+}
+
+/* ---------- Verordnung im Wortlaut (Leseseite wie ein Amtsblatt, deutlich als fiktiv markiert) ---------- */
+async function viewVerordnung(r) {
+  const d = await api("regelwerk");
+  if (!d.verfuegbar.length) return col(topbar(["Wissen", "Regelwerk"]), emptyState("book", "Noch keine Verordnung im Postfach. Rufe das Postfach ab.", h("button", { class: "btn primary", onclick: openPostfach }, icon("sync"), "Postfach abrufen")));
+  const sel = r.q.text && d.verfuegbar.includes(r.q.text) ? r.q.text : d.haupttext;
+  const label = n => (n.toLowerCase().includes("berichtigung") ? "Berichtigung" : "Verordnung");
+  return col(topbar(["Wissen", "Regelwerk", label(sel) + " im Wortlaut"], h("a", { class: "btn", href: "#/regelwerk" }, icon("list"), "Fristen auf einen Blick")),
+    h("div", { class: "page" }, h("div", { class: "page-inner" },
+      d.verfuegbar.length > 1 ? h("div", { class: "tabs", style: "margin-top: 0" }, d.verfuegbar.map(n => h("a", { class: "tab" + (n === sel ? " on" : ""), href: href("verordnung", null, { text: n }) }, label(n)))) : null,
+      h("div", { class: "paper" },
+        h("div", { class: "paper-mark" }, "FIKTIV"),
+        h("div", { class: "paper-head" }, h("span", {}, "★ Amtsblatt der Europäischen Union · Übungsfassung"), h("span", {}, "erfunden für den Workshop")),
+        markdown(d.texte[sel] || "")))));
 }
 
 function tableWithSearch(placeholder, items, segOf, rowFn, headers) {
@@ -734,7 +752,7 @@ async function viewKunden() {
 async function viewProtokoll() {
   const es = await api("protokoll");
   const body = es.length
-    ? h("table", {}, h("thead", {}, h("tr", {}, ["Zeit", "Wer", "Was", "Fall"].map(t => h("th", {}, t)))),
+    ? h("table", {}, h("thead", {}, h("tr", {}, ["Zeit", "Wer", "Was", "To-do"].map(t => h("th", {}, t)))),
       h("tbody", {}, es.map(e => {
         const [who, cls] = AKTEURE[e.akteur] || [e.akteur, "system"];
         return h("tr", {}, h("td", { class: "muted mono", style: "white-space:nowrap" }, fmtTime(e.zeit)),
@@ -783,7 +801,7 @@ async function viewBericht() {
 
 const VIEWS = {
   email: viewEmail, eingang: viewEingang, faelle: viewFaelle, freigaben: r => viewQueue(r, "freigaben"), geplant: r => viewQueue(r, "geplant"), postausgang: viewPostausgang,
-  regelwerk: viewRegelwerk, produkte: viewProdukte, kunden: viewKunden, protokoll: viewProtokoll, bericht: viewBericht,
+  regelwerk: viewRegelwerk, verordnung: viewVerordnung, produkte: viewProdukte, kunden: viewKunden, protokoll: viewProtokoll, bericht: viewBericht,
 };
 /* Was erst mit einer späteren Runde freigeschaltet wird */
 const GATE = { freigaben: ["freigabe", 2, "Arbeitskorb", "Freigaben", "shield"], geplant: ["fenster", 3, "Arbeitskorb", "Geplant", "clock"], bericht: ["bericht", 4, "Nachweis", "Bericht", "chart"] };
@@ -887,13 +905,13 @@ async function openPalette() {
   closePalette();
   const [fs, ps, ks] = await Promise.all([api("faelle"), api("produkte"), api("kunden")]);
   const items = [
-    ["Eingang", "Ansicht", () => go("eingang")], ["Fälle", "Ansicht", () => go("faelle")],
+    ["Eingang", "Ansicht", () => go("eingang")], ["To-dos", "Ansicht", () => go("faelle")],
     faehig("freigabe") ? ["Freigaben", "Ansicht", () => go("freigaben")] : null, faehig("fenster") ? ["Geplant", "Ansicht", () => go("geplant")] : null,
     ["Postausgang", "Ansicht", () => go("postausgang")],
     ["Regelwerk", "Ansicht", () => go("regelwerk")], ["Produkte", "Ansicht", () => go("produkte")], ["Kunden", "Ansicht", () => go("kunden")], ["Protokoll", "Ansicht", () => go("protokoll")],
     faehig("bericht") ? ["Bericht", "Ansicht", () => go("bericht")] : null,
     ["Postfach abrufen", "Aktion", openPostfach],
-  ].filter(Boolean).concat(fs.map(f => [fallNr(f.id) + " · " + f.titel, "Fall", () => go("faelle", f.id)]))
+  ].filter(Boolean).concat(fs.map(f => ["To-do " + fallNr(f.id) + " · " + f.titel, "To-do", () => go("faelle", f.id)]))
     .concat(ps.map(p => [p.id + " · " + p.name, "Produkt", () => go("produkte", null, { p: p.id })]))
     .concat(ks.map(k => [k.id + " · " + k.name, "Kunde", () => go("kunden", null, { k: k.id })]));
   const input = h("input", { placeholder: "Springen zu …", "aria-label": "Suchen" });
@@ -931,7 +949,7 @@ async function doRender(force) {
     const sameView = lastKey && lastKey.split("/")[0] === r.view;
     const listTop = sameView && mainEl.querySelector(".list") ? mainEl.querySelector(".list").scrollTop : 0;
     const threadTop = lastKey === key && mainEl.querySelector(".thread") ? mainEl.querySelector(".thread").scrollTop : 0;
-    Object.entries(navEls).forEach(([k, n]) => n.a.classList.toggle("active", k === r.view));
+    Object.entries(navEls).forEach(([k, n]) => n.a.classList.toggle("active", k === (r.view === "verordnung" ? "regelwerk" : r.view)));
     await refreshStatus();
     let node;
     const gate = GATE[r.view];
