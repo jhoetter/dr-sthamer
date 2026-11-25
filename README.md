@@ -73,9 +73,11 @@ jemandem dazu („Buddy-Modus“).
 
 > **Für Claude Code – Einrichtung:** Lies `CLAUDE.md` und folge dem Abschnitt
 > „Erststart“. Kurz: passenden Python-Befehl finden (`python`, `python3` oder
-> `py -3`), dann **einen** Befehl im Hintergrund (`run_in_background`, ohne
-> Verkettung): `<python> sthamer.py start` (richtet ein und startet die
-> Kommandozentrale), danach in einem eigenen Aufruf `<python> sthamer.py status`.
+> `py -3`), dann **einen** einzelnen Befehl (ohne Verkettung):
+> `<python> sthamer.py start`. Er richtet ein, startet die Kommandozentrale im
+> Hintergrund und kehrt nach wenigen Sekunden von selbst zurück (nicht in den
+> Vordergrund zwingen, nicht mit `&`, `;` oder `>` verketten). Danach in einem
+> eigenen Aufruf `<python> sthamer.py status`.
 > `check.py` nur bei Problemen. Die Person bedient kein Terminal und
 > hört keinen Fachjargon. Die Werkzeuge (MCP) fehlen in dieser ersten Sitzung:
 > bitte eine neue Sitzung im Ordner öffnen lassen. Nichts in `tag1/` lesen.

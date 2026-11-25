@@ -81,10 +81,11 @@ Führe still aus:
    aber nichts.
 5. `<python> sthamer.py setup` (legt die lokale Datenbank an, ruft die erste
    Runde Nachrichten ab, erzeugt die Verbindung zu Claude).
-6. **Im Hintergrund** starten: `<python> sthamer.py start` (richtet ein und startet
-   die Kommandozentrale mit Browser; wiederholbar) als **einzelnen**
-   Befehl mit der Hintergrund-Einstellung des Bash-Werkzeugs (`run_in_background`),
-   **ohne** `&`, `sleep`, `>` oder Verkettung mit `;` oder `&&`: Verkettete Befehle
+6. **Starten:** `<python> sthamer.py start` (richtet ein, startet die Kommandozentrale
+   im Hintergrund und öffnet den Browser; wiederholbar) als **einzelnen**
+   Befehl. Er kehrt nach wenigen Sekunden von selbst zurück und lässt die
+   Kommandozentrale weiterlaufen; du musst ihn nicht in den Hintergrund legen.
+   **Ohne** `&`, `sleep`, `>` oder Verkettung mit `;` oder `&&`: Verkettete Befehle
    passen nicht zur Erlaubnisliste und lösen eine Rückfrage aus. Prüfe danach in
    einem **eigenen** Aufruf mit `<python> sthamer.py status`. Verlass dich nie
    darauf, dass „schon eine läuft“; der Befehl erkennt das selbst.

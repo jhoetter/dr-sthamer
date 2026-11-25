@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -80,7 +81,7 @@ def cmd_setup(args: argparse.Namespace) -> int:
     print("  Claude-Verbindung: %s (Python: %s)" % (ziel.name, sys.executable))
     for m in git_meldungen:
         print("  Git:              %s" % m)
-    print("  Nächster Schritt: python sthamer.py serve --open")
+    print("  Nächster Schritt: python sthamer.py start")
     return 0
 
 
@@ -90,13 +91,81 @@ def cmd_serve(args: argparse.Namespace) -> int:
     return starten(args.port, args.open)
 
 
+def _server_info(port: int):
+    """Läuft diese Kopie schon? Gibt (Port, URL) zurück, sonst None."""
+    import json
+    from .app import _gleiche_kopie, laeuft_schon
+    kandidaten = []
+    try:
+        with open(str(state_dir() / "server.json"), "r", encoding="utf-8") as f:
+            kandidaten.append(int(json.load(f).get("port")))
+    except (OSError, ValueError, TypeError):
+        pass
+    if port not in kandidaten:
+        kandidaten.append(port)
+    for p in kandidaten:
+        info = laeuft_schon(p)
+        if info and _gleiche_kopie(info.get("root", "")):
+            return p, "http://127.0.0.1:%d" % p
+    return None
+
+
+def hintergrund_starten(port: int, warten: float = 25.0) -> int:
+    """Startet die Kommandozentrale losgelöst im Hintergrund und kehrt zurück, sobald sie antwortet.
+
+    Wichtig für den Ein-Satz-Start: Ein Befehl, der nie endet, lässt Claude (und Menschen) hängen. Dieser hier endet nach
+    wenigen Sekunden; die Kommandozentrale läuft weiter (Protokoll: .data/server.log). Läuft sie schon, wird sie nur geöffnet.
+    """
+    import time
+    import webbrowser
+    bereit = _server_info(port)
+    if bereit:
+        print("Die Kommandozentrale läuft schon: %s" % bereit[1])
+        webbrowser.open(bereit[1])
+        return 0
+    state_dir().mkdir(parents=True, exist_ok=True)
+    logpfad = state_dir() / "server.log"
+    log = open(str(logpfad), "ab")
+    befehl = [sys.executable, str(ROOT / "sthamer.py"), "serve", "--port", str(port), "--open"]
+    optionen = {"cwd": str(ROOT), "stdin": subprocess.DEVNULL, "stdout": log, "stderr": log, "close_fds": True}
+    if os.name == "nt":
+        optionen["creationflags"] = 0x00000008 | 0x00000200  # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
+    else:
+        optionen["start_new_session"] = True
+    try:
+        subprocess.Popen(befehl, **optionen)
+    except OSError as e:
+        print("Die Kommandozentrale ließ sich nicht starten: %s" % e, file=sys.stderr)
+        return 1
+    finally:
+        log.close()
+    ende = time.time() + warten
+    while time.time() < ende:
+        info = _server_info(port)
+        if info:
+            print("Die Kommandozentrale läuft im Hintergrund: %s" % info[1])
+            return 0
+        time.sleep(0.5)
+    print("Die Kommandozentrale antwortet nicht. Letzte Zeilen des Protokolls (%s):" % logpfad, file=sys.stderr)
+    try:
+        for zeile in logpfad.read_text(encoding="utf-8", errors="replace").splitlines()[-15:]:
+            print("  " + zeile, file=sys.stderr)
+    except OSError:
+        pass
+    return 1
+
+
 def cmd_start(args: argparse.Namespace) -> int:
-    """Alles in einem Befehl: einrichten (idempotent), dann die Kommandozentrale starten und den Browser öffnen."""
+    """Alles in einem Befehl: einrichten (idempotent), dann die Kommandozentrale im Hintergrund starten und den Browser öffnen.
+
+    Der Befehl kehrt nach wenigen Sekunden zurück. Mit --vordergrund bleibt er stehen (zum Beobachten der Ausgabe)."""
     rc = cmd_setup(args)
     if rc != 0:
         return rc
     print("Starte die Kommandozentrale ...")
-    return cmd_serve(args)
+    if getattr(args, "vordergrund", False):
+        return cmd_serve(args)
+    return hintergrund_starten(args.port)
 
 
 def cmd_mcp(args: argparse.Namespace) -> int:
@@ -160,6 +229,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     s.set_defaults(fn=cmd_serve)
     st = sub.add_parser("start", help="einrichten und die Kommandozentrale im Browser starten (ein Befehl)")
     st.add_argument("--port", type=int, default=DEFAULT_PORT)
+    st.add_argument("--vordergrund", action="store_true", help="nicht im Hintergrund starten (bleibt stehen)")
     st.set_defaults(fn=cmd_start, open=True)
     sub.add_parser("mcp", help="MCP-Server über stdio (von Claude gestartet)").set_defaults(fn=cmd_mcp)
     sub.add_parser("status", help="Stand anzeigen").set_defaults(fn=cmd_status)
