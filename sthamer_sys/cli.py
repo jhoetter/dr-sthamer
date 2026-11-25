@@ -133,7 +133,7 @@ def _server_info(port: int):
     return None
 
 
-def hintergrund_starten(port: int, warten: float = 25.0) -> int:
+def hintergrund_starten(port: int, warten: float = 25.0, browser: bool = True) -> int:
     """Startet die Kommandozentrale losgelöst im Hintergrund und kehrt zurück, sobald sie antwortet.
 
     Wichtig für den Ein-Satz-Start: Ein Befehl, der nie endet, lässt Claude (und Menschen) hängen. Dieser hier endet nach
@@ -144,12 +144,13 @@ def hintergrund_starten(port: int, warten: float = 25.0) -> int:
     bereit = _server_info(port)
     if bereit:
         print("Die Kommandozentrale läuft schon: %s" % bereit[1])
-        webbrowser.open(bereit[1])
+        if browser:
+            webbrowser.open(bereit[1])
         return 0
     state_dir().mkdir(parents=True, exist_ok=True)
     logpfad = state_dir() / "server.log"
     log = open(str(logpfad), "ab")
-    befehl = [sys.executable, str(ROOT / "sthamer.py"), "serve", "--port", str(port), "--open"]
+    befehl = [sys.executable, str(ROOT / "sthamer.py"), "serve", "--port", str(port)] + (["--open"] if browser else [])
     optionen = {"cwd": str(ROOT), "stdin": subprocess.DEVNULL, "stdout": log, "stderr": log, "close_fds": True}
     if os.name == "nt":
         optionen["creationflags"] = 0x00000008 | 0x00000200  # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
@@ -188,7 +189,7 @@ def cmd_start(args: argparse.Namespace) -> int:
     print("Starte die Kommandozentrale ...")
     if getattr(args, "vordergrund", False):
         return cmd_serve(args)
-    return hintergrund_starten(args.port)
+    return hintergrund_starten(args.port, browser=not getattr(args, "kein_browser", False))
 
 
 def cmd_mcp(args: argparse.Namespace) -> int:
@@ -253,6 +254,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     st = sub.add_parser("start", help="einrichten und die Kommandozentrale im Browser starten (ein Befehl)")
     st.add_argument("--port", type=int, default=DEFAULT_PORT)
     st.add_argument("--vordergrund", action="store_true", help="nicht im Hintergrund starten (bleibt stehen)")
+    st.add_argument("--kein-browser", action="store_true", help="keinen Browser öffnen (z. B. weil die Vorschau der Claude-App öffnet)")
     st.set_defaults(fn=cmd_start, open=True)
     sub.add_parser("mcp", help="MCP-Server über stdio (von Claude gestartet)").set_defaults(fn=cmd_mcp)
     sub.add_parser("status", help="Stand anzeigen").set_defaults(fn=cmd_status)

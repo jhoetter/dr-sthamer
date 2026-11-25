@@ -62,7 +62,11 @@
       "Bash(py sthamer.py start)",
       "Bash(py -3 sthamer.py start)",
       "Bash(py -3 -m unittest:*)",
-      "Bash(py -3 scripts/akzeptanz.py:*)"
+      "Bash(py -3 scripts/akzeptanz.py:*)",
+      "Bash(python sthamer.py start --kein-browser)",
+      "Bash(python3 sthamer.py start --kein-browser)",
+      "Bash(py sthamer.py start --kein-browser)",
+      "Bash(py -3 sthamer.py start --kein-browser)"
     ],
     "ask": [
       "mcp__sthamer__send_email"

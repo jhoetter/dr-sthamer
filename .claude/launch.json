@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "autoVerify": false,
+  "configurations": [
+    {
+      "name": "Kommandozentrale",
+      "url": "http://127.0.0.1:3005",
+      "port": 3005,
+      "autoPort": false
+    }
+  ]
+}

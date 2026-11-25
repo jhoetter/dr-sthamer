@@ -10,10 +10,10 @@ class StartTest(unittest.TestCase):
     def test_start_richtet_ein_und_startet_im_hintergrund(self):
         aufrufe = []
         with mock.patch.object(cli, "cmd_setup", side_effect=lambda a: aufrufe.append("setup") or 0), \
-                mock.patch.object(cli, "hintergrund_starten", side_effect=lambda port: aufrufe.append(("hintergrund", port)) or 0), \
+                mock.patch.object(cli, "hintergrund_starten", side_effect=lambda port, browser=True: aufrufe.append(("hintergrund", port, browser)) or 0), \
                 mock.patch.object(cli, "cmd_serve") as serve:
             self.assertEqual(cli.main(["start"]), 0)
-        self.assertEqual(aufrufe, ["setup", ("hintergrund", cli.DEFAULT_PORT)])
+        self.assertEqual(aufrufe, ["setup", ("hintergrund", cli.DEFAULT_PORT, True)])
         serve.assert_not_called()  # kein Befehl, der nie endet
 
     def test_start_mit_vordergrund_bleibt_stehen_wie_serve(self):
@@ -63,6 +63,23 @@ class HintergrundTest(unittest.TestCase):
                 mock.patch("time.sleep"), \
                 mock.patch("time.time", side_effect=[0, 1, 2, 100, 100]):
             self.assertEqual(cli.hintergrund_starten(3005, warten=3), 1)
+
+    def test_kein_browser_oeffnet_nichts(self):
+        with mock.patch.object(cli, "_server_info", return_value=(3005, "http://127.0.0.1:3005")), \
+                mock.patch("webbrowser.open") as browser:
+            self.assertEqual(cli.hintergrund_starten(3005, browser=False), 0)
+        browser.assert_not_called()
+        antworten = iter([None, (3005, "http://127.0.0.1:3005")])
+        with mock.patch.object(cli, "_server_info", side_effect=lambda p: next(antworten)), \
+                mock.patch.object(cli.subprocess, "Popen") as popen, mock.patch("time.sleep"):
+            self.assertEqual(cli.hintergrund_starten(3005, browser=False), 0)
+        self.assertNotIn("--open", popen.call_args[0][0])
+
+    def test_start_kein_browser_reicht_es_durch(self):
+        with mock.patch.object(cli, "cmd_setup", return_value=0), \
+                mock.patch.object(cli, "hintergrund_starten", return_value=0) as hg:
+            self.assertEqual(cli.main(["start", "--kein-browser"]), 0)
+        hg.assert_called_once_with(cli.DEFAULT_PORT, browser=False)
 
 
 if __name__ == "__main__":
