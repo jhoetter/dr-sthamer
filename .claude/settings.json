@@ -66,7 +66,6 @@
     ],
     "deny": [
       "Read(./dozent/**)",
-      "Read(./tag1/**)",
       "Read(./.data/**)",
       "Bash(curl:*)",
       "Bash(wget:*)",
