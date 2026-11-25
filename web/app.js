@@ -666,7 +666,8 @@ async function viewRegelwerk(r) {
   const tbl = (heads, rows) => h("table", {}, h("thead", {}, h("tr", {}, heads.map(t => h("th", {}, t)))), h("tbody", {}, rows));
   return col(topbar(["Wissen", "Regelwerk"]), h("div", { class: "page" }, h("div", { class: "page-inner" },
     h("h1", {}, rw.titel || rw.id),
-    h("p", { class: "lead" }, "Fiktiver Übungstext, kein geltendes Recht."),
+    h("p", { class: "lead" }, "Fiktive Verordnung, für den Workshop erfunden, kein geltendes Recht. ",
+      h("a", { class: "btn", href: "verordnung-eu-2026-9001-fiktiv.pdf", target: "_blank", rel: "noopener" }, icon("book"), "Als PDF öffnen (Amtsblatt-Fassung)")),
     h("div", { class: "facts" },
       fact("Grenzwert", rw.grenzwert_mg_l + " mg/l", String(rw.grenzwert_regel || "").replace(/_/g, " ")),
       fact("In Kraft ab", fmtDateShort(rw.inkrafttreten), "veröffentlicht " + fmtDateShort(rw.veroeffentlicht)),

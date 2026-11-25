@@ -15,6 +15,23 @@ die nächste und hält am **menschlichen Stopp**.
    laufen lassen → im Cockpit ausprobieren.
 4. *Belegen.* Nachweis im Cockpit, Stand speichern, Reflexionsfrage.
 
+**Roter Faden (gilt für jeden Drill): Lage → ansehen → Auftrag → Lücke → bauen → beweisen.**
+Die Person spielt **eine Geschichte an einem Tag**: Sie arbeitet in den Regulatory Affairs bei Dr. Sthamer, und es
+kommt Post. Jeder Schritt hat einen Grund aus dieser Geschichte (die Leitung hat es verlangt, ein Kunde hat gefragt,
+wir haben eine Lücke gesehen). Nenne den Grund in einem Halbsatz; verlange nie einen Schritt „weil er dran ist“.
+
+- **Lage:** Jeder Drill beginnt mit dem, was gerade passiert ist (steht unten je Drill). Erzähle sie, statt ein Thema zu nennen.
+- **Erst ansehen:** Der erste Schritt der Person ist immer, sich den Auslöser **in der Kommandozentrale anzusehen**
+  (die Mail, das PDF der Verordnung, den neuen Bereich). Sag, wo sie klickt. Erst danach bereitest du etwas vor.
+- **Zeigen heißt zeigen:** Fragt die Person „welche Verordnung?“, „zeig mal“ oder „wo steht das?“, dann zeigst du die
+  Sache selbst (PDF öffnen, Mail nennen, Stelle im Cockpit), du fasst **nicht** zusammen. Zusammenfassen ist ein eigener Auftrag.
+- **Kein Schritt doppelt:** Bitte nie um etwas, das du schon geliefert hast. Hat die Person den vorgeschlagenen Schritt
+  übersprungen oder etwas anderes gefragt, schlägst du den Schritt vor, der **jetzt** passt.
+- **Keine Zaubersätze:** Beispielsätze sind Angebote in Alltagssprache und beschreiben die Arbeit („Schreib den Steckbrief,
+  den die Leitung verlangt“), nie ein Format („in fünf Punkten“). Die Person darf es in eigenen Worten sagen.
+- **Lücke vor dem Bau:** Bevor ihr baut, sieht die Person das Problem selbst im Cockpit oder du zeigst es in zwei Sätzen
+  (steht unten als „Warum wir bauen“). Ohne Problem kein Bau.
+
 **Zeitbox je Drill:** 60 Minuten (Drill 5: 45). Etwa zur Hälfte prüft Claude still:
 Ist die Person bei Etappe 2 angekommen? Wenn nein: Bauauftrag verkleinern (Person legt
 Regel und Szenarien fest, Claude baut ohne Zwischenschritte, drei Sätze Erklärung).
@@ -65,15 +82,32 @@ Produkte, Kunden und Protokoll findet; was Claude darf (lesen, Fall anlegen, Ent
 schreiben, Notiz) und nicht darf (senden). Bitte die Person, einmal links durch die
 Bereiche zu klicken.
 
-**Etappe 1 · Claude bereitet vor.** `list_inbox`, `get_message` (Aufgabenmail), `create_case`,
-`get_regulation`. Steckbrief in fünf kurzen Punkten: Grenzwert, Geltungsbereich, die
-sechs Anwendungen mit Fristen (Artikel nennen), Ausnahmen, Informationspflicht (bis
-30.06.2027, Art. 7 Abs. 3). Bitte die Person, **eine Frist im Regelwerk des Cockpits**
-gegenzulesen.
+**Lage (erzähl sie zuerst):** Du arbeitest in den Regulatory Affairs bei Dr. Sthamer. Vor ein paar Tagen hat die EU eine
+**fiktive, für den Workshop erfundene** Verordnung zu PFAS in Schaumlöschmitteln veröffentlicht. Heute früh liegen zwei
+Mails im Eingang: Deine Leitung will wissen, was daraus folgt (drei Aufträge: Steckbrief, betroffene Produkte, erste
+Antwort), und die Freiwillige Feuerwehr Bergheim-Land fragt, ob ihr Schaum betroffen ist.
+
+**Erst ansehen (erster Schritt der Person):** (1) In der Kommandozentrale unter **Eingang** die Mail der Leitung lesen.
+(2) Die Verordnung selbst ansehen: Öffne das PDF im Browser der Claude-App
+(`<Kommandozentrale>/verordnung-eu-2026-9001-fiktiv.pdf`, zum Beispiel http://127.0.0.1:3005/verordnung-eu-2026-9001-fiktiv.pdf).
+Geht das nicht, sag: „Du findest sie unter Regelwerk, Knopf ‚Als PDF öffnen‘.“ Ein Satz dazu: drei Seiten, aufgebaut wie
+eine echte EU-Verordnung, aber erfunden. Danach meldet sich die Person, und ihr beginnt mit Auftrag 1 der Leitung.
+
+**Warum wir bauen (vor Etappe 3 zeigen):** Im Fall steht die Aufgabe „Kundenanfrage beantworten“. Heute bleibt sie offen,
+auch wenn die Antwort raus ist, und abhaken kann man sie nicht. Bei einer Feuerwehr merkt man das nicht, bei 32 Kunden
+weiß niemand mehr, was erledigt ist. Lass die Person die offene Aufgabe im Fall ansehen, bevor ihr baut.
+
+**Etappe 1 · Claude bereitet vor (Auftrag 1 der Leitung: Steckbrief).** `list_inbox`, `get_message` (Aufgabenmail),
+`create_case`, `get_regulation`. Erst wenn die Person darum bittet: der **Steckbrief auf einer Seite, wie ihn die Leitung
+in ihrer Mail verlangt**: Grenzwert, Geltungsbereich, die sechs Anwendungen mit Fristen (Artikel nennen), Ausnahmen,
+Informationspflicht (bis 30.06.2027, Art. 7 Abs. 3). Den Steckbrief schreibst du **einmal**; wiederhole ihn nicht.
+Bitte die Person, **eine Frist** im PDF oder im Regelwerk des Cockpits gegenzulesen. (Auftrag 2 der Leitung, die
+Produkte, ist Drill 2; sag das in einem Halbsatz.)
 *Entscheidungsfrage:* „Was muss in einem Steckbrief stehen, damit du dich bei einer
 Frist darauf verlassen kannst?“
 
-**Etappe 2 · Mensch entscheidet.** Fall zur Anfrage Bergheim-Land (K-1010) anlegen,
+**Etappe 2 · Mensch entscheidet (Auftrag 3 der Leitung: erste Antwort).** Die Person liest zuerst die Mail der Feuerwehr
+im Eingang. Fall zur Anfrage Bergheim-Land (K-1010) anlegen,
 `get_customer`, `get_product` für P-102, P-111 (und was die Anfrage nennt). Entwurf mit
 Belegen (`create_draft`: Artikel, Produkte, Kunde, Nachricht). Die Person liest den
 Entwurf im Cockpit unter Fälle und ändert, was nicht stimmt. **Gesendet wird noch nicht**:
@@ -122,6 +156,18 @@ Deklaration „fluorfrei“** (Claude entscheidet das nicht, die Messung ist anz
 des Geltungsbereichs sind nie pauschal „betroffen“ oder „nicht betroffen“: **mittelbar**, wenn das Mittel in
 der EU in Verkehr gebracht wird (Art. 1 Abs. 3), sonst unklar.
 
+**Lage (erzähl sie zuerst):** Auftrag 2 aus der Mail der Leitung ist noch offen: Welche unserer 27 Produkte sind
+betroffen, welche nicht, welche sind unklar? Und die Feuerwehr war nur **ein** Kunde von 32; alle gewerblichen Kunden
+müssen bis 30. Juni 2027 informiert sein. Bevor wir jemandem schreiben, müssen wir wissen, wer betroffen ist, und es
+belegen können.
+
+**Erst ansehen (erster Schritt der Person):** In der Kommandozentrale unter **Produkte** drei Produkte öffnen und auf den
+Fluorgehalt achten (Zahl **und** Einheit). Dann meldet sich die Person.
+
+**Warum wir bauen (vor Etappe 3 zeigen):** Bis hier hat die Person jeden Beleg von Hand nachgeschlagen. Bei 32 Kunden
+geht das nicht mehr, und du (Claude) kannst dich bei einem Artikel oder einem Datum irren. Heute speichert das System
+jeden Entwurf, auch mit einem Artikel, den es nicht gibt. Sag das so offen.
+
 **Etappe 1 · Claude bereitet vor.** Produktliste als Tabelle im Chat (`list_products`,
 `get_regulation`): Wert in mg/l umrechnen, Grenzwert **mehr als** 1 mg/l, Ergebnis
 betroffen / nicht betroffen / unklar mit Begründung (nach der Einstufungsregel). Bitte die Person, **drei Produkte**
@@ -130,9 +176,9 @@ im Cockpit nachzuschlagen. Claude nennt von sich aus die Randfälle (genau 1,0 m
 *Entscheidungsfrage:* „Ein Produkt nennt sich fluorfrei, hat aber keinen Messwert. Ist
 es betroffen?“ (Erwartet: unklar, Messung anfordern.)
 
-**Etappe 2 · Mensch entscheidet.** Die Person wählt im Cockpit unter Kunden **fünf**
-Kunden, die möglichst verschiedene Situationen abdecken: ein Händler, ein Flughafen,
-ein Kunde außerhalb der EU, ein ruhender Kunde, ein einfacher Fall. Claude holt je
+**Etappe 2 · Mensch entscheidet.** Fünf Kunden, die möglichst verschiedene Situationen abdecken: ein Händler, ein
+Flughafen, ein Kunde außerhalb der EU, ein ruhender Kunde, ein einfacher Fall. **Schlag fünf konkrete Kunden mit Namen
+vor** (mit `list_customers`) und sag je in drei Wörtern, warum; die Person bestätigt oder tauscht im Cockpit unter Kunden. Claude holt je
 Kunde `get_customer` und hält `record_assessment` fest (Ergebnis: betroffen,
 nicht_betroffen, mittelbar, unklar; Belege: Artikel, Produkt, Lieferung; frühester
 Stichtag). Die Person prüft im Kundenpanel eine Einschätzung gegen die Lieferungen.
@@ -179,6 +225,18 @@ frei und lehnt einen ab. Claude hat kein Werkzeug zum Freigeben.
 Das Eingriffsfenster gibt es noch nicht, deshalb landet alles in Pflichtfreigabe. Alle fünf Anfragen sind
 Rechtsauskünfte: Claude reicht mit `rechtsaussage=true` ein, ohne vorher zu fragen. (Ab Drill 4 legt die
 Person die Kontrolle jeder Mail fest.)
+
+**Lage (erzähl sie zuerst):** Nach dem Mittag hat sich die fiktive Verordnung herumgesprochen. Fünf Kunden haben
+geschrieben, und jeder will eine Auskunft, auf die er sich verlassen kann: Dürfen wir nachfüllen? Bis wann dürfen wir
+das Mittel verwenden? Gilt das für uns in Großbritannien? Wie lange gilt die Ausnahme am Flughafen? Die Leitung hat
+deshalb entschieden: **Solche Antworten gehen ab jetzt nur raus, wenn ein Mensch sie ausdrücklich freigegeben hat.**
+
+**Erst ansehen (erster Schritt der Person):** Den Code vom Dozenten oben rechts eintragen („Postfach abrufen“), dann im
+**Eingang** zwei der fünf neuen Mails lesen. Links gibt es jetzt den Bereich **Freigaben** (noch leer).
+
+**Warum wir bauen (vor Etappe 3 erleben lassen):** Die Person gibt einen Entwurf frei und ändert danach im Cockpit ein
+Wort. Er bleibt „freigegeben“ und ließe sich senden: Die Freigabe galt für einen anderen Text. Diese Lücke sieht sie
+selbst, dann baut ihr.
 
 **Etappe 1 · Claude bereitet vor.** `list_inbox` (neue Runde), je Anfrage `create_case`, `get_message`,
 Kunde und Produkte holen, Entwurf mit Belegen, `submit_draft`. Zu jedem Entwurf ein Satz:
@@ -232,6 +290,17 @@ umgesetzt; die Person prüft, ob sie zu ihrem Haus passt. Wer eine Mail mit `rec
 einreicht, die doch mehr als eine Standardinformation ist, erlebt, dass der Mensch im Fenster
 eingreifen muss.
 
+**Lage (erzähl sie zuerst):** Die Pflichtfreigabe funktioniert, aber sie kostet: Auch für „Sie sind nicht betroffen“ wartet
+ein Kunde auf eine Unterschrift, und bis 30. Juni 2027 müssen alle Kunden informiert sein. Die Leitung schreibt deshalb
+eine neue Regel (Mail im Eingang): Reine Standardinformationen dürfen **nach 24 Stunden von selbst** rausgehen, wenn
+niemand eingreift. Alles andere braucht weiter die Freigabe.
+
+**Erst ansehen (erster Schritt der Person):** Code vom Dozenten eintragen, dann im **Eingang** die Mail der Leitung mit
+der Regel lesen. Links gibt es jetzt den Bereich **Geplant** (noch leer).
+
+**Warum wir bauen (in Etappe 2 erleben lassen):** Die Person ändert eine eingeplante Mail: Der Termin bleibt. Sie spult
+die Uhr vor: Die geänderte Mail ist trotzdem rausgegangen, ungeprüft. Das ist die Lücke.
+
 **Etappe 1 · Claude bereitet vor.** Aufgabenmail lesen, die Anfragen als Fälle, Entwürfe mit Belegen.
 **Vor jedem `submit_draft` legt die Person fest, welche Kontrolle gilt:** Claude zeigt eine kleine
 Tabelle (Mail, Vorschlag Standardinformation oder mehr, Begründung in einem Satz), die Person bestätigt
@@ -284,6 +353,17 @@ wurde, ist nicht belegt.
 
 **Lernziele:** (1) Das Protokoll ist die Grundlage jeder Aussage über das System. (2) Eine Empfehlung nennt
 ihre Grenze. (3) Mit einer eigenen Kennzahl entscheidet man, was sichtbar wird.
+
+**Lage (erzähl sie zuerst):** Der Tag ist fast vorbei. Die Geschäftsführung will wissen: Wie viele Kunden sind betroffen?
+Wie viel ging automatisch raus, wo haben Menschen eingegriffen? Schaffen wir die Frist am 30. Juni 2027? Und soll das
+Eingriffsfenster so bleiben? Sie will Zahlen, die sich belegen lassen (ein kleines BI aus dem Protokoll), keine Eindrücke.
+Sitzt die echte Geschäftsführung im Raum, ist sie das Publikum.
+
+**Erst ansehen (erster Schritt der Person):** In der Kommandozentrale unter **Protokoll** durchsehen, was heute passiert
+ist (wer hat wann was getan), dann den Bereich **Bericht** öffnen.
+
+**Warum wir bauen (vor Etappe 3 fragen):** Der Bericht zeigt Standardzahlen. Eine Frage der Geschäftsführung beantwortet er
+noch nicht; welche, entscheidet die Person („Was würde die Geschäftsführung als Erstes fragen, und steht die Antwort da?“).
 
 **Etappe 1 · Claude bereitet vor.** `get_report_data` lesen; Gliederung vorschlagen: Lage, Zahlen, Was lief gut /
 was haben Menschen korrigiert, Empfehlung, Grenze der Aussage.

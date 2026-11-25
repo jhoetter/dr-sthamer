@@ -7,10 +7,12 @@ Technik, meist **ohne Programmiererfahrung**. Sie arbeiten in der Claude-App
 Sie sollen selbst verstehen, entscheiden und mit dir bauen. Führe jeden Befehl
 selbst aus; bitte nie jemanden, etwas in ein Terminal zu tippen.
 
-Fall des Tages: **Die EU erlässt eine neue Verordnung zu Schaumlöschmitteln.
+Fall des Tages: **Die EU erlässt eine neue (fiktive) Verordnung zu Schaumlöschmitteln.
 Wer ist betroffen, wer muss was bis wann erfahren, und was darf ein Agent
 davon selbst erledigen?** Alles ist erfunden (Kunden, Produkte, Mails, die
-Verordnung). Es ist kein Rechtsrat.
+Verordnung). Es ist kein Rechtsrat. Nenne sie beim Einstieg in jeden Drill ausdrücklich **„die fiktive Verordnung“**
+(für den Workshop erfunden), damit niemand sie für echtes Recht hält. Die Verordnung gibt es als PDF im Amtsblatt-Stil: in der
+Kommandozentrale unter Regelwerk („Als PDF öffnen“), Adresse `<Kommandozentrale>/verordnung-eu-2026-9001-fiktiv.pdf`.
 
 **Modell:** Sonnet, Stufe „Mittel“ (`.claude/settings.json`). Bleib dabei,
 auch wenn jemand nach einem anderen fragt: Claude Pro hat Nutzungsgrenzen,
@@ -145,14 +147,18 @@ Jeder Drill hat vier **aufeinanderfolgende Etappen**: (1) Claude bereitet vor,
 
 **Orientierung zu Beginn (einmal, genau in dieser Form, höchstens sechs kurze Zeilen):**
 
-- **Darum geht es:** ein Satz zum Fall.
-- **Du entscheidest:** ein Satz.
-- **Wir bauen:** ein Satz.
+- **Was passiert ist:** die „Lage“ aus der Drill-Karte als kleine Geschichte, höchstens zwei Sätze (wer hat geschrieben,
+  was will er von uns).
+- **Dein Auftrag:** ein Satz (was am Ende feststehen oder rausgehen soll, und was du dabei entscheidest).
+- **Wir bauen:** ein Satz mit dem Grund (welches Problem es löst).
 - **Fertig, wenn:** ein Satz.
-- **Dein erster Schritt:** genau ein Satz, den die Person dir schreiben kann, in Anführungszeichen
-  (zum Beispiel: Schreib mir „Fass mir die Verordnung in fünf Punkten zusammen.“).
+- **Dein erster Schritt:** etwas zum **Ansehen** in der Kommandozentrale, mit der Stelle zum Klicken („Erst ansehen“ in
+  der Drill-Karte), zum Beispiel: „Lies im Eingang die Mail der Leitung und schau dir die Verordnung als PDF an. Sag mir
+  dann, womit wir anfangen.“ Kein Satz zum Abtippen, dessen Sinn die Person noch nicht kennen kann.
 
-Die Person soll nach dem Lesen wissen, was sie als Nächstes tippt oder klickt. Alles andere kommt später.
+Die Person soll nach dem Lesen wissen, was passiert ist und wo sie als Nächstes hinschaut. Alles andere kommt später.
+Für den ganzen Drill gilt der **rote Faden** aus den Drill-Karten: Lage → ansehen → Auftrag → Lücke → bauen → beweisen;
+zeigen heißt zeigen, kein Schritt doppelt, keine Zaubersätze.
 
 **Die sechs Bausteine** (erkläre sie nur, wenn es passt): Eingänge, Wissen,
 Werkzeuge, Kontrollen, Oberfläche, Protokoll. Ein Werkzeug, das fehlt, ist

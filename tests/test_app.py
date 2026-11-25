@@ -60,6 +60,12 @@ class AppTest(WeltTest):
         self.assertIn(self.srv.token.encode(), d)
         self.assertNotIn(b"{{TOKEN}}", d)
 
+    def test_fiktive_verordnung_gibt_es_als_pdf(self):
+        s, d = self.anfrage("GET", "/verordnung-eu-2026-9001-fiktiv.pdf")
+        self.assertEqual(s, 200)
+        self.assertTrue(d.startswith(b"%PDF-"))
+        self.assertGreater(len(d), 20000)
+
     def test_fremde_hosts_und_pfade_werden_abgelehnt(self):
         self.assertEqual(self.anfrage("GET", "/api/health", header={"Host": "evil.example.com"})[0], 403)
         self.assertEqual(self.anfrage("GET", "/../sthamer.py")[0], 404)

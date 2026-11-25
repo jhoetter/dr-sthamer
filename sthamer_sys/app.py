@@ -24,7 +24,8 @@ from .paths import ROOT, state_dir, web_dir
 
 MAX_BODY = 1_000_000
 TYPEN = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8",
-         ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png"}
+         ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png",
+         ".pdf": "application/pdf"}
 
 
 def _token_laden() -> str:
@@ -70,8 +71,9 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Content-Security-Policy",
-                         "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'")
+        if typ != "application/pdf":  # das eigene PDF der fiktiven Verordnung soll jede PDF-Anzeige öffnen können
+            self.send_header("Content-Security-Policy",
+                             "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'")
         self.end_headers()
         self.wfile.write(body)
 
