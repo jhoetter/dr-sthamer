@@ -4,9 +4,35 @@ from __future__ import annotations
 import os
 import sys
 from pathlib import Path
+from typing import Optional
 
 PKG_DIR = Path(__file__).resolve().parent
 ROOT = PKG_DIR.parent
+
+
+def worktree_hauptordner(root: Optional[Path] = None) -> Optional[Path]:
+    """Ist dieser Ordner eine zusätzliche Git-Arbeitskopie (Worktree), gibt das den Hauptordner zurück, sonst None.
+
+    Die Claude-App kann eine Sitzung in `<Ordner>/.claude/worktrees/<name>` starten. Dort hätte die Kommandozentrale
+    eine eigene Datenbank, und Bauaufträge landeten in einer Kopie, die das Cockpit nicht lädt. Deshalb erkennen wir das.
+    """
+    root = Path(root or ROOT)
+    git = root / ".git"
+    try:
+        if not git.is_file():
+            return None  # Hauptordner (.git ist ein Ordner) oder ZIP-Betrieb (kein .git)
+        inhalt = git.read_text(encoding="utf-8", errors="replace").strip()
+    except OSError:
+        return None
+    if not inhalt.startswith("gitdir:"):
+        return None
+    gitdir = Path(inhalt[len("gitdir:"):].strip())
+    if not gitdir.is_absolute():
+        gitdir = (root / gitdir).resolve()
+    # <Hauptordner>/.git/worktrees/<name>
+    if gitdir.parent.name == "worktrees" and gitdir.parent.parent.name == ".git":
+        return gitdir.parent.parent.parent
+    return None
 
 
 def data_dir() -> Path:

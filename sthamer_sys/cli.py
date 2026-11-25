@@ -63,7 +63,28 @@ def git_vorbereiten() -> List[str]:
     return meldungen
 
 
+WORKTREE_MELDUNG = (
+    "STOPP: Diese Sitzung läuft in einer Nebenkopie (Git-Worktree) unter %s, nicht im Ordner %s.\n"
+    "Hier würde eine zweite Kommandozentrale mit eigenem Stand entstehen, und deine Bauaufträge kämen nicht an.\n"
+    "Bitte eine neue Code-Sitzung im Ordner %s öffnen und dabei vor der ersten Nachricht den Schalter\n"
+    "\"Worktree\" unter dem Eingabefeld ausschalten.\n"
+    "Nichts wurde eingerichtet oder gestartet."
+)
+
+
+def _worktree_stopp() -> bool:
+    """True (und Meldung), wenn wir in einem Worktree laufen: dann nichts einrichten und nichts starten."""
+    from .paths import worktree_hauptordner
+    haupt = worktree_hauptordner()
+    if haupt is None or os.environ.get("STHAMER_WORKTREE_ERLAUBT") == "1":
+        return False
+    print(WORKTREE_MELDUNG % (ROOT, haupt.name, haupt), file=sys.stderr)
+    return True
+
+
 def cmd_setup(args: argparse.Namespace) -> int:
+    if _worktree_stopp():
+        return 3
     state_dir().mkdir(parents=True, exist_ok=True)
     bereit_machen()
     ziel = ROOT / ".mcp.json"
@@ -86,6 +107,8 @@ def cmd_setup(args: argparse.Namespace) -> int:
 
 
 def cmd_serve(args: argparse.Namespace) -> int:
+    if _worktree_stopp():
+        return 3
     from .app import starten
     bereit_machen()
     return starten(args.port, args.open)

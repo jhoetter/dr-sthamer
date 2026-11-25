@@ -54,6 +54,14 @@ wenn eine Abkürzung schneller wäre.
 
 ## 1. Erststart: „Klone … und starte die Kommandozentrale. Ich bin in Drill 1.“
 
+**Zuerst prüfen: Läuft diese Sitzung in einer Nebenkopie (Git-Worktree)?** Das ist der Fall, wenn dir beim Start
+gesagt wurde, dass du in einem Worktree arbeitest, oder wenn dein Arbeitsordner `.claude/worktrees/` enthält. Dann
+führst du **nichts** aus (kein Einrichten, kein Start, kein Bauen) und sagst **genau** das: „Diese Sitzung läuft in
+einer Nebenkopie, deshalb fehlen mir die Werkzeuge, und deine Arbeit käme nicht an. Bitte öffne eine neue Code-Sitzung
+im Ordner dr-sthamer und schalte dabei vor der ersten Nachricht unter dem Eingabefeld den Schalter Worktree aus.
+Klappt das nicht, ruf kurz den Dozenten.“ Der Befehl `sthamer.py start` hält in einer Nebenkopie ebenfalls an.
+Schick die Person in diesem Fall **nie** nur „in eine neue Sitzung“: Ohne den Schalter landet sie wieder in einer Nebenkopie.
+
 Führe still aus:
 
 1. **Ordner.** Läuft die Sitzung schon im Ordner `dr-sthamer` (dort liegt
@@ -99,7 +107,7 @@ Führe still aus:
    bitte in der Claude-App eine neue Code-Sitzung im selben Ordner und
    schreibe dort ‚weiter mit Drill 1‘. Wenn die App fragt, ob du diesem Ordner
    und den Werkzeugen von Sthamer vertraust: Ja, beide Male.“
-8. Fehlen dir die Werkzeuge in einer Sitzung im Ordner (Werkzeuge werden
+8. Fehlen dir die Werkzeuge in einer Sitzung im Ordner (und es ist **keine** Nebenkopie, siehe oben; Werkzeuge werden
    abgelehnt oder gibt es nicht), sag **genau** das und nichts anderes: „Mir
    fehlt noch die Verbindung zu den Werkzeugen. Bitte bestätige in der App die
    Rückfragen zum Vertrauen mit Ja und öffne eine neue Sitzung im Ordner.
