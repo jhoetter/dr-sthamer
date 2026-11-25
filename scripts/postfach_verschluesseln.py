@@ -2,7 +2,7 @@
 
 Aufruf (Mac/Linux), Schlüssel und Passwort nur über die Umgebung, nie als Dateiinhalt oder Parameter:
 
-    AGENTMAIL_API_KEY=am_... AGENTMAIL_INBOX_ID=name@agentmail.to POSTFACH_PASSWORT=kern-lila-tisch-42 python3 scripts/postfach_verschluesseln.py
+    AGENTMAIL_API_KEY=am_... AGENTMAIL_INBOX_ID=name@agentmail.to POSTFACH_PASSWORT=drei-zufaellige-woerter-42 python3 scripts/postfach_verschluesseln.py
 
 Schreibt `data/agentmail.enc` (nur diese verschlüsselte Datei kommt ins Repository). Das Passwort sagst du erst am Workshop-Tag
 an; die Teilnehmenden geben es im Cockpit unter „E-Mail“ ein. Nach dem Workshop den Schlüssel bei AgentMail löschen.

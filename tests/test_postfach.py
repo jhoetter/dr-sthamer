@@ -12,7 +12,7 @@ from sthamer_sys import agentmail, domain, mcp_server, postfach, schutz
 
 SCHLUESSEL = "am_test_schluessel"
 BOX = "werkstatt@agentmail.to"
-PASSWORT = "kern-lila-tisch-42"
+PASSWORT = "nur-fuer-tests-123"
 
 
 class Nachbau:

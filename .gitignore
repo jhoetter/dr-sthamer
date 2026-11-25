@@ -11,3 +11,6 @@ __pycache__/
 Thumbs.db
 postausgang/
 *.log
+
+# Workshop-Passwort für die Folie im Vortrag (nur lokal)
+tag2/impuls/passwort.js

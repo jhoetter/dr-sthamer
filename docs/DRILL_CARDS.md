@@ -311,7 +311,7 @@ Kennzahl steht darin, die Grenze der Aussage ist genannt. Stand speichern.
 
 ## Resümee: Was haben wir gebaut, was nehmen wir mit?
 
-Ohne Rechner (16:10, etwa 40 Minuten). Rückblick auf die fünf Drills, die sechs Bausteine und die zwei Kontrollen:
+Ohne Rechner, am Flipchart (15:55, etwa 40 Minuten). Rückblick auf die fünf Drills, die sechs Bausteine und die zwei Kontrollen:
 Was haben wir gebaut, was hat funktioniert, was hat überrascht, und welche Kontrolle würde bei uns zuerst wirken?
 Wer mag, überträgt Pflichtfreigabe und Eingriffsfenster auf einen eigenen Fall (Automation Contract, Vorlage in
 `WORKSHOP_AGENDA.md`, freiwillig). Ausblick auf „Bring Your Own Case“ (Freitag, Dr. Marc Kohler).

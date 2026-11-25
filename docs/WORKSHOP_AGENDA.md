@@ -27,18 +27,18 @@ zum Senden oder Freigeben.
 
 | Zeit | Block | Wer | Inhalt |
 | --- | --- | --- | --- |
-| 09:00 | **Impuls (60 Min.): Jede Aufgabe zuerst agentisch** | Johannes | Begrüßung, Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann bis etwa 09:40 der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:40: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. Dann das Passwort für das E-Mail-Postfach an die Tafel; jede Person verbindet es im Cockpit unter „E-Mail“ und holt deine erste Rundmail ab (ca. 5 Minuten, freiwillig, der Tag läuft auch ohne). |
-| 10:00 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
-| 11:00 | Pause (15 Min.) | | |
-| 11:15 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
-| 12:15 | Mittag (45 Min.) | | **Runde 2** vorbereiten (Code bereithalten). |
-| 13:00 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes | Zehn Minuten Impuls, dann fünf Anfragen: Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
-| 14:00 | Pause (15 Min.) | | |
-| 14:15 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes | Zehn Minuten Impuls, dann: Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein** (etwa 40 Minuten nach Beginn). Bau: Änderung bricht den Termin ab, nie doppelt senden. |
-| 15:15 | Pause (10 Min.) | | |
-| 15:25 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
-| 16:10 | Resümee: Was haben wir gebaut, was nehmen wir mit? | Johannes | Ohne Rechner. Rückblick auf die fünf Drills, die Bausteine und die zwei Kontrollen; was hat überrascht; welche Kontrolle würde bei uns zuerst wirken. |
-| 16:50 | Ausblick auf Freitag, Rückmeldungen | Johannes | Übergabe an „Bring Your Own Case“. Ende 17:00. |
+| 09:00 | **Input (45 Min., darf länger gehen): Jede Aufgabe zuerst agentisch** | Johannes | Begrüßung, Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann bis etwa 09:25 der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:25: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. Dann das Passwort für das E-Mail-Postfach an die Tafel; jede Person verbindet es im Cockpit unter „E-Mail“ und holt deine erste Rundmail ab (ca. 5 Minuten, freiwillig, der Tag läuft auch ohne). |
+| 09:45 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
+| 10:45 | Pause (15 Min.) | | |
+| 11:00 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
+| 12:00 | Mittag (45 Min.) | | **Runde 2** vorbereiten (Code bereithalten). |
+| 12:45 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes | Zehn Minuten Impuls, dann fünf Anfragen: Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
+| 13:45 | Pause (15 Min.) | | |
+| 14:00 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes | Zehn Minuten Impuls, dann: Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein** (etwa 40 Minuten nach Beginn). Bau: Änderung bricht den Termin ab, nie doppelt senden. |
+| 15:00 | Pause (10 Min.) | | |
+| 15:10 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
+| 15:55 | Resümee am Flipchart: Was nehmen wir mit? | Johannes | Ohne Rechner, am Flipchart (die Gruppe ist am späten Nachmittag erschöpft: kurz, gemeinsam, ohne Aufgabe). Rückblick auf die fünf Drills, die Bausteine und die zwei Kontrollen; was hat überrascht; welche Kontrolle würde bei uns zuerst wirken. |
+| 16:35 | Ausblick auf Freitag, Rückmeldungen (zugleich Puffer) | Johannes | Übergabe an „Bring Your Own Case“. Ende 17:00. |
 
 ## Drills im Überblick
 
@@ -57,7 +57,7 @@ Leitfragen und Szenarien stehen in `DRILL_CARDS.md`.
 ## Dozenten-Choreografie
 
 - **Runden-Codes** stehen in `dozent/WELLEN.md` (nur lokal bei den Lehrenden).
-  Runde 2 um 13:00 ansagen, Runde 3 um 14:15, Runde 4 etwa 40 Minuten später
+  Runde 2 um 12:45 ansagen, Runde 3 um 14:00, Runde 4 etwa 40 Minuten später
   („Die Berichtigung ist da“) mitten im Drill 4, **bevor** die Teilnehmenden die Übungsuhr
   vorspulen (sonst sind die Mails im Fenster schon raus und es gibt nichts zu korrigieren). Die Codes werden laut gesagt
   oder an die Tafel geschrieben; Teilnehmende tragen sie im Cockpit unter
