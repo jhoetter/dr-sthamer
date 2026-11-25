@@ -87,8 +87,11 @@ Führe still aus:
    `<Benutzerordner>/dr-sthamer` (Windows: `%USERPROFILE%`, nicht ein Netzlaufwerk), **nicht** auf den Desktop und nicht in
    OneDrive: `git clone --depth 1 https://github.com/jhoetter/dr-sthamer`.
    Existiert der Ordner schon als funktionierende Kopie: **nicht neu klonen**, sondern dort `git pull`
-   (`git -C <Ordner> pull`). Blockieren lokale Änderungen das Holen: nichts löschen, sie mit `git stash`
-   beiseitelegen, erneut `git pull` und der Person in einem Satz sagen, dass ihre Änderungen aufgehoben sind. Ist er
+   (`git -C <Ordner> pull`). Meldet Git, dass dem Zweig die Verbindung fehlt oder die Stände auseinanderlaufen:
+   `git pull --no-rebase origin main`. Blockieren lokale Änderungen das Holen: nichts löschen, sie mit `git stash`
+   beiseitelegen, erneut holen, dann `git stash pop` (bei einem Konflikt in `.claude/settings.json` gilt die Fassung
+   von GitHub) und der Person in einem Satz sagen, dass ihre Änderungen erhalten sind. Dasselbe gilt, wenn später am
+   Tag jemand „hol den neuesten Stand“ sagt. Ist er
    halb angelegt: **nichts löschen**, nach `dr-sthamer-2` klonen. Fehlt Git
    oder ist GitHub nicht erreichbar, sag in einfachen Worten, dass es den
    „ZIP-Weg“ gibt (`docs/INSTALL_WINDOWS.md`, Abschnitt ZIP), und führe die

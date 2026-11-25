@@ -60,6 +60,30 @@ def git_vorbereiten() -> List[str]:
         r = _git("commit", "-q", "-m", "Ausgangsstand")
         if r is not None and r.returncode == 0:
             meldungen.append("Ausgangsstand gespeichert.")
+    meldungen.extend(_pull_vorbereiten())
+    return meldungen
+
+
+def _pull_vorbereiten() -> List[str]:
+    """Ein einfaches `git pull` soll immer den neuesten Stand von GitHub holen, auch auf dem eigenen Workshop-Zweig.
+
+    Ohne diese zwei Einstellungen scheitert es dort („There is no tracking information for the current branch“ oder
+    „Need to specify how to reconcile divergent branches“). Nur lokal in diesem Ordner; im ZIP-Betrieb (kein origin) passiert nichts.
+    """
+    r = _git("rev-parse", "--verify", "--quiet", "refs/remotes/origin/main")
+    if r is None or r.returncode != 0:
+        return []
+    meldungen: List[str] = []
+    r = _git("config", "--local", "pull.rebase")
+    if not (r and r.returncode == 0 and r.stdout.strip()):
+        _git("config", "--local", "pull.rebase", "false")
+    zweig = _git("symbolic-ref", "--quiet", "--short", "HEAD")
+    if zweig is not None and zweig.returncode == 0 and zweig.stdout.strip():
+        r = _git("rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}")
+        if r is None or r.returncode != 0:
+            s = _git("branch", "--set-upstream-to=origin/main")
+            if s is not None and s.returncode == 0:
+                meldungen.append("Zweig %s holt Neues von origin/main (git pull)." % zweig.stdout.strip())
     return meldungen
 
 

@@ -69,6 +69,37 @@ class GitVorbereitenTest(unittest.TestCase):
         self.einrichten()
         self.assertEqual(git(self.wurzel, self.env, "config", "--local", "user.name").stdout.strip(), "Erika Muster")
 
+    def test_git_pull_klappt_auch_auf_dem_workshop_zweig(self):
+        """Wie am Workshop-Tag: geklont, eigener Zweig ohne Verbindung, eigener Stand gespeichert, dann kommt Neues von GitHub."""
+        quelle = Path(self.tmp.name) / "github"
+        git(Path(self.tmp.name), self.env, "init", "-q", "-b", "main", str(quelle))
+        (quelle / "liesmich.txt").write_text("eins", encoding="utf-8")
+        git(quelle, self.env, "add", "-A")
+        self.assertEqual(git(quelle, self.env, "-c", "user.name=a", "-c", "user.email=a@b.invalid", "commit", "-q", "-m", "eins").returncode, 0)
+        # Arbeitskopie: der Klon von „GitHub“, darüber der aktuelle Programmstand
+        shutil.rmtree(str(self.wurzel))
+        self.assertEqual(git(Path(self.tmp.name), self.env, "clone", "-q", str(quelle), str(self.wurzel)).returncode, 0)
+        ignor = shutil.ignore_patterns(".git", ".data", "postausgang", "__pycache__", "dozent", ".mcp.json", "bericht.md", ".env")
+        shutil.copytree(str(Path(__file__).resolve().parent.parent), str(self.wurzel), ignore=ignor, dirs_exist_ok=True)
+        git(self.wurzel, self.env, "add", "-A")
+        self.assertEqual(git(self.wurzel, self.env, "-c", "user.name=a", "-c", "user.email=a@b.invalid", "commit", "-q", "-m", "Programm").returncode, 0)
+        self.assertEqual(git(self.wurzel, self.env, "switch", "-q", "-c", "workshop/mein-tag").returncode, 0)
+        self.assertNotEqual(git(self.wurzel, self.env, "pull").returncode, 0)  # so scheitert es ohne Vorbereitung
+        out = self.einrichten()
+        self.assertIn("origin/main", out)
+        # eigener Stand der Person und gleichzeitig Neues auf GitHub
+        (self.wurzel / "mein-bau.txt").write_text("x", encoding="utf-8")
+        git(self.wurzel, self.env, "add", "mein-bau.txt")
+        self.assertEqual(git(self.wurzel, self.env, "commit", "-q", "-m", "Mein Stand").returncode, 0)
+        (quelle / "neu.txt").write_text("zwei", encoding="utf-8")
+        git(quelle, self.env, "add", "-A")
+        git(quelle, self.env, "-c", "user.name=a", "-c", "user.email=a@b.invalid", "commit", "-q", "-m", "zwei")
+        r = git(self.wurzel, self.env, "pull", "--no-edit")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertTrue((self.wurzel / "neu.txt").is_file())      # Neues ist da
+        self.assertTrue((self.wurzel / "mein-bau.txt").is_file())  # Eigenes bleibt
+        self.assertEqual(git(self.wurzel, self.env, "branch", "--show-current").stdout.strip(), "workshop/mein-tag")
+
 
 if __name__ == "__main__":
     unittest.main()
