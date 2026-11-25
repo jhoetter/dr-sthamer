@@ -309,7 +309,9 @@ Kennzahl steht darin, die Grenze der Aussage ist genannt. Stand speichern.
 
 ---
 
-## Whiteboard: Wo darf der Agent bei uns handeln?
+## Resümee: Was haben wir gebaut, was nehmen wir mit?
 
-Ohne Rechner. Pflichtfreigabe und Eingriffsfenster auf einen **eigenen** Fall übertragen: Automation
-Contract (Vorlage in `WORKSHOP_AGENDA.md`). Marc leitet zu „Bring Your Own Case“ (Freitag) über.
+Ohne Rechner (16:10, etwa 40 Minuten). Rückblick auf die fünf Drills, die sechs Bausteine und die zwei Kontrollen:
+Was haben wir gebaut, was hat funktioniert, was hat überrascht, und welche Kontrolle würde bei uns zuerst wirken?
+Wer mag, überträgt Pflichtfreigabe und Eingriffsfenster auf einen eigenen Fall (Automation Contract, Vorlage in
+`WORKSHOP_AGENDA.md`, freiwillig). Ausblick auf „Bring Your Own Case“ (Freitag, Dr. Marc Kohler).

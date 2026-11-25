@@ -50,16 +50,14 @@ Das System heißt **`sthamer-sys`**, das Repo `dr-sthamer`.
 
 ### Offene Fragen
 
-1. **Termin, Dauer, Teilnehmerzahl?** (Annahme: 1 Tag, 10–16 Personen.)
+1. ~~Termin, Dauer~~ **Entschieden:** Do 26.11.2026, 09:00 bis 17:00 (Tag 2 von drei Tagen). Teilnehmerzahl: Annahme 10–16 Personen.
 2. ~~Zeitreihenfolge mit Falk~~ **Entschieden:** Falks Block liegt als Tag 1 davor (Mi, 25.11.2026);
    die Nummerierung der Drills von Tag 2 bleibt.
 3. **Rechte auf den Gastgeräten:** Dürfen Gastbenutzer Software
    **ohne Administrator** installieren (Python und Git gehen per Benutzer-
    Installation, die Claude-App muss geprüft werden)? Geht GitHub im Gäste-WLAN?
-4. **Repo öffentlich oder privat?** Teilnehmende haben keinen GitHub-Account.
-   Privat funktioniert nur mit ZIP-Verteilung (Abschnitt 7). Empfehlung:
-   **bis zur Freigabe durch Sthamer privat, spätestens am Vortag öffentlich**
-   (alles synthetisch, keine Geheimnisse im Repo).
+4. ~~Repo öffentlich oder privat?~~ **Entschieden:** öffentlich (`github.com/jhoetter/dr-sthamer`), ein GitHub-Konto ist
+   nicht nötig. Alles ist synthetisch; Zugangsschlüssel liegen nie im Klartext im Repo.
 5. **Logo und Namen:** ITMP-SG-Logo bitte als SVG/PNG ins Repo legen
    (`web/logo-itmp.svg`). Darf der Name „Dr. Sthamer“ auf Folien und im
    Cockpit stehen oder lieber „Schaumwerk Nord (fiktiv)“?
@@ -138,7 +136,7 @@ Steckbrief der fiktiven Fassung vergleichen.
 
 | Zeit | Block | Inhalt |
 | --- | --- | --- |
-| 09:00 | Input | Von der Frage zum Agenten, MCP, Verifizierbarkeit, die zwei Kontrollmuster. Danach: ein Satz an Claude, jede Person hat ihre Kommandozentrale. |
+| 09:00 | Impuls (60 Min.) | Marc begrüßt. Johannes: Vortrag «Jede Aufgabe zuerst agentisch» (`tag2/impuls/`), dann die sechs Bausteine, die zwei Kontrollmuster, Verifizierbarkeit (Agent, MCP und Skills kennen die Teilnehmenden von Falks Mittwoch). Zum Schluss: ein Satz an Claude, jede Person hat ihre Kommandozentrale. |
 | 10:00 | **Drill 1 · Die Verordnung kommt** | Verordnung im Eingang. Claude erstellt den Steckbrief, Mensch prüft Fristen, Claude entwirft *eine* Kundenmail, Mensch sendet (Postausgang). Bauauftrag: Aufgabe erledigt sich beim Senden. |
 | 11:15 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Betroffenheit Produkte und Kunden mit Artikel- und Datenblattbeleg. Bauauftrag: Belegprüfung beim Speichern (Zitate müssen existieren, Fristen müssen stimmen). |
 | 12:15 | Mittag | |
@@ -213,7 +211,8 @@ Offline-Paket.
 | 2 | Agenda, Drill-Karten, Akzeptanzprüfung je Bauauftrag, Referenzlösungen und Rettungsweg (`lehrer/`), Runbook | **fertig** |
 | 2 | **Probelauf** mit simulierten Teilnehmenden, ganzer Tag ([PROBELAUF_2026-11-12.md](PROBELAUF_2026-11-12.md)) | **fertig** |
 | 3 | **Generalprobe mit Sthamer-Gastgerät** (Windows und Mac), Korrekturen | offen |
-| 3 | Folien für den Input, ITMP-Logo, Offline-Paket bauen (Skript), Repo-Verteilung klären | offen |
+| 3 | Folien (`folien/`, Vortrag in `tag2/impuls/`), ITMP-Logo, Repo öffentlich | **fertig** |
+| 3 | Offline-Paket bauen (Skript) | offen |
 
 ## 8a. Was noch nicht verifiziert ist
 

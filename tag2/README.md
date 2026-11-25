@@ -15,4 +15,4 @@ Inhalt in vier Teilen:
 
 Herkunft: Das Deck stammt aus dem Repo `jhoetter/pfefferminzia` (Juni 2026) und ist hier auf den Workshop bei Dr. Sthamer angepasst (ITMP-Logo, Fußzeile, Überleitung zur Regulatorik-Werkstatt). Die Inhalte der Folien sind sonst unverändert. Die Folie «Kern AI gegründet. Verkauft. Wieder am Bauen.» ist der Stand von Juni 2026.
 
-Platz im Ablauf: Do 09:15 „Input: Vom Assistenten zum Agenten“, als Einstieg oder in Auszügen. Erstellt wird die Datei mit dem Skript, das im Sitzungsverlauf entstanden ist; sie ist ab jetzt selbst die Quelle.
+Platz im Ablauf: Donnerstag 09:00 bis 10:00, „Impuls“. Der Vortrag selbst ist der erste Teil (etwa bis 09:40), danach folgen die sechs Bausteine und die zwei Kontrollen und der eine Satz an Claude. Die Datei selbst ist die Quelle und kann direkt bearbeitet werden.

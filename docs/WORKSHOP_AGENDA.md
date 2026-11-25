@@ -1,6 +1,6 @@
 # Workshop-Agenda: Agentische Systeme bei Dr. Sthamer
 
-> **Status:** Entwurf zur Abstimmung zwischen Johannes und Marc (Falk ist nur an Tag 1 dabei). Gespielt
+> **Status:** Ablauf für Tag 2, Donnerstag, 26.11.2026, 09:00 bis 17:00, Johannes Hötter (Hamburg, bei Dr. Sthamer). Gespielt
 > wurde der Tag am 12.11.2026 mit simulierten Teilnehmenden (siehe
 > `docs/PROBELAUF_2026-11-12.md`). Zeiten sind Vorschläge für **einen Tag**. Der Workshop läuft **Mittwoch bis Freitag (25.–27.11.2026)**; das hier ist **Tag 2**
 > (Donnerstag, 26.11.2026, Johannes). **Tag 1** „AI Augmentation“ (Mittwoch, Falk) liegt eigenständig in `tag1/`, **Tag 3** (Freitag) ist der
@@ -27,19 +27,18 @@ zum Senden oder Freigeben.
 
 | Zeit | Block | Wer | Inhalt |
 | --- | --- | --- | --- |
-| ab 08:30 | Einlass, Technikcheck (freiwillig) | Marc, IT von Sthamer | Wer will, kommt früher: Geräte an, Gäste-WLAN, `python check.py`, Claude-Anmeldung. Vorab erledigt (siehe `VOR_DEM_WORKSHOP.md`), hier nur Nacharbeit. Zweiergruppen („Buddys“). |
-| 09:00 | **Impuls (60 Min.): Jede Aufgabe zuerst agentisch** | Johannes (Marc begrüßt in den ersten Minuten und geht später rum) | Marc: Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann Johannes, etwa 09:05 bis 09:40: der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:40: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
-| 10:00 | **Drill 1 · Die Verordnung kommt** | Johannes, Marc | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
+| 09:00 | **Impuls (60 Min.): Jede Aufgabe zuerst agentisch** | Johannes | Begrüßung, Ziel des Tages, Spielregeln (erfundene Daten, nichts Echtes eingeben), Ablauf. Dann bis etwa 09:40 der Vortrag (`tag2/impuls/`): wie ich agentisch arbeite, das Prinzip, Verifier's Law, System-Denken (die Einordnung der Fähigkeiten, HLE und METR, nur kurz, wenn Falks Grundimpuls vom Mittwoch sie schon zeigt). Ab etwa 09:40: Live-Beispiele, die sechs Bausteine, Vibe Coding, Verifizierbarkeit, die zwei Kontrollmuster. Zum Schluss der **eine Satz an Claude** (siehe README): jede Person bekommt ihre Kommandozentrale. |
+| 10:00 | **Drill 1 · Die Verordnung kommt** | Johannes | Steckbrief, belegter Entwurf, der Mensch sendet. Bau: Aufgabe erledigt sich beim Senden. |
 | 11:00 | Pause (15 Min.) | | |
-| 11:15 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes, Marc | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
+| 11:15 | **Drill 2 · Wer ist betroffen? Mit Beleg** | Johannes | Einschätzung je Produkt und Kunde mit Artikel- und Datenblattbeleg. Bau: Belegprüfung. |
 | 12:15 | Mittag (45 Min.) | | **Runde 2** vorbereiten (Code bereithalten). |
-| 13:00 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes, Marc | Zehn Minuten Impuls, dann fünf Anfragen: Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
+| 13:00 | **Drill 3 · Rechtsaussagen: Pflichtfreigabe** | Johannes | Zehn Minuten Impuls, dann fünf Anfragen: Claude reicht ein, wir geben frei oder lehnen ab. Bau: Änderung nach Freigabe entwertet die Freigabe. |
 | 14:00 | Pause (15 Min.) | | |
-| 14:15 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes, Marc | Zehn Minuten Impuls, dann: Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein** (etwa 40 Minuten nach Beginn). Bau: Änderung bricht den Termin ab, nie doppelt senden. |
+| 14:15 | **Drill 4 · Standardinfo: Eingriffsfenster** | Johannes | Zehn Minuten Impuls, dann: Standardinformationen laufen nach 24 Stunden automatisch. Übungsuhr vorspulen, ändern, stoppen. **Berichtigung trifft ein** (etwa 40 Minuten nach Beginn). Bau: Änderung bricht den Termin ab, nie doppelt senden. |
 | 15:15 | Pause (10 Min.) | | |
-| 15:25 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes, Marc | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
-| 16:10 | Resümee: Was haben wir gebaut, was nehmen wir mit? | Johannes, Marc | Ohne Rechner. Rückblick auf die fünf Drills, die Bausteine und die zwei Kontrollen; was hat überrascht; welche Kontrolle würde bei uns zuerst wirken. |
-| 16:50 | Ausblick auf Freitag, Rückmeldungen | Marc | Übergabe an „Bring Your Own Case“. Ende 17:00. |
+| 15:25 | **Drill 5 · Bericht an die Geschäftsführung** (45 Min.) | Johannes | Zahlen aus dem Protokoll, Empfehlung, Grenze der Aussage. Bau: eine eigene Kennzahl. |
+| 16:10 | Resümee: Was haben wir gebaut, was nehmen wir mit? | Johannes | Ohne Rechner. Rückblick auf die fünf Drills, die Bausteine und die zwei Kontrollen; was hat überrascht; welche Kontrolle würde bei uns zuerst wirken. |
+| 16:50 | Ausblick auf Freitag, Rückmeldungen | Johannes | Übergabe an „Bring Your Own Case“. Ende 17:00. |
 
 ## Drills im Überblick
 
