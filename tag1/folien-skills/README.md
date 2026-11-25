@@ -4,7 +4,7 @@ Drei fertige Skills für Präsentationen und HTML-Seiten: **exhibit-stil** (Foli
 Prüfkasten und PDF), **aktionstitel** (Aktionstitel und Storyline nach dem Pyramidenprinzip) und **circle-design**
 (gut aussehende HTML-Seiten, hell und dunkel). Sie laufen ohne Internet und ohne Installation von Programmen.
 
-Lizenz: [Lizenz prüfen]. Schriften in `circle-design/assets/fonts/` unter SIL Open Font License (Lizenztexte liegen
+Lizenz: © 2026 Falk Uebernickel, zur eigenen Nutzung durch die Teilnehmenden des Workshops. Schriften in `circle-design/assets/fonts/` unter SIL Open Font License (Lizenztexte liegen
 dabei); die Bibliothek D3 in `exhibit-stil/vorlage.html` unter ISC-Lizenz.
 
 ## Was ein Skill ist
