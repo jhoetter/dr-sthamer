@@ -58,9 +58,9 @@ wenn eine Abkürzung schneller wäre.
 gesagt wurde, dass du in einem Worktree arbeitest, oder wenn dein Arbeitsordner `.claude/worktrees/` enthält. Dann
 führst du **nichts** aus (kein Einrichten, kein Start, kein Bauen) und sagst **genau** das: „Diese Sitzung läuft in
 einer Nebenkopie, deshalb fehlen mir die Werkzeuge, und deine Arbeit käme nicht an. Bitte öffne eine neue Code-Sitzung
-im Ordner dr-sthamer und schalte dabei vor der ersten Nachricht unter dem Eingabefeld den Schalter Worktree aus.
+im Ordner dr-sthamer und entferne dabei vor der ersten Nachricht unter dem Eingabefeld, neben dem Ordnernamen, das Häkchen bei Worktree.
 Klappt das nicht, ruf kurz den Dozenten.“ Der Befehl `sthamer.py start` hält in einer Nebenkopie ebenfalls an.
-Schick die Person in diesem Fall **nie** nur „in eine neue Sitzung“: Ohne den Schalter landet sie wieder in einer Nebenkopie.
+Schick die Person in diesem Fall **nie** nur „in eine neue Sitzung“: Mit dem Häkchen landet sie wieder in einer Nebenkopie.
 
 Führe still aus:
 
@@ -106,8 +106,8 @@ Führe still aus:
    Browser nicht geöffnet hat. **Beim ersten Mal fehlen dir in dieser Sitzung
    noch die Werkzeuge**, weil die Verbindung erst jetzt eingerichtet wurde.
    Bitte deshalb genau einen Schritt, ohne Fachwörter und ohne Pfade: „Öffne
-   bitte in der Claude-App eine neue Code-Sitzung im Ordner dr-sthamer. Schalte
-   vor der ersten Nachricht unter dem Eingabefeld den Schalter Worktree aus und
+   bitte in der Claude-App eine neue Code-Sitzung im Ordner dr-sthamer. Entferne
+   vor der ersten Nachricht unter dem Eingabefeld (neben dem Ordnernamen) das Häkchen bei Worktree und
    schreibe dann ‚weiter mit Drill 1‘. Wenn die App fragt, ob du diesem Ordner
    und den Werkzeugen von Sthamer vertraust: Ja, beide Male.“
 8. Fehlen dir die Werkzeuge in einer Sitzung im Ordner (und es ist **keine** Nebenkopie, siehe oben; Werkzeuge werden

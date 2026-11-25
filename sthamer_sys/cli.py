@@ -66,8 +66,8 @@ def git_vorbereiten() -> List[str]:
 WORKTREE_MELDUNG = (
     "STOPP: Diese Sitzung läuft in einer Nebenkopie (Git-Worktree) unter %s, nicht im Ordner %s.\n"
     "Hier würde eine zweite Kommandozentrale mit eigenem Stand entstehen, und deine Bauaufträge kämen nicht an.\n"
-    "Bitte eine neue Code-Sitzung im Ordner %s öffnen und dabei vor der ersten Nachricht den Schalter\n"
-    "\"Worktree\" unter dem Eingabefeld ausschalten.\n"
+    "Bitte eine neue Code-Sitzung im Ordner %s öffnen und dabei vor der ersten Nachricht unter dem\n"
+    "Eingabefeld, neben dem Ordnernamen, das Häkchen bei \"Worktree\" entfernen.\n"
     "Nichts wurde eingerichtet oder gestartet."
 )
 

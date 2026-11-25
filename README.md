@@ -30,8 +30,8 @@ python sthamer.py start
 
 (Mac/Linux: `python3 sthamer.py start`, Windows ggf. `py -3 sthamer.py start`.) Der Befehl richtet alles ein (lokale Datenbank, Verbindung zu Claude, Git-Vorbereitung) und öffnet die Kommandozentrale im Browser (<http://127.0.0.1:3005>). Er ist wiederholbar: Läuft sie schon, wird sie nur geöffnet.
 
-**Einmal neu öffnen:** Die Werkzeuge für Claude (MCP) werden beim Start einer Sitzung geladen. Eine Sitzung, die außerhalb des Ordners begonnen hat, kennt sie noch nicht. Danach eine **neue Sitzung im Ordner `dr-sthamer`** öffnen, **vor der ersten Nachricht den Schalter „Worktree“ unter dem
-Eingabefeld ausschalten** (sonst arbeitet die Sitzung in einer Nebenkopie ohne Werkzeuge) und „weiter mit Drill 1“ schreiben; dort gelten der Leitfaden `CLAUDE.md` und die Freigaben. Fragen zur Vertrauensabfrage („Ordner“, „Werkzeuge von Sthamer“) mit Ja beantworten.
+**Einmal neu öffnen:** Die Werkzeuge für Claude (MCP) werden beim Start einer Sitzung geladen. Eine Sitzung, die außerhalb des Ordners begonnen hat, kennt sie noch nicht. Danach eine **neue Sitzung im Ordner `dr-sthamer`** öffnen, **vor der ersten Nachricht das Häkchen „Worktree“ unter dem
+Eingabefeld (neben dem Ordnernamen) entfernen** (sonst arbeitet die Sitzung in einer Nebenkopie ohne Werkzeuge) und „weiter mit Drill 1“ schreiben; dort gelten der Leitfaden `CLAUDE.md` und die Freigaben. Fragen zur Vertrauensabfrage („Ordner“, „Werkzeuge von Sthamer“) mit Ja beantworten.
 
 ## Drei Tage, zwei Ordner
 
