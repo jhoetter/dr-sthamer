@@ -1866,7 +1866,7 @@ html, body, .reveal-viewport, .reveal .backgrounds { background: #F6EBD0; }
   const footerLabel = 'Jede Aufgabe zuerst agentisch · Johannes Hötter · ITMP SG × Dr. Sthamer · Do 26.11.2026';
 
   function render(slide, index) {
-    const bubbleText = slide.id === 'AgentischTitel' ? 'Hi, ich bin Johannes.' : '';
+    const bubbleText = slide.id === 'AgentischTitel' ? 'Moin, ich bin Johannes.' : '';
     const avatar = slide.cover || slide.id === 'AgentischBruecke'
       ? `<div class="day-avatar-sticker ${slide.cover ? 'cover' : ''}">${johannesAvatar}${bubbleText ? `<div class="day-avatar-bubble">${bubbleText}</div>` : ''}</div>`
       : '';
